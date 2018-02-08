@@ -15,14 +15,8 @@ Permitirá a visualização, pequisa a participação dos utilizadores nos leil�
 Existirão vários métodos de pesquisa, que permitirão filtrar os anúncios pela sua categoria, nome, autor, entre outros elementos.
 
 > user profiles
- 
-***
- 
-## Revision history
- 
-Changes made to the first submission:
-1. Item 1
-1. Item 2
+
+Os utilizadores estarão separados em grupos com diferentes permissões. Um dos grupos será para os (users), tendo estes os privilégios necessários para criar ou participar em leilões, consultar informação e participar em comentários.  Além destes, teremos os moderadores  com privilégios para aprovar, remover e modificar itens em leilão. Por fim, teremos os administradores com privilégios suficientes para terem o controlo total sobre a aplicação, como por exemplo,  adicionar/remover moderadores, remover contas de utilizadores com características dúvidosas etc. 
 
 ***
  
