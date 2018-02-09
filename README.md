@@ -7,7 +7,10 @@
 ## Elements:
 
 Daniel Vieira Azevedo | up201000307@fe.up.pt
+
 Nelson André Garrido da Costa | up201403128@icbas.up.pt 
+
 Rúben José da Silva Torres | up201405612@fe.up.pt 
+
 Tiago Lascasas dos Santos | up201503616@fe.up.pt
 
