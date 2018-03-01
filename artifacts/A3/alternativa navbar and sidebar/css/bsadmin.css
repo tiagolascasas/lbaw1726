@@ -72,6 +72,11 @@
     }
 }
 
+.hover:hover {
+    color: rgba(255, 255, 255, 1);
+    background: rgb(0, 0, 0);
+}
+
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -104,4 +109,9 @@ html {
     .notifications {
         font-size: 14px;
     }
+}
+
+.jumbotron-buttons {
+    width: 15.5em;
+    max-width: 90%
 }
