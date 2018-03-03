@@ -93,6 +93,13 @@ html {
     height: 60px;
 }
 
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+}
+
 @media (max-width: 992px) {
     .hidden-p-md-down {
         display: none;
