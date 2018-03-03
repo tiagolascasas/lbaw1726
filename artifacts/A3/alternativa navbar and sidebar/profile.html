@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>BookHub - Wish List</title>
+    <!-- Bootstrap CDN-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="css/bsadmin.css">
+    <link href="css/contact.css" rel="stylesheet">
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+    <!-- Navigation top-->
+    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+        <a href="#" class="sidebar-toggle text-light mr-3">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <a class="navbar-brand" href="home.html"> BOOKHUB</a>
+
+        <div class="navbar-collapse collapse">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle container" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-fw fa-bell"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right notifications" aria-labelledby="alertsDropdown">
+                        <h6 class="dropdown-header">New Alerts:</h6>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-success text-left">
+                                <strong>MacBook Pro Update</strong>
+                            </span>
+                            <span class="small text-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message "><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-danger text-left">
+                                <strong>Bimbi Update</strong>
+                            </span>
+                            <span class="small text-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message "><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-danger text-left">
+                                <strong>Bimbi Update</strong>
+                            </span>
+                            <span class="small text-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message "><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                        </a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                        <i class="fa fa-user"></i> Username
+                    </a>
+                    <a class="nav-link dropdown-toggle  hidden-p-md-up" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">My Auctions</a>
+                        <a class="dropdown-item" href="#">Auctions I'm in</a>
+                        <a class="dropdown-item" href="#">History</a>
+                        <a class="dropdown-item" href="#">WishList</a>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Navigation sidebar -->
+    <div class="d-flex">
+        <nav class="sidebar bg-dark ">
+            <ul class="list-unstyled mt-5">
+                <li>
+                    <a class="navlink" href="#">
+                        <h6 class="text-white pl-3 pb-2"><i class="fas fa-gavel mr-2"></i> Profile</h6>
+                    </a>
+                    <a class="navlink" href="#">
+                        <h6 class="text-white pl-3 pb-2"><i class="fas fa-gavel mr-2"></i> My auctions</h6>
+                    </a>
+                    <a class="navlink" href="#">
+                        <h6 class="text-white pl-3 pb-2"><i class="far fa-clock mr-2"></i> Auctions I'm in</h5>
+                    </a>
+                    <a class="navlink" href="#">
+                        <h6 class="text-white pl-3 pb-2"> <i class="fa fa-fw fa-history mr-2"> </i> History</h6>
+                    </a>
+                    </a>
+                    <a class="navlink" href="wishlist.html">
+                        <h6 class="text-white pl-3 pb-2"><i class="fa fa-star mr-2"></i> Wish List</h6>
+                    </a>
+
+                </li>
+
+
+            </ul>
+        </nav>
+
+
+        <!-- Content -->
+        <div class="container-fluid bg-white">
+            <div class="mb-0 mt-4">
+                <i class="fa fa-newspaper-o"></i> My Info</div>
+            <hr class="mt-2">
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputName">Name</label>
+                    <input class="form-control" type="text" id="exampleInputName" type="text" readonly aria-describedby="nameHelp" placeholder="Jack">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputUsername">Username</label>
+                    <input class="form-control" id="exampleInputUsername" type="text" readonly aria-describedby="nameHelp" placeholder="Smith">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputAge">Age</label>
+                    <input class="form-control" id="exampleInputAge" type="age" readonly aria-describedby="nameHelp" placeholder="34">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input class="form-control" id="exampleInputEmail1" type="email" readonly aria-describedby="emailHelp" placeholder="jack.smith@gmail.com">
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="address1">Address</label>
+                            <input class="form-control" id="address1" type="text" readonly placeholder="Street A, 125">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="country1">Country</label>
+                            <input class="form-control" id="country1" type="text" readonly placeholder="United Kingdom">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="postalcode1">Postal Code</label>
+                            <input class="form-control" id="postalcode1" type="text" readonly placeholder="200-132">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone1">Phone Number</label>
+                    <input class="form-control" id="phone1" type="text" readonly placeholder="12345678">
+                </div>
+
+                <button class="btn btn-primary btn-block" href="#">Change Password</button>
+                <button class="btn btn-outline-primary btn-block" href="#">Edit Info</button>
+
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- /.container-fluid-->
+    </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="py-2 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; BookHub 2018</p>
+            <p class="m-0 text-center text-white">
+                <a class="text-white" href="about.html"> About</a> &nbsp | &nbsp
+                <a class="text-white" href="faq.html"> FAQ</a> &nbsp | &nbsp
+                <a class="text-white" href="contact.html"> Contact</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScripts-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bsadmin.js" defer></script>
+</body>
+
+</html>
