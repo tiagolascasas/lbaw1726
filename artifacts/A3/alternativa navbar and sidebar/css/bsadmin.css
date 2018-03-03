@@ -111,6 +111,12 @@ html {
     }
 }
 
+@media (max-width: 250px) {
+    .notifications {
+        font-size: 9px;
+    }
+}
+
 .jumbotron-buttons {
     width: 15.5em;
     max-width: 90%
