@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>BookHub - Wish List</title>
+    <title>BookHub - Auctions I'm In</title>
+
     <!-- Bootstrap CDN-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/bsadmin.css">
-    <link href="css/contact.css" rel="stylesheet">
 
 </head>
 
@@ -31,37 +31,6 @@
         <div class="navbar-collapse collapse">
 
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown ">
-                    <a class="nav-link dropdown-toggle container" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-fw fa-bell"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right notifications" aria-labelledby="alertsDropdown">
-                        <h6 class="dropdown-header">New Alerts:</h6>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <span class="text-success text-left">
-                                <strong>MacBook Pro Update</strong>
-                            </span>
-                            <span class="small text-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message "><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <span class="text-danger text-left">
-                                <strong>Bimbi Update</strong>
-                            </span>
-                            <span class="small text-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message "><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <span class="text-danger text-left">
-                                <strong>Bimbi Update</strong>
-                            </span>
-                            <span class="small text-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message "><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
-                        </a>
-                    </div>
-                </li>
-
                 <li class="nav-item hidden-p-md-down">
                     <form class="form-inline my-2 my-lg-0 mr-lg-2">
                         <div class="input-group">
@@ -74,22 +43,55 @@
                         </div>
                     </form>
                 </li>
+
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle container" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-fw fa-bell"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right notifications" aria-labelledby="alertsDropdown">
+                        <h6 class="dropdown-header">New Alerts:</h6>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-success text-left">
+                                                    <strong>MacBook Pro Update</strong>
+                                                </span>
+                            <span class="small text-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message"><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-danger text-left">
+                                                    <strong>Bimbi Update</strong>
+                                                </span>
+                            <span class="small text-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message"><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-danger text-left">
+                                                    <strong>Bimbi Update</strong>
+                                                </span>
+                            <span class="small text-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message"><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                        </a>
+                    </div>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown">
                         <i class="fa fa-user"></i> Username
                     </a>
-                    <a class="nav-link dropdown-toggle  hidden-p-md-up" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle  hidden-p-md-up" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown">
                         <i class="fa fa-user"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">My Auctions</a>
-                        <a class="dropdown-item" href="#">Auctions I'm in</a>
-                        <a class="dropdown-item" href="#">History</a>
-                        <a class="dropdown-item" href="#">WishList</a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1 navbarDropdownMenuLink2">
+                        <a class="dropdown-item" href="profile.html">Profile</a>
+                        <a class="dropdown-item" href="create.html">Create auction</a>
+                        <a class="dropdown-item" href="myAuctions.html">My Auctions</a>
+                        <a class="dropdown-item" href="auctionsIm_in.html">Auctions I'm in</a>
+                        <a class="dropdown-item" href="history.html">History</a>
+                        <a class="dropdown-item" href="wishlist.html">WishList</a>
                         <a class="dropdown-item" href="#">Logout</a>
                     </div>
                 </li>
+
             </ul>
         </div>
     </nav>
@@ -111,18 +113,20 @@
                     </form>
                 </li>
                 <li>
-                    <a class="navlink" href="#">
-                        <h6 class="text-white pl-3 pb-2"><i class="fas fa-gavel mr-2"></i> Profile</h6>
+                    <a class="navlink" href="profile.html">
+                        <h6 class="text-white pl-3 pb-2"><i class="fas fa-user-circle mr-2"></i> Profile</h6>
                     </a>
-                    <a class="navlink" href="#">
-                        <h6 class="text-white pl-3 pb-2"><i class="fas fa-gavel mr-2"></i> My auctions</h6>
+                    <a class="navlink" href="create.html">
+                        <h6 class="text-white  pl-3 pb-2"><i class="fas fa-plus mr-2"></i> Create Auction</h6>
                     </a>
-                    <a class="navlink" href="#">
-                        <h6 class="text-white pl-3 pb-2"><i class="far fa-clock mr-2"></i> Auctions I'm in</h5>
+                    <a class="navlink" href="myAuctions.html">
+                        <h6 class="text-white  pl-3 pb-2"><i class="fas fa-gavel mr-2"></i> My auctions</h6>
                     </a>
-                    <a class="navlink" href="#">
-                        <h6 class="text-white pl-3 pb-2"> <i class="fa fa-fw fa-history mr-2"> </i> History</h6>
+                    <a class="navlink bg-secondary" href="auctionsIm_in.html">
+                        <h6 class="text-white pl-3 pb-2 "><i class="far fa-clock mr-2"></i> Auctions I'm in</h6>
                     </a>
+                    <a class="navlink" href="history.html">
+                        <h6 class="text-white  pl-3 pb-2"> <i class="fa fa-fw fa-history mr-2"> </i> History</h6>
                     </a>
                     <a class="navlink" href="wishlist.html">
                         <h6 class="text-white pl-3 pb-2"><i class="fa fa-star mr-2"></i> Wish List</h6>
@@ -142,7 +146,7 @@
             <!--Wish List Title-->
             <div class="bg-white mb-0 mt-4 panel">
                 <h5>
-                    <i class="fa fa-star"></i> Auctions I'm in </h5>
+                    <i class="fa fa-clock"></i> Auctions I'm in </h5>
             </div>
             <hr id="hr_space" class="mt-2">
 
@@ -155,20 +159,16 @@
                             <a href="#" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
-                                        <img width=100% src="img/theorphanstale.jpg">
+                                        <img class="width100" src="img/theorphanstale.jpg" alt="the orphan stale">
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text text-center hidden-p-md-down">The Orphan's Tale</p>
                                         <p class="card-text text-center hidden-p-md-down">By Pam Jennof</p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-link">
-                                                            <i class="fas fa-star"></i>
-                                                        </button>
-                                            </div>
+                                            <i class="fas fa-star btn btn-sm text-primary"></i>
                                             <small class="text-success">€ 4.17 </small>
                                             <small class="text-danger">
-                                                        < 5 mins</small>
+                                                        &lt; 5 mins</small>
                                         </div>
                                     </div>
                                 </div>
@@ -178,20 +178,16 @@
                             <a href="#" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
-                                        <img width=100% src="img/bornacrime.jpg">
+                                        <img class="width100" src="img/bornacrime.jpg" alt=" born a crime">
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text text-center hidden-p-md-down">Born a crime</p>
                                         <p class="card-text text-center hidden-p-md-down">By Trevor Noah</p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-link">
-                                                            <i class="far fa-star"></i>
-                                                        </button>
-                                            </div>
+                                            <i class="far fa-star btn btn-sm text-primary"></i>
                                             <small class="text-success">€ 4.17 </small>
                                             <small class="text-danger">
-                                                        < 5 mins</small>
+                                                        &lt; 5 mins</small>
                                         </div>
                                     </div>
                                 </div>
@@ -201,20 +197,16 @@
                             <a href="#" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
-                                        <img width=100% src="img/levithanwakes.jpg">
+                                        <img class="width100" src="img/levithanwakes.jpg" alt="Levithan Wakes">
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text text-center hidden-p-md-down">Leviathan Wakes</p>
                                         <p class="card-text text-center hidden-p-md-down">By James Sacorey</p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-link">
-                                                            <i class="fas fa-star"></i>
-                                                        </button>
-                                            </div>
+                                            <i class="fas fa-star btn btn-sm text-primary"></i>
                                             <small class="text-success">€ 4.17 </small>
                                             <small class="text-danger">
-                                                        < 5 mins</small>
+                                                        &lt; 5 mins</small>
                                         </div>
                                     </div>
                                 </div>
@@ -225,20 +217,16 @@
                             <a href="#" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
-                                        <img width=100% src="img/knowinggodbyname.jpg">
+                                        <img class="width100" src="img/knowinggodbyname.jpg" alt="knowing god by name">
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text text-center hidden-p-md-down">Knowing GOD</p>
                                         <p class="card-text text-center hidden-p-md-down">By David Wilkerson</p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-link">
-                                                            <i class="fas fa-star"></i>
-                                                        </button>
-                                            </div>
+                                            <i class="fas fa-star btn btn-sm text-primary"></i>
                                             <small class="text-success">€ 4.17 </small>
                                             <small class="text-danger">
-                                                        < 5 mins</small>
+                                                    &lt; 5 mins</small>
                                         </div>
                                     </div>
                                 </div>
@@ -248,20 +236,16 @@
                             <a href="#" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
-                                        <img width=100% src="img/thehusbandssecret.jpg">
+                                        <img class="width100" src="img/thehusbandssecret.jpg" alt="the husbands secret">
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text text-center hidden-p-md-down">the Husband's Secret</p>
                                         <p class="card-text text-center hidden-p-md-down">By Liane Moriarty</p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-link">
-                                                            <i class="fas fa-star"></i>
-                                                        </button>
-                                            </div>
+                                            <i class="fas fa-star btn btn-sm text-primary"></i>
                                             <small class="text-success">€ 4.17 </small>
                                             <small class="text-danger">
-                                                        < 5 mins</small>
+                                                    &lt; 5 mins</small>
                                         </div>
                                     </div>
                                 </div>
@@ -271,20 +255,16 @@
                             <a href="#" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
-                                        <img width=100% src="img/bookhub_about.jpeg">
+                                        <img class="width100" src="img/bookhub_about.jpeg" alt="example alt">
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text text-center hidden-p-md-down">Bookhub Example</p>
                                         <p class="card-text text-center hidden-p-md-down">By Example Book author</p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-link">
-                                                            <i class="far fa-star"></i>
-                                                        </button>
-                                            </div>
+                                            <i class="far fa-star btn btn-sm text-primary"></i>
                                             <small class="text-success">€ 4.17 </small>
                                             <small class="text-danger">
-                                                        < 5 mins</small>
+                                                        &lt; 5 mins</small>
                                         </div>
                                     </div>
                                 </div>
@@ -298,6 +278,8 @@
             </div>
         </div>
     </div>
+
+
     <!-- /.wish list gird-->
 
 
@@ -308,8 +290,8 @@
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; BookHub 2018</p>
             <p class="m-0 text-center text-white">
-                <a class="text-white" href="about.html"> About</a> &nbsp | &nbsp
-                <a class="text-white" href="faq.html"> FAQ</a> &nbsp | &nbsp
+                <a class="text-white" href="about.html"> About</a> &nbsp; | &nbsp;
+                <a class="text-white" href="faq.html"> FAQ</a> &nbsp; | &nbsp;
                 <a class="text-white" href="contact.html"> Contact</a></p>
         </div>
     </footer>
