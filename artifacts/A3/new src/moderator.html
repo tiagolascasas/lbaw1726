@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>BookHub - Wish List</title>
+    <title>BookHub - Auctions waiting approval</title>
+
     <!-- Bootstrap CDN-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/bsadmin.css">
-    <link href="css/contact.css" rel="stylesheet">
 
 </head>
 
@@ -40,44 +40,41 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">
                             <span class="text-success text-left">
-                                <strong>MacBook Pro Update</strong>
-                            </span>
+                                                    <strong>MacBook Pro Update</strong>
+                                                </span>
                             <span class="small text-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message "><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                            <div class="dropdown-message"><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
                         </a>
                         <a class="dropdown-item" href="#">
                             <span class="text-danger text-left">
-                                <strong>Bimbi Update</strong>
-                            </span>
+                                                    <strong>Bimbi Update</strong>
+                                                </span>
                             <span class="small text-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message "><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                            <div class="dropdown-message"><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
                         </a>
                         <a class="dropdown-item" href="#">
                             <span class="text-danger text-left">
-                                <strong>Bimbi Update</strong>
-                            </span>
+                                                    <strong>Bimbi Update</strong>
+                                                </span>
                             <span class="small text-right text-muted">11:21 AM</span>
-                            <div class="dropdown-message "><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                            <div class="dropdown-message"><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
                         </a>
                     </div>
                 </li>
-
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown">
                         <i class="fa fa-user"></i> Username
                     </a>
-                    <a class="nav-link dropdown-toggle  hidden-p-md-up" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle  hidden-p-md-up" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown">
                         <i class="fa fa-user"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">My Auctions</a>
-                        <a class="dropdown-item" href="#">Auctions I'm in</a>
-                        <a class="dropdown-item" href="#">History</a>
-                        <a class="dropdown-item" href="#">WishList</a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1 navbarDropdownMenuLink2">
+                        <a class="dropdown-item" href="profile.html">Profile</a>
+                        <a class="dropdown-item" href="moderator.html">Auctions waiting approval</a>
                         <a class="dropdown-item" href="#">Logout</a>
                     </div>
                 </li>
+
             </ul>
         </div>
     </nav>
@@ -87,127 +84,134 @@
         <nav class="sidebar bg-dark ">
             <ul class="list-unstyled mt-5">
                 <li>
-                    <a class="navlink" href="#">
-                        <h6 class="text-white pl-3 pb-2"><i class="fas fa-gavel mr-2"></i> Profile</h6>
+                    <a class="navlink" href="profile.html">
+                        <h6 class="text-white pl-3 pb-2"><i class="fas fa-user-circle mr-2"></i> Profile</h6>
                     </a>
-                    <a class="navlink" href="#">
-                        <h6 class="text-white pl-3 pb-2"><i class="fas fa-gavel mr-2"></i> Auctions to Approve</h6>
+                    <a class="navlink bg-secondary" href="moderator.html">
+                        <h6 class="text-white  pl-3 pb-2"><i class="fas fa-gavel mr-2"></i> Auctions waiting approval</h6>
                     </a>
-
                 </li>
-
-
             </ul>
         </nav>
 
 
         <!-- Content -->
         <div class="container-fluid bg-white">
-            <!--Wish List-->
-            <div class="mb-0 mt-4 panel">
-                <i class="fa fa-star"></i> Auctions to approve</div>
-            <hr class="mt-2">
+            <!-- Title-->
+            <div class="bg-white mb-0 mt-4 panel">
+                <h5>
+                    <i class="fa fa-star"></i> Auctions waiting approval </h5>
+            </div>
+            <hr id="hr_space" class="mt-2">
 
-            <!-- Wish List item -->
-            <ul class="list-group panel">
+
+
+            <!-- item -->
+            <div class="list-group panel">
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-auto img-fluid media-object align-self-center ">
-                                <img width=100% src="img/theorphanstale.jpg">
+                                <img class="width100" src="img/theorphanstale.jpg" alt="the orphan stale">
                             </div>
                             <div class="col-lg-6 align-self-center text-left p-2 text-dark lead">
                                 The Orphan's Tale - Pam Jenoff
                             </div>
-                            <div class="col-lg-4  text-center align-self-center p-3 text-danger">
-                                <button class="btn btn-success align-self-center p-2 m-2" type="button" name="button"><i class="fa fa-thumbs-up fa-2x"></i></button>
-                                <button class="btn btn-danger align-self-center p-2 m-2" type="button" name="button"><i class="fa fa-trash fa-2x"></i></button>
+                            <div class="col-lg-4 text-center align-self-center p-3 text-danger">
+                                <i class="fa fa-thumbs-up fa-2x btn btn-success align-self-center p-2 m-2"></i>
+                                <i class="fa fa-trash fa-2x btn btn-danger align-self-center p-2 m-2"></i>
                             </div>
                         </div>
                     </div>
                 </a>
-            </ul>
 
-            <!-- Wish List item -->
-            <ul class="list-group panel">
+
+                <!--  item -->
+
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-auto img-fluid media-object align-self-center ">
-                                <img width=100% src="img/bornacrime.jpg" alt="placehold.it/100x100">
+                            <div class="col-sm-auto  img-fluid media-object align-self-center ">
+                                <img class="width100" src="img/bornacrime.jpg" alt=" born a crime">
                             </div>
                             <div class="col-lg-6 align-self-center text-left p-2 text-dark lead">
                                 Born a Crime - Trevor Noah
                             </div>
                             <div class="col-lg-4 text-center align-self-center p-3 text-danger">
-                                <button class="btn btn-success align-self-center p-2 m-2" type="button" name="button"><i class="fa fa-thumbs-up fa-2x"></i></button>
-                                <button class="btn btn-danger align-self-center p-2 m-2" type="button" name="button"><i class="fa fa-trash fa-2x"></i></button>
+                                <i class="fa fa-thumbs-up fa-2x btn btn-success align-self-center p-2 m-2"></i>
+                                <i class="fa fa-trash fa-2x btn btn-danger align-self-center p-2 m-2"></i>
                             </div>
                         </div>
                     </div>
                 </a>
-            </ul>
-            <!-- Wish List item -->
-            <ul class="list-group panel">
+
+
+                <!--  item -->
+
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-auto img-fluid media-object align-self-center ">
-                                <img width=100% src="img/levithanwakes.jpg">
+                            <div class="col-sm-auto  img-fluid media-object align-self-center ">
+                                <img class="width100" src="img/levithanwakes.jpg" alt="Levithan Wakes">
                             </div>
                             <div class="col-lg-6 align-self-center text-left p-2 text-dark lead">
                                 Leviathan Wakes (The Expanse #1) - James S.A. Corey
                             </div>
                             <div class="col-lg-4 text-center align-self-center p-3 text-danger">
-                                <button class="btn btn-success align-self-center p-2 m-2" type="button" name="button"><i class="fa fa-thumbs-up fa-2x"></i></button>
-                                <button class="btn btn-danger align-self-center p-2 m-2" type="button" name="button"><i class="fa fa-trash fa-2x"></i></button>
+                                <i class="fa fa-thumbs-up fa-2x btn btn-success align-self-center p-2 m-2"></i>
+                                <i class="fa fa-trash fa-2x btn btn-danger align-self-center p-2 m-2"></i>
                             </div>
                         </div>
                     </div>
                 </a>
-            </ul>
-            <!-- Wish List item -->
-            <ul class="list-group panel">
+
+
+                <!--  item -->
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-auto img-fluid media-object align-self-center ">
-                                <img width=100% src="img/knowinggodbyname.jpg">
+                                <img class="width100" src="img/knowinggodbyname.jpg" alt="knowing god by name">
                             </div>
                             <div class="col-lg-6 align-self-center text-left p-2 text-dark lead">
                                 Knowing God by Name - David Wilkerson
                             </div>
-                            <div class="col-lg-4  text-center align-self-center p-3 text-danger">
-                                <button class="btn btn-success align-self-center p-2 m-2" type="button" name="button"><i class="fa fa-thumbs-up fa-2x"></i></button>
-                                <button class="btn btn-danger align-self-center p-2 m-2" type="button" name="button"><i class="fa fa-trash fa-2x"></i></button>
+                            <div class="col-lg-4 text-center align-self-center p-3 text-danger">
+                                <i class="fa fa-thumbs-up fa-2x btn btn-success align-self-center p-2 m-2"></i>
+                                <i class="fa fa-trash fa-2x btn btn-danger align-self-center p-2 m-2"></i>
                             </div>
                         </div>
                     </div>
                 </a>
-            </ul>
-            <!-- Wish List item -->
-            <ul class="list-group panel">
+
+
+                <!-- item -->
+
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-auto img-fluid media-object align-self-center ">
-                                <img width=100% src="img/thehusbandssecret.jpg">
+                                <img class="width100" src="img/thehusbandssecret.jpg" alt="the husbands secret">
                             </div>
                             <div class="col-lg-6 align-self-center text-left p-2 text-dark lead">
                                 The Husband's Secret - Liane Moriarky
                             </div>
                             <div class="col-lg-4 text-center align-self-center p-3 text-danger">
-                                <button class="btn btn-success align-self-center p-2 m-2" type="button" name="button"><i class="fa fa-thumbs-up fa-2x"></i></button>
-                                <button class="btn btn-danger align-self-center p-2 m-2" type="button" name="button"><i class="fa fa-trash fa-2x"></i></button>
+                                <i class="fa fa-thumbs-up fa-2x btn btn-success align-self-center p-2 m-2"></i>
+                                <i class="fa fa-trash fa-2x btn btn-danger align-self-center p-2 m-2"></i>
                             </div>
                         </div>
                     </div>
                 </a>
-            </ul>
+
+            </div>
+
+            <!-- /.wish list gird-->
         </div>
+
         <!-- /.container-fluid-->
     </div>
-    </div>
+
 
 
     <!-- Footer -->
@@ -215,8 +219,8 @@
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; BookHub 2018</p>
             <p class="m-0 text-center text-white">
-                <a class="text-white" href="about.html"> About</a> &nbsp | &nbsp
-                <a class="text-white" href="faq.html"> FAQ</a> &nbsp | &nbsp
+                <a class="text-white" href="about.html"> About</a> &nbsp; | &nbsp;
+                <a class="text-white" href="faq.html"> FAQ</a> &nbsp; | &nbsp;
                 <a class="text-white" href="contact.html"> Contact</a></p>
         </div>
     </footer>
