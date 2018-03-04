@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>BookHub - About</title>
+    <title>BookHub - Advanced Search</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/bsadmin.css">
-    <link href="css/contact.css" rel="stylesheet">
 </head>
 
 <body>
@@ -36,40 +35,43 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">
                             <span class="text-success text-left">
-                                <strong>MacBook Pro Update</strong>
-                            </span>
+                                        <strong>MacBook Pro Update</strong>
+                                    </span>
                             <span class="small text-right text-muted">11:21 AM</span>
                             <div class="dropdown-message"><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
                         </a>
                         <a class="dropdown-item" href="#">
                             <span class="text-danger text-left">
-                                <strong>Bimbi Update</strong>
-                            </span>
+                                        <strong>Bimbi Update</strong>
+                                    </span>
                             <span class="small text-right text-muted">11:21 AM</span>
                             <div class="dropdown-message"><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
                         </a>
                         <a class="dropdown-item" href="#">
                             <span class="text-danger text-left">
-                                <strong>Bimbi Update</strong>
-                            </span>
+                                        <strong>Bimbi Update</strong>
+                                    </span>
                             <span class="small text-right text-muted">11:21 AM</span>
                             <div class="dropdown-message"><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
                         </a>
                     </div>
                 </li>
+
+
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown">
                         <i class="fa fa-user"></i> Username
                     </a>
-                    <a class="nav-link dropdown-toggle  hidden-p-md-up" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle  hidden-p-md-up" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown">
                         <i class="fa fa-user"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">My Auctions</a>
-                        <a class="dropdown-item" href="#">Auctions I'm in</a>
-                        <a class="dropdown-item" href="#">History</a>
-                        <a class="dropdown-item" href="#">WishList</a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1 navbarDropdownMenuLink2">
+                        <a class="dropdown-item" href="profile.html">Profile</a>
+                        <a class="dropdown-item" href="create.html">Create auction</a>
+                        <a class="dropdown-item" href="myAuctions.html">My Auctions</a>
+                        <a class="dropdown-item" href="auctionsIm_in.html">Auctions I'm in</a>
+                        <a class="dropdown-item" href="history.html">History</a>
+                        <a class="dropdown-item" href="wishlist.html">WishList</a>
                         <a class="dropdown-item" href="#">Logout</a>
                     </div>
                 </li>
@@ -86,7 +88,7 @@
                     <i class="fa fa-search-plus"></i> Advanced Search</h4>
             </div>
             <hr id="hr_space" class="mt-2">
-            <main role="main">
+            <main>
                 <form class="ml-4 mr-4">
                     <div class="form-row">
                         <div class="form-group col-md-12">
@@ -114,17 +116,70 @@
                             <input type="text" class="form-control">
                         </div>
                         <div class="form-group col-md-4">
-                            <label>Language</label>
+                            <label>Category</label>
                             <select class="form-control">
-                                    <option selected>All languages</option>
-                                    <option>Portuguese</option>
-                                    <option>English</option>
-                                </select>
+                                            <option value="">&nbsp;</option>
+                                            <option>Arts&amp;Music</option>
+                                            <option>Biographies</option>
+                                            <option>Business</option>
+                                            <option>Kids</option>
+                                            <option>Comics</option>
+                                            <option>Cooking</option>
+                                            <option>Computation&amp;Tech</option>
+                                            <option>Education</option>
+                                            <option>Health&amp;Fitness</option>
+                                            <option>History</option>
+                                            <option>Horror</option>
+                                            <optgroup label="Literature">
+                                            <option>All </option>
+                                            <option>Anthologies </option>
+                                            <option>Classics </option>
+                                            <option>Contemporary </option>
+                                            <option>Sci-Fi&amp;Fantasy </option>
+                                            <option>Romance </option>
+                                            <option>Crime </option>
+                                            </optgroup>
+                                            <option>Religion </option>
+                                            <option>Science </option>
+                                            <option>Self-Help </option>
+                                            <option>Travel </option>
+                                            <option>Other </option>
+                                        </select>
                         </div>
                         <div class="form-group col-md-4">
+                            <label>Language</label>
+                            <select class="form-control">
+                                    <option value="">&nbsp;</option>
+                                    <option>English</option>
+                                    <option>Bulgarian</option>
+                                    <option>Croatian</option>
+                                    <option>Danish</option>
+                                    <option>Dutch</option>
+                                    <option>Estonian</option>
+                                    <option>Finnish</option>
+                                    <option>French</option>
+                                    <option>German</option>
+                                    <option>Greek</option>
+                                    <option>Hungarian</option>
+                                    <option>Irish</option>
+                                    <option>Italian</option>
+                                    <option>Latvian</option>
+                                    <option>Lithuanian</option>
+                                    <option>Polish</option>
+                                    <option>Hungarian</option>
+                                    <option>Romanian</option>
+                                    <option>Slovak</option>
+                                    <option>Slovenian</option>
+                                    <option>Spanish</option>
+                                    <option>Swedish</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
                             <label>Maximum current bid in €</label>
                             <div class="form-check">
-                                <input class="form-control" type="text">
+                                <input class="form-control" type="number" step="0.01">
                             </div>
                         </div>
                     </div>
@@ -137,7 +192,7 @@
 
                 <section class="jumbotron text-center">
                     <div class="container">
-                        <h2 class="jumbotron-heading">Your search results for "lord of the rings":</h2>
+                        <h4 class="jumbotron-heading">Your search results for "lord of the rings":</h4>
                     </div>
                 </section>
 
@@ -147,39 +202,18 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <a href="#" class="list-group-item-action">
-                                    <div class="card mb-4">
-                                        <div class="col-md-6 img-fluid media-object align-self-center ">
-                                            <img width=100% src="img/lotr.jpg">
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="card-text text-center hidden-p-md-down">The Lord of the Rings (single volume)</p>
-                                            <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-sm btn-outline-secondary">nelsoncosta</button>
-                                                </div>
-                                                <small class="text-success">€ 39.98 </small>
-                                                <small class="text-danger">< 2 mins</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="#" class="list-group-item-action">
                                     <div class="card mb-4 box-shadow">
                                         <div class="col-md-6 img-fluid media-object align-self-center ">
-                                            <img width=100% src="img/fellowship.jpg">
+                                            <img class="width100" src="img/fellowship.jpg" alt="The fellowship of the ring">
                                         </div>
                                         <div class="card-body">
                                             <p class="card-text text-center hidden-p-md-down">The Fellowship of the Ring (The Lord of the Rings #1)</p>
                                             <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-sm btn-outline-secondary">nelsoncosta</button>
-                                                </div>
+                                                <i class="fas fa-star btn btn-sm text-primary"></i>
                                                 <small class="text-success">€ 4.17 </small>
-                                                <small class="text-danger">< 5 mins</small>
+                                                <small class="text-danger">
+                                                            &lt; 5 mins</small>
                                             </div>
                                         </div>
                                     </div>
@@ -189,17 +223,35 @@
                                 <a href="#" class="list-group-item-action">
                                     <div class="card mb-4 box-shadow">
                                         <div class="col-md-6 img-fluid media-object align-self-center ">
-                                            <img width=100% src="img/two_towers.jpg">
+                                            <img class="width100" src="img/two_towers.jpg" alt="Lord of the ring - the two towers">
                                         </div>
                                         <div class="card-body">
                                             <p class="card-text text-center hidden-p-md-down">The Two Towers (The Lord of the Rings #2)</p>
                                             <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-sm btn-outline-secondary">nelsoncosta</button>
-                                                </div>
+                                                <i class="far fa-star btn btn-sm text-primary"></i>
                                                 <small class="text-success">€ 4.17 </small>
-                                                <small class="text-danger">< 5 mins</small>
+                                                <small class="text-danger">
+                                                            &lt; 5 mins</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="#" class="list-group-item-action">
+                                    <div class="card mb-4 box-shadow">
+                                        <div class="col-md-6 img-fluid media-object align-self-center ">
+                                            <img class="width100" src="img/return.jpg" alt="The Return of the King">
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text text-center hidden-p-md-down">The Return of the King (The Lord of the Rings #3)</p>
+                                            <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <i class="fas fa-star btn btn-sm text-primary"></i>
+                                                <small class="text-success">€ 4.17 </small>
+                                                <small class="text-danger">
+                                                            &lt; 5 mins</small>
                                             </div>
                                         </div>
                                     </div>
@@ -210,17 +262,16 @@
                                 <a href="#" class="list-group-item-action">
                                     <div class="card mb-4 box-shadow">
                                         <div class="col-md-6 img-fluid media-object align-self-center ">
-                                            <img width=100% src="img/return.jpg">
+                                            <img class="width100" src="img/lotr.jpg" alt="The Lord of the Rings">
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-text text-center hidden-p-md-down">The Return of the King (The Lord of the Rings #3)</p>
+                                            <p class="card-text text-center hidden-p-md-down">The Lord of the Rings (single volume)</p>
                                             <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-sm btn-outline-secondary">nelsoncosta</button>
-                                                </div>
+                                                <i class="fas fa-star btn btn-sm text-primary"></i>
                                                 <small class="text-success">€ 4.17 </small>
-                                                <small class="text-danger">< 5 mins</small>
+                                                <small class="text-danger">
+                                                        &lt; 5 mins</small>
                                             </div>
                                         </div>
                                     </div>
@@ -232,23 +283,23 @@
             </main>
         </div>
     </div>
-    <!-- Footer -->
+
     <footer class="footer bg-dark">
         <div class="container align-self-center">
             <p class="mt-2 mb-0 text-center text-white">Copyright &copy; BookHub 2018</p>
             <p class="m-0 text-center text-white">
-                <a class="text-white" href="about.html"> About</a> &nbsp | &nbsp
-                <a class="text-white" href="faq.html"> FAQ</a> &nbsp | &nbsp
+                <a class="text-white" href="about.html"> About</a> &nbsp; | &nbsp;
+                <a class="text-white" href="faq.html"> FAQ</a> &nbsp; | &nbsp;
                 <a class="text-white" href="contact.html"> Contact</a>
             </p>
         </div>
     </footer>
 
-    <!-- Bootstrap core JavaScript -->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/bsadmin.js" defer></script>
+    <script src="js/bsadmin.js"></script>
+
 </body>
 
 </html>
