@@ -85,11 +85,14 @@
 
             <div class="bg-white mb-0 mt-4 panel">
                 <h4>
-                    <i class="fa fa-search-plus"></i> Advanced Search</h4>
+                    <i class="fa fa-search-plus"></i> Search results</h4>
             </div>
             <hr id="hr_space" class="mt-2">
             <main>
-                <form class="ml-4 mr-4">
+                <a class="btn btn-primary col-md-12 mb-4" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Show advanced seach options
+                </a>
+                <form class="ml-4 mr-4 collapse" id="collapseExample">
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label>Search keyword(s)</label>
@@ -97,25 +100,31 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-12">
                             <label>Publisher</label>
                             <input type="text" class="form-control">
                         </div>
-                        <div class="form-group col-md-4">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
                             <label>Title</label>
                             <input type="text" class="form-control">
                         </div>
-                        <div class="form-group col-md-4">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
                             <label>ISBN</label>
                             <input type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-12">
                             <label for="search">Author</label>
                             <input type="text" class="form-control">
                         </div>
-                        <div class="form-group col-md-4">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
                             <label>Category</label>
                             <select class="form-control">
                                             <option value="">&nbsp;</option>
@@ -146,7 +155,9 @@
                                             <option>Other </option>
                                         </select>
                         </div>
-                        <div class="form-group col-md-4">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
                             <label>Language</label>
                             <select class="form-control">
                                     <option value="">&nbsp;</option>
@@ -176,7 +187,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-12 mr-0">
                             <label>Maximum current bid in €</label>
                             <div class="form-check">
                                 <input class="form-control" type="number" step="0.01">
