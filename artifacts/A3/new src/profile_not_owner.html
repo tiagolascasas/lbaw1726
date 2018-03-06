@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>BookHub - Profile</title>
+    <title>BookHub - Profile (Not owner)</title>
 
     <!-- Bootstrap CDN-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -114,74 +114,130 @@
 
         <!-- Content -->
         <div class="container-fluid bg-white">
-
-
             <div class="bg-white mb-0 mt-4 panel">
-                <h5>
-                    <i class="fa fa-user-circle"></i> Profile</h5>
+                <h5><i class="fa fa-user-circle"></i> tiagolascasas's profile</h5>
             </div>
             <hr id="hr_space" class="mt-2">
+            <div>
+                <table class="table table-condensed">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Full name</strong>
+                            </td>
+                            <td>
+                                Tiago Lascasas dos Santos
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Email address</strong>
+                            </td>
+                            <td>
+                                up201503616@fe.up.pt
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Phone Number</strong>
+                            </td>
+                            <td>
+                                351-123456789
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Country</strong>
+                            </td>
+                            <td>
+                                Portugal
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--feedback-->
+            <div class="bg-white mb-0 mt-4 mb-4 panel">
+                <h5><i class="fa fa-comments"></i> Feedback</h5>
+            </div>
 
             <form>
-                <div class="form-group">
-                    <label for="exampleInputName">Name</label>
-                    <input class="form-control" type="text" id="exampleInputName" readonly placeholder="Jack Oliveira da Siva Smith">
+                <div class="btn-group mb-3" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success">
+                        <i class="fa fa-thumbs-up btn btn-success"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        <i class="fa fa-thumbs-down btn btn-danger"></i>
+                    </button>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputUsername">Username</label>
-                    <input class="form-control" id="exampleInputUsername" type="text" readonly placeholder="Smith">
+                    <textarea rows="3" cols="30" class="form-control" placeholder="Your feedback"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputDate">Age</label>
-                    <input class="form-control" id="exampleInputDate" type="number" readonly placeholder="22">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input class="form-control" id="exampleInputEmail1" type="email" readonly placeholder="jack.smith@gmail.com">
-                </div>
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col-md-6">
-                            <label for="address1">Address</label>
-                            <input class="form-control" id="address1" type="text" readonly placeholder="Street A, 125">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="postalcode1">Postal Code</label>
-                            <input class="form-control" id="postalcode1" type="text" readonly placeholder="2000-132">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="country1">Country</label>
-                            <input class="form-control" id="country1" type="text" readonly placeholder="United Kingdom">
-                        </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-primary col-md-12">Post your feedback</button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="phone1">Phone Number</label>
-                    <input class="form-control" id="phone1" type="text" readonly placeholder="123456789">
-                </div>
-
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col-md-4">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Your password" disabled>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="exampleNewPassword">New Password</label>
-                            <input class="form-control" id="exampleNewPassword" type="password" placeholder="New password" disabled>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="exampleConfirmPassword">Confirm Password</label>
-                            <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirm password" disabled>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn btn-primary btn-block">Change Password</button>
-                <button class="btn btn-outline-primary btn-block">Edit Info</button>
 
             </form>
+
+            <div class="list-group panel">
+                <a href="#" class="list-group-item list-group-item-action text-muted">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <button type="button" class="btn">nelsoncosta</button>
+                            </div>
+                            <div class="col-lg-2  text-left text-dark lead">
+                                <i class="fa fa-thumbs-up btn btn-success"></i>
+                            </div>
+                            <div class="col-lg-6  text-left text-dark lead">
+                                <p>Everything was delivered as promised. I reccomend.</p>
+                            </div>
+                            <div class="col-lg-2  text-left text-dark lead">
+                                <p>5 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action text-muted">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <button type="button" class="btn">rubentorres</button>
+                            </div>
+                            <div class="col-lg-2  text-left text-dark lead">
+                                <i class="fa fa-thumbs-down btn btn-danger"></i>
+                            </div>
+                            <div class="col-lg-6  text-left text-dark lead">
+                                <p>Took way too long to arrive.</p>
+                            </div>
+                            <div class="col-lg-2  text-left text-dark lead">
+                                <p>7 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action text-muted">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <button type="button" class="btn">danielazevedo</button>
+                            </div>
+                            <div class="col-lg-2  text-left text-dark lead">
+                                <i class="fa fa-thumbs-up btn btn-success"></i>
+                            </div>
+                            <div class="col-lg-6  text-left text-dark lead">
+                                <p>Always has the best deals!</p>
+                            </div>
+                            <div class="col-lg-2  text-left text-dark lead">
+                                <p>10 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
         </div>
     </div>
 
