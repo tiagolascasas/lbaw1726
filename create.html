@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>BookHub - Create Auction</title>
+
+    <!-- Bootstrap CDN-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="css/bsadmin.css">
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+    <!-- Navigation top-->
+    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+        <a href="#" class="sidebar-toggle text-light mr-3">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <a class="navbar-brand" href="home.html"> BOOKHUB</a>
+
+        <div class="navbar-collapse collapse">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item hidden-p-md-down">
+                    <form class="form-inline my-2 my-lg-0 mr-lg-2">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Search for...">
+                            <span class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </li>
+
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle container" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-fw fa-bell"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right notifications" aria-labelledby="alertsDropdown">
+                        <h6 class="dropdown-header">New Alerts:</h6>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-success text-left">
+                                                    <strong>Memorial do Convento</strong>
+                                                </span>
+                            <span class="small text-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message"><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-danger text-left">
+                                                    <strong>Os Maias</strong>
+                                                </span>
+                            <span class="small text-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message"><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-danger text-left">
+                                                    <strong>Os Maias</strong>
+                                                </span>
+                            <span class="small text-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message"><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown">
+                        <i class="fa fa-user"></i> Username
+                    </a>
+                    <a class="nav-link dropdown-toggle  hidden-p-md-up" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1 navbarDropdownMenuLink2">
+                        <a class="dropdown-item" href="profile_not_owner.html">Profile</a>
+                        <a class="dropdown-item" href="create.html">Create auction</a>
+                        <a class="dropdown-item" href="myAuctions.html">My Auctions</a>
+                        <a class="dropdown-item" href="auctionsIm_in.html">Auctions I'm in</a>
+                        <a class="dropdown-item" href="history.html">History</a>
+                        <a class="dropdown-item" href="wishlist.html">WishList</a>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Navigation sidebar -->
+    <div class="d-flex">
+        <nav class="sidebar bg-dark ">
+            <ul class="list-unstyled mt-5">
+                <li class="nav-item hidden-p-md-up pb-4">
+                    <form class="form-inline my-2 my-lg-0 mr-lg-2">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Search for...">
+                            <span class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </li>
+                <li>
+                    <a class="navlink" href="profile_not_owner.html">
+                        <h6 class="text-white pl-3 pb-2"><i class="fas fa-user-circle mr-2"></i> Profile</h6>
+                    </a>
+                    <a class="navlink bg-secondary" href="create.html">
+                        <h6 class="text-white  pl-3 pb-2"><i class="fas fa-plus mr-2"></i> Create Auction</h6>
+                    </a>
+                    <a class="navlink" href="myAuctions.html">
+                        <h6 class="text-white  pl-3 pb-2"><i class="fas fa-gavel mr-2"></i> My auctions</h6>
+                    </a>
+                    <a class="navlink" href="auctionsIm_in.html">
+                        <h6 class="text-white pl-3 pb-2 "><i class="far fa-clock mr-2"></i> Auctions I'm in</h6>
+                    </a>
+                    <a class="navlink" href="history.html">
+                        <h6 class="text-white  pl-3 pb-2"> <i class="fa fa-fw fa-history mr-2"> </i> History</h6>
+                    </a>
+                    <a class="navlink" href="wishlist.html">
+                        <h6 class="text-white pl-3 pb-2"><i class="fa fa-star mr-2"></i> Wish List</h6>
+                    </a>
+
+                </li>
+
+
+            </ul>
+        </nav>
+
+
+        <!-- Content -->
+        <div class="container-fluid bg-white">
+
+            <!--Wish List Title-->
+            <div class="bg-white mb-0 mt-4 panel">
+                <h4>
+                    <i class="fa fa-plus"></i> Create an Auction</h4>
+            </div>
+            <hr id="hr_space" class="mt-2">
+            <main>
+                <form class="ml-4 mr-4">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>Book title</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>Author</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>ISBN</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>Publisher</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>Language</label>
+                            <select class="form-control" required>
+                                    <option value="">&nbsp;</option>
+                                    <option>English</option>
+                                    <option>Bulgarian</option>
+                                    <option>Croatian</option>
+                                    <option>Danish</option>
+                                    <option>Dutch</option>
+                                    <option>Estonian</option>
+                                    <option>Finnish</option>
+                                    <option>French</option>
+                                    <option>German</option>
+                                    <option>Greek</option>
+                                    <option>Hungarian</option>
+                                    <option>Irish</option>
+                                    <option>Italian</option>
+                                    <option>Latvian</option>
+                                    <option>Lithuanian</option>
+                                    <option>Polish</option>
+                                    <option>Hungarian</option>
+                                    <option>Romanian</option>
+                                    <option>Slovak</option>
+                                    <option>Slovenian</option>
+                                    <option>Spanish</option>
+                                    <option>Swedish</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>Description</label>
+                            <textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>Category</label>
+                            <select class="form-control" multiple required>
+                                    <option selected>Arts&amp;Music</option>
+                                    <option>Biographies</option>
+                                    <option>Business</option>
+                                    <option>Kids</option>
+                                    <option>Comics</option>
+                                    <option>Cooking</option>
+                                    <option>Computation&amp;Tech</option>
+                                    <option>Education</option>
+                                    <option>Health&amp;Fitness</option>
+                                    <option>History</option>
+                                    <option>Horror</option>
+                                    <optgroup label="Literature">
+                                    <option>All </option>
+                                    <option>Anthologies </option>
+                                    <option>Classics </option>
+                                    <option>Contemporary </option>
+                                    <option>Sci-Fi&amp;Fantasy </option>
+                                    <option>Romance </option>
+                                    <option>Crime </option>
+                                    </optgroup>
+                                    <option>Religion </option>
+                                    <option>Science </option>
+                                    <option>Self-Help </option>
+                                    <option>Travel </option>
+                                    <option>Other </option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>Image(s) of the book</label>
+                            <input id="filebutton" name="filebutton" class="form-control" type="file" multiple required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <textarea class="form-control col-md-12" rows="4" cols="100" readonly>
+            Bookhub Terms of Service
+
+            1. Terms
+            By accessing the website at http://bookhub.com, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.
+
+            2. Use License
+                Permission is granted to temporarily download one copy of the materials (information or software) on Bookhub's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+                    modify or copy the materials;
+                    use the materials for any commercial purpose, or for any public display (commercial or non-commercial);
+                    attempt to decompile or reverse engineer any software contained on Bookhub's website;
+                    remove any copyright or other proprietary notations from the materials; or
+                    transfer the materials to another person or "mirror" the materials on any other server.
+                This license shall automatically terminate if you violate any of these restrictions and may be terminated by Bookhub at any time. Upon terminating your viewing of these materials or upon the termination of this license, you must destroy any downloaded materials in your possession whether in electronic or printed format.
+
+            3. Disclaimer
+                The materials on Bookhub's website are provided on an 'as is' basis. Bookhub makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+                Further, Bookhub does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.
+
+            4. Limitations
+            In no event shall Bookhub or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Bookhub's website, even if Bookhub or a Bookhub authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
+
+            5. Accuracy of materials
+            The materials appearing on Bookhub website could include technical, typographical, or photographic errors. Bookhub does not warrant that any of the materials on its website are accurate, complete or current. Bookhub may make changes to the materials contained on its website at any time without notice. However Bookhub does not make any commitment to update the materials.
+
+            6. Links
+            Bookhub has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Bookhub of the site. Use of any such linked website is at the user's own risk.
+
+            7. Modifications
+            Bookhub may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service.
+
+            8. Governing Law
+            These terms and conditions are governed by and construed in accordance with the laws of Portugal and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.
+            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="checkbox col-md-12">
+                            <label><input type="checkbox" value="checked" required> I agree with the terms of service above</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary col-md-12">Create Auction</button>
+                        </div>
+                    </div>
+                </form>
+
+            </main>
+
+        </div>
+
+        <!-- /.container-fluid-->
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="py-2 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; BookHub 2018</p>
+            <p class="m-0 text-center text-white">
+                <a class="text-white" href="about.html"> About</a> &nbsp; | &nbsp;
+                <a class="text-white" href="faq.html"> FAQ</a> &nbsp; | &nbsp;
+                <a class="text-white" href="contact.html"> Contact</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScripts-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bsadmin.js" defer></script>
+</body>
+
+</html>
