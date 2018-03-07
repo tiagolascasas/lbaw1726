@@ -22,9 +22,9 @@ let loginButton = document.querySelector("#myModalLogin a");
 
 let buttonWelcome = document.getElementById("buttonsWelcome");
 
-
-loginButton.addEventListener("click", function() {
-    navbarList.innerHTML = `
+if (loginButton !== null) {
+    loginButton.addEventListener("click", function() {
+        navbarList.innerHTML = `
 <li class="nav-item hidden-p-md-down">
    <form class="form-inline my-2 my-lg-0 mr-lg-2">
        <div class="input-group">
@@ -86,6 +86,7 @@ loginButton.addEventListener("click", function() {
    </div>
 </li>`;
 
-    buttonWelcome.innerHTML = `<a href="#" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
+        buttonWelcome.innerHTML = `<a href="#" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
 <a href="#" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>`;
-});
+    });
+}
