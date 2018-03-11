@@ -18,7 +18,13 @@ function searchfunc(){
     location.href = "search.html";
 };
 
+function profile_func() {
+    location.href = "profile_not_owner.html";
+};
+
 let navbarList = document.getElementById("navbarList");
+
+let feedback = document.querySelector("#myfeedback");
 
 let loginButton = document.querySelector("#myModalLogin a");
 
@@ -100,6 +106,36 @@ if (loginButton !== null) {
             </div>
 
             </li>
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle container" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-fw fa-bell"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right notifications" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">New Alerts:</h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">
+                            <span class="text-success text-left">
+                               <strong>Memorial do Convento Update</strong>
+                            </span>
+                    <span class="small text-right text-muted">11:21 AM</span>
+                    <div class="dropdown-message"><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                </a>
+                <a class="dropdown-item" href="#">
+                            <span class="text-danger text-left">
+                                <strong>Os Maias Update</strong>
+                            </span>
+                    <span class="small text-right text-muted">11:21 AM</span>
+                    <div class="dropdown-message"><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                </a>
+                <a class="dropdown-item" href="#">
+                            <span class="text-danger text-left">
+                                <strong>Os Maias Update</strong>
+                            </span>
+                    <span class="small text-right text-muted">11:21 AM</span>
+                    <div class="dropdown-message"><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                </a>
+            </div>
+        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown">
                 <i class="fa fa-user"></i> Username
@@ -118,7 +154,29 @@ if (loginButton !== null) {
             </div>
         </li>`;
 
-        buttonWelcome.innerHTML = `<a href="#" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
-<a href="#" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>`;
+        buttonWelcome.innerHTML = `<a href="myAuctions.html" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
+<a href="a" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>`;
+
+        feedback.innerHTML= `<form id="feedbackform">
+                <div class="btn-group mb-3" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success">
+                        <i class="fa fa-thumbs-up btn btn-success"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        <i class="fa fa-thumbs-down btn btn-danger"></i>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <textarea rows="3" cols="30" class="form-control" placeholder="Your feedback"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-primary col-md-12">Post your feedback</button>
+                    </div>
+                </div>
+
+            </form>`;
+
+
     });
 }

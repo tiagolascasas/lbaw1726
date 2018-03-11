@@ -26,7 +26,7 @@
             <i class="fa fa-bars"></i>
         </a>
 
-        <a class="navbar-brand" href="home.html">BOOKHUB</a>
+        <a class="navbar-brand" href="home.html">B O O K H U B</a>
 
         <div class="navbar-collapse collapse">
 
@@ -339,7 +339,7 @@
                     <table class="table table-striped col-lg-4">
                     <tbody>
                         <tr>
-                            <td>
+                            <td style = "width:16.33%">
                                 <strong>Full name</strong>
                             </td>
                             <td>
@@ -375,36 +375,21 @@
 
             </div>
             <!--feedback-->
-            <div class="bg-white mb-0 mt-4 mb-4 panel">
+            <div class="bg-white mb-0 mt-3 mb-3 panel">
                 <h5><i class="fa fa-comments"></i> Feedback</h5>
             </div>
+            <div id = "myfeedback">
 
-            <form>
-                <div class="btn-group mb-3" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success">
-                        <i class="fa fa-thumbs-up btn btn-success"></i>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <i class="fa fa-thumbs-down btn btn-danger"></i>
-                    </button>
-                </div>
-                <div class="form-group">
-                    <textarea rows="3" cols="30" class="form-control" placeholder="Your feedback"></textarea>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-primary col-md-12">Post your feedback</button>
-                    </div>
-                </div>
+            </div>
 
-            </form>
+
 
             <div class="list-group panel">
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-2">
-                                <span class="btn btn-secondary">nelsoncosta</span>
+                                <span class="btn btn-secondary" onclick="profile_func()">nelsoncosta</span>
                             </div>
                             <div class="col-lg-2  text-left text-dark lead">
                                 <i class="fa fa-thumbs-up btn btn-success"></i>
@@ -422,7 +407,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-2">
-                                <span class="btn btn-secondary">rubentorres</span>
+                                <span class="btn btn-secondary" onclick="profile_func()">rubentorres</span>
                             </div>
                             <div class="col-lg-2  text-left text-dark lead">
                                 <i class="fa fa-thumbs-down btn btn-danger"></i>
@@ -440,7 +425,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-2">
-                                <span class="btn btn-secondary">danielazevedo</span>
+                                <span class="btn btn-secondary">tiagolascasas</span>
                             </div>
                             <div class="col-lg-2  text-left text-dark lead">
                                 <i class="fa fa-thumbs-up btn btn-success"></i>
@@ -466,9 +451,9 @@
 
 
     <!-- Footer -->
-    <footer class="footer bg-dark">
-        <div class="container align-self-center">
-            <p class="mt-2 mb-0 text-center text-white">Copyright &copy; BookHub 2018</p>
+    <footer class="footer bg-dark" style = "height:">
+
+            <p class="mt-1 mb-1 text-center text-white" style = "font-size: 16px">Copyright &copy; BookHub 2018</p>
             <p class="m-0 text-center text-white">
                 <a class="text-white" href="about.html"> About</a> &nbsp; | &nbsp;
                 <a class="text-white" href="faq.html"> FAQ</a> &nbsp; | &nbsp;
@@ -481,7 +466,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/bsadmin.js"></script>
+    <script src="js/bsadmin.js" defer></script>
 </body>
 
 </html>
