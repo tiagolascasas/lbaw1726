@@ -154,6 +154,9 @@ if (loginButton !== null) {
             </div>
         </li>`;
 
+        buttonWelcome.innerHTML = `<a href="myAuctions.html" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
+<a href="a" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>`;
+
         feedback.innerHTML= `<form id="feedbackform">
                 <div class="btn-group mb-3" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-success">
@@ -174,7 +177,6 @@ if (loginButton !== null) {
 
             </form>`;
 
-        buttonWelcome.innerHTML = `<a href="myAuctions.html" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
-<a href="a" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>`;
+
     });
 }
