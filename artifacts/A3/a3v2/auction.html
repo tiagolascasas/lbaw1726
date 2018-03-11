@@ -121,7 +121,6 @@
             </ul>
         </div>
     </nav>
-
     <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLoginLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -224,108 +223,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLoginLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLoginLabel">Login</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputUser">Username</label>
-                            <input class="form-control" id="exampleInputUser" type="text" placeholder="Your Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPasswordL">Password</label>
-                            <input class="form-control" id="exampleInputPasswordL" type="password" placeholder="Your password">
-                        </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox"> Remember Me</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-primary btn-block" href="#" data-dismiss="modal">LOGIN</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalRegisterLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="myModalRegisterLabel">Register</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputName">Name</label>
-                            <input class="form-control" id="exampleInputName" type="text" placeholder="Your Complete Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputUsername">Username</label>
-                            <input class="form-control" id="exampleInputUsername" type="text" placeholder="Username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputAge">Age</label>
-                            <input class="form-control" id="exampleInputAge" type="number" placeholder="Age" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail">Email Address</label>
-                            <input class="form-control" id="exampleInputEmail" type="email" placeholder="example@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputAddress">Address</label>
-                            <input class="form-control" id="exampleInputAddress" type="text" placeholder="Example Address, 4441" required>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <label for="exampleConfirmPostalCode">Postal Code</label>
-                                    <input class="form-control" id="exampleConfirmPostalCode" type="text" placeholder="XXXX-XXX" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="exampleInputCountry">Country</label>
-                                    <input class="form-control" id="exampleInputCountry" type="text" placeholder="Your Country" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPhone">Phone Number</label>
-                            <input class="form-control" id="exampleInputPhone" type="tel" placeholder="Your phone number" required>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <label for="exampleInputPasswordR">Password</label>
-                                    <input class="form-control" id="exampleInputPasswordR" type="password" placeholder="Your password" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="exampleConfirmPassword">Confirm Password</label>
-                                    <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirm password" required>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-primary btn-block" href="#" data-dismiss="modal">REGISTER</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- Page Content -->
     <div class="d-flex">
         <nav class="sidebar bg-dark hidden-p-md-up pb-4">
             <ul class="list-unstyled mt-4">
@@ -425,14 +323,10 @@
                 </li>
             </ul>
         </nav>
-    </div>
-
-    <!-- Page Content -->
-    <div class="d-flex">
         <div class="container p-5">
-
-            <table class="table">
-                <tbody>
+            <main>
+                <table class="table">
+                    <tbody>
                     <tr>
                         <!--<td rowspan="6" colspan="2"><img width=200px src="img/levithanwakes.jpg"></td>-->
                         <td rowspan="7" colspan="2">
@@ -509,12 +403,11 @@
                             <button id="bid-box" type="submit" class="btn btn-primary col-md-8">Bid a new price</button>
                         </td>
                     </tr>
-                </tbody>
-            </table>
-
+                    </tbody>
+                </table>
+            </main>
         </div>
     </div>
-
 
     <!-- Footer -->
     <footer class="fixed-footer bg-dark">

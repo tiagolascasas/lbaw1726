@@ -14,7 +14,9 @@ $(document).ready(function() {
         parent.addClass("show");
     }
 });
-
+function searchfunc(){
+    location.href = "search.html";
+};
 
 let navbarList = document.getElementById("navbarList");
 
@@ -72,7 +74,7 @@ if (loginButton !== null) {
             <div class="input-group">
             <input class="form-control" type="text" placeholder="Search for...">
             <span class="input-group-append">
-            <button class="btn btn-primary" type="button">
+            <button class="btn btn-primary" type="button" onclick="searchfunc()">
             <i class="fa fa-search"></i>
             </button>
             </span>
@@ -89,7 +91,7 @@ if (loginButton !== null) {
             <div class="input-group">
             <input class="form-control" type="text" placeholder="Search for...">
             <span class="input-group-append">
-            <button class="btn btn-primary" type="button">
+            <button class="btn btn-primary" type="button" onclick="searchfunc()">
             <i class="fa fa-search"></i>
             </button>
             </span>
