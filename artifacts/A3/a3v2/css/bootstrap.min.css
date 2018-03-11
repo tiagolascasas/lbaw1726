@@ -8459,6 +8459,7 @@ a.text-light:focus, a.text-light:hover {
 }
 
 .text-dark {
+    font-size:larger;
     color: #343a40 !important
 }
 

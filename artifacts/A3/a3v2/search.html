@@ -24,7 +24,7 @@
             <i class="fa fa-bars"></i>
         </a>
 
-        <a class="navbar-brand" href="home.html">BOOKHUB</a>
+        <a class="navbar-brand" href="home.html">B O O K H U B</a>
 
         <div class="navbar-collapse collapse">
 
@@ -331,76 +331,70 @@
             </div>
             <hr id="hr_space" class="mt-2">
             <main>
-                <a class="btn btn-primary col-md-12 mb-4" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                Show advanced search options
+                <a class="btn btn-primary col-md-12 mb-4" id = "showbtn" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Advanced search options
                 </a>
                 <form class="ml-4 mr-4 collapse" id="collapseExample">
                     <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label>Search keyword(s)</label>
+                        <div class="form-group col-md-6">
+                            <label class = "font-weight-bold">Search keyword(s)</label>
                             <input type="text" class="form-control" id="search" value="Lord of the Rings">
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label>Publisher</label>
+                        <div class="form-group col-md-6">
+                            <label class = "font-weight-bold">Publisher</label>
                             <input type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label>Title</label>
+                        <div class="form-group col-md-6">
+                            <label class = "font-weight-bold">Title</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class = "font-weight-bold">ISBN</label>
                             <input type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label>ISBN</label>
+                        <div class="form-group col-md-6">
+                            <label for="search" class = "font-weight-bold">Author</label>
                             <input type="text" class="form-control">
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="search">Author</label>
-                            <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label>Category</label>
+                        <div class="form-group col-md-6">
+                            <label class = "font-weight-bold">Category</label>
                             <select class="form-control">
-                                            <option value="">&nbsp;</option>
-                                            <option>Arts&amp;Music</option>
-                                            <option>Biographies</option>
-                                            <option>Business</option>
-                                            <option>Kids</option>
-                                            <option>Comics</option>
-                                            <option>Cooking</option>
-                                            <option>Computation&amp;Tech</option>
-                                            <option>Education</option>
-                                            <option>Health&amp;Fitness</option>
-                                            <option>History</option>
-                                            <option>Horror</option>
-                                            <optgroup label="Literature">
-                                            <option>All </option>
-                                            <option>Anthologies </option>
-                                            <option>Classics </option>
-                                            <option>Contemporary </option>
-                                            <option>Sci-Fi&amp;Fantasy </option>
-                                            <option>Romance </option>
-                                            <option>Crime </option>
-                                            </optgroup>
-                                            <option>Religion </option>
-                                            <option>Science </option>
-                                            <option>Self-Help </option>
-                                            <option>Travel </option>
-                                            <option>Other </option>
-                                        </select>
+                                <option value="">&nbsp;</option>
+                                <option>Arts&amp;Music</option>
+                                <option>Biographies</option>
+                                <option>Business</option>
+                                <option>Kids</option>
+                                <option>Comics</option>
+                                <option>Cooking</option>
+                                <option>Computation&amp;Tech</option>
+                                <option>Education</option>
+                                <option>Health&amp;Fitness</option>
+                                <option>History</option>
+                                <option>Horror</option>
+                                <optgroup label="Literature">
+                                    <option>All </option>
+                                    <option>Anthologies </option>
+                                    <option>Classics </option>
+                                    <option>Contemporary </option>
+                                    <option>Sci-Fi&amp;Fantasy </option>
+                                    <option>Romance </option>
+                                    <option>Crime </option>
+                                </optgroup>
+                                <option>Religion </option>
+                                <option>Science </option>
+                                <option>Self-Help </option>
+                                <option>Travel </option>
+                                <option>Other </option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label>Language</label>
+                        <div class="form-group col-md-6">
+                            <label class = "font-weight-bold">Language</label>
                             <select class="form-control">
                                     <option value="">&nbsp;</option>
                                     <option>English</option>
@@ -427,10 +421,8 @@
                                     <option>Swedish</option>
                                 </select>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="search">Maximum current bid in €</label>
+                        <div class="form-group col-md-6">
+                            <label for="search" class = "font-weight-bold">Maximum current bid in €</label>
                             <input type="number" step="0.5" class="form-control">
                         </div>
                     </div>
@@ -441,15 +433,19 @@
                     </div>
                 </form>
 
-                <section class="jumbotron text-center">
+                <section class="jumbotron text-center p-1 m-2" style = "background-color: lightgrey">
                     <div class="container">
-                        <h4 class="jumbotron-heading">Your search results for "lord of the rings":</h4>
+                        <p>
+                            <h4>
+                                <a>Your search results for: </a>
+                                <a>"</a><a>Lord of the Rings</a><a>"</a>
+                            </h4>
+                        </p>
+
                     </div>
                 </section>
 
-                <div class="album py-5 bg-light">
-                    <div class="container">
-
+                <div class="album p-2">
                         <div class="row">
                             <div class="col-md-3">
                                 <a href="auction.html" class="list-group-item-action">
@@ -458,7 +454,7 @@
                                             <img class="width100" src="img/fellowship.jpg" alt="The fellowship of the ring">
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-text text-center hidden-p-md-down">The Fellowship of the Ring (The Lord of the Rings #1)</p>
+                                            <p class="card-text text-center hidden-p-md-down text-dark font-weight-bold" style = "font-size: larger">The Fellowship of the Ring (The Lord of the Rings #1)</p>
                                             <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <i class="fas fa-star btn btn-sm text-primary"></i>
@@ -477,7 +473,7 @@
                                             <img class="width100" src="img/two_towers.jpg" alt="Lord of the ring - the two towers">
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-text text-center hidden-p-md-down">The Two Towers (The Lord of the Rings #2)</p>
+                                            <p class="card-text text-center hidden-p-md-down text-dark font-weight-bold" style = "font-size: larger">The Two Towers (The Lord of the Rings #2)</p>
                                             <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <i class="far fa-star btn btn-sm text-primary"></i>
@@ -496,7 +492,7 @@
                                             <img class="width100" src="img/return.jpg" alt="The Return of the King">
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-text text-center hidden-p-md-down">The Return of the King (The Lord of the Rings #3)</p>
+                                            <p class="card-text text-center hidden-p-md-down text-dark font-weight-bold" style = "font-size: larger">The Return of the King (The Lord of the Rings #3)</p>
                                             <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <i class="fas fa-star btn btn-sm text-primary"></i>
@@ -516,7 +512,7 @@
                                             <img class="width100" src="img/lotr.jpg" alt="The Lord of the Rings">
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-text text-center hidden-p-md-down">The Lord of the Rings (single volume)</p>
+                                            <p class="card-text text-center hidden-p-md-down text-dark font-weight-bold" style = "font-size: larger">The Lord of the Rings (single volume)</p>
                                             <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <i class="fas fa-star btn btn-sm text-primary"></i>
@@ -530,14 +526,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </main>
         </div>
     </div>
 
     <footer class="footer bg-dark">
         <div class="container align-self-center">
-            <p class="mt-2 mb-0 text-center text-white">Copyright &copy; BookHub 2018</p>
+            <p class="mt-2 mb-0 text-center text-white" style = "font-size: 16px">Copyright &copy; BookHub 2018</p>
             <p class="m-0 text-center text-white">
                 <a class="text-white" href="about.html"> About</a> &nbsp; | &nbsp;
                 <a class="text-white" href="faq.html"> FAQ</a> &nbsp; | &nbsp;

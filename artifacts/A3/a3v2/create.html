@@ -26,7 +26,7 @@
             <i class="fa fa-bars"></i>
         </a>
 
-        <a class="navbar-brand" href="home.html">BOOKHUB</a>
+        <a class="navbar-brand" href="home.html">B O O K H U B</a>
 
         <div class="navbar-collapse collapse">
 
@@ -266,81 +266,69 @@
                 <main>
                 <form class="ml-4 mr-4">
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label>Book title</label>
                             <input type="text" class="form-control" required>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label>Author</label>
                             <input type="text" class="form-control" required>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label>ISBN</label>
                             <input type="text" class="form-control" required>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label>Publisher</label>
                             <input type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label>Language</label>
                             <select class="form-control" required>
-                                    <option value="">&nbsp;</option>
-                                    <option>English</option>
-                                    <option>Bulgarian</option>
-                                    <option>Croatian</option>
-                                    <option>Danish</option>
-                                    <option>Dutch</option>
-                                    <option>Estonian</option>
-                                    <option>Finnish</option>
-                                    <option>French</option>
-                                    <option>German</option>
-                                    <option>Greek</option>
-                                    <option>Hungarian</option>
-                                    <option>Irish</option>
-                                    <option>Italian</option>
-                                    <option>Latvian</option>
-                                    <option>Lithuanian</option>
-                                    <option>Polish</option>
-                                    <option>Hungarian</option>
-                                    <option>Romanian</option>
-                                    <option>Slovak</option>
-                                    <option>Slovenian</option>
-                                    <option>Spanish</option>
-                                    <option>Swedish</option>
-                                </select>
+                                <option value="">&nbsp;</option>
+                                <option>English</option>
+                                <option>Bulgarian</option>
+                                <option>Croatian</option>
+                                <option>Danish</option>
+                                <option>Dutch</option>
+                                <option>Estonian</option>
+                                <option>Finnish</option>
+                                <option>French</option>
+                                <option>German</option>
+                                <option>Greek</option>
+                                <option>Hungarian</option>
+                                <option>Irish</option>
+                                <option>Italian</option>
+                                <option>Latvian</option>
+                                <option>Lithuanian</option>
+                                <option>Polish</option>
+                                <option>Hungarian</option>
+                                <option>Romanian</option>
+                                <option>Slovak</option>
+                                <option>Slovenian</option>
+                                <option>Spanish</option>
+                                <option>Swedish</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label>Description</label>
-                            <textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
                             <label>Category</label>
                             <select class="form-control" multiple required>
-                                    <option selected>Arts&amp;Music</option>
-                                    <option>Biographies</option>
-                                    <option>Business</option>
-                                    <option>Kids</option>
-                                    <option>Comics</option>
-                                    <option>Cooking</option>
-                                    <option>Computation&amp;Tech</option>
-                                    <option>Education</option>
-                                    <option>Health&amp;Fitness</option>
-                                    <option>History</option>
-                                    <option>Horror</option>
-                                    <optgroup label="Literature">
+                                <option selected>Arts&amp;Music</option>
+                                <option>Biographies</option>
+                                <option>Business</option>
+                                <option>Kids</option>
+                                <option>Comics</option>
+                                <option>Cooking</option>
+                                <option>Computation&amp;Tech</option>
+                                <option>Education</option>
+                                <option>Health&amp;Fitness</option>
+                                <option>History</option>
+                                <option>Horror</option>
+                                <optgroup label="Literature">
                                     <option>All </option>
                                     <option>Anthologies </option>
                                     <option>Classics </option>
@@ -348,19 +336,37 @@
                                     <option>Sci-Fi&amp;Fantasy </option>
                                     <option>Romance </option>
                                     <option>Crime </option>
-                                    </optgroup>
-                                    <option>Religion </option>
-                                    <option>Science </option>
-                                    <option>Self-Help </option>
-                                    <option>Travel </option>
-                                    <option>Other </option>
-                                </select>
+                                </optgroup>
+                                <option>Religion </option>
+                                <option>Science </option>
+                                <option>Self-Help </option>
+                                <option>Travel </option>
+                                <option>Other </option>
+                            </select>
                         </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>Description</label>
+                            <textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label>Image(s) of the book</label>
                             <input id="filebutton" name="filebutton" class="form-control" type="file" multiple required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>
+                                <i class="fa fa-clock"></i> Time left</label>
+                            <input type="time" class = "form-control" required>
                         </div>
                     </div>
                     <div class="form-row">
