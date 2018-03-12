@@ -2,6 +2,7 @@ $(document).ready(function() {
     // toggle sidebar when button clicked
     $(".sidebar-toggle").on("click", function() {
         $(".sidebar").toggleClass("toggled");
+        $('#fixed-footer').removeClass('#fixed-footer').addClass("footer");
     });
 
     // auto-expand submenu if an item is active
@@ -156,8 +157,8 @@ if (loginButton !== null) {
         </li>`;
 
         if (buttonWelcome !== null)
-            buttonWelcome.innerHTML = `<a href="#" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
-<a href="#" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>`;
+            buttonWelcome.innerHTML = `<a href="myAuctions.html" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
+<a href="auctionsIm_in.html" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>`;
 
         if (feedback !== null)
             feedback.innerHTML = `<form id="feedbackform">
