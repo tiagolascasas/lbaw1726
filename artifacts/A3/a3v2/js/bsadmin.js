@@ -14,12 +14,13 @@ $(document).ready(function() {
         parent.addClass("show");
     }
 });
-function searchfunc(){
-    location.href = "search.html";
+
+function searchfunc() {
+    window.location.href = "search.html";
 };
 
 function profile_func() {
-    location.href = "profile_not_owner.html";
+    window.location.href = "profile_not_owner.html";
 };
 
 let navbarList = document.getElementById("navbarList");
@@ -115,21 +116,21 @@ if (loginButton !== null) {
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">
                             <span class="text-success text-left">
-                               <strong>Memorial do Convento Update</strong>
+                               <strong>Memorial do Convento</strong>
                             </span>
                     <span class="small text-right text-muted">11:21 AM</span>
                     <div class="dropdown-message"><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
                 </a>
                 <a class="dropdown-item" href="#">
                             <span class="text-danger text-left">
-                                <strong>Os Maias Update</strong>
+                                <strong>Os Maias</strong>
                             </span>
                     <span class="small text-right text-muted">11:21 AM</span>
                     <div class="dropdown-message"><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
                 </a>
                 <a class="dropdown-item" href="#">
                             <span class="text-danger text-left">
-                                <strong>Os Maias Update</strong>
+                                <strong>Os Maias</strong>
                             </span>
                     <span class="small text-right text-muted">11:21 AM</span>
                     <div class="dropdown-message"><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
@@ -154,10 +155,12 @@ if (loginButton !== null) {
             </div>
         </li>`;
 
-        buttonWelcome.innerHTML = `<a href="myAuctions.html" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
-<a href="a" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>`;
+        if (buttonWelcome !== null)
+            buttonWelcome.innerHTML = `<a href="#" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
+<a href="#" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>`;
 
-        feedback.innerHTML= `<form id="feedbackform">
+        if (feedback !== null)
+            feedback.innerHTML = `<form id="feedbackform">
                 <div class="btn-group mb-3" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-success">
                         <i class="fa fa-thumbs-up btn btn-success"></i>
