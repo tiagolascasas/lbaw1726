@@ -2,22 +2,23 @@
 --Tables
 ------------------------------------------
 --1
-CREATE TABLE ADMINISTRATOR (
+
+CREATE TABLE administrator (
     id SERIAL NOT NULL PRIMARY KEY,
     username text NOT NULL UNIQUE,
     password text NOT NULL
 );
 
 --2
-CREATE TABLE COUNTRY (
+CREATE TABLE country (
     id SERIAL NOT NULL PRIMARY KEY,
     countryName text NOT NULL UNIQUE
 );
 
 --3
-CREATE TABLE MEMBER (
+CREATE TABLE member (
     id SERIAL NOT NULL PRIMARY KEY,
-    "address" text,
+    address text,
     age SMALLINT NOT NULL,
     email text NOT NULL UNIQUE,
     name text NOT NULL,
@@ -39,7 +40,7 @@ CREATE TABLE MEMBER (
 
 
 --4
-CREATE TABLE REQUESTED_TERMINATION (
+CREATE TABLE requested_termination (
     id SERIAL NOT NULL PRIMARY KEY,
     dateRequested  TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     idMember INTEGER NOT NULL
@@ -47,7 +48,7 @@ CREATE TABLE REQUESTED_TERMINATION (
 
 --5
 
-CREATE TABLE AUCTION (
+CREATE TABLE auction (
     id SERIAL NOT NULL PRIMARY KEY,
     author  text NOT NULL,
     description  text NOT NULL,
@@ -66,41 +67,41 @@ CREATE TABLE AUCTION (
 );
 
 --6
-CREATE TABLE CATEGORY (
+CREATE TABLE category (
     id SERIAL NOT NULL PRIMARY KEY,
     categoryName text NOT NULL UNIQUE
 );
 
 --7
-CREATE TABLE PUBLISHER (
+CREATE TABLE publisher (
     id SERIAL NOT NULL PRIMARY KEY,
     publisherName  text NOT NULL UNIQUE
 );
 
 --8
 
-CREATE TABLE LANGUAGE (
+CREATE TABLE language (
     id SERIAL NOT NULL PRIMARY KEY,
-    "language" text NOT NULL UNIQUE
+    languageName text NOT NULL UNIQUE
 );
 
 --9
 
-CREATE TABLE CATEGORY_AUCTION (
+CREATE TABLE category_auction (
     idCategory INTEGER NOT NULL,
     idAuction INTEGER NOT NULL,
     CONSTRAINT categoryAuction_pk PRIMARY KEY (idCategory, idAuction)
 );
 
 --10
-CREATE TABLE WISHLIST (
+CREATE TABLE whishlist (
     idBuyer INTEGER NOT NULL,
     idAuction INTEGER NOT NULL,
     CONSTRAINT wishList_pk PRIMARY KEY (idBuyer, idAuction)
 );
 
 --11
-CREATE TABLE BID (
+CREATE TABLE bid (
     idBuyer INTEGER NOT NULL,
     idAuction INTEGER NOT NULL,
     bidDate TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
@@ -110,7 +111,7 @@ CREATE TABLE BID (
 );
 
 --12
-CREATE TABLE AUCTION_MODIFICATION (
+CREATE TABLE auction_modification (
     id SERIAL NOT NULL PRIMARY KEY,
     dateRequested TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     newDescription text,
@@ -121,7 +122,7 @@ CREATE TABLE AUCTION_MODIFICATION (
 
 
 --13
-CREATE TABLE NOTIFICATION (
+CREATE TABLE notification (
     id SERIAL NOT NULL PRIMARY KEY,
     dateSent TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     information text,
@@ -133,7 +134,7 @@ CREATE TABLE NOTIFICATION (
 
 --14
 
-CREATE TABLE NOTIFICATION_AUCTION (
+CREATE TABLE notification_auction (
     idAuction INTEGER NOT NULL,
     idNotification INTEGER NOT NULL,
     CONSTRAINT notificationAuction_pk PRIMARY KEY (idAuction, idNotification)
@@ -141,7 +142,7 @@ CREATE TABLE NOTIFICATION_AUCTION (
 
 
 --15
-CREATE TABLE IMAGE (
+CREATE TABLE image (
     id SERIAL NOT NULL PRIMARY KEY,
     source text NOT NULL UNIQUE,
     idAuction  INTEGER,
@@ -149,20 +150,20 @@ CREATE TABLE IMAGE (
 );
 
 --16
-CREATE TABLE MESSAGE (
+CREATE TABLE message (
     id SERIAL NOT NULL PRIMARY KEY,
     dateSent TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    "text" text NOT NULL,
+    message_text text NOT NULL,
     idSender INTEGER NOT NULL,
     idReceiver INTEGER NOT NULL
 );
 
 --17
-CREATE TABLE COMMENT (
+CREATE TABLE comment (
     id SERIAL NOT NULL PRIMARY KEY,
     datePosted TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     liked boolean,
-    "text" text NOT NULL,
+    comment_text text NOT NULL,
     is_removed boolean DEFAULT FALSE,
     idParent INTEGER,
     idSender INTEGER NOT NULL,
@@ -176,89 +177,89 @@ CREATE TABLE COMMENT (
 
 --3
 
-ALTER TABLE ONLY MEMBER
-    ADD CONSTRAINT member_id_country_fk FOREIGN KEY (idCountry) REFERENCES COUNTRY(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY member
+    ADD CONSTRAINT member_id_country_fk FOREIGN KEY (idCountry) REFERENCES country(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY MEMBER
-    ADD CONSTRAINT member_id_image_fk FOREIGN KEY (idImage) REFERENCES IMAGE(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY member
+    ADD CONSTRAINT member_id_image_fk FOREIGN KEY (idImage) REFERENCES image(id) ON UPDATE CASCADE;
 
 --4
 
-ALTER TABLE ONLY REQUESTED_TERMINATION
-    ADD CONSTRAINT requestedTermination_id_member_fk FOREIGN KEY (idMember) REFERENCES MEMBER(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY requested_termination
+    ADD CONSTRAINT requestedTermination_id_member_fk FOREIGN KEY (idMember) REFERENCES member(id) ON UPDATE CASCADE;
 
 --5
-ALTER TABLE ONLY AUCTION
-    ADD CONSTRAINT auction_id_publisher_fk FOREIGN KEY (idPublisher) REFERENCES PUBLISHER(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY auction
+    ADD CONSTRAINT auction_id_publisher_fk FOREIGN KEY (idPublisher) REFERENCES publisher(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY AUCTION
-    ADD CONSTRAINT auction_id_language_fk FOREIGN KEY (idLanguage) REFERENCES LANGUAGE(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY auction
+    ADD CONSTRAINT auction_id_language_fk FOREIGN KEY (idLanguage) REFERENCES language(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY AUCTION
-    ADD CONSTRAINT auction_id_seller_fk FOREIGN KEY (idSeller) REFERENCES MEMBER(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY auction
+    ADD CONSTRAINT auction_id_seller_fk FOREIGN KEY (idSeller) REFERENCES member(id) ON UPDATE CASCADE;
 
 
 --9
-ALTER TABLE ONLY CATEGORY_AUCTION
-    ADD CONSTRAINT categoryAuction_category_fk FOREIGN KEY (idCategory) REFERENCES CATEGORY(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY category_auction
+    ADD CONSTRAINT categoryAuction_category_fk FOREIGN KEY (idCategory) REFERENCES "category"(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY CATEGORY_AUCTION
-    ADD CONSTRAINT categoryAuction_auction_fk FOREIGN KEY (idAuction) REFERENCES AUCTION(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY category_auction
+    ADD CONSTRAINT categoryAuction_auction_fk FOREIGN KEY (idAuction) REFERENCES auction(id) ON UPDATE CASCADE;
 
 --10
 
-ALTER TABLE ONLY WISHLIST
-    ADD CONSTRAINT wishList_buyer_fk FOREIGN KEY (idBuyer) REFERENCES MEMBER(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY whishlist
+    ADD CONSTRAINT wishList_buyer_fk FOREIGN KEY (idBuyer) REFERENCES member(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY WISHLIST
-    ADD CONSTRAINT wishList_auction_fk FOREIGN KEY (idAuction) REFERENCES AUCTION(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY whishlist
+    ADD CONSTRAINT wishList_auction_fk FOREIGN KEY (idAuction) REFERENCES auction(id) ON UPDATE CASCADE;
 
 --11
-ALTER TABLE ONLY BID
-    ADD CONSTRAINT bid_buyer_fk FOREIGN KEY (idBuyer) REFERENCES MEMBER(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY bid
+    ADD CONSTRAINT bid_buyer_fk FOREIGN KEY (idBuyer) REFERENCES member(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY BID
-    ADD CONSTRAINT bid_auction_fk FOREIGN KEY (idAuction) REFERENCES AUCTION(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY bid
+    ADD CONSTRAINT bid_auction_fk FOREIGN KEY (idAuction) REFERENCES auction(id) ON UPDATE CASCADE;
 
 --12
 
-ALTER TABLE ONLY AUCTION_MODIFICATION
-    ADD CONSTRAINT auctionModification_id_member_fk FOREIGN KEY (idApprovedAuction) REFERENCES AUCTION(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY auction_modification
+    ADD CONSTRAINT auctionModification_id_member_fk FOREIGN KEY (idApprovedAuction) REFERENCES auction(id) ON UPDATE CASCADE;
 
 --13
-ALTER TABLE ONLY NOTIFICATION
-    ADD CONSTRAINT notification_id_member_fk FOREIGN KEY (idMember) REFERENCES MEMBER(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY notification
+    ADD CONSTRAINT notification_id_member_fk FOREIGN KEY (idMember) REFERENCES member(id) ON UPDATE CASCADE;
 
 --14
 
-ALTER TABLE ONLY NOTIFICATION_AUCTION
-    ADD CONSTRAINT notificationAuction_notification_fk FOREIGN KEY (idNotification) REFERENCES NOTIFICATION(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY notification_auction
+    ADD CONSTRAINT notificationAuction_notification_fk FOREIGN KEY (idNotification) REFERENCES notification(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY NOTIFICATION_AUCTION
-    ADD CONSTRAINT notificationAuction_auction_fk FOREIGN KEY (idAuction) REFERENCES AUCTION(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY notification_auction
+    ADD CONSTRAINT notificationAuction_auction_fk FOREIGN KEY (idAuction) REFERENCES auction(id) ON UPDATE CASCADE;
 
 --15
-ALTER TABLE ONLY IMAGE
-    ADD CONSTRAINT image_auctionModification_fk FOREIGN KEY (idAuctionModification) REFERENCES AUCTION_MODIFICATION(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY image
+    ADD CONSTRAINT image_auctionModification_fk FOREIGN KEY (idAuctionModification) REFERENCES auction_modification(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY IMAGE
-    ADD CONSTRAINT image_auction_fk FOREIGN KEY (idAuction) REFERENCES AUCTION(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY image
+    ADD CONSTRAINT image_auction_fk FOREIGN KEY (idAuction) REFERENCES auction(id) ON UPDATE CASCADE;
 
 --16
 
-ALTER TABLE ONLY MESSAGE
-    ADD CONSTRAINT message_sender_fk FOREIGN KEY (idSender) REFERENCES MEMBER(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY message
+    ADD CONSTRAINT message_sender_fk FOREIGN KEY (idSender) REFERENCES member(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY MESSAGE
-    ADD CONSTRAINT message_receiver_fk FOREIGN KEY (idReceiver) REFERENCES MEMBER(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY message
+    ADD CONSTRAINT message_receiver_fk FOREIGN KEY (idReceiver) REFERENCES member(id) ON UPDATE CASCADE;
 
 --17
 
-ALTER TABLE ONLY COMMENT
-    ADD CONSTRAINT comment_parent_fk FOREIGN KEY (idParent) REFERENCES COMMENT(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY comment
+    ADD CONSTRAINT comment_parent_fk FOREIGN KEY (idParent) REFERENCES comment(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY COMMENT
-    ADD CONSTRAINT comment_sender_fk FOREIGN KEY (idSender) REFERENCES MEMBER(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY comment
+    ADD CONSTRAINT comment_sender_fk FOREIGN KEY (idSender) REFERENCES member(id) ON UPDATE CASCADE;
 
-ALTER TABLE ONLY COMMENT
-    ADD CONSTRAINT comment_receiver_fk FOREIGN KEY (idReceiver) REFERENCES MEMBER(id) ON UPDATE CASCADE;
+ALTER TABLE ONLY comment
+    ADD CONSTRAINT comment_receiver_fk FOREIGN KEY (idReceiver) REFERENCES member(id) ON UPDATE CASCADE;
