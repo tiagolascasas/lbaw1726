@@ -235,7 +235,7 @@ INSERT INTO "requested_termination"  (idMember) VALUES (13);
 
 --5
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Rachelle Wadge', 'rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', '02:00:00', '878551550-7', 'ligula in lacus curabitur at', 7, 93, 12);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Elfie Videan', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', '08:00:00', '406669717-8', 'donec posuere', 56, 118, 18);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Elfie Videan', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', '08:00:00', '406669717-8', 'donec posuere', 6, 118, 18);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Alisander Freckleton', 'blandit mi in porttitor pede justo eu massa donec dapibus', '18:00:00', '986634222-0', 'fusce lacus purus aliquet', 3, 10, 10);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Audi Kleingrub', 'nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum', '18:00:00', '067934878-6', 'dui nec nisi volutpat eleifend', 6, 81, 1);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Merci Szreter', 'orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in', '18:00:00', '404602964-1', 'turpis elementum', 7, 2, 2);
@@ -251,7 +251,7 @@ INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, 
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Frederich Brotherheed', 'vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean', '00:05:00', '623757218-X', 'justo aliquam quis turpis eget elit', 1, 130, 8);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Gan Leverington', 'mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa', '00:05:00', '515219349-3', 'est quam pharetra', 7, 16, 7);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Jacquelin Noto', 'fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam', '00:05:00', '758332313-4', 'amet diam in magna', 4, 124, 8);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Silas Randell', 'at nulla suspendisse potenti cras in purus eu magna vulputate luctus', '00:05:00', '919830540-9', 'ut rhoncus aliquet pulvinar sed nisl', 9, 102, 8);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Silas Randell', 'at nulla suspendisse potenti cras in purus eu magna vulputate luctus', '00:05:00', '919830540-9', 'ut rhoncus aliquet pulvinar sed nisl', 2, 102, 8);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Marietta Shama', 'vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus', '00:25:00', '716386818-9', 'justo pellentesque viverra', 1, 117, 14);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Gloria McCaskill', 'id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam', '00:25:00', '903576151-0', 'sit amet justo morbi ut', 4, 110, 14);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Germana Castree', 'quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere', '00:30:00', '707493571-9', 'in purus eu magna vulputate', 4, 32, 3);
@@ -260,23 +260,19 @@ INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, 
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Adah Balding', 'id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed', '74:00:00', '065642982-8', 'non lectus aliquam sit amet diam', 5, 99, 6);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Ricki Breznovic', 'curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut', '74:00:00', '816917757-X', 'orci luctus et ultrices posuere cubilia', 3, 3, 4);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Bernadina Runnacles', 'ac diam cras pellentesque volutpat dui maecenas tristique est et', '74:00:00', '792975125-2', 'fusce consequat nulla nisl', 2, 64, 3);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Tobiah Arkcoll', 'eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec', '74:00:00', '384214891-7', 'pharetra magna ac consequat', 9, 11, 7);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Tobiah Arkcoll', 'eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec', '74:00:00', '384214891-7', 'pharetra magna ac consequat', 3, 11, 7);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Enrique Overbury', 'sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea', '122:00:00', '176118988-3', 'tristique fusce congue diam', 2, 46, 5);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Isabel Saberton', 'hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut', '122:00:00', '724637184-2', 'lectus vestibulum quam sapien varius ut', 7, 36, 7);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Anabella Sheron', 'in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet', '122:00:00', '262700576-6', 'dapibus dolor vel est', 5, 69, 9);
-
-
-
-
 
 --9
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(4,4);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(6,3);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(10,12);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(9,17);
-INSERT INTO "category_auction" (idCategory,idAuction) VALUES(10,22);
+INSERT INTO "category_auction" (idCategory,idAuction) VALUES(10,12);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(13,11);
-INSERT INTO "category_auction" (idCategory,idAuction) VALUES(19,23);
+INSERT INTO "category_auction" (idCategory,idAuction) VALUES(19,13);
 
 --10
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(10,13);
@@ -289,38 +285,37 @@ INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(8,19);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(9,12);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(8,16);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(11,14);
-
 --11
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 52, 87.61);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (9, 80, 77.29);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (1, 33, 64.57);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 12, 87.61);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (9, 8, 77.29);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (1, 3, 64.57);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (2, 17, 25.72);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (6, 10, 35.96);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (11, 81, 92.11);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (19, 100, 23.92);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (2, 41, 41.46);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (7, 27, 53.29);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (26, 12, 4.73);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (10, 51, 34.25);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (11, 78, 1.02);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (21, 38, 19.26);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (24, 57, 39.37);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (3, 34, 77.13);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (7, 25, 46.32);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (9, 14, 48.03);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (9, 92, 58.62);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (11, 21, 92.11);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (19, 10, 23.92);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (2, 14, 41.46);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (7, 17, 53.29);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 20, 4.73);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (10, 15, 34.25);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (11, 8, 1.02);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (20, 6, 19.26);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (20, 7, 39.37);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (3, 4, 77.13);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (7, 5, 46.32);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (9, 4, 48.03);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (9, 2, 58.62);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (19, 5, 95.52);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (6, 49, 85.09);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (6, 9, 85.09);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (9, 10, 60.05);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (17, 35, 8.21);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 48, 41.85);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (15, 39, 30.02);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (19, 48, 53.92);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (9, 49, 90.93);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (13, 79, 11.07);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (7, 34, 38.45);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (8, 38, 73.97);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (15, 42, 81.92);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (17, 5, 8.21);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 8, 41.85);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (15, 9, 30.02);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (19, 8, 53.92);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (9, 19, 90.93);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (13, 20, 11.07);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (7, 15, 38.45);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (8, 7, 73.97);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (15, 4, 81.92);
 
 --12
 INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis', 'false', 10);
@@ -375,10 +370,10 @@ INSERT INTO "notification_auction" (idAuction, idNotification) VALUES (14, 5);
 INSERT INTO "notification_auction" (idAuction, idNotification) VALUES (19, 8);
 
 --15
-INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/levithanwakes.jpg',1, 12);
-INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/bornacrime.jpg',2, 12);
+INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/levithanwakes.jpg',1, 1);
+INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/bornacrime.jpg',2, 2);
 INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/theorphanstale.jpg',3, 1);
-INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/thehusbandssecret.jpg',4, 14);
+INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/thehusbandssecret.jpg',4, 4);
 
 --16
 INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi', 11, 8);
