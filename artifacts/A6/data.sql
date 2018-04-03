@@ -32,101 +32,6 @@ INSERT INTO "country" (countryName) VALUES ('Sweden');
 INSERT INTO "country" (countryName) VALUES ('Ireland');
 INSERT INTO "country" (countryName) VALUES ('United Kingdom');
 
-
---3
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('2066 Straubel Court', 28, 'eluty0@bizjournals.com', 'Eustacia Luty', 'oRE56BNQ', 'eluty0@theguardian.com', '+46 904 159 9108', '692 24', 'eluty0', 'normal', 22, 1);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('7361 Mallard Road', 19, 'ehould1@hp.com', 'Edmund Hould', 'pEU60gGA', 'ehould1@opensource.org', '+998 945 505 7553', null, 'ehould1', 'normal', 3, 2);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('5 John Wall Drive', 21, 'clittrell2@imgur.com', 'Clemmy Littrell', 'Uh4dAtIR', 'clittrell2@wunderground.com', '+63 781 701 0990', '8301', 'clittrell2', 'normal', 1, 3);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('10 Shoshone Terrace', 48, 'ndolley3@tiny.cc', 'Nev Dolley', '9QbuY0de', 'ndolley3@paypal.com', '+62 912 696 8250', null, 'ndolley3', 'normal', 1, 4);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('6 John Wall Crossing', 56, 'nfant4@sina.com.cn', 'Nissy Fant', '2eagNED2', 'nfant4@telegraph.co.uk', '+86 998 868 7658', null, 'nfant4', 'normal', 1, 5);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('93 Moland Circle', 48, 'ihaylock5@nps.gov', 'Izak Haylock', 'Xn9P6fn9', 'ihaylock5@ca.gov', '+1 405 965 4695', '73129', 'ihaylock5', 'normal', 20, 6);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('41185 Arrowood Street', 64, 'fblum6@bing.com', 'Filberto Blum', 'jb4VQLkf', 'fblum6@vk.com', '+46 813 516 1461', '351 88', 'fblum6', 'normal', 12, 7);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('528 Golden Leaf Parkway', 56, 'mkees7@house.gov', 'Marietta Kees', 'uUMLA25z', 'mkees7@soundcloud.com', '+7 598 409 8497', '678030', 'mkees7', 'normal', 18, 8);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('05804 Randy Crossing', 24, 'gblanc8@chicagotribune.com', 'Gerladina Blanc', 'ggbEHY7j', 'gblanc8@dagondesign.com', '+1 408 842 4388', '95138', 'gblanc8', 'normal', 14, 9);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('55 Kennedy Circle', 30, 'jscanterbury9@symantec.com', 'Joceline Scanterbury', 'Z4WdQmIb', 'jscanterbury9@cbc.ca', '+86 607 522 5709', null, 'jscanterbury9', 'normal', 14, 10);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('5416 Karstens Road', 26, 'aticehursta@home.pl', 'Annamaria Ticehurst', '1acALjhr', 'aticehursta@wisc.edu', '+7 393 867 7780', '649743', 'aticehursta', 'normal', 11, 11);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('9 Lerdahl Drive', 24, 'jmckeefryb@nationalgeographic.com', 'Jesse McKeefry', 'qz5YPb0B', 'jmckeefryb@newsvine.com', '+86 739 638 1745', null, 'jmckeefryb', 'normal', 7, 12);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('5 Leroy Point', 33, 'cjobbingsc@php.net', 'Christos Jobbings', 'm2wDFcfd', 'cjobbingsc@earthlink.net', '+351 909 729 1955', '4615-131', 'cjobbingsc', 'normal', 22, 13);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('9894 Union Park', 52, 'cmackiewiczd@a8.net', 'Clay Mackiewicz', 'ktAA8NYY', 'cmackiewiczd@noaa.gov', '+86 520 608 3542', null, 'cmackiewiczd', 'normal', 16, 14);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('41 Pierstorff Park', 58, 'dproome@meetup.com', 'Donal Proom', 'Buq6BSfL', 'dproome@bbb.org', '+7 776 314 7169', '181518', 'dproome', 'normal', 6, 15);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('2 Petterle Crossing', 43, 'cgristonf@admin.ch', 'Constantino Griston','uKD716by', 'cgristonf@amazon.de', '+593 422 998 3244', null, 'cgristonf', 'normal', 7, 16);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('84 Fremont Pass', 36, 'cstofferg@bigcartel.com', 'Consuelo Stoffer', 'BmrUL6gv', 'cstofferg@hatena.ne.jp', '+86 573 198 3621', null, 'cstofferg', 'normal', 17, 17);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('203 Anzinger Hill', 33, 'bselesnickh@microsoft.com', 'Brocky Selesnick', 'srH1tc53', 'bselesnickh@answers.com', '+86 150 134 1271', null, 'bselesnickh', 'normal', 10, 18);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('8 Tomscot Center', 18, 'jkennificki@upenn.edu', 'Jarvis Kennifick', 'Cc3NuZTf', 'jkennificki@cbc.ca', '+81 862 520 2384', '360-0201', 'jkennificki', 'normal', 16, 19);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry, idImage) VALUES ('159 Kropf Avenue', 28, 'tlinkinj@netlog.com', 'Trefor Linkin', 'ef76XTc1', 'tlinkinj@yellowpages.com', '+62 395 867 0445', null, 'tlinkinj', 'normal', 18, 20);
-
---4
-INSERT INTO "requested_termination"  (idMember) VALUES (19);
-INSERT INTO "requested_termination"  (idMember) VALUES (8);
-INSERT INTO "requested_termination"  (idMember) VALUES (17);
-INSERT INTO "requested_termination"  (idMember) VALUES (3);
-INSERT INTO "requested_termination"  (idMember) VALUES (13);
-
---5
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Rachelle Wadge', 'rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', '02:00:00', '878551550-7', 'ligula in lacus curabitur at', 77, 93, 12);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Elfie Videan', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', '08:00:00', '406669717-8', 'donec posuere', 56, 118, 18);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Alisander Freckleton', 'blandit mi in porttitor pede justo eu massa donec dapibus', '18:00:00', '986634222-0', 'fusce lacus purus aliquet', 83, 10, 10);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Audi Kleingrub', 'nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum', '18:00:00', '067934878-6', 'dui nec nisi volutpat eleifend', 26, 81, 1);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Merci Szreter', 'orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in', '18:00:00', '404602964-1', 'turpis elementum', 77, 2, 2);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Lurette Kennet', 'arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci', '23:00:00', '633223264-1', 'non interdum', 47, 17, 4);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Gardner Stoffer', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui', '23:00:00', '292310247-9', 'dictumst etiam', 78, 88, 8);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Raynard Mapstone', 'donec posuere metus vitae ipsum aliquam non mauris morbi non lectus', '19:00:00', '650395953-2', 'cursus urna ut', 96, 85, 8);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Andris Dornin', 'non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit', '19:00:00', '270101807-2', 'sagittis dui vel nisl', 68, 43, 7);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Tricia Sture', 'fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor', '19:00:00', '201829112-2', 'justo etiam pretium iaculis', 13, 89, 12);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Harcourt Hibbart', 'et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a', '19:00:00', '663418251-5', 'cursus urna ut tellus nulla ut', 4, 109, 15);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Sheilah Holdin', 'ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce', '19:00:00', '620263498-7', 'non ligula pellentesque ultrices', 46, 125, 19);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Earvin Heis', 'at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis', '00:05:00', '438334161-6', 'ut nulla', 10, 1, 15);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Cam Cork', 'aliquet massa id lobortis convallis tortor risus dapibus augue vel', '00:05:00', '385051206-1', 'in felis donec', 30, 36, 10);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Frederich Brotherheed', 'vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean', '00:05:00', '623757218-X', 'justo aliquam quis turpis eget elit', 16, 130, 8);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Gan Leverington', 'mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa', '00:05:00', '515219349-3', 'est quam pharetra', 78, 16, 7);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Jacquelin Noto', 'fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam', '00:05:00', '758332313-4', 'amet diam in magna', 46, 124, 8);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Silas Randell', 'at nulla suspendisse potenti cras in purus eu magna vulputate luctus', '00:05:00', '919830540-9', 'ut rhoncus aliquet pulvinar sed nisl', 95, 102, 8);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Marietta Shama', 'vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus', '00:25:00', '716386818-9', 'justo pellentesque viverra', 100, 117, 14);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Gloria McCaskill', 'id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam', '00:25:00', '903576151-0', 'sit amet justo morbi ut', 44, 110, 14);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Germana Castree', 'quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere', '00:30:00', '707493571-9', 'in purus eu magna vulputate', 43, 32, 3);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Ginnifer Frain', 'eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat', '00:30:00', '156227457-0', 'ligula nec sem duis', 12, 102, 1);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Renaldo Lambis', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas', '74:00:00', '432923138-7', 'duis ac nibh fusce', 48, 42, 2);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Adah Balding', 'id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed', '74:00:00', '065642982-8', 'non lectus aliquam sit amet diam', 51, 99, 6);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Ricki Breznovic', 'curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut', '74:00:00', '816917757-X', 'orci luctus et ultrices posuere cubilia', 34, 3, 4);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Bernadina Runnacles', 'ac diam cras pellentesque volutpat dui maecenas tristique est et', '74:00:00', '792975125-2', 'fusce consequat nulla nisl', 12, 64, 3);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Tobiah Arkcoll', 'eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec', '74:00:00', '384214891-7', 'pharetra magna ac consequat', 59, 11, 7);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Enrique Overbury', 'sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea', '122:00:00', '176118988-3', 'tristique fusce congue diam', 20, 46, 5);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Isabel Saberton', 'hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut', '122:00:00', '724637184-2', 'lectus vestibulum quam sapien varius ut', 71, 36, 7);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Anabella Sheron', 'in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet', '122:00:00', '262700576-6', 'dapibus dolor vel est', 97, 69, 9);
-
---6
-INSERT INTO "category" (categoryName) VALUES ('Arts&Music');
-INSERT INTO "category" (categoryName) VALUES ('Biographies');
-INSERT INTO "category" (categoryName) VALUES ('Business');
-INSERT INTO "category" (categoryName) VALUES ('Kids');
-INSERT INTO "category" (categoryName) VALUES ('Comics');
-INSERT INTO "category" (categoryName) VALUES ('Cooking');
-INSERT INTO "category" (categoryName) VALUES ('Computation&Tech');
-INSERT INTO "category" (categoryName) VALUES ('Education');
-INSERT INTO "category" (categoryName) VALUES ('Health&Fitness');
-INSERT INTO "category" (categoryName) VALUES ('History');
-INSERT INTO "category" (categoryName) VALUES ('Horror');
-INSERT INTO "category" (categoryName) VALUES ('Literature');
-INSERT INTO "category" (categoryName) VALUES ('Anthologies');
-INSERT INTO "category" (categoryName) VALUES ('Classics');
-INSERT INTO "category" (categoryName) VALUES ('Contemporary');
-INSERT INTO "category" (categoryName) VALUES ('Sci-Fi&Fantasy');
-INSERT INTO "category" (categoryName) VALUES ('Romance');
-INSERT INTO "category" (categoryName) VALUES ('Crime');
-INSERT INTO "category" (categoryName) VALUES ('Science');
-INSERT INTO "category" (categoryName) VALUES ('Self-Help');
-INSERT INTO "category" (categoryName) VALUES ('Travel');
-INSERT INTO "category" (categoryName) VALUES ('Other');
-
---7
-INSERT INTO "publisher" (publisherName) VALUES ('Ballantine Books');
-INSERT INTO "publisher" (publisherName) VALUES ('Bloodaxe Books');
-INSERT INTO "publisher" (publisherName) VALUES ('Time Inc.');
-INSERT INTO "publisher" (publisherName) VALUES ('McGraw-Hill Education');
-INSERT INTO "publisher" (publisherName) VALUES ('Dobson Books');
-INSERT INTO "publisher" (publisherName) VALUES ('Berg Publishers ');
-INSERT INTO "publisher" (publisherName) VALUES ('Vintage Books');
-
 --8
 INSERT INTO "language" (languageName) VALUES('English');
 INSERT INTO "language" (languageName) VALUES('Afar');
@@ -264,18 +169,118 @@ INSERT INTO "language" (languageName) VALUES('Yoruba');
 INSERT INTO "language" (languageName) VALUES('Chinese');
 INSERT INTO "language" (languageName) VALUES('Zulu');
 
+--6
+INSERT INTO "category" (categoryName) VALUES ('Arts&Music');
+INSERT INTO "category" (categoryName) VALUES ('Biographies');
+INSERT INTO "category" (categoryName) VALUES ('Business');
+INSERT INTO "category" (categoryName) VALUES ('Kids');
+INSERT INTO "category" (categoryName) VALUES ('Comics');
+INSERT INTO "category" (categoryName) VALUES ('Cooking');
+INSERT INTO "category" (categoryName) VALUES ('Computation&Tech');
+INSERT INTO "category" (categoryName) VALUES ('Education');
+INSERT INTO "category" (categoryName) VALUES ('Health&Fitness');
+INSERT INTO "category" (categoryName) VALUES ('History');
+INSERT INTO "category" (categoryName) VALUES ('Horror');
+INSERT INTO "category" (categoryName) VALUES ('Literature');
+INSERT INTO "category" (categoryName) VALUES ('Anthologies');
+INSERT INTO "category" (categoryName) VALUES ('Classics');
+INSERT INTO "category" (categoryName) VALUES ('Contemporary');
+INSERT INTO "category" (categoryName) VALUES ('Sci-Fi&Fantasy');
+INSERT INTO "category" (categoryName) VALUES ('Romance');
+INSERT INTO "category" (categoryName) VALUES ('Crime');
+INSERT INTO "category" (categoryName) VALUES ('Science');
+INSERT INTO "category" (categoryName) VALUES ('Self-Help');
+INSERT INTO "category" (categoryName) VALUES ('Travel');
+INSERT INTO "category" (categoryName) VALUES ('Other');
+
+
+--7
+INSERT INTO "publisher" (publisherName) VALUES ('Ballantine Books');
+INSERT INTO "publisher" (publisherName) VALUES ('Bloodaxe Books');
+INSERT INTO "publisher" (publisherName) VALUES ('Time Inc.');
+INSERT INTO "publisher" (publisherName) VALUES ('McGraw-Hill Education');
+INSERT INTO "publisher" (publisherName) VALUES ('Dobson Books');
+INSERT INTO "publisher" (publisherName) VALUES ('Berg Publishers ');
+INSERT INTO "publisher" (publisherName) VALUES ('Vintage Books');
+
+
+--3
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('2066 Straubel Court', 28, 'eluty0@bizjournals.com', 'Eustacia Luty', 'oRE56BNQ', 'eluty0@theguardian.com', '+46 904 159 9108', '692 24', 'eluty0', 'normal', 22);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('7361 Mallard Road', 19, 'ehould1@hp.com', 'Edmund Hould', 'pEU60gGA', 'ehould1@opensource.org', '+998 945 505 7553', '692 24', 'ehould1', 'normal', 3);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('5 John Wall Drive', 21, 'clittrell2@imgur.com', 'Clemmy Littrell', 'Uh4dAtIR', 'clittrell2@wunderground.com', '+63 781 701 0990', '8301', 'clittrell2', 'normal', 1);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('10 Shoshone Terrace', 48, 'ndolley3@tiny.cc', 'Nev Dolley', '9QbuY0de', 'ndolley3@paypal.com', '+62 912 696 8250', '692 24', 'ndolley3', 'normal', 1);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('6 John Wall Crossing', 56, 'nfant4@sina.com.cn', 'Nissy Fant', '2eagNED2', 'nfant4@telegraph.co.uk', '+86 998 868 7658', '692 24', 'nfant4', 'normal', 1);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('93 Moland Circle', 48, 'ihaylock5@nps.gov', 'Izak Haylock', 'Xn9P6fn9', 'ihaylock5@ca.gov', '+1 405 965 4695', '73129', 'ihaylock5', 'normal', 20);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('41185 Arrowood Street', 64, 'fblum6@bing.com', 'Filberto Blum', 'jb4VQLkf', 'fblum6@vk.com', '+46 813 516 1461', '351 88', 'fblum6', 'normal', 12);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('528 Golden Leaf Parkway', 56, 'mkees7@house.gov', 'Marietta Kees', 'uUMLA25z', 'mkees7@soundcloud.com', '+7 598 409 8497', '678030', 'mkees7', 'normal', 18);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('05804 Randy Crossing', 24, 'gblanc8@chicagotribune.com', 'Gerladina Blanc', 'ggbEHY7j', 'gblanc8@dagondesign.com', '+1 408 842 4388', '95138', 'gblanc8', 'normal', 14);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('55 Kennedy Circle', 30, 'jscanterbury9@symantec.com', 'Joceline Scanterbury', 'Z4WdQmIb', 'jscanterbury9@cbc.ca', '+86 607 522 5709', '692 24', 'jscanterbury9', 'normal', 14);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('5416 Karstens Road', 26, 'aticehursta@home.pl', 'Annamaria Ticehurst', '1acALjhr', 'aticehursta@wisc.edu', '+7 393 867 7780', '649743', 'aticehursta', 'normal', 11);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('9 Lerdahl Drive', 24, 'jmckeefryb@nationalgeographic.com', 'Jesse McKeefry', 'qz5YPb0B', 'jmckeefryb@newsvine.com', '+86 739 638 1745', '692 24', 'jmckeefryb', 'normal', 7);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('5 Leroy Point', 33, 'cjobbingsc@php.net', 'Christos Jobbings', 'm2wDFcfd', 'cjobbingsc@earthlink.net', '+351 909 729 1955', '4615-131', 'cjobbingsc', 'normal', 22);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('9894 Union Park', 52, 'cmackiewiczd@a8.net', 'Clay Mackiewicz', 'ktAA8NYY', 'cmackiewiczd@noaa.gov', '+86 520 608 3542', '692 24', 'cmackiewiczd', 'normal', 16);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('41 Pierstorff Park', 58, 'dproome@meetup.com', 'Donal Proom', 'Buq6BSfL', 'dproome@bbb.org', '+7 776 314 7169', '181518', 'dproome', 'normal', 6);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('2 Petterle Crossing', 43, 'cgristonf@admin.ch', 'Constantino Griston','uKD716by', 'cgristonf@amazon.de', '+593 422 998 3244', '692 24', 'cgristonf', 'normal', 7);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('84 Fremont Pass', 36, 'cstofferg@bigcartel.com', 'Consuelo Stoffer', 'BmrUL6gv', 'cstofferg@hatena.ne.jp', '+86 573 198 3621', '692 24', 'cstofferg', 'normal', 17);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('203 Anzinger Hill', 33, 'bselesnickh@microsoft.com', 'Brocky Selesnick', 'srH1tc53', 'bselesnickh@answers.com', '+86 150 134 1271', '692 24', 'bselesnickh', 'normal', 10);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('8 Tomscot Center', 18, 'jkennificki@upenn.edu', 'Jarvis Kennifick', 'Cc3NuZTf', 'jkennificki@cbc.ca', '+81 862 520 2384', '360-0201', 'jkennificki', 'normal', 16);
+INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('159 Kropf Avenue', 28, 'tlinkinj@netlog.com', 'Trefor Linkin', 'ef76XTc1', 'tlinkinj@yellowpages.com', '+62 395 867 0445', '692 24', 'tlinkinj', 'normal', 18);
+
+--4
+INSERT INTO "requested_termination"  (idMember) VALUES (19);
+INSERT INTO "requested_termination"  (idMember) VALUES (8);
+INSERT INTO "requested_termination"  (idMember) VALUES (17);
+INSERT INTO "requested_termination"  (idMember) VALUES (3);
+INSERT INTO "requested_termination"  (idMember) VALUES (13);
+
+--5
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Rachelle Wadge', 'rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', '02:00:00', '878551550-7', 'ligula in lacus curabitur at', 7, 93, 12);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Elfie Videan', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', '08:00:00', '406669717-8', 'donec posuere', 56, 118, 18);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Alisander Freckleton', 'blandit mi in porttitor pede justo eu massa donec dapibus', '18:00:00', '986634222-0', 'fusce lacus purus aliquet', 3, 10, 10);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Audi Kleingrub', 'nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum', '18:00:00', '067934878-6', 'dui nec nisi volutpat eleifend', 6, 81, 1);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Merci Szreter', 'orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in', '18:00:00', '404602964-1', 'turpis elementum', 7, 2, 2);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Lurette Kennet', 'arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci', '23:00:00', '633223264-1', 'non interdum', 7, 17, 4);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Gardner Stoffer', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui', '23:00:00', '292310247-9', 'dictumst etiam', 7, 88, 8);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Raynard Mapstone', 'donec posuere metus vitae ipsum aliquam non mauris morbi non lectus', '19:00:00', '650395953-2', 'cursus urna ut', 6, 85, 8);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Andris Dornin', 'non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit', '19:00:00', '270101807-2', 'sagittis dui vel nisl', 6, 43, 7);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Tricia Sture', 'fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor', '19:00:00', '201829112-2', 'justo etiam pretium iaculis', 1, 89, 12);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Harcourt Hibbart', 'et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a', '19:00:00', '663418251-5', 'cursus urna ut tellus nulla ut', 4, 109, 15);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Sheilah Holdin', 'ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce', '19:00:00', '620263498-7', 'non ligula pellentesque ultrices', 4, 125, 19);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Earvin Heis', 'at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis', '00:05:00', '438334161-6', 'ut nulla', 1, 1, 15);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Cam Cork', 'aliquet massa id lobortis convallis tortor risus dapibus augue vel', '00:05:00', '385051206-1', 'in felis donec', 3, 36, 10);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Frederich Brotherheed', 'vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean', '00:05:00', '623757218-X', 'justo aliquam quis turpis eget elit', 1, 130, 8);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Gan Leverington', 'mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa', '00:05:00', '515219349-3', 'est quam pharetra', 7, 16, 7);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Jacquelin Noto', 'fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam', '00:05:00', '758332313-4', 'amet diam in magna', 4, 124, 8);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Silas Randell', 'at nulla suspendisse potenti cras in purus eu magna vulputate luctus', '00:05:00', '919830540-9', 'ut rhoncus aliquet pulvinar sed nisl', 9, 102, 8);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Marietta Shama', 'vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus', '00:25:00', '716386818-9', 'justo pellentesque viverra', 1, 117, 14);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Gloria McCaskill', 'id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam', '00:25:00', '903576151-0', 'sit amet justo morbi ut', 4, 110, 14);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Germana Castree', 'quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere', '00:30:00', '707493571-9', 'in purus eu magna vulputate', 4, 32, 3);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Ginnifer Frain', 'eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat', '00:30:00', '156227457-0', 'ligula nec sem duis', 1, 102, 1);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Renaldo Lambis', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas', '74:00:00', '432923138-7', 'duis ac nibh fusce', 3, 42, 2);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Adah Balding', 'id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed', '74:00:00', '065642982-8', 'non lectus aliquam sit amet diam', 5, 99, 6);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Ricki Breznovic', 'curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut', '74:00:00', '816917757-X', 'orci luctus et ultrices posuere cubilia', 3, 3, 4);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Bernadina Runnacles', 'ac diam cras pellentesque volutpat dui maecenas tristique est et', '74:00:00', '792975125-2', 'fusce consequat nulla nisl', 2, 64, 3);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Tobiah Arkcoll', 'eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec', '74:00:00', '384214891-7', 'pharetra magna ac consequat', 9, 11, 7);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Enrique Overbury', 'sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea', '122:00:00', '176118988-3', 'tristique fusce congue diam', 2, 46, 5);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Isabel Saberton', 'hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut', '122:00:00', '724637184-2', 'lectus vestibulum quam sapien varius ut', 7, 36, 7);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Anabella Sheron', 'in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet', '122:00:00', '262700576-6', 'dapibus dolor vel est', 5, 69, 9);
+
+
+
+
+
 --9
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(4,4);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(6,3);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(10,12);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(9,17);
-INSERT INTO "category_auction" (idCategory,idAuction) VALUES(10,25);
+INSERT INTO "category_auction" (idCategory,idAuction) VALUES(10,22);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(13,11);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(19,23);
 
 --10
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(10,13);
-INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(5,29);
+INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(5,25);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(3,21);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(12,12);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(19,3);
@@ -374,8 +379,6 @@ INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/levi
 INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/bornacrime.jpg',2, 12);
 INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/theorphanstale.jpg',3, 1);
 INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/thehusbandssecret.jpg',4, 14);
-INSERT INTO "image" (source, idAuction, idAuctionModification) VALUES ('img/knowinggodbyname.jpg',5, 3);
-
 
 --16
 INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi', 11, 8);
@@ -410,7 +413,7 @@ INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('primis in f
 INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis', 18, 19);
 
 --17
-INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla', true, 4, 8, 14);
+INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla', true, null, 8, 14);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'consequat in consequat ut nulla sed accumsan felis ut at', false, null, 16, 15);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae', false, null, 19, 5);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst', true, null, 15, 12);
@@ -423,13 +426,13 @@ INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idR
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut', false, null, 10, 17);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'natoque penatibus et magnis dis parturient montes nascetur ridiculus mus', false, null, 1, 5);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'nullam orci pede venenatis non sodales sed tincidunt eu felis fusce', true, null, 5, 10);
-INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla', true, 11, 10, 11);
+INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla', true, null, 10, 11);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam', true, null, 20, 11);
-INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare', false, 6, 16, 11);
+INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare', false, null, 16, 11);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus', false, null, 16, 4);
-INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus', true, 8, 5, 7);
+INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus', true, null, 5, 7);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis', true, null, 15, 6);
-INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut', true, 15, 7, 14);
+INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut', true, null, 7, 14);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis', true, null, 4, 2);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'lectus pellentesque at nulla suspendisse potenti cras in purus eu magna', false, null, 13, 13);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut', true, null, 15, 1);
@@ -439,4 +442,4 @@ INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idR
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus', false, null, 7, 13);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra', true, null, 5, 12);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris', false, null, 12, 7);
-INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac', false, 20, 5, 6);
+INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac', false, null, 5, 6);
