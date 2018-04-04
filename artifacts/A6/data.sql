@@ -234,16 +234,16 @@ INSERT INTO "requested_termination"  (idMember) VALUES (3);
 INSERT INTO "requested_termination"  (idMember) VALUES (13);
 
 --5
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Rachelle Wadge', 'rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', '02:00:00', '878551550-7', 'ligula in lacus curabitur at', 7, 93, 12);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Elfie Videan', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', '08:00:00', '406669717-8', 'donec posuere', 6, 118, 12);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Alisander Freckleton', 'blandit mi in porttitor pede justo eu massa donec dapibus', '18:00:00', '986634222-0', 'fusce lacus purus aliquet', 3, 10, 10);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Audi Kleingrub', 'nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum', '18:00:00', '067934878-6', 'dui nec nisi volutpat eleifend', 6, 81, 1);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Merci Szreter', 'orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in', '18:00:00', '404602964-1', 'turpis elementum', 7, 2, 12);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Lurette Kennet', 'arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci', '23:00:00', '633223264-1', 'non interdum', 7, 17, 4);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Gardner Stoffer', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui', '23:00:00', '292310247-9', 'dictumst etiam', 7, 88, 8);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Raynard Mapstone', 'donec posuere metus vitae ipsum aliquam non mauris morbi non lectus', '19:00:00', '650395953-2', 'cursus urna ut', 6, 85, 8);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Andris Dornin', 'non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit', '19:00:00', '270101807-2', 'sagittis dui vel nisl', 6, 43, 12);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Tricia Sture', 'fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor', '19:00:00', '201829112-2', 'justo etiam pretium iaculis', 1, 89, 12);
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Rachelle Wadge', 'rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', '02:00:00', '878551550-7', 'ligula in lacus curabitur at', 'approved', 7, 93, 12);
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Elfie Videan', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', '08:00:00', '406669717-8', 'donec posuere', 'approved', 6, 118, 12);
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Alisander Freckleton', 'blandit mi in porttitor pede justo eu massa donec dapibus', '18:00:00', '986634222-0', 'fusce lacus purus aliquet', 'approved', 3, 10, 10);
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Audi Kleingrub', 'nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum', '18:00:00', '067934878-6', 'dui nec nisi volutpat eleifend', 'approved', 6, 81, 1);
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Merci Szreter', 'orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in', '18:00:00', '404602964-1', 'turpis elementum', 'approved', 7, 2, 12);
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Lurette Kennet', 'arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci', '23:00:00', '633223264-1', 'non interdum', 'approved', 7, 17, 4);
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Gardner Stoffer', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui', '23:00:00', '292310247-9', 'dictumst etiam', 'approved', 7, 88, 8);
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Raynard Mapstone', 'donec posuere metus vitae ipsum aliquam non mauris morbi non lectus', '19:00:00', '650395953-2', 'cursus urna ut', 'approved', 6, 85, 8);
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Andris Dornin', 'non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit', '19:00:00', '270101807-2', 'sagittis dui vel nisl', 'approved', 6, 43, 12);
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Tricia Sture', 'fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor', '19:00:00', '201829112-2', 'justo etiam pretium iaculis', 'approved', 1, 89, 12);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Harcourt Hibbart', 'et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a', '19:00:00', '663418251-5', 'cursus urna ut tellus nulla ut', 4, 109, 14);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Sheilah Holdin', 'ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce', '19:00:00', '620263498-7', 'non ligula pellentesque ultrices', 4, 125, 14);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Earvin Heis', 'at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis', '00:05:00', '438334161-6', 'ut nulla', 1, 1, 14);
@@ -270,20 +270,20 @@ INSERT INTO "category_auction" (idCategory,idAuction) VALUES(4,4);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(6,3);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(10,12);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(9,17);
-INSERT INTO "category_auction" (idCategory,idAuction) VALUES(10,12);
+INSERT INTO "category_auction" (idCategory,idAuction) VALUES(10,13);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(13,11);
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(19,13);
 
 --10
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(10,13);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(5,25);
-INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(3,21);
+INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(4,21);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(12,12);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(19,3);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(1,6);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(8,19);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(9,12);
-INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(8,16);
+INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(7,16);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(11,14);
 --11
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 12, 87.61);
@@ -308,9 +308,9 @@ INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (19, 5, 95.52);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (15, 9, 85.09);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (15, 10, 60.05);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (17, 5, 8.21);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 8, 41.85);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (1, 8, 41.85);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 9, 30.02);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 8, 53.92);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (1, 9, 53.92);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 19, 90.93);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (13, 20, 11.07);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 15, 38.45);
@@ -318,16 +318,16 @@ INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 7, 73.97);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (15, 4, 81.92);
 
 --12
-INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis', 'false', 10);
-INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus', 'false', 7);
+INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis', 'false', 1);
+INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus', 'false', 2);
 INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('integer pede justo lacinia eget tincidunt eget tempus vel pede', 'false', 3);
-INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla', 'false', 13);
-INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam', 'false', 14);
+INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla', 'false', 4);
+INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam', 'false', 6);
 INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis', 'false',5);
-INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget elit', 'false',4);
-INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis', 'false',15);
-INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut nulla', 'false',2);
-INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque', 'false',1);
+INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget elit', 'false',7);
+INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis', 'false',8);
+INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('donec semper sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut nulla', 'false',9);
+INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque', 'false',10);
 
 --13
 INSERT INTO "notification" (information, idMember) VALUES ('neque duis bibendum morbi non quam nec dui luctus rutrum', 8);
