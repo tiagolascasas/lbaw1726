@@ -102,11 +102,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 * R906: Ação de desaprovar feedback /moderator
 
 ### Módulo 10: Páginas estáticas 
-* R901: Página Sobre /about
-* R902: Questões Frequentes /faq
-* R903: Contactos /contact
-* R904: Formulário contactar /contact
-* R905: Enviar mensagem de contacto /contact
+* R1001: Página Sobre /about
+* R1002: Questões Frequentes /faq
+* R1003: Contactos /contact
+* R1004: Formulário contactar /contact
+* R1005: Enviar mensagem de contacto /contact
 
 #### R1001 Página Sobre
 
