@@ -885,9 +885,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
  
 > Document the JSON or XML responses that will be used by the web resources.
  
- <!--- delete this at the end \/ -->
-## Web resources descriptors <note important>DO NOT include on the artefact</note>
- 
+ <!--- Web resources descriptors
   * URL - Resource identifier, following the RESTful resource naming conventions 
   * Description - Describe the resource, when it's used and why
   * UI - Reference to the A3 user interface used by the resource
@@ -898,7 +896,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   * Returns - HTTP code returned from a request
   * Response Body - Data sent from the server, in response to a given request
   * Permissions - Required permissions to access the resource
-  <!--- delete this at the end /\ -->
+ -->
+ 
 ***
  
 
