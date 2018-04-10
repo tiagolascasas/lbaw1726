@@ -1529,6 +1529,30 @@ Estes são os pontos de extremidade disponíveis no Módulo de Páginas Estátic
 
 ## 4. JSON/XML Types
 
+
+JSON104: Informação de um membro
+```
+{
+  "member":[
+    "id":"3",
+    "address": "Rua Texeira Pascoais,41",
+    "age": "21",
+    "email": "up201405612@fe.up.pt",
+    "name": "Rúben Torres",
+    "password": "BBCVDFFGHFJHADSAFDTHGR",
+    "paypalEmail": "up201405612@fe.up.pt",
+    "phone": "914739821",
+    "postalCode": "4440-399",
+    "username": RTorres,
+    "dateCreated": "2001-12-23 14:39:53.662522-05",
+    "member_status": "normal",
+    "dateBanned": "NULL",
+    "dateSuspended": "NULL",
+    "dateTerminated": "NULL",
+    "idCountry": "1"
+  ]
+}
+```
 JSON201: lista simplificada de leilões
 
 ```
@@ -1569,10 +1593,29 @@ JSON202: valor atual da licitação de um leilão
 }
 ```
 
-JSON501: Ver notificações: {notificação}[]
+JSON204: Informação de um leilão
 ```
 {
-  "notification: [
+    "auctions": [
+        {
+            "id": "1",
+            "imageSrc": "book1.jpg",
+            "secondsLeft": "19234",
+            "currentMaxBid": "7.14",
+            "sellerId": "24",
+            "sellerName": "IAmASeller",
+            "isWishlisted": "true",
+            "title": "The Orphan's Tale",
+            "author": "Pam Jennof"
+        }
+    ]
+}
+```
+
+JSON401: Lista de notificações
+```
+{
+  "notification": [
     {
       "id": "5",
       "dateSent": "2001-12-23 14:39:53.662522-05",
@@ -1592,6 +1635,74 @@ JSON501: Ver notificações: {notificação}[]
   ]
 }
 ```
+
+JSON501: Lista de mensagens
+```
+{
+  "message": [
+    {
+      "id": "5",
+      "dateSent": "2001-12-23 14:39:53.662522-05",
+      "message_text": "Hey man!",
+      "idSender": "2",
+      "idReceiver": "3"
+    },
+    {
+      "id": "10",
+      "dateSent": "2001-12-31 09:50:53.662522-05",
+			"message_text": "How is it going?",
+      "idSender": "3",
+      "idReceiver": "2"
+    }
+  ]
+}
+``` 
+
+JSON504: Lista de comentários
+```
+{
+  "comment": [
+    {
+      "id": "5",
+      "datePosted": "2001-12-23 14:39:53.662522-05",
+      "liked": "TRUE",
+      "comment_text": "Everything went great",
+      "is_removed": "FALSE",
+      "idParent": "NULL",
+      "idSender": "2",
+      "idReceiver": "3"
+    },
+    {
+      "id": "10",
+     	"datePosted": "2001-12-23 14:39:53.662522-05",
+      "liked": "TRUE",
+      "comment_text": "T",
+      "is_removed": "FALSE",
+      "idParent": "5",
+      "idSender": "3",
+      "idReceiver": "2"
+    }
+  ]
+}
+``` 
+
+JSON603: Pedidos de remoção de conta
+```
+{
+    "requested_termination": [
+    {
+      "id": "1",
+      "dateRequested": "2001-12-23 14:39:53.662522-05",
+      "idMember": "2"
+    },
+    {
+      "id": "2",
+      "dateRequested": "2001-12-23 14:39:53.662522-05",
+      "idMember": "3"
+    }
+}
+```
+
 > Document the JSON or XML responses that will be used by the web resources.
 
  <!--- delete this at the end \/ -->
