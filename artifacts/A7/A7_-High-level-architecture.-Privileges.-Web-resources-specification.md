@@ -91,11 +91,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 
 ###  Módulo 02: Leilões
 
-Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
+Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 
 * R201: Ver página inicial com leilões /home
 * R202: Formulário de pesquisa de leilões /search
-* R203: Ação de pesquisa de leilões /search
+* R203: API de pesquisa de leilões /api/search
 * R204: Ver um leilão /auction/{id}
 * R205: Formulário de criação de um leilão /createAuction
 * R206: Ação de criação de um leilão /createAuction
@@ -104,31 +104,22 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
 * R209: Ação de licitar num leilão /auction/{id}/bid
 * R210: Ação de atualizar o valor da licitação atual /auction/{id}/bid
 
-#### R201: Ver página inicial com leilões /home
+#### R201: Ver página inicial com leilões
 
 |URL |	/home|
 |:---:|:----:|
 |Descrição |	Obter a página inicial. |
 |Método |	GET |
-| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/home.html) |
 |AJAX Calls|R210
 | Permissões  |	PUB |
 
-#### R202: Formulário de pesquisa de leilões /search
+#### R202: Página de pesquisa de leilões
 
 |URL |	/search|
 |:---:|:----:|
 |Descrição |	Pesquisa avançada de leilões. |
 |Método |	GET |
-| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
-| Permissões  |	PUB |
-
-#### R203: Ação de pesquisa de leilões /search
-
-|URL |	/search|
-|:---:|:----:|
-|Descrição |	Submete uma pesquisa de leilões, retornando a mesma página com os resultados |
-|Método |	POST |
 |Parâmetros|?keywords: string | Palavras-chave da pesquisa
 ||?title: string | Título
 ||?publisher: string | Editora
@@ -137,7 +128,25 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
 ||?lang: string | Idioma
 ||?category: string | Categoria
 ||?maxBid: number | Valor máximo da licitação atual
-| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/search.html) |
+|Chamadas AJAX|R203
+| Permissões  |	PUB |
+
+#### R203: API de pesquisa de leilões
+
+|URL |	/api/search|
+|:---:|:----:|
+|Descrição |	Submete uma pesquisa de leilões, retornando a mesma página com os resultados |
+|Método |	GET |
+|Parâmetros|?keywords: string | Palavras-chave da pesquisa
+||?title: string | Título
+||?publisher: string | Editora
+||?author: string | Autor
+||?isbn: string | ISBN
+||?lang: string | Idioma
+||?category: string | Categoria
+||?maxBid: number | Valor máximo da licitação atual
+|Corpo da resposta|JSON201
 | Permissões  |	PUB |
 
 #### R204: Ver um leilão /auction/{id}
@@ -146,22 +155,27 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
 |:---:|:----:|
 |Descrição |	Ver um leilão |
 |Método |	GET |
-| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+|Parâmetros|id: number| ID do leilão a visualizar
+| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/auction.html) |
 |AJAX Calls|R210
+|Retornos|200 OK| O pedido foi realizado com sucesso
+||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
+||404 Not Found| Erro caso o leilão com o id especificado não exista
 | Permissões  |	MMB |
 
-#### R205: Formulário de criação de um leilão /createAuction
+#### R205: Formulário de criação de um leilão
 
-|URL |	/search|
+|URL |	/create|
 |:---:|:----:|
 |Descrição |	Formulário para a criação de um novo leilão |
 |Método |	GET |
-| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/create.html) |
+|SUBMIT|R206
 | Permissões  |	MMB |
 
-#### R206: Ação de criação de um leilão /createAuction
+#### R206: Ação de criação de um leilão
 
-|URL |	/search|
+|URL |	/create|
 |:---:|:----:|
 |Descrição |	Cria um novo leilão |
 |Método |	POST |
@@ -176,51 +190,58 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
 |Redirecciona|R204
 | Permissões  |	MMB |
 
-#### R207: Formulário de edição de um leilão /editAuction/{id}
+#### R207: Formulário de edição de um leilão
 
-|URL |	/editAuction{id}|
+|URL |	/editAuction/{id}|
 |:---:|:----:|
 |Descrição |	Formulário para a edição de um leilão existente |
 |Método |	GET |
-| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+|Parâmetros|id: number| ID do leilão a editar
+| IU | IUXX (sem mockup elaborada)|
+|SUBMIT|R208
 | Permissões  |	VDD |
 
-#### R208: Ação de edição de um leilão /editAuction/{id}
+#### R208: Ação de pedido de edição de um leilão
 
-|URL |	/editAuction{id}|
+|URL |	/editAuction/{id}|
 |:---:|:----:|
 |Descrição |	Envia um pedido de edição de um leilão existente |
 |Método |	POST |
-|Parâmetros|?desc: string | Descrição do item
+|Parâmetros|id: number| ID do leilão a editar
+||?desc: string | Descrição do item
 ||?img: string | Novas imagens
+|Retornos|200 OK| O pedido de edição foi realizado com suceso
+||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
+||404 Not Found| Erro caso o leilão com o id especificado não exista
 |Redirecciona|R204
 | Permissões  |	VDD |
 
-#### R209: Ação de licitar num leilão /auction/{id}/bid
+#### R209: Ação de licitar num leilão
 
 |URL |	/auction/{id}/bid|
 |:---:|:----:|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	POST |
-|Parâmetros|?auctionID: number | ID do leilão
+|Parâmetros|?id: number | ID do leilão
 ||?userID: number | ID do utilizador autenticado
 ||?value: number | Nova licitação
 |Redirecciona|R204
 | Permissões  |	MMB |
 
-#### R210: Ação de atualizar o valor da licitação atual /auction/{id}/bid
+#### R210: API para obter o valor da licitação atual
 
-|URL |	/auction/{id}/bid|
+|URL |	/api/bid/{id}|
 |:---:|:----:|
-|Descrição |	Requisita o valor atual da licitação |
+|Descrição |	Requisita o valor atual da licitação do leilão especificado |
 |Método |	GET |
-|Parâmetros|?auctionID: number | ID do leilão
-||?value: number | Valor atual da licitação
-|Redirecciona|R204
+|Parâmetros|?id: number | ID do leilão
+|Corpo da resposta|JSON202
 | Permissões  |	PUB |
 
 
 ### Módulo 03: Listas do utilizador autenticado
+
+Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utilizador Autenticado:
 
 * R301: Ver a wishlist /wishlist
 * R302: Ação de adição de um leilão à wishlist /wishlist/{id}
@@ -229,17 +250,17 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
 * R305: Ver a lista dos leilões criados /myAuctions
 * R306: Ver a lista dos leilões em que se está a participar /currentAuctions
 
-#### R301: Ver a wishlist /wishlist
+#### R301: Ver a __wishlist__
 
 |URL |	/wishlist|
 |:---:|:----:|
 |Descrição |	Ver a wishlist do utilizador autenticado |
 |Método |	GET |
-| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/wishlist.html) |
 |AJAX Calls|R210
 | Permissões  |	MMB |
 
-#### R302: Ação de adição de um leilão à wishlist /wishlist/{id}
+#### R302: Ação de adição de um leilão à __wishlist__
 
 |URL |	/wishlist/{id}|
 |:---:|:----:|
@@ -247,10 +268,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
 |Método |	POST |
 |Parâmetros|?id: number | ID do leilão
 ||?userID: number | ID do utilizador autenticado
-|Redirecciona|R210
+|Retornos|200 OK| O pedido de adição foi realizado com sucesso
+||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
+||404 Not Found| Erro caso o leilão ou utilizador com o id especificado não exista
 | Permissões  |	MMB |
 
-#### R303: Ação de remoção de um leilão da wishlist /wishlist/{id}
+#### R303: Ação de remoção de um leilão da __wishlist__
 
 |URL |	/wishlist/{id}|
 |:---:|:----:|
@@ -258,34 +281,38 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
 |Método |	DELETE |
 |Parâmetros|?id: number | ID do leilão
 ||?userID: number | ID do utilizador autenticado
-|Redirecciona|R210
+|Retornos|200 OK| O pedido de remoção foi realizado com sucesso
+||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
+||404 Not Found| Erro caso o leilão ou utilizador com o id especificado não exista
 | Permissões  |	MMB |
 
-#### R304: Ver o histórico de leilões /history
+#### R304: Ver o histórico de leilões
 
 |URL |	/history|
 |:---:|:----:|
 |Descrição |	Ver o histórico de leilões completados do utilizador autenticado |
 |Método |	GET |
-| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/history.html) |
 | Permissões  |	MMB |
 
-#### R305: Ver a lista dos leilões criados /myAuctions
+#### R305: Ver a lista dos leilões criados
 
 |URL |	/myAuctions|
 |:---:|:----:|
 |Descrição |	Ver a lista dos leilões criados pelo utilizador autenticado |
 |Método |	GET |
-| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/myAuctions.html) |
+|AJAX Calls|R210
 | Permissões  |	MMB |
 
-#### R306: Ver a lista dos leilões em que se está a participar /currentAuctions
+#### R306: Ver a lista dos leilões em que se está a participar
 
 |URL |	/currentAuctions|
 |:---:|:----:|
 |Descrição |	Ver a lista dos leilões ativos em que o utilizador autenticado está a participar |
 |Método |	GET |
-| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/auctionsIm_in.html) |
+|AJAX Calls|R210
 | Permissões  |	MMB |
 
 
@@ -1113,7 +1140,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
  -->
 
 ***
-
+JSON201 - lista de leilões
+JSON202 - valor max bid de um leilão
 
 GROUP1726, 11/4/2018
 
