@@ -34,8 +34,6 @@ Esta secção documenta todos os recursos web por módulo indicando o *URL*, o m
 
 ###  Módulo 01: Autentificação e Perfil Individual
 
-#### Pontos de extremidade do Módulo de Autentifcação e do Perfil Individual
-
 Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e Perfil Individual.
 
 * R101: Ação de login /login
@@ -76,6 +74,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td > R201	</td>
     <td > Sucesso</td>
   </tr>  
+    <tr>
+  <td > </td>
+    <td > R201	</td>
+    <td > Erro</td>
+  </tr> 
   <tr>
     <td colspan="2">Permissões</td>
     <td colspan="2"> PUB </td>
@@ -103,6 +106,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td > <a href="#">R201</a></td>
     <td > Sucesso</td>
   </tr>
+  <tr>
+  <td > </td>
+    <td > R201	</td>
+    <td > Erro</td>
+  </tr> 
   <tr>
     <td  colspan="2">Permissões</td>
     <td  colspan="2"> MMB, ADM </td>
@@ -174,12 +182,16 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <td > Redirecciona </td>
     <td > <a href="#">R201</a> 	</td>
     <td > Sucesso</td>
+  </tr> 
+   <tr>
+  <td > </td>
+    <td > R201	</td>
+    <td > Erro</td>
   </tr>   
   <tr>
     <td  colspan="2">Permissões</td>
     <td  colspan="2"> PUB </td>
   </tr>
-  <tr>
 </table>
 
 #### R104: Ver perfil
@@ -190,7 +202,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
-    <td  colspan="2"> Recurso utilizado por um Membro para aceder à sua página de perfil. </td>
+    <td  colspan="2"> Recurso utilizado por um Membro para aceder a uma página de perfil. </td>
   </tr>
   <tr>
     <td  colspan="2">Método</td>
@@ -199,10 +211,10 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
   <td > Parâmetros </td>
     <td > +id: Integer</td>
-    <td > Chave primária de Utilizador</td>
+    <td > Chave primária de um membro</td>
   </tr>
  <tr>
-    <td > IU </td>
+    <td colspan="2"> IU </td>
     <td > <a href="https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08</a>	</td>
 </tr>
   <tr>
@@ -261,12 +273,17 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <td > </td>
     <td >+country: String	</td>
     <td >País do Membro.</td>
- </tr>
-  <tr>
+ </tr> 
+   <tr>
   <td > Redirecciona </td>
     <td > <a href="https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08</a>	</td>
     <td > Sucesso</td>
   </tr>  
+  <tr>
+  <td > </td>
+    <td > <a href="https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08</a>	</td>
+    <td > Erro</td>
+  </tr> 
   <tr>
     <td  colspan="2">Permissões</td>
     <td  colspan="2"> DON </td>
@@ -309,6 +326,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td > Sucesso</td>
   </tr>  
   <tr>
+  <td > </td>
+    <td > <a href="https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08</a>	</td>
+    <td > Erro</td>
+  </tr>  
+  <tr>
     <td  colspan="2">Permissões</td>
     <td  colspan="2"> DON </td>
   </tr>
@@ -334,17 +356,17 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 #### R201: Ver página inicial com leilões
 
 |URL |	/home|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Obter a página inicial. |
 |Método |	GET |
 | IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/home.html) |
-|AJAX Calls|R210
+|Corpo da resposta|JSON201
 | Permissões  |	PUB |
 
 #### R202: Página de pesquisa de leilões
 
 |URL |	/search|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Pesquisa avançada de leilões. |
 |Método |	GET |
 |Parâmetros|?keywords: string | Palavras-chave da pesquisa
@@ -356,13 +378,13 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 ||?category: string | Categoria
 ||?maxBid: number | Valor máximo da licitação atual
 | IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/search.html) |
-|Chamadas AJAX|R203
+|Chamadas AJAX|JSON201
 | Permissões  |	PUB |
 
 #### R203: API de pesquisa de leilões
 
 |URL |	/api/search|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Submete uma pesquisa de leilões, retornando a mesma página com os resultados |
 |Método |	GET |
 |Parâmetros|?keywords: string | Palavras-chave da pesquisa
@@ -379,12 +401,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 #### R204: Ver um leilão /auction/{id}
 
 |URL |	/auction/{id}|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Ver um leilão |
 |Método |	GET |
 |Parâmetros|id: number| ID do leilão a visualizar
 | IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/auction.html) |
-|AJAX Calls|R210
+|Corpo da resposta|JSON204
 |Retornos|200 OK| O pedido foi realizado com sucesso
 ||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
 ||404 Not Found| Erro caso o leilão com o id especificado não exista
@@ -393,7 +415,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 #### R205: Formulário de criação de um leilão
 
 |URL |	/create|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Formulário para a criação de um novo leilão |
 |Método |	GET |
 | IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/create.html) |
@@ -403,10 +425,10 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 #### R206: Ação de criação de um leilão
 
 |URL |	/create|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Cria um novo leilão |
 |Método |	POST |
-|Parâmetros|?title: string | Título
+|Corpo do pedido|?title: string | Título
 ||?publisher: string | Editora
 ||?author: string | Autor
 ||?isbn: string | ISBN
@@ -420,7 +442,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 #### R207: Formulário de edição de um leilão
 
 |URL |	/editAuction/{id}|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Formulário para a edição de um leilão existente |
 |Método |	GET |
 |Parâmetros|id: number| ID do leilão a editar
@@ -431,10 +453,10 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 #### R208: Ação de pedido de edição de um leilão
 
 |URL |	/editAuction/{id}|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Envia um pedido de edição de um leilão existente |
 |Método |	POST |
-|Parâmetros|id: number| ID do leilão a editar
+|Corpo do pedido|id: number| ID do leilão a editar
 ||?desc: string | Descrição do item
 ||?img: string | Novas imagens
 |Retornos|200 OK| O pedido de edição foi realizado com suceso
@@ -446,10 +468,10 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 #### R209: Ação de licitar num leilão
 
 |URL |	/auction/{id}/bid|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	POST |
-|Parâmetros|?id: number | ID do leilão
+|Corpo do pedido|?id: number | ID do leilão
 ||?userID: number | ID do utilizador autenticado
 ||?value: number | Nova licitação
 |Redirecciona|R204
@@ -458,7 +480,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 #### R210: API para obter o valor da licitação atual
 
 |URL |	/api/bid/{id}|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Requisita o valor atual da licitação do leilão especificado |
 |Método |	GET |
 |Parâmetros|?id: number | ID do leilão
@@ -480,20 +502,20 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 #### R301: Ver a __wishlist__
 
 |URL |	/wishlist|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Ver a wishlist do utilizador autenticado |
 |Método |	GET |
 | IU |	[IU13](https://tiagolascasas.github.io/lbaw1726/wishlist.html) |
-|AJAX Calls|R210
+|Corpo da resposta|JSON201
 | Permissões  |	MMB |
 
 #### R302: Ação de adição de um leilão à __wishlist__
 
 |URL |	/wishlist/{id}|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Adiciona um leilão à wishlist do utilizador |
 |Método |	POST |
-|Parâmetros|?id: number | ID do leilão
+|Corpo do pedido|?id: number | ID do leilão
 ||?userID: number | ID do utilizador autenticado
 |Retornos|200 OK| O pedido de adição foi realizado com sucesso
 ||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
@@ -503,7 +525,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 #### R303: Ação de remoção de um leilão da __wishlist__
 
 |URL |	/wishlist/{id}|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	DELETE |
 |Parâmetros|?id: number | ID do leilão
@@ -516,35 +538,36 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 #### R304: Ver o histórico de leilões
 
 |URL |	/history|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Ver o histórico de leilões completados do utilizador autenticado |
 |Método |	GET |
-|AJAX Calls|R210
+|Corpo da resposta|JSON201
 | IU |	[IU12](https://tiagolascasas.github.io/lbaw1726/history.html) |
 | Permissões  |	MMB |
 
 #### R305: Ver a lista dos leilões criados
 
 |URL |	/myAuctions|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Ver a lista dos leilões criados pelo utilizador autenticado |
 |Método |	GET |
 | IU |	[IU10](https://tiagolascasas.github.io/lbaw1726/myAuctions.html) |
-|AJAX Calls|R210
+|Corpo da resposta|JSON201
 | Permissões  |	MMB |
 
 #### R306: Ver a lista dos leilões em que se está a participar
 
 |URL |	/currentAuctions|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Ver a lista dos leilões ativos em que o utilizador autenticado está a participar |
 |Método |	GET |
 | IU |	[IU11](https://tiagolascasas.github.io/lbaw1726/auctionsIm_in.html) |
-|AJAX Calls|R210
+|Corpo da resposta|JSON201
 | Permissões  |	MMB |
 
 ### Módulo 04: Notificações
 
+Estes são os pontos de extremidade disponíveis no Módulo de Notificações:
 * R401: Acção listagem de notificações não lidas.
 * R402: Acção marcar notificação como lida.
 
@@ -565,7 +588,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
    <tr>
     <td colspan="2">Parâmetros</td>
     <td >+id: Integer	</td>
-    <td >member primary key</td>
+    <td >Chave primária de um membro</td>
    </tr>
    <tr>
     <td >Corpo da resposta</td>
@@ -595,14 +618,13 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
    <tr>
     <td >Corpo do pedido</td>
     <td >+id_member: Integer	</td>
-    <td >member primary key</td>
+    <td >Chave primária do membro</td>
    </tr>
    <tr>
-    <td class="tg-yw41"></td>
+    <td></td>
     <td >+id_notification: Integer	</td>
-    <td >notification primary key</td>
+    <td >Chave primária da notificação</td>
    </tr>
-   <tr>
    <tr>
     <td >Retorna</td>
     <td >200 OK	</td>
@@ -616,7 +638,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   <tr>
     <td ></td>
     <td >404 Não encontrado.	</td>
-    <td >Notificação com a primary key especificada não encontrada.</td>
+    <td >Notificação com a chave primária especificada não encontrada.</td>
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -625,6 +647,8 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 </table>
 
 ### Módulo 05: Comunicação entre membros
+
+Estes são os pontos de extremidade disponíveis no Módulo de Comunicação entre membros.
 * R501: Ver Mensagens /messages
 * R502: Formulário para criar Mensagem /messages/new_message
 * R503: Acção para criar Mensagem /messages
@@ -647,9 +671,9 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">GET</td>
    </tr>
    <tr>
-    <td colspan="2">Parâmetros</td>
+    <td >Parâmetros</td>
     <td >+id: Integer	</td>
-    <td >member primary key</td>
+    <td >Chave primária de um membro</td>
    </tr>
    <tr>
     <td  colspan="2">Corpo da resposta</td>
@@ -708,21 +732,21 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   <tr>
     <td ></td>
     <td >+idSender: Integer	</td>
-    <td >primary key do membro que enviou a mensagem</td>
+    <td >Chave primária do membro que enviou a mensagem</td>
   </tr>
  <tr>
     <td ></td>
     <td >+idReceiver: Integer	</td>
-    <td >primary key do membro que recebe a mensagem</td>
+    <td >Chave primária do membro a quem foi enviada a mensagem</td>
    </tr>
     <tr>
   <td > Redirecciona </td>
-    <td >R601	</td>
+    <td >R501	</td>
     <td > Sucesso</td>
   </tr>  
     <tr>
   <td >  </td>
-     <td > R602	</td>
+     <td > R502	</td>
     <td > Insucesso </td>
   </tr>
    <tr>
@@ -732,31 +756,31 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 </table>
 
 #### R504: Ação para listar comentários 
-<table class="tg">
+<table>
    <tr>
-    <td class="tg-yw4l" colspan="2">URL</td>
-    <td class="tg-yw4l" colspan="2">/users/{id}/comments</td>
+    <td  colspan="2">URL</td>
+    <td colspan="2">/users/{id}/comments</td>
    </tr>
    <tr>
-    <td class="tg-yw4l" colspan="2">Descrição</td>
-    <td class="tg-yw4l" colspan="2">Obter todas os comentários recebidos pelo membro em questão</td>
+    <td colspan="2">Descrição</td>
+    <td colspan="2">Obter todas os comentários recebidos pelo membro em questão</td>
    </tr>
    <tr>
-    <td class="tg-yw4l" colspan="2">Método</td>
-    <td class="tg-yw4l" colspan="2">GET</td>
+    <td colspan="2">Método</td>
+    <td colspan="2">GET</td>
    </tr>
    <tr>
-    <td class="tg-yw4l"colspan="2">Parâmetros</td>
-    <td class="tg-yw4l">+id: Integer	</td>
-    <td class="tg-yw4l">member primary key</td>
+    <td >Parâmetros</td>
+    <td >+id: Integer	</td>
+    <td >Chave primária do membro</td>
    </tr>
    <tr>
-    <td class="tg-yw4l" colspan="2">Corpo da resposta</td>
-    <td class="tg-yw4l">JSON604</td>
+    <td colspan="2">Corpo da resposta</td>
+    <td >JSON604</td>
    </tr>
    <tr>
-    <td class="tg-yw4l" colspan="2">Permissões</td>
-    <td class="tg-yw4l" colspan="2"> MMB </td>
+    <td colspan="2">Permissões</td>
+    <td colspan="2"> MMB </td>
    </tr>
 </table>
 
@@ -787,23 +811,23 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
    <tr>
     <td ></td>
     <td >+idSender: Integer	</td>
-    <td >primary key do membro que enviou o comentário</td>
+    <td >Chave primária do membro que enviou o comentário</td>
   </tr>
    <tr>
     <td ></td>
     <td >+idReceiver: Integer	</td>
-    <td >primary key do membro que recebeu o comentário</td>
+    <td >Chave primária do membro a quem o comentário foi dado</td>
    </tr>
-    <tr>
-  <td > Redirecciona </td>
-    <td >R601	</td>
-    <td > Sucesso</td>
+  <tr>
+    <td >Retorna</td>
+    <td >200 OK	</td>
+    <td >Comentário enviado com sucesso</td>
   </tr>  
-    <tr>
-  <td >  </td>
-     <td > R602	</td>
-    <td > Insucesso </td>
-  </tr>
+  <tr>
+    <td ></td>
+    <td >400 Pedido Incorreto	</td>
+    <td >Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
    <tr>
     <td  colspan="2">Permissões</td>
     <td  colspan="2"> MMB </td>
@@ -843,7 +867,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   <tr>
     <td ></td>
     <td >404 Não encontrado.	</td>
-    <td >Comentário de feedback com a primary key especificada não encontrado.</td>
+    <td >Comentário de feedback com a chave primária especificada não encontrado.</td>
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -852,17 +876,18 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 </table>
 
 ### Módulo 06: Autentificação e área de gestão admin
-* R801: Formulário de login admin /adminLogin
-* R802: Ação de login admin /adminLogin
-* R803: Ver painel do admin /admin
-* R804: Aceitar pedido de remoção de conta /admin
-* R805: Ignorar pedido de remoção de conta /admin
-* R806: Formulário de ação a membros /admin
-* R807: Ação suspensão /admin
-* R808: Ação de reativar suspensão /admin
-* R809: Ação de banir permanentemente /admin
-* R810: Ação de promover a moderador /admin
-* R811: Ação de revocar privilegios de moderador /admin
+
+Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e área de gestão admin:
+* R601: Formulário de login admin /adminLogin
+* R602: Ação de login admin /adminLogin
+* R603: Ver painel do admin /admin
+* R604: Aceitar pedido de remoção de conta /admin/terminate
+* R605: Ignorar pedido de remoção de conta /admin/ignore
+* R606: Ação suspensão /admin/suspend
+* R607: Ação de reativar suspensão /admin/reactivate
+* R608: Ação de banir permanentemente /admin/ban
+* R609: Ação de promover a moderador /admin/promote_moderator
+* R610: Ação de revocar privilegios de moderador /admin/remoke_moderator
 
 #### R601: Formulário de login admin
 
@@ -890,7 +915,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">POST</td>
   </tr>
   <tr>
-  <td >Request body</td>
+  <td >Corpo do pedido</td>
     <td >+username: string	</td>
     <td >Username do admin</td>
   </tr>
@@ -923,7 +948,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Descrição |	Obter pedidos de remoção de conta. |
 |Método |	GET |
 | IU |	[IU015](https://tiagolascasas.github.io/lbaw1726/admin.html) |
-|AJAX Calls|JSON603|
+|Corpo da resposta|JSON603|
 | Permissões  |	ADM |
 
 #### R604: Aceitar pedido de remoção de conta
@@ -931,7 +956,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin</td>
+    <td  colspan="2">/admin/terminate</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -942,21 +967,10 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">POST</td>
   </tr>
   <tr>  
-    <td > Parâmetros </td>
+    <td > Corpo do pedido </td>
     <td > +id: integer </td>
     <td > Id do membro</td>
   </tr>
-  <tr>
-  <td > Redirecciona </td>
-    <td > <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
-    <td > Sucesso</td>
-  </tr>  
-    <tr>
-  <td >  </td>
-     <td > <a href="#r603-ver-painel-do-admin">R603</a>	</td>
-    <td > Insucesso </td>
-  </tr>  
-  <tr>
   <tr>
     <td >Retorna</td>
     <td >200 OK	</td>
@@ -970,7 +984,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   <tr>
     <td ></td>
     <td >404 Não encontrado.	</td>
-    <td >Membro com a primary key especificada não encontrado.</td>
+    <td >Membro com a chave primária especificada não encontrado.</td>
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -983,7 +997,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin</td>
+    <td  colspan="2">/admin/ignore</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -994,21 +1008,10 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">POST</td>
   </tr>
   <tr>  
-    <td > Parâmetros </td>
+    <td > Corpo do pedido </td>
     <td > +id: integer </td>
     <td > Id do membro</td>
   </tr>
-  <tr>
-  <td > Redirecciona </td>
-    <td > <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
-    <td > Sucesso</td>
-  </tr>  
-    <tr>
-  <td >  </td>
-     <td > <a href="#r603-ver-painel-do-admin">R603</a>	</td>
-    <td > Insucesso </td>
-  </tr>  
-  <tr>
   <tr>
     <td >Retorna</td>
     <td >200 OK	</td>
@@ -1022,7 +1025,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   <tr>
     <td ></td>
     <td >404 Não encontrado.	</td>
-    <td >Membro com a primary key especificada não encontrado.</td>
+    <td >Membro com a chave primária especificada não encontrado.</td>
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -1035,7 +1038,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin</td>
+    <td  colspan="2">/admin/suspend</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1046,21 +1049,10 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">POST</td>
   </tr>
   <tr>  
-    <td > Parâmetros </td>
+    <td > Corpo do pedido </td>
     <td > +id: integer </td>
     <td > Id do membro</td>
   </tr>
-  <tr>
-  <td > Redirecciona </td>
-    <td > <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
-    <td > Sucesso</td>
-  </tr>  
-    <tr>
-  <td >  </td>
-     <td > <a href="#r603-ver-painel-do-admin">R603</a>	</td>
-    <td > Insucesso </td>
-  </tr>  
-  <tr>
   <tr>
     <td >Retorna</td>
     <td >200 OK	</td>
@@ -1074,7 +1066,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   <tr>
     <td ></td>
     <td >404 Não encontrado.	</td>
-    <td >Membro com a primary key especificada não encontrado.</td>
+    <td >Membro com a chave primária especificada não encontrado.</td>
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -1087,7 +1079,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin</td>
+    <td  colspan="2">/admin/reactivate</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1098,21 +1090,10 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">POST</td>
   </tr>
   <tr>
-    <td > Parâmetros </td>
+    <td > Corpo do pedido </td>
     <td > +id: integer </td>
     <td > Id do membro</td>
   </tr>
-  <tr>
-  <td > Redirecciona </td>
-    <td > <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
-    <td > Sucesso</td>
-  </tr>  
-    <tr>
-  <td >  </td>
-     <td > <a href="#r603-ver-painel-do-admin">R603</a>	</td>
-    <td > Insucesso </td>
-  </tr>  
-  <tr>
   <tr>
     <td >Retorna</td>
     <td >200 OK	</td>
@@ -1126,7 +1107,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   <tr>
     <td ></td>
     <td >404 Não encontrado.	</td>
-    <td >Membro com a primary key especificada não encontrado..</td>
+    <td >Membro com a chave primária especificada não encontrado..</td>
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -1134,12 +1115,12 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   </tr>
 </table>
 
-#### R607: Ação de banir permanentemente
+#### R608: Ação de banir permanentemente
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin</td>
+    <td  colspan="2">/admin/ban</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1150,21 +1131,10 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">POST</td>
   </tr>
   <tr>
-    <td > Parâmetros </td>
+    <td > Corpo do pedido </td>
     <td > +id: integer </td>
     <td > Id do membro</td>
   </tr>
-  <tr>
-  <td > Redirecciona </td>
-    <td > <a href="#r803-ver-painel-do-admin">R603</a> 	</td>
-    <td > Sucesso</td>
-  </tr>  
-    <tr>
-  <td >  </td>
-     <td > <a href="#r603-ver-painel-do-admin">R603</a>	</td>
-    <td > Insucesso </td>
-  </tr>  
-  <tr>
   <tr>
     <td >Retorna</td>
     <td >200 OK	</td>
@@ -1178,7 +1148,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   <tr>
     <td ></td>
     <td >404 Não encontrado.	</td>
-    <td >Membro com a primary key especificada não encontrado.</td>
+    <td >Membro com a chave primária especificada não encontrado.</td>
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -1186,12 +1156,12 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   </tr>
 </table>
 
-#### R607: Ação de promover a moderador
+#### R609: Ação de promover a moderador
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin</td>
+    <td  colspan="2">/admin/promote_moderator</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1202,21 +1172,10 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">POST</td>
   </tr>
   <tr>
-    <td > Parâmetros </td>
+    <td > Corpo do pedido </td>
     <td > +id: integer </td>
     <td > Id do membro</td>
   </tr>
-  <tr>
-  <td > Redirecciona </td>
-    <td > <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
-    <td > Sucesso</td>
-  </tr>  
-    <tr>
-  <td >  </td>
-     <td > <a href="#r603-ver-painel-do-admin">R603</a>	</td>
-    <td > Insucesso </td>
-  </tr>  
-  <tr>
   <tr>
     <td >Retorna</td>
     <td >200 OK	</td>
@@ -1230,7 +1189,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   <tr>
     <td ></td>
     <td >404 Não encontrado.	</td>
-    <td >Membro com a primary key especificada não encontrado.</td>
+    <td >Membro com a chave primária especificada não encontrado.</td>
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -1243,7 +1202,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin</td>
+    <td  colspan="2">/admin/revoke_moderator</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1254,21 +1213,10 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">POST</td>
   </tr>
   <tr>
-    <td > Parâmetros </td>
+    <td > Corpo do pedido </td>
     <td > +id: integer </td>
     <td > Id do membro</td>
   </tr>
-  <tr>
-  <td > Redirecciona </td>
-    <td > <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
-    <td > Sucesso</td>
-  </tr>  
-    <tr>
-  <td >  </td>
-     <td > <a href="#r603-ver-painel-do-admin">R603</a>	</td>
-    <td > Insucesso </td>
-  </tr>  
-  <tr>
   <tr>
     <td >Retorna</td>
     <td >200 OK	</td>
@@ -1291,17 +1239,20 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 </table>
 
 ### Módulo 07: Moderação de leilões
+
+Estes são os pontos de extremidade disponíveis no Módulo de Moderação de leilões:
 * R701: Ver anúncios que aguardam aprovação /moderator
-* R702: Ação de aprovar anúncio /moderator
-* R703: Ação de reprovar anúncio /moderator
+* R702: Ação de aprovar anúncio /moderator/approve_auction
+* R703: Ação de reprovar anúncio /moderator/remove_auction
 
 #### R701: Ver anúncios que aguardam aprovação
 
 |URL |	/moderator|
-|:---:|:----:|
+|:---|:----|
 |Descrição |	Obter pedidos de aprovação do anúncio. |
 |Método |	GET |
 | IU |	[IU014](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu014-painel-do-moderador) |
+|Corpo da resposta|JSON701|
 | Permissões  |	MDD |
 
 #### R702: Ação de aprovar anúncio
@@ -1309,7 +1260,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/moderator</td>
+    <td  colspan="2">/moderator/approve_auction</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1320,7 +1271,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">POST</td>
   </tr>
   <tr>
-    <td > Parâmetros </td>
+    <td > Corpo do pedido </td>
     <td > +id: integer </td>
     <td > Id do leilão</td>
   </tr> 
@@ -1338,7 +1289,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   <tr>
     <td ></td>
     <td >404 Não encontrado.	</td>
-    <td >Leilão com a primary key especificada não encontrado.</td>
+    <td >Leilão com a chave primária especificada não encontrado.</td>
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -1351,7 +1302,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/moderator</td>
+    <td  colspan="2">/moderator/remove_auction</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1362,11 +1313,10 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">POST</td>
   </tr>
   <tr>
-    <td > Parâmetros </td>
+    <td > Corpo do pedido </td>
     <td > +id: integer </td>
     <td > Id do leilão</td>
   </tr>
-  <tr>
   <tr>
     <td >Retorna</td>
     <td >200 OK	</td>
@@ -1380,7 +1330,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   <tr>
     <td ></td>
     <td >404 Não encontrado.	</td>
-    <td >Leilão com a primary key especificada não encontrado.</td>
+    <td >Leilão com a chave primária especificada não encontrado.</td>
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -1391,6 +1341,8 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 
 
 ### Módulo 08: Páginas estáticas
+
+Estes são os pontos de extremidade disponíveis no Módulo de Páginas Estáticas:
 * R801: Página Sobre /about
 * R802: Questões Frequentes /faq
 * R803: Contactos /contact
@@ -1402,7 +1354,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |:---:|:----:|
 |Descrição |	Obter página sobre. |
 |Método |	GET |
-| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/about.html) |
 | Permissões  |	PUB |
 
 #### R802: Questões Frequentes
@@ -1411,7 +1363,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |:---:|:----:|
 |Descrição |	Obter página Questões Frequentes. |
 |Método |	GET |
-| IU |	[IU07](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu07-quest%C3%B5es-frequentes) |
+| IU |	[IU07](https://tiagolascasas.github.io/lbaw1726/faq.html) |
 | Permissões  |	PUB |
 
 #### R803: Contactos
@@ -1420,7 +1372,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |:---:|:----:|
 |Descrição |	Obter página Contactos. |
 |Método |	GET |
-| IU |	[IU06](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu06-contactos) |
+| IU |	[IU06](https://tiagolascasas.github.io/lbaw1726/contact.html) |
 | Permissões  |	PUB |
 
 #### R804: Enviar mensagem de contacto
@@ -1439,7 +1391,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td  colspan="2">POST</td>
   </tr>
   <tr>
-  <td >Request body</td>
+  <td >Corpo do pedido</td>
     <td >+name: string	</td>
     <td >Nome do utilizador</td>
   </tr>
@@ -1454,14 +1406,14 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td >Mensagem do utilizador </td>
   </tr>  
   <tr>
-  <td > Redirecciona </td>
-    <td > <a href="#r803-contactos">R803</a> 	</td>
-    <td > Sucesso</td>
+    <td >Retorna</td>
+    <td >200 OK	</td>
+    <td >Mensagem enviada com sucesso</td>
   </tr>  
-    <tr>
-  <td >  </td>
-     <td > <a href="#r803-contactos">R803</a>	</td>
-    <td > Insucesso </td>
+  <tr>
+    <td ></td>
+    <td >400 Pedido Incorreto	</td>
+    <td >Mensagem de erro é especificada via HTTP header.</td>
   </tr>  
   <tr>
     <td  colspan="2">Permissões</td>
