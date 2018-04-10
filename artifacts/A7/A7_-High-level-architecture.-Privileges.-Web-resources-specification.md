@@ -875,7 +875,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
 |Descrição |	Página com formulário para login do Administrador. |
 |Método |	GET |
 | IU |	[IU016](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu016-p%C3%A1gina-de-login-do-administrador) |
-| SUBMIT |	<a href="#r802-ação-de-login-admin">R1005</a>	 |
+| SUBMIT |	<a href="#r602-ação-de-login-admin">R602</a>	 |
 | Permissões  |	PUB | 
 
 #### R602: Ação de login admin
@@ -905,12 +905,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"> <a href="#r801-formulário-de-login-admin">R801</a>	</td>
+     <td class="tg-yw4l"> <a href="#r601-formulário-de-login-admin">R601</a>	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
@@ -951,12 +951,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr> 
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+     <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a>	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
@@ -1003,12 +1003,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr> 
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+     <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a>	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
@@ -1056,12 +1056,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr> 
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+    <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a>	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+     <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a>	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
@@ -1071,7 +1071,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   <tr>
 </table>
 
-#### R&07: Ação suspensão 
+#### R607: Ação suspensão 
 
 <table class="tg">
   <tr>
@@ -1093,12 +1093,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr> 
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+     <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a>	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
@@ -1145,12 +1145,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr> 
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+     <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a>	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
@@ -1197,12 +1197,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr> 
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R603</a> 	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+     <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a>	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
@@ -1249,12 +1249,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr> 
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+     <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a>	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
@@ -1301,12 +1301,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr> 
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+     <td class="tg-yw4l"> <a href="#r603-ver-painel-do-admin">R603</a>	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
@@ -1367,12 +1367,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr> 
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r901-ver-anúncios-que-aguardam-aprovação">R901</a> 	</td>
+    <td class="tg-yw4l"> <a href="#r701-ver-anúncios-que-aguardam-aprovação">R701</a> 	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"><a href="#r901-ver-anúncios-que-aguardam-aprovação">R901</a> 	</td>
+     <td class="tg-yw4l"><a href="#r701-ver-anúncios-que-aguardam-aprovação">R701</a> 	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
@@ -1419,12 +1419,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr> 
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r901-ver-anúncios-que-aguardam-aprovação">R901</a> 	</td>
+    <td class="tg-yw4l"> <a href="#r701-ver-anúncios-que-aguardam-aprovação">R701</a> 	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"><a href="#r901-ver-anúncios-que-aguardam-aprovação">R901</a> 	</td>
+     <td class="tg-yw4l"><a href="#r701-ver-anúncios-que-aguardam-aprovação">R701</a> 	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
@@ -1492,7 +1492,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
 |Descrição |	Página com formulário para contacto. |
 |Método |	GET |
 | IU |	[IU06](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu06-contactos) |
-| SUBMIT |	<a href="#r1005-enviar-mensagem-de-contacto">R1005</a>	 |
+| SUBMIT |	<a href="#r805-enviar-mensagem-de-contacto">R805</a>	 |
 | Permissões  |	PUB | 
 
 #### R805: Enviar mensagem de contacto
@@ -1527,12 +1527,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
   </tr>  
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
-    <td class="tg-yw4l"> <a href="#r1003-contactos">R1005</a> 	</td>
+    <td class="tg-yw4l"> <a href="#r803-contactos">R803</a> 	</td>
     <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
-     <td class="tg-yw4l"> <a href="#r1003-contactos">R1005</a>	</td>
+     <td class="tg-yw4l"> <a href="#r803-contactos">R803</a>	</td>
     <td class="tg-yw4l"> Insucesso </td>
   </tr>  
   <tr>
