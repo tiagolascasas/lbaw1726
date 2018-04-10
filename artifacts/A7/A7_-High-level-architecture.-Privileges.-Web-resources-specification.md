@@ -1,7 +1,7 @@
 # A7: High-level architecture. Privileges. Web resources specification
- 
+
 ## 1. Visão geral
- 
+
 Uma visão geral da aplicação web a implementar é apresentada nesta secção, onde os módulos irão ser identificados e brevemente descritos. Os recursos web associeados a cada um dos módulos são descritos em detalhe na documentação individual dos módulos.
 
 | Modules   |      Description      |
@@ -9,18 +9,18 @@ Uma visão geral da aplicação web a implementar é apresentada nesta secção,
 | M01: Autentificação e perfil individual |  Recursos web associados à autentificação do utilizador e a gestão do perfil individual. Inclui as seguintes funcionalidades: login/logout, registo, recuperação de password, ver e editar a informação do perfil, pedir remoção de conta e vincular e desvincular conta PayPal. |
 | M02: Leilões |  Recursos web associados com os leilões. Inclui as seguintes funcionalidades: listagem de leilões, pesquisa, visualização, edição e licitação. |
 | M03: Favoritos |  Recursos web associados com os favoritos. Inclui as seguintes funcionalidades: listagem de favoritos, adição e a sua remoção. |
-| M04: Histórico |  Recursos web associados com o histórico. Incluí as seguintes funcionalidades: listagem de leilões onde o membro participou. | 
+| M04: Histórico |  Recursos web associados com o histórico. Incluí as seguintes funcionalidades: listagem de leilões onde o membro participou. |
 | M05: Notificações |   Recursos web associados às notificações. Inclui as seguintes funcionalidades: listagem de notificações e marcação noficações como lidas.  |
 | M06: Mensagens |   Recursos web associados às mensagens. Inclui as seguintes funcionalidades: envio de mensagens e visualização de mensagens trocadas com outros membros  |
 | M07: Meus leilões e leilões em que participo |  Recursos web associados com os leilões do próprio membro. Incluí as seguintes funcionalidades: leilões criados pelo próprio membro. |
-| M08: Autentificação e área de gestão admin |  Recursos web associados à autentificação e gestão pelo utilizador. Incluí as seguintes funcionalidades: login/logout, suspender/reativar/banir utilizadores, promover/revogar direitos de moderador e aprovar solicitações de remoção de conta. | 
-| M09: Moderação |  Recursos web associados à moderação de leilões que aguardam aprovação. Incluí as seguintes funcionalidades: listagem de leilões que aguardam aprovação e respetiva aprovação. | 
+| M08: Autentificação e área de gestão admin |  Recursos web associados à autentificação e gestão pelo utilizador. Incluí as seguintes funcionalidades: login/logout, suspender/reativar/banir utilizadores, promover/revogar direitos de moderador e aprovar solicitações de remoção de conta. |
+| M09: Moderação |  Recursos web associados à moderação de leilões que aguardam aprovação. Incluí as seguintes funcionalidades: listagem de leilões que aguardam aprovação e respetiva aprovação. |
 | M10: Páginas estáticas |  Recursos web associados às páginas estáticas: About, FAQ, Contact.  |
 
 
 
 ## 2. Permissões
- 
+
 Esta secção tem como objetivo definir as permissões usadas nos módulos para estabelecer as condições de acesso aos recursos da aplicação *web*.
 
 |PUB|Público      | Grupo de utilizadores sem permissões|
@@ -29,12 +29,12 @@ Esta secção tem como objetivo definir as permissões usadas nos módulos para 
 |VDD|Vendedor			| Membro com leilão ativo  |
 |MDD|Moderador    | Grupo de utilizadores com permissões para moderar leliões e feedback trocado entre membros da aplicação|
 |ADM|Administrador| Administrador da aplicação|
- 
+
 ## 3. Módulos
 
 Esta secção documenta todos os recursos web por módulo indicando o *URL*, o método *HTTP*, os seus possíveis parâmetros, interfaces com o utilizador (com referência ao artefacto A3) e a as suas possiveis respostas.
 
-###  Módulo 01: Autentificação e Perfil Individual 
+###  Módulo 01: Autentificação e Perfil Individual
 
 #### Pontos de extremidade do Módulo de Autentifcação e do Perfil Individual
 
@@ -48,8 +48,31 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 * R106: Ver perfil /users/{id}
 * R107: Formulário de editar perfil /users/{id}/edit
 * R108: Ação de editar perfil /users/{id}
+* R109: Formulário de criação de comentário /users/{id}/comment
+* R110: Ação de criação de comentário /users/{id}/comment
 
 #### R101: Formulário de login
+
+<table>
+    <tr>
+        <td><strong>URL</strong></td> <td></td>
+    </tr>
+    <tr>
+        <td><strong>Descrição</strong></td> <td></td>
+    </tr>
+    <tr>
+        <td><strong>Método</strong></td> <td></td>
+    </tr>
+    <tr>
+        <td><strong>UI</strong></td> <td></td>
+    </tr>
+    <tr>
+        <td><strong>SUBMIT</strong></td> <td></td>
+    </tr>
+    <tr>
+        <td><strong>Permissões</strong></td> <td></td>
+    </tr>
+</table>
 
 #### R102: Ação de login
 
@@ -66,18 +89,209 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 #### R107: Ação de editar perfil
 
 
-###  Módulo 02: Leilões 
+###  Módulo 02: Leilões
 
-### Módulo 03: Favoritos
+Estes são os pontos de extremidade disponíveis no Módulo de Leilões.
 
-### Módulo 04: Histórico 
+* R201: Ver página inicial com leilões /home
+* R202: Formulário de pesquisa de leilões /search
+* R203: Ação de pesquisa de leilões /search
+* R204: Ver um leilão /auction/{id}
+* R205: Formulário de criação de um leilão /createAuction
+* R206: Ação de criação de um leilão /createAuction
+* R207: Formulário de edição de um leilão /editAuction/{id}
+* R208: Ação de edição de um leilão /editAuction/{id}
+* R209: Ação de licitar num leilão /auction/{id}/bid
+* R210: Ação de atualizar o valor da licitação atual /auction/{id}/bid
+
+#### R201: Ver página inicial com leilões /home
+
+|URL |	/home|
+|:---:|:----:|
+|Descrição |	Obter a página inicial. |
+|Método |	GET |
+| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+|AJAX Calls|R210
+| Permissões  |	PUB |
+
+#### R202: Formulário de pesquisa de leilões /search
+
+|URL |	/search|
+|:---:|:----:|
+|Descrição |	Pesquisa avançada de leilões. |
+|Método |	GET |
+| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| Permissões  |	PUB |
+
+#### R203: Ação de pesquisa de leilões /search
+
+|URL |	/search|
+|:---:|:----:|
+|Descrição |	Submete uma pesquisa de leilões, retornando a mesma página com os resultados |
+|Método |	POST |
+|Parâmetros|?keywords: string | Palavras-chave da pesquisa
+||?title: string | Título
+||?publisher: string | Editora
+||?author: string | Autor
+||?isbn: string | ISBN
+||?lang: string | Idioma
+||?category: string | Categoria
+||?maxBid: number | Valor máximo da licitação atual
+| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| Permissões  |	PUB |
+
+#### R204: Ver um leilão /auction/{id}
+
+|URL |	/auction/{id}|
+|:---:|:----:|
+|Descrição |	Ver um leilão |
+|Método |	GET |
+| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+|AJAX Calls|R210
+| Permissões  |	MMB |
+
+#### R205: Formulário de criação de um leilão /createAuction
+
+|URL |	/search|
+|:---:|:----:|
+|Descrição |	Formulário para a criação de um novo leilão |
+|Método |	GET |
+| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| Permissões  |	MMB |
+
+#### R206: Ação de criação de um leilão /createAuction
+
+|URL |	/search|
+|:---:|:----:|
+|Descrição |	Cria um novo leilão |
+|Método |	POST |
+|Parâmetros|?title: string | Título
+||?publisher: string | Editora
+||?author: string | Autor
+||?isbn: string | ISBN
+||?lang: string | Idioma
+||?category: string | Categoria
+||?desc: string | Descrição do item
+||?img: string | Imagens
+|Redirecciona|R204
+| Permissões  |	MMB |
+
+#### R207: Formulário de edição de um leilão /editAuction/{id}
+
+|URL |	/editAuction{id}|
+|:---:|:----:|
+|Descrição |	Formulário para a edição de um leilão existente |
+|Método |	GET |
+| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| Permissões  |	VDD |
+
+#### R208: Ação de edição de um leilão /editAuction/{id}
+
+|URL |	/editAuction{id}|
+|:---:|:----:|
+|Descrição |	Envia um pedido de edição de um leilão existente |
+|Método |	POST |
+|Parâmetros|?desc: string | Descrição do item
+||?img: string | Novas imagens
+|Redirecciona|R204
+| Permissões  |	VDD |
+
+#### R209: Ação de licitar num leilão /auction/{id}/bid
+
+|URL |	/auction/{id}/bid|
+|:---:|:----:|
+|Descrição |	Aumenta o valor da licitação de um leilão |
+|Método |	POST |
+|Parâmetros|?auctionID: number | ID do leilão
+||?userID: number | ID do utilizador autenticado
+||?value: number | Nova licitação
+|Redirecciona|R204
+| Permissões  |	MMB |
+
+#### R210: Ação de atualizar o valor da licitação atual /auction/{id}/bid
+
+|URL |	/auction/{id}/bid|
+|:---:|:----:|
+|Descrição |	Requisita o valor atual da licitação |
+|Método |	GET |
+|Parâmetros|?auctionID: number | ID do leilão
+||?value: number | Valor atual da licitação
+|Redirecciona|R204
+| Permissões  |	PUB |
+
+
+### Módulo 03: Listas do utilizador autenticado
+
+* R301: Ver a wishlist /wishlist
+* R302: Ação de adição de um leilão à wishlist /wishlist/{id}
+* R303: Ação de remoção de um leilão da wishlist /wishlist/{id}
+* R304: Ver o histórico de leilões /history
+* R305: Ver a lista dos leilões criados /myAuctions
+* R306: Ver a lista dos leilões em que se está a participar /currentAuctions
+
+#### R301: Ver a wishlist /wishlist
+
+|URL |	/wishlist|
+|:---:|:----:|
+|Descrição |	Ver a wishlist do utilizador autenticado |
+|Método |	GET |
+| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+|AJAX Calls|R210
+| Permissões  |	MMB |
+
+#### R302: Ação de adição de um leilão à wishlist /wishlist/{id}
+
+|URL |	/wishlist/{id}|
+|:---:|:----:|
+|Descrição |	Aumenta o valor da licitação de um leilão |
+|Método |	POST |
+|Parâmetros|?id: number | ID do leilão
+||?userID: number | ID do utilizador autenticado
+|Redirecciona|R210
+| Permissões  |	MMB |
+
+#### R303: Ação de remoção de um leilão da wishlist /wishlist/{id}
+
+|URL |	/wishlist/{id}|
+|:---:|:----:|
+|Descrição |	Aumenta o valor da licitação de um leilão |
+|Método |	DELETE |
+|Parâmetros|?id: number | ID do leilão
+||?userID: number | ID do utilizador autenticado
+|Redirecciona|R210
+| Permissões  |	MMB |
+
+#### R304: Ver o histórico de leilões /history
+
+|URL |	/history|
+|:---:|:----:|
+|Descrição |	Ver o histórico de leilões completados do utilizador autenticado |
+|Método |	GET |
+| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| Permissões  |	MMB |
+
+#### R305: Ver a lista dos leilões criados /myAuctions
+
+|URL |	/myAuctions|
+|:---:|:----:|
+|Descrição |	Ver a lista dos leilões criados pelo utilizador autenticado |
+|Método |	GET |
+| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| Permissões  |	MMB |
+
+#### R306: Ver a lista dos leilões em que se está a participar /currentAuctions
+
+|URL |	/currentAuctions|
+|:---:|:----:|
+|Descrição |	Ver a lista dos leilões ativos em que o utilizador autenticado está a participar |
+|Método |	GET |
+| IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
+| Permissões  |	MMB |
+
 
 ### Módulo 05: Notificações
 
-### Módulo 06: Mensagens 
-
-### Módulo 07: Meus leilões
-
+### Módulo 06: Mensagens
 
 ### Módulo 08: Autentificação e área de gestão admin
 * R801: Formulário de login admin /adminLogin
@@ -100,7 +314,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 |Método |	GET |
 | IU |	[IU016](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu016-p%C3%A1gina-de-login-do-administrador) |
 | SUBMIT |	<a href="#r802-ação-de-login-admin">R1005</a>	 |
-| Permissões  |	PUB | 
+| Permissões  |	PUB |
 
 #### R802: Ação de login admin
 
@@ -151,7 +365,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 |Descrição |	Obter pedidos de remoção de conta. |
 |Método |	GET |
 | IU |	[IU015](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu015-painel-do-administrador) |
-| Permissões  |	ADM | 
+| Permissões  |	ADM |
 
 #### R804: Aceitar pedido de remoção de conta
 
@@ -172,7 +386,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: integer </td>
     <td class="tg-yw4l"> Id do membro</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
@@ -224,7 +438,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: integer </td>
     <td class="tg-yw4l"> Id do membro</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
@@ -256,7 +470,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l" colspan="2"> ADM </td>
   </tr>
 </table>
- 
+
 
 #### R806: Formulário de ação a membros
 
@@ -277,7 +491,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <td class="tg-yw4l">Request body</td>
     <td class="tg-yw4l">+name: string	</td>
     <td class="tg-yw4l">Username do membro</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
@@ -295,7 +509,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
 </table>
 
-#### R807: Ação suspensão 
+#### R807: Ação suspensão
 
 <table class="tg">
   <tr>
@@ -314,7 +528,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: integer </td>
     <td class="tg-yw4l"> Id do membro</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
@@ -366,7 +580,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: integer </td>
     <td class="tg-yw4l"> Id do membro</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
@@ -418,7 +632,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: integer </td>
     <td class="tg-yw4l"> Id do membro</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
@@ -470,7 +684,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: integer </td>
     <td class="tg-yw4l"> Id do membro</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
@@ -522,7 +736,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: integer </td>
     <td class="tg-yw4l"> Id do membro</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
@@ -570,7 +784,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 |Descrição |	Obter pedidos de aprovação do anúncio. |
 |Método |	GET |
 | IU |	[IU014](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu014-painel-do-moderador) |
-| Permissões  |	MDD | 
+| Permissões  |	MDD |
 
 #### R902: Ação de aprovar anúncio
 
@@ -591,7 +805,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: integer </td>
     <td class="tg-yw4l"> Id do leilão</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r901-ver-anúncios-que-aguardam-aprovação">R901</a> 	</td>
@@ -643,7 +857,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: integer </td>
     <td class="tg-yw4l"> Id do leilão</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r901-ver-anúncios-que-aguardam-aprovação">R901</a> 	</td>
@@ -682,7 +896,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 |Descrição |	Obter feedbacks que aguardam aprovação. |
 |Método |	GET |
 | IU |	[IU014](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu014-painel-do-moderador) |
-| Permissões  |	MDD | 
+| Permissões  |	MDD |
 
 #### R905: Ação de aprovar feedback
 
@@ -703,7 +917,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: integer </td>
     <td class="tg-yw4l"> Id do leilão</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r904-ver-feedbacks-que-aguardam-aprovação">R904</a> 	</td>
@@ -756,7 +970,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: integer </td>
     <td class="tg-yw4l"> Id do leilão</td>
-  </tr> 
+  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r904-ver-feedbacks-que-aguardam-aprovação">R904</a> 	</td>
@@ -789,7 +1003,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
 </table>
 
-### Módulo 10: Páginas estáticas 
+### Módulo 10: Páginas estáticas
 * R1001: Página Sobre /about
 * R1002: Questões Frequentes /faq
 * R1003: Contactos /contact
@@ -803,7 +1017,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 |Descrição |	Obter página sobre. |
 |Método |	GET |
 | IU |	[IU05](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu05-p%C3%A1gina-sobre) |
-| Permissões  |	PUB | 
+| Permissões  |	PUB |
 
 #### R1002: Questões Frequentes
 
@@ -812,7 +1026,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 |Descrição |	Obter página Questões Frequentes. |
 |Método |	GET |
 | IU |	[IU07](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu07-quest%C3%B5es-frequentes) |
-| Permissões  |	PUB | 
+| Permissões  |	PUB |
 
 #### R1003: Contactos
 
@@ -821,7 +1035,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 |Descrição |	Obter página Contactos. |
 |Método |	GET |
 | IU |	[IU06](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu06-contactos) |
-| Permissões  |	PUB | 
+| Permissões  |	PUB |
 
 #### R1004: Formulário contactar
 
@@ -831,7 +1045,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 |Método |	GET |
 | IU |	[IU06](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu06-contactos) |
 | SUBMIT |	<a href="#r1005-enviar-mensagem-de-contacto">R1005</a>	 |
-| Permissões  |	PUB | 
+| Permissões  |	PUB |
 
 #### R1005: Enviar mensagem de contacto
 
@@ -882,11 +1096,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 
 
 ## 4. JSON/XML Types
- 
+
 > Document the JSON or XML responses that will be used by the web resources.
- 
+
  <!--- Web resources descriptors
-  * URL - Resource identifier, following the RESTful resource naming conventions 
+  * URL - Resource identifier, following the RESTful resource naming conventions
   * Description - Describe the resource, when it's used and why
   * UI - Reference to the A3 user interface used by the resource
   * SUBMIT - Reference to the actions/requests integrated with the resource
@@ -897,9 +1111,9 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   * Response Body - Data sent from the server, in response to a given request
   * Permissions - Required permissions to access the resource
  -->
- 
+
 ***
- 
+
 
 GROUP1726, 11/4/2018
 
