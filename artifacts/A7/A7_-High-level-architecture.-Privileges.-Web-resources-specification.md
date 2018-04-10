@@ -35,7 +35,7 @@ Esta secção documenta todos os recursos web por módulo indicando o *URL*, o m
 
 ###  Módulo 01: Autentificação e Perfil Individual
 
-Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e Perfil Individual.
+Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e Perfil Individual. Dado que todos os formulários são modais sem páginas próprias, são representadas apenas as ações que lhes complementam.
 
 * R101: Ação de login /login
 * R102: Ação de logout /logout
@@ -43,6 +43,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 * R104: Ver perfil /users/{id}
 * R105: Ação de editar perfil /users/{id}
 * R106: Ação de editar password users/{id}/password/edit
+* R107: Ação de associação de uma conta PayPal users/{id}/paypal
+* R108: Ação de remoção de uma conta PayPal users/{id}/paypal
 
 
 #### R101: Ação de login
@@ -210,9 +212,9 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td  colspan="2">GET</td>
   </tr>
   <tr>
-  <td > Parâmetros </td>
-    <td > +id: Integer</td>
-    <td > Chave primária de um membro</td>
+  <td >Parâmetros</td>
+    <td >+id: Integer</td>
+    <td >Chave primária do membro em questão</td>
   </tr>
  <tr>
     <td colspan="2"> IU </td>
@@ -238,6 +240,10 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
     <td  colspan="2">Método</td>
     <td  colspan="2">POST</td>
+  </tr>
+  <td >Parâmetros</td>
+    <td >+id: Integer</td>
+    <td >Chave primária do membro em questão</td>
   </tr>
   <tr>
   <td >Request body</td>
@@ -306,6 +312,10 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td  colspan="2">Método</td>
     <td  colspan="2">POST</td>
   </tr>
+  <td >Parâmetros</td>
+    <td >+id: Integer</td>
+    <td >Chave primária do membro em questão</td>
+  </tr>
   <tr>
   <td >Corpo do Pedido</td>
     <td >+oldPassword: String	</td>
@@ -338,6 +348,81 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
 </table>
 
+#### R107: Ação de associação de uma conta PayPal users/{id}/paypal
+<table >
+  <tr>
+    <td  colspan="2">URL</td>
+    <td  colspan="2">/users/{id}/paypal</td>
+  </tr>
+  <tr>
+    <td  colspan="2">Descrição</td>
+    <td  colspan="2"> Recurso utilizado por um membro para associar uma conta PayPal </td>
+  </tr>
+  <tr>
+    <td  colspan="2">Método</td>
+    <td  colspan="2">PUT</td>
+  </tr>
+  <tr>
+  <td >Parâmetros</td>
+    <td >+id: Integer</td>
+    <td >Chave primária do membro em questão</td>
+  </tr>
+  <td >Corpo do Pedido</td>
+    <td >+paypalEmail: String	</td>
+    <td >Email da conta PayPal</td>
+  </tr>
+  <tr>
+  <td > Redirecciona </td>
+    <td > <a href="https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08</a>	</td>
+    <td > Sucesso</td>
+  </tr>  
+  <tr>
+  <td > </td>
+    <td > <a href="https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08</a>	</td>
+    <td > Erro</td>
+  </tr>  
+  <tr>
+    <td  colspan="2">Permissões</td>
+    <td  colspan="2"> DON </td>
+  </tr>
+  <tr>
+</table>
+
+#### R108: Ação de remoção de uma conta PayPal users/{id}/paypal
+<table >
+  <tr>
+    <td  colspan="2">URL</td>
+    <td  colspan="2">/users/{id}/paypal</td>
+  </tr>
+  <tr>
+    <td  colspan="2">Descrição</td>
+    <td  colspan="2"> Recurso utilizado por um membro para desassociar uma conta PayPal </td>
+  </tr>
+  <tr>
+    <td  colspan="2">Método</td>
+    <td  colspan="2">DELETE</td>
+  </tr>
+  <tr>
+  <td >Parâmetros</td>
+    <td >+id: Integer</td>
+    <td >Chave primária do membro em questão</td>
+  </tr>
+  <tr>
+  <td > Redirecciona </td>
+    <td > <a href="https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08</a>	</td>
+    <td > Sucesso</td>
+  </tr>  
+  <tr>
+  <td > </td>
+    <td > <a href="https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08</a>	</td>
+    <td > Erro</td>
+  </tr>  
+  <tr>
+    <td  colspan="2">Permissões</td>
+    <td  colspan="2"> DON </td>
+  </tr>
+  <tr>
+</table>
 
 ###  Módulo 02: Leilões
 
@@ -377,7 +462,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 ||?isbn: string | ISBN
 ||?lang: string | Idioma
 ||?category: string | Categoria
-||?maxBid: number | Valor máximo da licitação atual
+||?maxBid: Float | Valor máximo da licitação atual
 | IU |	[IU02](https://tiagolascasas.github.io/lbaw1726/search.html) |
 |Chamadas AJAX|R203
 | Permissões  |	PUB |
@@ -395,7 +480,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 ||?isbn: string | ISBN
 ||?lang: string | Idioma
 ||?category: string | Categoria
-||?maxBid: number | Valor máximo da licitação atual
+||?maxBid: Float | Valor máximo da licitação atual
 |Corpo da resposta|JSON201
 | Permissões  |	PUB |
 
@@ -405,7 +490,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---|:----|
 |Descrição |	Ver um leilão |
 |Método |	GET |
-|Parâmetros|+id: number| auction primary key
+|Parâmetros|+id: Integer| Chave primária de um leilão
 | IU |	[IU03](https://tiagolascasas.github.io/lbaw1726/auction.html) |
 |AJAX Calls|R210
 |Retornos|200 OK| O pedido foi realizado com sucesso
@@ -446,7 +531,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---|:----|
 |Descrição |	Formulário para a edição de um leilão existente |
 |Método |	GET |
-|Parâmetros|+id: number| auction primary key
+|Parâmetros|+id: Integer| Chave primária de um leilão
 | IU | IUXX (sem mockup elaborada)|
 |SUBMIT|R208
 | Permissões  |	DON |
@@ -457,7 +542,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---|:----|
 |Descrição |	Envia um pedido de edição de um leilão existente |
 |Método |	PUT |
-|Parâmetros|+id: number| auction primary key
+|Parâmetros|+id: Integer| Chave primária de um leilão
 |Corpo do pedido|+desc: string | Descrição do item
 ||?img: string | Novas imagens
 |Retornos|200 OK| O pedido de edição foi realizado com suceso
@@ -472,9 +557,9 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---|:----|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	POST |
-|Parâmetros|+id: number | auction primary key
-|Corpo do pedido|+userID: number | ID do utilizador autenticado
-||+value: number | Nova licitação
+|Parâmetros|+id: Integer | Chave primária de um leilão
+|Corpo do pedido|+userID: Integer | ID do utilizador autenticado
+||+value: Float | Nova licitação
 |Redirecciona|R204
 | Permissões  |	MMB |
 
@@ -484,7 +569,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---|:----|
 |Descrição |	Requisita o valor atual da licitação do leilão especificado |
 |Método |	GET |
-|Parâmetros|+id: number | auction primary key
+|Parâmetros|+id: Integer | Chave primária de um leilão
 |Corpo da resposta|JSON202
 | Permissões  |	PUB |
 
@@ -516,7 +601,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |:---:|:----:|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	PUT |
-|Parâmetros|+id: number | auction primary key
+|Parâmetros|+id: Integer | Chave primária de um leilão
 |Retornos|200 OK| O pedido de adição foi realizado com sucesso
 ||400 Bad Request| Erro cuja causa está identificada no *header* HTTP
 ||404 Not Found| Erro caso o leilão com o id especificado não exista
@@ -528,8 +613,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |:---|:----|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	DELETE |
-|Parâmetros|?id: number | auction primary key
-|Corpo do pedido|?userID: number | member primary key
+|Parâmetros|?id: Integer | Chave primária de um leilão
 |Retornos|200 OK| O pedido de remoção foi realizado com sucesso
 ||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
 ||404 Not Found| Erro caso o leilão com o id especificado não exista
@@ -650,7 +734,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Notificações:
 Estes são os pontos de extremidade disponíveis no Módulo de Comunicação entre membros.
 * R501: Ver Mensagens /messages
 * R502: Formulário para criar Mensagem /messages/new_message
-* R503: Acção para criar Mensagem /messages
+* R503: Acção para criar Mensagem /messages/new_message
 * R504: Ação para listar comentários /users/{id}/comments
 * R505: Acção para criar comentário /users/{id}/comments
 * R506: Ação de reprovar comentário /users/{id}/comments/remove
@@ -659,11 +743,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
 <table >
    <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/messages</td>
+    <td  colspan="2">/messages/{id}</td>
    </tr>
    <tr>
     <td  colspan="2">Descrição</td>
-    <td  colspan="2">Obter todas as mensagens relacionadas com o membro em questão</td>
+    <td  colspan="2">Obter todas as mensagens relacionadas com o utilizador autenticado</td>
    </tr>
    <tr>
     <td  colspan="2">Método</td>
@@ -672,7 +756,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    <tr>
     <td >Parâmetros</td>
     <td >+id: Integer	</td>
-    <td >Chave primária de um membro</td>
+    <td >Chave primária do membro autenticado</td>
    </tr>
    <tr>
     <td  colspan="2">Corpo da resposta</td>
@@ -685,11 +769,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
 </table>
 
 
-#### R502:  Formulário criar Mensagem .
+#### R502:  Formulário criar Mensagem
 <table >
    <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/messages/new_message</td>
+    <td  colspan="2">/messages/{id}/new_message</td>
    </tr>
    <tr>
     <td  colspan="2">Descrição</td>
@@ -698,6 +782,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    <tr>
     <td  colspan="2">Método</td>
     <td  colspan="2">GET</td>
+   </tr>
+   <tr>
+    <td >Parâmetros</td>
+    <td >+id: Integer	</td>
+    <td >Chave primária do membro autenticado</td>
    </tr>
    <tr>
     <td colspan="2">Submit </td>
@@ -713,7 +802,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
 <table >
    <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/messages</td>
+    <td  colspan="2">/messages/{id}/new_message</td>
    </tr>
    <tr>
     <td  colspan="2">Descrição</td>
@@ -724,14 +813,14 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
     <td  colspan="2">POST</td>
    </tr>
    <tr>
+     <td >Parâmetros</td>
+     <td >+id: Integer	</td>
+     <td >Chave primária do membro autenticado</td>
+   </tr>
+   <tr>
     <td >Corpo do pedido</td>
     <td >+message_text: text	</td>
     <td >Corpo da mensagem</td>
-  </tr>
-  <tr>
-    <td ></td>
-    <td >+idSender: Integer	</td>
-    <td >Chave primária do membro que enviou a mensagem</td>
   </tr>
  <tr>
     <td ></td>
@@ -763,7 +852,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    </tr>
    <tr>
     <td colspan="2">Descrição</td>
-    <td colspan="2">Obter todas os comentários recebidos pelo membro em questão</td>
+    <td colspan="2">Obter todas os comentários no perfil de um membro especificado</td>
    </tr>
    <tr>
     <td colspan="2">Método</td>
@@ -792,11 +881,16 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    </tr>
    <tr>
     <td  colspan="2">Descrição</td>
-    <td  colspan="2">Cria uma novo comentário no perfil do membro em questão.</td>
+    <td  colspan="2">Cria uma novo comentário no perfil de um membro especificado.</td>
    </tr>
    <tr>
     <td  colspan="2">Método</td>
     <td  colspan="2">POST</td>
+   </tr>
+   <tr>
+    <td >Parâmetros</td>
+    <td >+id: Integer	</td>
+    <td >Chave primária do membro</td>
    </tr>
    <tr>
     <td >Corpo do pedido</td>
@@ -834,12 +928,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    </tr>
 </table>
 
-#### R506: Ação de reprovar comentário
+#### R506: Ação de remover comentário
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/users/{id}/comments/remove</td>
+    <td  colspan="2">/users/{id_usr}/comments/{id_comm}remove</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -848,6 +942,16 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
   <tr>
     <td  colspan="2">Método</td>
     <td  colspan="2">POST</td>
+  </tr>
+  <tr>
+   <td >Parâmetros</td>
+   <td >+id_usr: Integer	</td>
+   <td >Chave primária do membro</td>
+  </tr>
+  <tr>
+   <td ></td>
+   <td >+id_comm: Integer	</td>
+   <td >Chave primária do comentário</td>
   </tr>
   <tr>
     <td > Corpo do pedido </td>
