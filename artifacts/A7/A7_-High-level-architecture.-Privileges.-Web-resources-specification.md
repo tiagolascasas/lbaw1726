@@ -5,14 +5,14 @@
 Uma visão geral da aplicação web a implementar é apresentada nesta secção, onde os módulos irão ser identificados e brevemente descritos. Os recursos web associeados a cada um dos módulos são descritos em detalhe na documentação individual dos módulos.
 
 | Modules   |      Description      |
-|:----------|-------------:|
+|:----------|:-------------|
 | M01: Autentificação e perfil individual |  Recursos web associados à autentificação do utilizador e a gestão do perfil individual. Inclui as seguintes funcionalidades: login/logout, registo, recuperação de password, ver e editar a informação do perfil, pedir remoção de conta e vincular e desvincular conta PayPal. |
 | M02: Leilões |  Recursos web associados com os leilões. Inclui as seguintes funcionalidades: listagem de leilões, pesquisa, visualização, edição e licitação. |
 | M03: Listas do Utilizador autenticado |  Recursos web associados com os as listas de leilões associadas ao Utilizador autenticado. Inclui as seguintes funcionalidades: listagem de favoritos, adição e a sua remoção; listagem de leilões onde o membro participou; leilões criados pelo próprio membro, como vendedor; leilões onde o membro está a participar como comprador.|
 | M04: Notificações |   Recursos web associados às notificações. Inclui as seguintes funcionalidades: listagem de notificações e marcação noficações como lidas.  |
-| M05: Comunicação entre membros |   Recursos web associados às mensagens. Inclui as seguintes funcionalidades: envio de mensagens e visualização de mensagens trocadas com outros membros  |
+| M05: Comunicação entre membros |   Recursos web associados à comunicação entre membros. Inclui as seguintes funcionalidades: envio de mensagens e visualização de mensagens trocadas com outros membros, visualização, envio e remoção de *feedback*   |
 | M06: Autentificação e área de gestão admin |  Recursos web associados à autentificação e gestão pelo utilizador. Incluí as seguintes funcionalidades: login/logout, suspender/reativar/banir utilizadores, promover/revogar direitos de moderador e aprovar solicitações de remoção de conta. |
-| M07: Moderação |  Recursos web associados à moderação de leilões que aguardam aprovação. Incluí as seguintes funcionalidades: listagem de leilões que aguardam aprovação e respetiva aprovação e remoção de *feedback* ofensivo. |
+| M07: Moderação |  Recursos web associados à moderação de leilões que aguardam aprovação. Incluí as seguintes funcionalidades: listagem de leilões que aguardam aprovação e respetiva aprovação. . |
 | M8: Páginas estáticas |  Recursos web associados às páginas estáticas: About, FAQ, Contact.  |
 
 
@@ -21,8 +21,9 @@ Uma visão geral da aplicação web a implementar é apresentada nesta secção,
 
 Esta secção tem como objetivo definir as permissões usadas nos módulos para estabelecer as condições de acesso aos recursos da aplicação *web*.
 
+|Abreviatura|Tipo      | Permissões|
+|:----------:|:-------------:|:-------------|
 |PUB|Público      | Grupo de utilizadores sem permissões|
-|:----------:|:-------------:|-------------:|
 |MMB|Membro       | Utilizadores autenticados           |
 |VDD|Vendedor			| Membro com leilão ativo  |
 |MDD|Moderador    | Grupo de utilizadores com permissões para moderar leliões e feedback trocado entre membros da aplicação|
@@ -30,7 +31,7 @@ Esta secção tem como objetivo definir as permissões usadas nos módulos para 
 
 ## 3. Módulos
 
-Esta secção documenta todos os recursos web por módulo indicando o *URL*, o método *HTTP*, os seus possíveis parâmetros, interfaces com o utilizador (com referência ao artefacto A3) e a as suas possiveis respostas.
+Esta secção documenta todos os recursos web por módulo indicando o *URL*, o método *HTTP*, os seus possíveis parâmetros, interfaces com o utilizador (com referência ao artefacto A3) e a as suas possíveis respostas.
 
 ###  Módulo 01: Autentificação e Perfil Individual
 
@@ -68,7 +69,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Descrição</td>
-    <td class="tg-yw4l" colspan="2"> Recurso utilizado para um utilizador realizar a ação de login. </td>
+    <td class="tg-yw4l" colspan="2"> Recurso utilizado para um utilizador realizar a ação de login. </td>
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Método</td>
@@ -110,7 +111,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Descrição</td>
-    <td class="tg-yw4l" colspan="2"> Recurso utilizado para um utilizador, membro ou administrador, realizar a ação de logout. </td>
+    <td class="tg-yw4l" colspan="2"> Recurso utilizado para um utilizador, membro ou administrador, realizar a ação de logout. </td>
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Método</td>
@@ -146,7 +147,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Descrição</td>
-    <td class="tg-yw4l" colspan="2"> Recurso utilizado para um visitante conseguir registar-se na aplicação. </td>
+    <td class="tg-yw4l" colspan="2"> Recurso utilizado para um visitante conseguir registar-se na aplicação. </td>
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Método</td>
@@ -181,12 +182,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
  <tr>
   <td class="tg-yw4l"> </td>
     <td class="tg-yw4l">+postalcode: Integer	</td>
-    <td class="tg-yw4l">Código postal do visitante que se regista.</td>
+    <td class="tg-yw4l">Código postal do visitante que se regista.</td>
   </tr>
  <tr>
   <td class="tg-yw4l"> </td>
     <td class="tg-yw4l">+phonenumber: Integer	</td>
-    <td class="tg-yw4l">Número telefónico do visitante que se regista.</td>
+    <td class="tg-yw4l">Número telefónico do visitante que se regista.</td>
   </tr>
   <tr>
   <td class="tg-yw4l"> </td>
@@ -196,7 +197,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
  <tr>
   <td class="tg-yw4l"> </td>
     <td class="tg-yw4l">+confirmPassword: String	</td>
-    <td class="tg-yw4l">Password de confirmação do visitante que se regista</td>
+    <td class="tg-yw4l">Password de confirmação do visitante que se regista</td>
   </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
@@ -223,16 +224,16 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Descrição</td>
-    <td class="tg-yw4l" colspan="2"> Recurso utilizado por um Membro para aceder à sua página de perfil. </td>
+    <td class="tg-yw4l" colspan="2"> Recurso utilizado por um Membro para aceder à sua página de perfil. </td>
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Método</td>
     <td class="tg-yw4l" colspan="2">GET</td>
   </tr>
   <tr>
-  <td class="tg-yw4l"> Parâmetros </td>
+  <td class="tg-yw4l"> Parâmetros </td>
     <td class="tg-yw4l"> +id: Integer</td>
-    <td class="tg-yw4l"> Chave primária de Utilizador</td>
+    <td class="tg-yw4l"> Chave primária de Utilizador</td>
   </tr>
  <tr>
     <td class="tg-yw4l"> IU </td>
@@ -262,7 +263,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Descrição</td>
-    <td class="tg-yw4l" colspan="2"> Recurso utilizado para um Membro submeter as edições na informação do seu perfil. </td>
+    <td class="tg-yw4l" colspan="2"> Recurso utilizado para um Membro submeter as edições na informação do seu perfil. </td>
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Método</td>
@@ -292,17 +293,17 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
  <tr>
   <td class="tg-yw4l"> </td>
     <td class="tg-yw4l">+postalcode: Integer	</td>
-    <td class="tg-yw4l">Código postal do Membro.</td>
+    <td class="tg-yw4l">Código postal do Membro.</td>
   </tr>
  <tr>
   <td class="tg-yw4l"> </td>
     <td class="tg-yw4l">+phonenumber: Integer	</td>
-    <td class="tg-yw4l">Número telefónico do Membro.</td>
+    <td class="tg-yw4l">Número telefónico do Membro.</td>
   </tr>
   <tr>
   <td class="tg-yw4l"> </td>
     <td class="tg-yw4l">+country: String	</td>
-    <td class="tg-yw4l">País do Membro.</td>
+    <td class="tg-yw4l">País do Membro.</td>
  </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
@@ -338,7 +339,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Descrição</td>
-    <td class="tg-yw4l" colspan="2"> Recurso utilizado para um Membro submeter as edições na sua password. </td>
+    <td class="tg-yw4l" colspan="2"> Recurso utilizado para um Membro submeter as edições na sua password. </td>
   </tr>
   <tr>
     <td class="tg-yw4l" colspan="2">Método</td>
@@ -357,7 +358,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
   <td class="tg-yw4l"> </td>
     <td class="tg-yw4l">+confirmNewPassword: String	</td>
-    <td class="tg-yw4l">Confirmação da nova password do Membro.</td>
+    <td class="tg-yw4l">Confirmação da nova password do Membro.</td>
   </tr>
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
@@ -398,7 +399,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---:|:----:|
 |Descrição |	Obter a página inicial. |
 |Método |	GET |
-| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/home.html) |
+| IU |	[IU01](https://tiagolascasas.github.io/lbaw1726/home.html) |
 |AJAX Calls|R210
 | Permissões  |	PUB |
 
@@ -416,7 +417,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 ||?lang: string | Idioma
 ||?category: string | Categoria
 ||?maxBid: number | Valor máximo da licitação atual
-| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/search.html) |
+| IU |	[IU02](https://tiagolascasas.github.io/lbaw1726/search.html) |
 |Chamadas AJAX|R203
 | Permissões  |	PUB |
 
@@ -443,8 +444,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---:|:----:|
 |Descrição |	Ver um leilão |
 |Método |	GET |
-|Parâmetros|id: number| ID do leilão a visualizar
-| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/auction.html) |
+|Parâmetros|+id: number| auction primary key
+| IU |	[IU03](https://tiagolascasas.github.io/lbaw1726/auction.html) |
 |AJAX Calls|R210
 |Retornos|200 OK| O pedido foi realizado com sucesso
 ||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
@@ -457,7 +458,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---:|:----:|
 |Descrição |	Formulário para a criação de um novo leilão |
 |Método |	GET |
-| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/create.html) |
+| IU |	[IU04](https://tiagolascasas.github.io/lbaw1726/create.html) |
 |SUBMIT|R206
 | Permissões  |	MMB |
 
@@ -467,14 +468,14 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---:|:----:|
 |Descrição |	Cria um novo leilão |
 |Método |	POST |
-|Parâmetros|?title: string | Título
-||?publisher: string | Editora
-||?author: string | Autor
-||?isbn: string | ISBN
-||?lang: string | Idioma
-||?category: string | Categoria
-||?desc: string | Descrição do item
-||?img: string | Imagens
+|Corpo do pedido|+title: string | Título
+||+publisher: string | Editora
+||+author: string | Autor
+||+isbn: string | ISBN
+||+lang: string | Idioma
+||+category: string | Categoria
+||+desc: string | Descrição do item
+||+img: string | Imagens
 |Redirecciona|R204
 | Permissões  |	MMB |
 
@@ -484,7 +485,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---:|:----:|
 |Descrição |	Formulário para a edição de um leilão existente |
 |Método |	GET |
-|Parâmetros|id: number| ID do leilão a editar
+|Parâmetros|+id: number| auction primary key
 | IU | IUXX (sem mockup elaborada)|
 |SUBMIT|R208
 | Permissões  |	VDD |
@@ -494,9 +495,9 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |URL |	/editAuction/{id}|
 |:---:|:----:|
 |Descrição |	Envia um pedido de edição de um leilão existente |
-|Método |	POST |
-|Parâmetros|id: number| ID do leilão a editar
-||?desc: string | Descrição do item
+|Método |	PUT |
+|Parâmetros|+id: number| auction primary key
+|Corpo do pedido|+desc: string | Descrição do item
 ||?img: string | Novas imagens
 |Retornos|200 OK| O pedido de edição foi realizado com suceso
 ||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
@@ -510,9 +511,9 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---:|:----:|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	POST |
-|Parâmetros|?id: number | ID do leilão
-||?userID: number | ID do utilizador autenticado
-||?value: number | Nova licitação
+|Parâmetros|+id: number | auction primary key
+|Corpo do pedido|+userID: number | ID do utilizador autenticado
+||+value: number | Nova licitação
 |Redirecciona|R204
 | Permissões  |	MMB |
 
@@ -522,7 +523,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |:---:|:----:|
 |Descrição |	Requisita o valor atual da licitação do leilão especificado |
 |Método |	GET |
-|Parâmetros|?id: number | ID do leilão
+|Parâmetros|+id: number | auction primary key
 |Corpo da resposta|JSON202
 | Permissões  |	PUB |
 
@@ -544,7 +545,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |:---:|:----:|
 |Descrição |	Ver a wishlist do utilizador autenticado |
 |Método |	GET |
-| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/wishlist.html) |
+| IU |	[IU013](https://tiagolascasas.github.io/lbaw1726/wishlist.html) |
 |AJAX Calls|R210
 | Permissões  |	MMB |
 
@@ -553,12 +554,11 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |URL |	/wishlist/{id}|
 |:---:|:----:|
 |Descrição |	Aumenta o valor da licitação de um leilão |
-|Método |	POST |
-|Parâmetros|?id: number | ID do leilão
-||?userID: number | ID do utilizador autenticado
+|Método |	PUT |
+|Parâmetros|+id: number | auction primary key
 |Retornos|200 OK| O pedido de adição foi realizado com sucesso
-||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
-||404 Not Found| Erro caso o leilão ou utilizador com o id especificado não exista
+||400 Bad Request| Erro cuja causa está identificada no *header* HTTP
+||404 Not Found| Erro caso o leilão com o id especificado não exista
 | Permissões  |	MMB |
 
 #### R303: Ação de remoção de um leilão da __wishlist__
@@ -567,11 +567,11 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |:---:|:----:|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	DELETE |
-|Parâmetros|?id: number | ID do leilão
-||?userID: number | ID do utilizador autenticado
+|Parâmetros|?id: number | auction primary key
+|Corpo do pedido|?userID: number | member primary key
 |Retornos|200 OK| O pedido de remoção foi realizado com sucesso
 ||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
-||404 Not Found| Erro caso o leilão ou utilizador com o id especificado não exista
+||404 Not Found| Erro caso o leilão com o id especificado não exista
 | Permissões  |	MMB |
 
 #### R304: Ver o histórico de leilões
@@ -580,7 +580,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |:---:|:----:|
 |Descrição |	Ver o histórico de leilões completados do utilizador autenticado |
 |Método |	GET |
-| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/history.html) |
+| IU |	[IU012](https://tiagolascasas.github.io/lbaw1726/history.html) |
 | Permissões  |	MMB |
 
 #### R305: Ver a lista dos leilões criados
@@ -589,9 +589,9 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |:---:|:----:|
 |Descrição |	Ver a lista dos leilões criados pelo utilizador autenticado |
 |Método |	GET |
-| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/myAuctions.html) |
+| IU |	[IU10](https://tiagolascasas.github.io/lbaw1726/myAuctions.html) |
 |AJAX Calls|R210
-| Permissões  |	MMB |
+| Permissões  |	VDD |
 
 #### R306: Ver a lista dos leilões em que se está a participar
 
@@ -599,7 +599,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |:---:|:----:|
 |Descrição |	Ver a lista dos leilões ativos em que o utilizador autenticado está a participar |
 |Método |	GET |
-| IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/auctionsIm_in.html) |
+| IU |	[IU011](https://tiagolascasas.github.io/lbaw1726/auctionsIm_in.html) |
 |AJAX Calls|R210
 | Permissões  |	MMB |
 
@@ -746,7 +746,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
   </tr>
 </table>
 
-#### R503: Acção para criar Mensagem /messages .
+#### R503: Acção para criar Mensagem .
 <table class="tg">
    <tr>
     <td class="tg-yw4l" colspan="2">URL</td>
@@ -775,6 +775,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
     <td class="tg-yw4l">+idReceiver: Integer	</td>
     <td class="tg-yw4l">primary key do membro que recebe a mensagem</td>
    </tr>
+
     <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l">R601	</td>
@@ -791,7 +792,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
    </tr>
 </table>
 
-#### R504: Acção para criar comentário /comments .
+#### R504: Acção para criar comentário.
 <table class="tg">
    <tr>
     <td class="tg-yw4l" colspan="2">URL</td>
@@ -1605,6 +1606,13 @@ JSON201: lista simplificada de leilões
 
 JSON202: valor atual da licitação de um leilão
 
+```
+{
+    "auctionID": "1",
+    "currentMaxBid": "7.16"
+}
+```
+
 JSON501: Ver notificações: {notificação}[]
 ```
 {
@@ -1628,6 +1636,24 @@ JSON501: Ver notificações: {notificação}[]
   ]
 }
 ```
+> Document the JSON or XML responses that will be used by the web resources.
+
+ <!--- delete this at the end \/ -->
+## Web resources descriptors <note important>DO NOT include on the artefact</note>
+
+  * URL - Resource identifier, following the RESTful resource naming conventions
+  * Description - Describe the resource, when it's used and why
+  * UI - Reference to the A3 user interface used by the resource
+  * SUBMIT - Reference to the actions/requests integrated with the resource
+  * Method - HTTP request Method
+  * Parameters - Information that is sent through the URL, by a query string or path
+  * Request Body - Data associated and transmitted with each request
+  * Returns - HTTP code returned from a request
+  * Response Body - Data sent from the server, in response to a given request
+  * Permissions - Required permissions to access the resource
+  <!--- delete this at the end /\ -->
+***
+
 
 GROUP1726, 11/4/2018
 
