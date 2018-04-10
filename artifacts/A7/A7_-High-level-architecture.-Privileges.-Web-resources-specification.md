@@ -1574,7 +1574,36 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 
 JSON201: lista simplificada de leilões
 
-JSON202 - valor atual da licitação de um leilão
+```
+{
+    "auctions": [
+        {
+            "id": "1",
+            "imageSrc": "book1.jpg",
+            "secondsLeft": "19234",
+            "currentMaxBid": "7.14",
+            "sellerId": "24",
+            "sellerName": "IAmASeller",
+            "isWishlisted": "true",
+            "title": "The Orphan's Tale",
+            "author": "Pam Jennof"
+        },
+        {
+            "id": "2",
+            "imageSrc": "book2.jpg",
+            "secondsLeft": "67901241",
+            "currentMaxBid": "89.87",
+            "sellerId": "567",
+            "sellerName": "AnotherSeller",
+            "isWishlisted": "false",
+            "title": "Born a crime",
+            "author": "Trevor Noah"
+        }
+    ]
+}
+```
+
+JSON202: valor atual da licitação de um leilão
 
 JSON501: Ver notificações: {notificação}[]
 ```
@@ -1599,24 +1628,6 @@ JSON501: Ver notificações: {notificação}[]
   ]
 }
 ```
-> Document the JSON or XML responses that will be used by the web resources.
-
- <!--- delete this at the end \/ -->
-## Web resources descriptors <note important>DO NOT include on the artefact</note>
-
-  * URL - Resource identifier, following the RESTful resource naming conventions
-  * Description - Describe the resource, when it's used and why
-  * UI - Reference to the A3 user interface used by the resource
-  * SUBMIT - Reference to the actions/requests integrated with the resource
-  * Method - HTTP request Method
-  * Parameters - Information that is sent through the URL, by a query string or path
-  * Request Body - Data associated and transmitted with each request
-  * Returns - HTTP code returned from a request
-  * Response Body - Data sent from the server, in response to a given request
-  * Permissions - Required permissions to access the resource
-  <!--- delete this at the end /\ -->
-***
-
 
 GROUP1726, 11/4/2018
 
