@@ -106,7 +106,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
   <td > Redirecciona </td>
-    <td > <a href="#">R201</a></td>
+    <td > R201</td>
     <td > Sucesso</td>
   </tr>
   <tr>
@@ -222,7 +222,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 </tr>
   <tr>
     <td  colspan="2">Permissões</td>
-    <td  colspan="2"> MMB</td>
+    <td  colspan="2"> MMB,ADM</td>
   </tr>
   <tr>
 </table>
@@ -446,7 +446,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |Descrição |	Obter a página inicial. |
 |Método |	GET |
 | IU |	[IU01](https://tiagolascasas.github.io/lbaw1726/home.html) |
-|AJAX Calls|R210
+|Chamadas Ajax|R203
 | Permissões  |	PUB |
 
 #### R202: Página de pesquisa de leilões
@@ -481,6 +481,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 ||?lang: string | Idioma
 ||?category: string | Categoria
 ||?maxBid: Float | Valor máximo da licitação atual
+||?profile_search: string| Pode ser do tipo, "wishlist", "myauctions", "auctions_im_in", "history" ou nulo. Caso seja diferente de nulo o idMember tmb não pode ter valor nulo.
+||?idMember: Integer| Id do membro que se pretende pesquisar os leilões aos quais ele está relacionado.
 |Corpo da resposta|JSON201
 | Permissões  |	PUB |
 
@@ -492,7 +494,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |Método |	GET |
 |Parâmetros|+id: Integer| Chave primária de um leilão
 | IU |	[IU03](https://tiagolascasas.github.io/lbaw1726/auction.html) |
-|AJAX Calls|R210
+|Chamadas ajax|R210,R203
 |Retornos|200 OK| O pedido foi realizado com sucesso
 ||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
 ||404 Not Found| Erro caso o leilão com o id especificado não exista
@@ -592,7 +594,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Descrição |	Ver a wishlist do utilizador autenticado |
 |Método |	GET |
 | IU |	[IU013](https://tiagolascasas.github.io/lbaw1726/wishlist.html) |
-|AJAX Calls|R210
+|Chamadas Ajax|R203
 | Permissões  |	MMB |
 
 #### R302: Ação de adição de um leilão à __wishlist__
@@ -626,6 +628,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Descrição |	Ver o histórico de leilões completados do utilizador autenticado |
 |Método |	GET |
 | IU |	[IU012](https://tiagolascasas.github.io/lbaw1726/history.html) |
+|Chamadas AJAX|R203
 | Permissões  |	MMB |
 
 #### R305: Ver a lista dos leilões criados
@@ -635,7 +638,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Descrição |	Ver a lista dos leilões criados pelo utilizador autenticado |
 |Método |	GET |
 | IU |	[IU10](https://tiagolascasas.github.io/lbaw1726/myAuctions.html) |
-|AJAX Calls|R210
+|Chamadas AJAX|R203
 | Permissões  |	VDD |
 
 #### R306: Ver a lista dos leilões em que se está a participar
@@ -645,14 +648,14 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Descrição |	Ver a lista dos leilões ativos em que o utilizador autenticado está a participar |
 |Método |	GET |
 | IU |	[IU011](https://tiagolascasas.github.io/lbaw1726/auctionsIm_in.html) |
-|AJAX Calls|R210
+|Chamadas AJAX|R203
 | Permissões  |	MMB |
 
 ### Módulo 04: Notificações
 
 Estes são os pontos de extremidade disponíveis no Módulo de Notificações:
-* R401: Acção listagem de notificações não lidas.
-* R402: Acção marcar notificação como lida.
+* R401: Acção listagem de notificações não lidas /notifications
+* R402: Acção marcar notificação como lida /notifications
 
 #### R401: Acção listagem de notificações não lidas
 <table >
@@ -675,7 +678,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Notificações:
    </tr>
    <tr>
     <td >Corpo da resposta</td>
-    <td colspan="2">JSON501</td>
+    <td colspan="2">JSON401</td>
    </tr>
    <tr>
     <td  colspan="2">Permissões</td>
@@ -732,9 +735,9 @@ Estes são os pontos de extremidade disponíveis no Módulo de Notificações:
 ### Módulo 05: Comunicação entre membros
 
 Estes são os pontos de extremidade disponíveis no Módulo de Comunicação entre membros.
-* R501: Ver Mensagens /messages
-* R502: Formulário para criar Mensagem /messages/new_message
-* R503: Acção para criar Mensagem /messages/new_message
+* R501: Ver Mensagens /messages/{id}
+* R502: Formulário para criar Mensagem /messages/{id}/new_message
+* R503: Acção para criar Mensagem /messages/{id}/new_message
 * R504: Ação para listar comentários /users/{id}/comments
 * R505: Acção para criar comentário /users/{id}/comments
 * R506: Ação de reprovar comentário /users/{id}/comments/remove
@@ -760,7 +763,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    </tr>
    <tr>
     <td  colspan="2">Corpo da resposta</td>
-    <td >JSON601</td>
+    <td >JSON501</td>
    </tr>
    <tr>
     <td  colspan="2">Permissões</td>
@@ -790,7 +793,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    </tr>
    <tr>
     <td colspan="2">Submit </td>
-    <td >R603</td>
+    <td >R503</td>
    </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -798,7 +801,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
   </tr>
 </table>
 
-#### R503: Acção para criar Mensagem /messages .
+#### R503: Acção para criar Mensagem
+
 <table >
    <tr>
     <td  colspan="2">URL</td>
@@ -865,7 +869,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    </tr>
    <tr>
     <td colspan="2">Corpo da resposta</td>
-    <td >JSON604</td>
+    <td >JSON504</td>
    </tr>
    <tr>
     <td colspan="2">Permissões</td>
@@ -1000,7 +1004,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 |Descrição |	Página com formulário para login do Administrador. |
 |Método |	GET |
 | IU |	[IU016](https://tiagolascasas.github.io/lbaw1726/adminLogin.html) |
-| SUBMIT |	<a href="#r602-ação-de-login-admin">R602</a>	 |
+| SUBMIT |R602	 |
 | Permissões  |	PUB |
 
 #### R602: Ação de login admin
@@ -1030,12 +1034,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
   <td > Redirecciona </td>
-    <td > <a href="#r603-ver-painel-do-admin">R603</a> 	</td>
+    <td > R603 	</td>
     <td > Sucesso</td>
   </tr>  
     <tr>
   <td >  </td>
-     <td > <a href="#r601-formulário-de-login-admin">R601</a>	</td>
+     <td > R601	</td>
     <td > Insucesso </td>
   </tr>  
   <tr>
@@ -1356,7 +1360,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Moderação de le
 |Descrição |	Obter pedidos de aprovação do anúncio. |
 |Método |	GET |
 | IU |	[IU014](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu014-painel-do-moderador) |
-|Corpo da resposta|JSON701|
+|Chamadas AJAX|R203|
 | Permissões  |	MDD |
 
 #### R702: Ação de aprovar anúncio
@@ -1553,8 +1557,8 @@ JSON104: Informação de um membro
   ]
 }
 ```
-JSON201: lista simplificada de leilões
 
+JSON201: lista simplificada de leilões
 ```
 {
     "auctions": [
@@ -1585,30 +1589,10 @@ JSON201: lista simplificada de leilões
 ```
 
 JSON202: valor atual da licitação de um leilão
-
 ```
 {
     "auctionID": "1",
     "currentMaxBid": "7.16"
-}
-```
-
-JSON204: Informação de um leilão
-```
-{
-    "auctions": [
-        {
-            "id": "1",
-            "imageSrc": "book1.jpg",
-            "secondsLeft": "19234",
-            "currentMaxBid": "7.14",
-            "sellerId": "24",
-            "sellerName": "IAmASeller",
-            "isWishlisted": "true",
-            "title": "The Orphan's Tale",
-            "author": "Pam Jennof"
-        }
-    ]
 }
 ```
 
@@ -1702,23 +1686,6 @@ JSON603: Pedidos de remoção de conta
     }
 }
 ```
-
-> Document the JSON or XML responses that will be used by the web resources.
-
- <!--- delete this at the end \/ -->
-## Web resources descriptors <note important>DO NOT include on the artefact</note>
-
-  * URL - Resource identifier, following the RESTful resource naming conventions
-  * Description - Describe the resource, when it's used and why
-  * UI - Reference to the A3 user interface used by the resource
-  * SUBMIT - Reference to the actions/requests integrated with the resource
-  * Method - HTTP request Method
-  * Parameters - Information that is sent through the URL, by a query string or path
-  * Request Body - Data associated and transmitted with each request
-  * Returns - HTTP code returned from a request
-  * Response Body - Data sent from the server, in response to a given request
-  * Permissions - Required permissions to access the resource
-  <!--- delete this at the end /\ -->
 ***
 
 
