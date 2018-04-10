@@ -66,8 +66,6 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 #### R107: Ação de editar perfil
 
 
-
-
 ###  Módulo 02: Leilões 
 
 ### Módulo 03: Favoritos
@@ -83,23 +81,713 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
 
 ### Módulo 08: Autentificação e área de gestão admin
 * R801: Formulário de login admin /adminLogin
-* R802: Ação de login /adminLogin
-* R803: Ação de aceitar pedido de remoção de conta /admin
-* R804: Ação de ignorar pedido de remoção de conta /admin
-* R805: Formulário de ação a membros /admin
-* R806: Ação suspensão /admin
-* R807: Ação de reativar suspensão /admin
-* R808: Ação de banir permanentemente /admin
-* R809: Ação de promover a moderador /admin
-* R810: Ação de revocar privilegios de moderador /admin
+* R802: Ação de login admin /adminLogin
+* R803: Ver painel do admin /admin
+* R804: Aceitar pedido de remoção de conta /admin
+* R805: Ignorar pedido de remoção de conta /admin
+* R806: Formulário de ação a membros /admin
+* R807: Ação suspensão /admin
+* R808: Ação de reativar suspensão /admin
+* R809: Ação de banir permanentemente /admin
+* R810: Ação de promover a moderador /admin
+* R811: Ação de revocar privilegios de moderador /admin
+
+#### R801: Formulário de login admin
+
+|URL |	/adminLogin|
+|:---:|:----:|
+|Descrição |	Página com formulário para login do Administrador. |
+|Método |	GET |
+| IU |	[IU016](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu016-p%C3%A1gina-de-login-do-administrador) |
+| SUBMIT |	<a href="#r802-ação-de-login-admin">R1005</a>	 |
+| Permissões  |	PUB | 
+
+#### R802: Ação de login admin
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/adminLogin</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que envia uma mensagem definida pelo utilizador para o e-mail definido pelo admin. Redirecciona para a mesma página em qualquer caso e mostra uma notificação de acordo com o sucesso ou insucesso ao enviar a mensagem. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>
+  <td class="tg-yw4l">Request body</td>
+    <td class="tg-yw4l">+username: string	</td>
+    <td class="tg-yw4l">Username do admin</td>
+  </tr>
+  <tr>
+  <td class="tg-yw4l"> </td>
+    <td class="tg-yw4l">+password: string	</td>
+    <td class="tg-yw4l">Password do admin</td>
+  </tr>
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"> <a href="#r801-formulário-de-login-admin">R801</a>	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> PUB </td>
+  </tr>
+  <tr>
+</table>
+
+#### R803: Ver painel do admin
+
+|URL |	/admin|
+|:---:|:----:|
+|Descrição |	Obter pedidos de remoção de conta. |
+|Método |	GET |
+| IU |	[IU015](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu015-painel-do-administrador) |
+| Permissões  |	ADM | 
+
+#### R804: Aceitar pedido de remoção de conta
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/admin</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que aceita o pedido de remoção de conta do membro especificado. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>  
+    <td class="tg-yw4l"> Parâmetros </td>
+    <td class="tg-yw4l"> +id: integer </td>
+    <td class="tg-yw4l"> Id do membro</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+  <tr>
+    <td class="tg-yw4l">Retorna</td>
+    <td class="tg-yw4l">200 OK	</td>
+    <td class="tg-yw4l">A conta do membro foi removida com sucesso.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">400 Pedido Incorreto	</td>
+    <td class="tg-yw4l">Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">404 Não encontrado.	</td>
+    <td class="tg-yw4l">Membro com a primary key especificada não encontrado.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> ADM </td>
+  </tr>
+</table>
+
+#### R805: Ignorar pedido de remoção de conta
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/admin</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que ignora o pedido de remoção de conta do membro especificado. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>  
+    <td class="tg-yw4l"> Parâmetros </td>
+    <td class="tg-yw4l"> +id: integer </td>
+    <td class="tg-yw4l"> Id do membro</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+  <tr>
+    <td class="tg-yw4l">Retorna</td>
+    <td class="tg-yw4l">200 OK	</td>
+    <td class="tg-yw4l">O pedido de remoção da conta do membro foi ignorado com sucesso.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">400 Pedido Incorreto	</td>
+    <td class="tg-yw4l">Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">404 Não encontrado.	</td>
+    <td class="tg-yw4l">Membro com a primary key especificada não encontrado.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> ADM </td>
+  </tr>
+</table>
+ 
+
+#### R806: Formulário de ação a membros
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/admin</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Página com um formulário para efetuar várias ações ao utilizador especificado. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>
+  <td class="tg-yw4l">Request body</td>
+    <td class="tg-yw4l">+name: string	</td>
+    <td class="tg-yw4l">Username do membro</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> ADM </td>
+  </tr>
+  <tr>
+</table>
+
+#### R807: Ação suspensão 
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/admin</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que suspende a conta do membro especificado. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>  
+    <td class="tg-yw4l"> Parâmetros </td>
+    <td class="tg-yw4l"> +id: integer </td>
+    <td class="tg-yw4l"> Id do membro</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+  <tr>
+    <td class="tg-yw4l">Retorna</td>
+    <td class="tg-yw4l">200 OK	</td>
+    <td class="tg-yw4l">A conta do membro foi suspensa com sucesso.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">400 Pedido Incorreto	</td>
+    <td class="tg-yw4l">Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">404 Não encontrado.	</td>
+    <td class="tg-yw4l">Membro com a primary key especificada não encontrado.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> ADM </td>
+  </tr>
+</table>
+
+#### R808: Ação de reativar suspensão
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/admin</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que reativa a conta de um membro especificado com conta suspensa. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"> Parâmetros </td>
+    <td class="tg-yw4l"> +id: integer </td>
+    <td class="tg-yw4l"> Id do membro</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+  <tr>
+    <td class="tg-yw4l">Retorna</td>
+    <td class="tg-yw4l">200 OK	</td>
+    <td class="tg-yw4l">A conta do membro suspensa foi reativada com sucesso.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">400 Pedido Incorreto	</td>
+    <td class="tg-yw4l">Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">404 Não encontrado.	</td>
+    <td class="tg-yw4l">Membro com a primary key especificada não encontrado..</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> ADM </td>
+  </tr>
+</table>
+
+#### R809: Ação de banir permanentemente
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/admin</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que bane a conta do membro especificado. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"> Parâmetros </td>
+    <td class="tg-yw4l"> +id: integer </td>
+    <td class="tg-yw4l"> Id do membro</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+  <tr>
+    <td class="tg-yw4l">Retorna</td>
+    <td class="tg-yw4l">200 OK	</td>
+    <td class="tg-yw4l">A conta do membro foi banida com sucesso.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">400 Pedido Incorreto	</td>
+    <td class="tg-yw4l">Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">404 Não encontrado.	</td>
+    <td class="tg-yw4l">Membro com a primary key especificada não encontrado.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> ADM </td>
+  </tr>
+</table>
+
+#### R810: Ação de promover a moderador
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/admin</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que promove a moderador a conta do membro especificado. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"> Parâmetros </td>
+    <td class="tg-yw4l"> +id: integer </td>
+    <td class="tg-yw4l"> Id do membro</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+  <tr>
+    <td class="tg-yw4l">Retorna</td>
+    <td class="tg-yw4l">200 OK	</td>
+    <td class="tg-yw4l">A conta do membro foi promovida a moderador com sucesso.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">400 Pedido Incorreto	</td>
+    <td class="tg-yw4l">Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">404 Não encontrado.	</td>
+    <td class="tg-yw4l">Membro com a primary key especificada não encontrado.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> ADM </td>
+  </tr>
+</table>
+
+#### R811: Ação de revocar privilegios de moderador
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/admin</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que revoca de moderador uma conta do membro especificado anteriormente promovida a moderador. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"> Parâmetros </td>
+    <td class="tg-yw4l"> +id: integer </td>
+    <td class="tg-yw4l"> Id do membro</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"> <a href="#r803-ver-painel-do-admin">R803</a>	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+  <tr>
+    <td class="tg-yw4l">Retorna</td>
+    <td class="tg-yw4l">200 OK	</td>
+    <td class="tg-yw4l">A conta do membro foi despromovida de moderador com sucesso.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">400 Pedido Incorreto	</td>
+    <td class="tg-yw4l">Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">404 Não encontrado.	</td>
+    <td class="tg-yw4l">A mensagem foi enviada com sucesso.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> ADM </td>
+  </tr>
+</table>
 
 ### Módulo 09: Moderação de leilões
 * R901: Ver anúncios que aguardam aprovação /moderator
 * R902: Ação de aprovar anúncio /moderator
-* R903: Ação de desaprovar anúncio /moderator
+* R903: Ação de reprovar anúncio /moderator
 * R904: Ver feedbacks que aguardam aprovação /moderator
 * R905: Ação de aprovar feedback /moderator
-* R906: Ação de desaprovar feedback /moderator
+* R906: Ação de reprovar feedback /moderator
+
+#### R901: Ver anúncios que aguardam aprovação
+
+|URL |	/moderator|
+|:---:|:----:|
+|Descrição |	Obter pedidos de aprovação do anúncio. |
+|Método |	GET |
+| IU |	[IU014](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu014-painel-do-moderador) |
+| Permissões  |	MDD | 
+
+#### R902: Ação de aprovar anúncio
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/moderator</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que aprova um leilão especificado. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"> Parâmetros </td>
+    <td class="tg-yw4l"> +id: integer </td>
+    <td class="tg-yw4l"> Id do leilão</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r901-ver-anúncios-que-aguardam-aprovação">R901</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"><a href="#r901-ver-anúncios-que-aguardam-aprovação">R901</a> 	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+  <tr>
+    <td class="tg-yw4l">Retorna</td>
+    <td class="tg-yw4l">200 OK	</td>
+    <td class="tg-yw4l">O leilão foi aprovado com sucesso.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">400 Pedido Incorreto	</td>
+    <td class="tg-yw4l">Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">404 Não encontrado.	</td>
+    <td class="tg-yw4l">Leilão com a primary key especificada não encontrado.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> MDD </td>
+  </tr>
+</table>
+
+#### R903: Ação de reprovar anúncio
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/moderator</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que reprova um leilão especificado. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"> Parâmetros </td>
+    <td class="tg-yw4l"> +id: integer </td>
+    <td class="tg-yw4l"> Id do leilão</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r901-ver-anúncios-que-aguardam-aprovação">R901</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"><a href="#r901-ver-anúncios-que-aguardam-aprovação">R901</a> 	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+  <tr>
+    <td class="tg-yw4l">Retorna</td>
+    <td class="tg-yw4l">200 OK	</td>
+    <td class="tg-yw4l">O leilão foi reprovado com sucesso.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">400 Pedido Incorreto	</td>
+    <td class="tg-yw4l">Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">404 Não encontrado.	</td>
+    <td class="tg-yw4l">Leilão com a primary key especificada não encontrado.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> MDD </td>
+  </tr>
+</table>
+
+#### R904: Ver feedbacks que aguardam aprovação
+|URL |	/moderator|
+|:---:|:----:|
+|Descrição |	Obter feedbacks que aguardam aprovação. |
+|Método |	GET |
+| IU |	[IU014](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu014-painel-do-moderador) |
+| Permissões  |	MDD | 
+
+#### R905: Ação de aprovar feedback
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/moderator</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que aprova um comentário de feedback especificado. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"> Parâmetros </td>
+    <td class="tg-yw4l"> +id: integer </td>
+    <td class="tg-yw4l"> Id do leilão</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r904-ver-feedbacks-que-aguardam-aprovação">R904</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"><a href="#r904-ver-feedbacks-que-aguardam-aprovação">R904</a> 	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+  <tr>
+    <td class="tg-yw4l">Retorna</td>
+    <td class="tg-yw4l">200 OK	</td>
+    <td class="tg-yw4l">O comentário de feedback foi aprovado com sucesso.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">400 Pedido Incorreto	</td>
+    <td class="tg-yw4l">Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">404 Não encontrado.	</td>
+    <td class="tg-yw4l">Comentário de feedback com a primary key especificada não encontrado.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> MDD </td>
+  </tr>
+</table>
+
+
+#### R906: Ação de reprovar feedback
+
+<table class="tg">
+  <tr>
+    <td class="tg-yw4l" colspan="2">URL</td>
+    <td class="tg-yw4l" colspan="2">/moderator</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Descrição</td>
+    <td class="tg-yw4l" colspan="2"> Recurso que reprova um comentário de feedback especificado. </td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Método</td>
+    <td class="tg-yw4l" colspan="2">POST</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l"> Parâmetros </td>
+    <td class="tg-yw4l"> +id: integer </td>
+    <td class="tg-yw4l"> Id do leilão</td>
+  </tr> 
+  <tr>
+  <td class="tg-yw4l"> Redirecciona </td>
+    <td class="tg-yw4l"> <a href="#r904-ver-feedbacks-que-aguardam-aprovação">R904</a> 	</td>
+    <td class="tg-yw4l"> Sucesso</td>
+  </tr>  
+    <tr>
+  <td class="tg-yw4l">  </td>
+     <td class="tg-yw4l"><a href="#r904-ver-feedbacks-que-aguardam-aprovação">R904</a> 	</td>
+    <td class="tg-yw4l"> Insucesso </td>
+  </tr>  
+  <tr>
+  <tr>
+    <td class="tg-yw4l">Retorna</td>
+    <td class="tg-yw4l">200 OK	</td>
+    <td class="tg-yw4l">O comentário de feedback foi reprovado com sucesso.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">400 Pedido Incorreto	</td>
+    <td class="tg-yw4l">Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td class="tg-yw4l"></td>
+    <td class="tg-yw4l">404 Não encontrado.	</td>
+    <td class="tg-yw4l">Comentário de feedback com a primary key especificada não encontrado.</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l" colspan="2">Permissões</td>
+    <td class="tg-yw4l" colspan="2"> MDD </td>
+  </tr>
+</table>
 
 ### Módulo 10: Páginas estáticas 
 * R1001: Página Sobre /about
@@ -178,7 +866,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
   <td class="tg-yw4l"> Redirecciona </td>
     <td class="tg-yw4l"> <a href="#r1003-contactos">R1005</a> 	</td>
-    <td class="tg-yw4l"> Success</td>
+    <td class="tg-yw4l"> Sucesso</td>
   </tr>  
     <tr>
   <td class="tg-yw4l">  </td>
