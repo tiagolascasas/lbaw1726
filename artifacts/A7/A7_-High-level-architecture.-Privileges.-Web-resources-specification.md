@@ -183,7 +183,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
   <td > Redirecciona </td>
-    <td > <a href="#">R201</a> 	</td>
+    <td > R201 </td>
     <td > Sucesso</td>
   </tr>
    <tr>
@@ -451,11 +451,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 
 #### R202: Página de pesquisa de leilões
 
-|URL |	/search|
-|:---|:----|
+|URL |	/search||
+|:---|:----|:-------|
 |Descrição |	Pesquisa avançada de leilões. |
 |Método |	GET |
-|Parâmetros|?keywords: string | Palavras-chave da pesquisa
+|Parâmetros|
+||?keywords: string | Palavras-chave da pesquisa
 ||?title: string | Título
 ||?publisher: string | Editora
 ||?author: string | Autor
@@ -469,11 +470,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 
 #### R203: API de pesquisa de leilões
 
-|URL |	/api/search|
-|:---|:----|
+|URL |	/api/search||
+|:---|:----|:-------|
 |Descrição |	Submete uma pesquisa de leilões, retornando a mesma página com os resultados |
 |Método |	GET |
-|Parâmetros|?keywords: string | Palavras-chave da pesquisa
+|Parâmetros|
+||?keywords: string | Palavras-chave da pesquisa
 ||?title: string | Título
 ||?publisher: string | Editora
 ||?author: string | Autor
@@ -488,8 +490,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 
 #### R204: Ver um leilão /auction/{id}
 
-|URL |	/auction/{id}|
-|:---|:----|
+|URL |	/auction/{id}||
+|:---|:----|:-------|
 |Descrição |	Ver um leilão |
 |Método |	GET |
 |Parâmetros|+id: Integer| Chave primária de um leilão
@@ -502,8 +504,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 
 #### R205: Formulário de criação de um leilão
 
-|URL |	/create|
-|:---|:----|
+|URL |	/create||
+|:---|:----|:-------|
 |Descrição |	Formulário para a criação de um novo leilão |
 |Método |	GET |
 | IU |	[IU04](https://tiagolascasas.github.io/lbaw1726/create.html) |
@@ -512,8 +514,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 
 #### R206: Ação de criação de um leilão
 
-|URL |	/create|
-|:---|:----|
+|URL |	/create||
+|:---|:----|:-------|
 |Descrição |	Cria um novo leilão |
 |Método |	POST |
 |Corpo do pedido|+title: string | Título
@@ -529,8 +531,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 
 #### R207: Formulário de edição de um leilão
 
-|URL |	/editAuction/{id}|
-|:---|:----|
+|URL |	/editAuction/{id}||
+|:---|:----|:-------|
 |Descrição |	Formulário para a edição de um leilão existente |
 |Método |	GET |
 |Parâmetros|+id: Integer| Chave primária de um leilão
@@ -540,8 +542,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 
 #### R208: Ação de pedido de edição de um leilão
 
-|URL |	/editAuction/{id}|
-|:---|:----|
+|URL |	/editAuction/{id}||
+|:---|:----|:-------|
 |Descrição |	Envia um pedido de edição de um leilão existente |
 |Método |	PUT |
 |Parâmetros|+id: Integer| Chave primária de um leilão
@@ -555,8 +557,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 
 #### R209: Ação de licitar num leilão
 
-|URL |	/auction/{id}/bid|
-|:---|:----|
+|URL |	/auction/{id}/bid||
+|:---|:----|:-------|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	POST |
 |Parâmetros|+id: Integer | Chave primária de um leilão
@@ -567,8 +569,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 
 #### R210: API para obter o valor da licitação atual
 
-|URL |	/api/bid/{id}|
-|:---|:----|
+|URL |	/api/bid/{id}||
+|:---|:----|:-------|
 |Descrição |	Requisita o valor atual da licitação do leilão especificado |
 |Método |	GET |
 |Parâmetros|+id: Integer | Chave primária de um leilão
@@ -589,8 +591,8 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 
 #### R301: Ver a __wishlist__
 
-|URL |	/wishlist|
-|:---|:----|
+|URL |	/wishlist||
+|:---|:----|:-------|
 |Descrição |	Ver a wishlist do utilizador autenticado |
 |Método |	GET |
 | IU |	[IU013](https://tiagolascasas.github.io/lbaw1726/wishlist.html) |
@@ -599,8 +601,8 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 
 #### R302: Ação de adição de um leilão à __wishlist__
 
-|URL |	/wishlist/{id}|
-|:---:|:----:|
+|URL |	/wishlist/{id}||
+|:---:|:----:|:-------|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	PUT |
 |Parâmetros|+id: Integer | Chave primária de um leilão
@@ -611,8 +613,8 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 
 #### R303: Ação de remoção de um leilão da __wishlist__
 
-|URL |	/wishlist/{id}|
-|:---|:----|
+|URL |	/wishlist/{id}||
+|:---|:----|:-------|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	DELETE |
 |Parâmetros|?id: Integer | Chave primária de um leilão
@@ -623,8 +625,8 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 
 #### R304: Ver o histórico de leilões
 
-|URL |	/history|
-|:---|:----|
+|URL |	/history||
+|:---|:----|:-------|
 |Descrição |	Ver o histórico de leilões completados do utilizador autenticado |
 |Método |	GET |
 | IU |	[IU012](https://tiagolascasas.github.io/lbaw1726/history.html) |
@@ -633,8 +635,8 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 
 #### R305: Ver a lista dos leilões criados
 
-|URL |	/myAuctions|
-|:---|:----|
+|URL |	/myAuctions||
+|:---|:----|:-------|
 |Descrição |	Ver a lista dos leilões criados pelo utilizador autenticado |
 |Método |	GET |
 | IU |	[IU10](https://tiagolascasas.github.io/lbaw1726/myAuctions.html) |
@@ -643,8 +645,8 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 
 #### R306: Ver a lista dos leilões em que se está a participar
 
-|URL |	/currentAuctions|
-|:---|:----|
+|URL |	/currentAuctions||
+|:---|:----|:-------|
 |Descrição |	Ver a lista dos leilões ativos em que o utilizador autenticado está a participar |
 |Método |	GET |
 | IU |	[IU011](https://tiagolascasas.github.io/lbaw1726/auctionsIm_in.html) |
