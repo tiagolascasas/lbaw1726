@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>BookHub - Auctions waiting approval</title>
+    <title>BookHub - Auction modifications waiting approval</title>
 
     <!-- Bootstrap CDN-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -267,7 +267,7 @@
             <!-- Title-->
             <div class="bg-white mb-0 mt-4 panel">
                 <h5>
-                    <i class="fa fa-star"></i> Auctions waiting approval </h5>
+                    <i class="fa fa-star"></i> Auction modifications waiting approval </h5>
             </div>
             <hr id="hr_space" class="mt-2">
 
@@ -275,14 +275,47 @@
 
             <!-- item -->
             <div class="list-group panel">
+				<div class="modal fade" id="mod1" tabindex="-1" role="dialog" aria-labelledby="myModalEditLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="myModalEditLabel">Comparison of changes</h5><br>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label for="exampleInputName">Old Description</label>
+										<textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputName">New Description</label>
+										<textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+									</div>
+									<div class="form-group">
+										<p>3 new images added</p>
+									<button class="btn btn-primary btn-block mb-4">Close</button>
+								</form>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-auto img-fluid media-object align-self-center ">
                                 <img class="width100" src="img/theorphanstale.jpg" alt="the orphan stale">
                             </div>
-                            <div class="col-lg-6 align-self-center text-left p-2 text-dark lead">
+                            <div class="col-lg-4 align-self-center text-left p-2 text-dark lead">
                                 The Orphan's Tale - Pam Jenoff
+                            </div>
+							<div class="col-lg-2 align-self-center text-left p-2 text-dark lead">
+								<span class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#mod1">
+									<i class="fa"></i> See differences
+								</span>
                             </div>
                             <div class="col-lg-4 text-center align-self-center p-3 text-danger">
                                 <i class="fa fa-thumbs-up fa-2x btn btn-success align-self-center p-2 m-2"></i>
@@ -294,16 +327,48 @@
 
 
                 <!--  item -->
-
+				<div class="modal fade" id="mod2" tabindex="-1" role="dialog" aria-labelledby="myModalEditLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="myModalEditLabel">Comparison of changes</h5><br>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label for="exampleInputName">Old Description</label>
+										<textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputName">New Description</label>
+										<textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+									</div>
+									<div class="form-group">
+										<p>3 new images added</p>
+									<button class="btn btn-primary btn-block mb-4">Close</button>
+								</form>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-auto  img-fluid media-object align-self-center ">
                                 <img class="width100" src="img/bornacrime.jpg" alt=" born a crime">
                             </div>
-                            <div class="col-lg-6 align-self-center text-left p-2 text-dark lead">
+                            <div class="col-lg-4 align-self-center text-left p-2 text-dark lead">
                                 Born a Crime - Trevor Noah
                             </div>
+							<div class="col-lg-2 align-self-center text-left p-2 text-dark lead">
+								<span class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#mod2">
+									<i class="fa"></i> See differences
+								</span>
+							</div>
                             <div class="col-lg-4 text-center align-self-center p-3 text-danger">
                                 <i class="fa fa-thumbs-up fa-2x btn btn-success align-self-center p-2 m-2"></i>
                                 <i class="fa fa-trash fa-2x btn btn-danger align-self-center p-2 m-2"></i>
@@ -314,16 +379,48 @@
 
 
                 <!--  item -->
-
+				<div class="modal fade" id="mod3" tabindex="-1" role="dialog" aria-labelledby="myModalEditLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="myModalEditLabel">Comparison of changes</h5><br>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label for="exampleInputName">Old Description</label>
+										<textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputName">New Description</label>
+										<textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+									</div>
+									<div class="form-group">
+										<p>3 new images added</p>
+									<button class="btn btn-primary btn-block mb-4">Close</button>
+								</form>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-auto  img-fluid media-object align-self-center ">
                                 <img class="width100" src="img/levithanwakes.jpg" alt="Levithan Wakes">
                             </div>
-                            <div class="col-lg-6 align-self-center text-left p-2 text-dark lead">
+                            <div class="col-lg-4 align-self-center text-left p-2 text-dark lead">
                                 Leviathan Wakes (The Expanse #1) - James S.A. Corey
                             </div>
+							<div class="col-lg-2 align-self-center text-left p-2 text-dark lead">
+								<span class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#mod3">
+									<i class="fa"></i> See differences
+								</span>
+							</div>
                             <div class="col-lg-4 text-center align-self-center p-3 text-danger">
                                 <i class="fa fa-thumbs-up fa-2x btn btn-success align-self-center p-2 m-2"></i>
                                 <i class="fa fa-trash fa-2x btn btn-danger align-self-center p-2 m-2"></i>
@@ -332,7 +429,34 @@
                     </div>
                 </a>
 
-
+				<div class="modal fade" id="mod4" tabindex="-1" role="dialog" aria-labelledby="myModalEditLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="myModalEditLabel">Comparison of changes</h5><br>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label for="exampleInputName">Old Description</label>
+										<textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputName">New Description</label>
+										<textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+									</div>
+									<div class="form-group">
+										<p>3 new images added</p>
+									<button class="btn btn-primary btn-block mb-4">Close</button>
+								</form>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
                 <!--  item -->
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
@@ -340,9 +464,14 @@
                             <div class="col-sm-auto img-fluid media-object align-self-center ">
                                 <img class="width100" src="img/knowinggodbyname.jpg" alt="knowing god by name">
                             </div>
-                            <div class="col-lg-6 align-self-center text-left p-2 text-dark lead">
+                            <div class="col-lg-4 align-self-center text-left p-2 text-dark lead">
                                 Knowing God by Name - David Wilkerson
                             </div>
+							<div class="col-lg-2 align-self-center text-left p-2 text-dark lead">
+								<span class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#mod4">
+									<i class="fa"></i> See differences
+								</span>
+							</div>
                             <div class="col-lg-4 text-center align-self-center p-3 text-danger">
                                 <i class="fa fa-thumbs-up fa-2x btn btn-success align-self-center p-2 m-2"></i>
                                 <i class="fa fa-trash fa-2x btn btn-danger align-self-center p-2 m-2"></i>
@@ -353,16 +482,48 @@
 
 
                 <!-- item -->
-
+				<div class="modal fade" id="mod5" tabindex="-1" role="dialog" aria-labelledby="myModalEditLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="myModalEditLabel">Comparison of changes</h5><br>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="form-group">
+										<label for="exampleInputName">Old Description</label>
+										<textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputName">New Description</label>
+										<textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+									</div>
+									<div class="form-group">
+										<p>3 new images added</p>
+									<button class="btn btn-primary btn-block mb-4">Close</button>
+								</form>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-auto img-fluid media-object align-self-center ">
                                 <img class="width100" src="img/thehusbandssecret.jpg" alt="the husbands secret">
                             </div>
-                            <div class="col-lg-6 align-self-center text-left p-2 text-dark lead">
+                            <div class="col-lg-4 align-self-center text-left p-2 text-dark lead">
                                 The Husband's Secret - Liane Moriarky
                             </div>
+							<div class="col-lg-2 align-self-center text-left p-2 text-dark lead">
+								<span class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#mod5">
+									<i class="fa"></i> See differences
+								</span>
+							</div>
                             <div class="col-lg-4 text-center align-self-center p-3 text-danger">
                                 <i class="fa fa-thumbs-up fa-2x btn btn-success align-self-center p-2 m-2"></i>
                                 <i class="fa fa-trash fa-2x btn btn-danger align-self-center p-2 m-2"></i>
