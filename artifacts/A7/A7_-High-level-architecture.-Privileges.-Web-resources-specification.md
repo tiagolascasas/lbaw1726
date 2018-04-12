@@ -966,6 +966,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
   </tr>
   <tr>
     <td >Retorna</td>
+    <td  colspan="2">Permissões</td>
+    <td  colspan="2"> MMB </td>
     <td >200 OK	</td>
     <td >O comentário de feedback foi removido com sucesso.</td>
   </tr>  
@@ -1642,7 +1644,7 @@ JSON501: Lista de mensagens
     }
   ]
 }
-``` 
+```
 
 JSON504: Lista de comentários
 ```
@@ -1670,7 +1672,7 @@ JSON504: Lista de comentários
     }
   ]
 }
-``` 
+```
 
 JSON603: Pedidos de remoção de conta
 ```

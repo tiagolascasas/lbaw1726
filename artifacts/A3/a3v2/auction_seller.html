@@ -366,6 +366,39 @@
         </nav>
         <div class="container p-5">
             <main>
+                <!--EDIT AUCTION-->
+                <div class="modal fade" id="editAuction" tabindex="-1" role="dialog" aria-labelledby="myModalEditLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalEditLabel">Edit Auction</h5><br>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+									<div class="form-group">
+										<p>Please note that any new changes require approval by a moderator before they show up. You can only have one active edition request at any given time.</p>
+									</div>
+                                    <div class="form-group">
+                                        <label for="exampleInputName">New Description</label>
+                                        <textarea rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important"></textarea>
+                                    </div>
+									<div class="form-group">
+			                            <label>Add more images</label>
+			                            <input id="filebutton" name="filebutton" class="form-control" type="file" multiple required>
+			                        </div>
+									<div class="form-group">
+
+									</div>
+                                    <button class="btn btn-primary btn-block mb-4">Submit edition request</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--AUCTION-->
                 <table class="table">
                     <tbody>
                         <tr>
@@ -429,19 +462,13 @@
                             <td><strong>Current bid: </strong>
                                 <p class="text-success">€ 7.16</td>
                             <td>
-                                <form>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <input type="number" min="7.17" placeholder="8.17" step="0.01" class="form-control">
-                                        </div>
-                                    </div>
-                                </form>
+								<a class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#editAuction">
+                                    <i class="fa"></i> Edit Auction
+                                </a>
                             </td>
                             <td>
-                                <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-outline-secondary p-2 " type="button" onclick="profile_func()">nelsoncosta</button>
                             </td>
                         </tr>
                     </tbody>
