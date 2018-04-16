@@ -27,5 +27,10 @@
     @include('includes.sidebar')
     @yield('content')
     @include('includes.footer')
+        <!-- Javascript's -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bsadmin.js" defer></script>
   </body>
 </html>
