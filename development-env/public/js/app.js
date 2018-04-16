@@ -1,187 +1,180 @@
-$(document).ready(function() {
-    // toggle sidebar when button clicked
-    $(".sidebar-toggle").on("click", function() {
-        $(".sidebar").toggleClass("toggled");
-        $('#fixed-footer').removeClass('#fixed-footer').addClass("footer");
-    });
+function addEventListeners() {
+  let itemCheckers = document.querySelectorAll('article.card li.item input[type=checkbox]');
+  [].forEach.call(itemCheckers, function(checker) {
+    checker.addEventListener('change', sendItemUpdateRequest);
+  });
 
-    // auto-expand submenu if an item is active
-    var active = $(".sidebar .active");
+  let itemCreators = document.querySelectorAll('article.card form.new_item');
+  [].forEach.call(itemCreators, function(creator) {
+    creator.addEventListener('submit', sendCreateItemRequest);
+  });
 
-    if (active.length && active.parent(".collapse").length) {
-        var parent = active.parent(".collapse");
+  let itemDeleters = document.querySelectorAll('article.card li a.delete');
+  [].forEach.call(itemDeleters, function(deleter) {
+    deleter.addEventListener('click', sendDeleteItemRequest);
+  });
 
-        parent.prev("a").attr("aria-expanded", true);
-        parent.addClass("show");
-    }
-});
+  let cardDeleters = document.querySelectorAll('article.card header a.delete');
+  [].forEach.call(cardDeleters, function(deleter) {
+    deleter.addEventListener('click', sendDeleteCardRequest);
+  });
 
-function searchfunc() {
-    window.location.href = "search.html";
-};
-
-function profile_func() {
-    window.location.href = "profile_not_owner.html";
-};
-
-let navbarList = document.getElementById("navbarList");
-
-let feedback = document.querySelector("#myfeedback");
-
-let loginButton = document.querySelector("#myModalLogin a");
-
-let buttonWelcome = document.getElementById("buttonsWelcome");
-
-if (loginButton !== null) {
-    loginButton.addEventListener("click", function() {
-        // language=HTML
-        navbarList.innerHTML = `<li class = "nav-item dropdown">
-          <a class="nav-link dropdown-toggle hidden-p-md-down"  id = "catDropDown" data-toggle="dropdown" aria-expanded="true">
-          All
-          </a>
-          <div class="dropdown-menu dropdown-menu-right"  role="menu" aria-labelledby="catDropDown">
-
-          <a href="#" class="dropdown-item">
-          Arts&amp;Music</a>
-
-          <a href="#" class="dropdown-item">
-          Biographies</a>
-
-
-          <a href="#" class="dropdown-item">
-          Business</a>
-
-          <a href="#" class="dropdown-item">
-          Kids</a>
-
-          <a href="#" class="dropdown-item">
-          Comics</a>
-
-          <a href="#" class="dropdown-item">
-          Cooking</a>
-
-          <a href="#" class="dropdown-item">
-          Computation&amp;Tech</a>
-
-          <a href="#" class="dropdown-item">
-          Education</a>
-
-          <a href="#" class="dropdown-item">
-          Health&amp;Fitness</a>
-
-          <a href="#" class="dropdown-item">
-          History</a>
-
-          <a href="#" class="dropdown-item">
-          Horror</a>
-
-          </div>
-          </li>
-          <li class="nav-item hidden-p-md-down">
-          <form class="form-inline my-2 my-lg-0 mr-lg-2 ">
-          <div class="input-group">
-          <input class="form-control" type="text" placeholder="Search for...">
-          <span class="input-group-append">
-          <button class="btn btn-primary" type="button" onclick="searchfunc()">
-          <i class="fa fa-search"></i>
-          </button>
-          </span>
-          </div>
-          </form>
-          </li>
-
-          <li class = "nav-item">
-          <a class="nav-link hidden-p-md-up"  id = "navbarDropDownSearch" data-toggle="dropdown">
-          <i class="fa fa-search"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownSearch">
-          <form class="form-inline">
-          <div class="input-group">
-          <input class="form-control" type="text" placeholder="Search for...">
-          <span class="input-group-append">
-          <button class="btn btn-primary" type="button" onclick="searchfunc()">
-          <i class="fa fa-search"></i>
-          </button>
-          </span>
-          </div>
-          </form>
-          </div>
-
-          </li>
-      <li class="nav-item dropdown ">
-          <a class="nav-link dropdown-toggle container" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-fw fa-bell"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right notifications" aria-labelledby="alertsDropdown">
-              <h6 class="dropdown-header">New Alerts:</h6>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                          <span class="text-success text-left">
-                             <strong>Memorial do Convento</strong>
-                          </span>
-                  <span class="small text-right text-muted">11:21 AM</span>
-                  <div class="dropdown-message"><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
-              </a>
-              <a class="dropdown-item" href="#">
-                          <span class="text-danger text-left">
-                              <strong>Os Maias</strong>
-                          </span>
-                  <span class="small text-right text-muted">11:21 AM</span>
-                  <div class="dropdown-message"><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
-              </a>
-              <a class="dropdown-item" href="#">
-                          <span class="text-danger text-left">
-                              <strong>Os Maias</strong>
-                          </span>
-                  <span class="small text-right text-muted">11:21 AM</span>
-                  <div class="dropdown-message"><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
-              </a>
-          </div>
-      </li>
-      <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown">
-              <i class="fa fa-user"></i> Username
-          </a>
-          <a class="nav-link dropdown-toggle  hidden-p-md-up" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown">
-              <i class="fa fa-user"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1 navbarDropdownMenuLink2">
-              <a class="dropdown-item" href="profile_owner.html">Profile</a>
-              <a class="dropdown-item" href="create.html">Create auction</a>
-              <a class="dropdown-item" href="myAuctions.html">My Auctions</a>
-              <a class="dropdown-item" href="auctionsIm_in.html">Auctions I'm in</a>
-              <a class="dropdown-item" href="history.html">History</a>
-              <a class="dropdown-item" href="wishlist.html">WishList</a>
-              <a class="dropdown-item" href="messages.html">Messages</a>
-              <a class="dropdown-item" href="#">Logout</a>
-          </div>
-      </li>`;
-
-        if (buttonWelcome !== null)
-            buttonWelcome.innerHTML = `<a href="myAuctions.html" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
-<a href="auctionsIm_in.html" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>`;
-
-        if (feedback !== null)
-            feedback.innerHTML = `<form id="feedbackform">
-              <div class="btn-group mb-3" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-success">
-                      <i class="fa fa-thumbs-up btn btn-success"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger">
-                      <i class="fa fa-thumbs-down btn btn-danger"></i>
-                  </button>
-              </div>
-              <div class="form-group">
-                  <textarea rows="3" cols="30" class="form-control" placeholder="Your feedback"></textarea>
-              </div>
-              <div class="form-row">
-                  <div class="form-group col-md-12">
-                      <button type="submit" class="btn btn-primary col-md-12">Post your feedback</button>
-                  </div>
-              </div>
-
-          </form>`;
-
-
-    });
+  let cardCreator = document.querySelector('article.card form.new_card');
+  if (cardCreator != null)
+    cardCreator.addEventListener('submit', sendCreateCardRequest);
 }
+
+function encodeForAjax(data) {
+  if (data == null) return null;
+  return Object.keys(data).map(function(k){
+    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+  }).join('&');
+}
+
+function sendAjaxRequest(method, url, data, handler) {
+  let request = new XMLHttpRequest();
+
+  request.open(method, url, true);
+  request.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
+  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  request.addEventListener('load', handler);
+  request.send(encodeForAjax(data));
+}
+
+function sendItemUpdateRequest() {
+  let item = this.closest('li.item');
+  let id = item.getAttribute('data-id');
+  let checked = item.querySelector('input[type=checkbox]').checked;
+
+  sendAjaxRequest('post', '/api/item/' + id, {done: checked}, itemUpdatedHandler);
+}
+
+function sendDeleteItemRequest() {
+  let id = this.closest('li.item').getAttribute('data-id');
+
+  sendAjaxRequest('delete', '/api/item/' + id, null, itemDeletedHandler);
+}
+
+function sendCreateItemRequest(event) {
+  let id = this.closest('article').getAttribute('data-id');
+  let description = this.querySelector('input[name=description]').value;
+
+  if (description != '')
+    sendAjaxRequest('put', '/api/cards/' + id, {description: description}, itemAddedHandler);
+
+  event.preventDefault();
+}
+
+function sendDeleteCardRequest(event) {
+  let id = this.closest('article').getAttribute('data-id');
+
+  sendAjaxRequest('delete', '/api/cards/' + id, null, cardDeletedHandler);
+}
+
+function sendCreateCardRequest(event) {
+  let name = this.querySelector('input[name=name]').value;
+
+  if (name != '')
+    sendAjaxRequest('put', '/api/cards/', {name: name}, cardAddedHandler);
+
+  event.preventDefault();
+}
+
+function itemUpdatedHandler() {
+  let item = JSON.parse(this.responseText);
+  let element = document.querySelector('li.item[data-id="' + item.id + '"]');
+  let input = element.querySelector('input[type=checkbox]');
+  element.checked = item.done == "true";
+}
+
+function itemAddedHandler() {
+  if (this.status != 200) window.location = '/';
+  let item = JSON.parse(this.responseText);
+
+  // Create the new item
+  let new_item = createItem(item);
+
+  // Insert the new item
+  let card = document.querySelector('article.card[data-id="' + item.card_id + '"]');
+  let form = card.querySelector('form.new_item');
+  form.previousElementSibling.append(new_item);
+
+  // Reset the new item form
+  form.querySelector('[type=text]').value="";
+}
+
+function itemDeletedHandler() {
+  if (this.status != 200) window.location = '/';
+  let item = JSON.parse(this.responseText);
+  let element = document.querySelector('li.item[data-id="' + item.id + '"]');
+  element.remove();
+}
+
+function cardDeletedHandler() {
+  if (this.status != 200) window.location = '/';
+  let card = JSON.parse(this.responseText);
+  let article = document.querySelector('article.card[data-id="'+ card.id + '"]');
+  article.remove();
+}
+
+function cardAddedHandler() {
+  if (this.status != 200) window.location = '/';
+  let card = JSON.parse(this.responseText);
+
+  // Create the new card
+  let new_card = createCard(card);
+
+  // Reset the new card input
+  let form = document.querySelector('article.card form.new_card');
+  form.querySelector('[type=text]').value="";
+
+  // Insert the new card
+  let article = form.parentElement;
+  let section = article.parentElement;
+  section.insertBefore(new_card, article);
+
+  // Focus on adding an item to the new card
+  new_card.querySelector('[type=text]').focus();
+}
+
+function createCard(card) {
+  let new_card = document.createElement('article');
+  new_card.classList.add('card');
+  new_card.setAttribute('data-id', card.id);
+  new_card.innerHTML = `
+
+  <header>
+    <h2><a href="cards/${card.id}">${card.name}</a></h2>
+    <a href="#" class="delete">&#10761;</a>
+  </header>
+  <ul></ul>
+  <form class="new_item">
+    <input name="description" type="text">
+  </form>`;
+
+  let creator = new_card.querySelector('form.new_item');
+  creator.addEventListener('submit', sendCreateItemRequest);
+
+  let deleter = new_card.querySelector('header a.delete');
+  deleter.addEventListener('click', sendDeleteCardRequest);
+
+  return new_card;
+}
+
+function createItem(item) {
+  let new_item = document.createElement('li');
+  new_item.classList.add('item');
+  new_item.setAttribute('data-id', item.id);
+  new_item.innerHTML = `
+  <label>
+    <input type="checkbox"> <span>${item.description}</span><a href="#" class="delete">&#10761;</a>
+  </label>
+  `;
+
+  new_item.querySelector('input').addEventListener('change', sendItemUpdateRequest);
+  new_item.querySelector('a.delete').addEventListener('click', sendDeleteItemRequest);
+
+  return new_item;
+}
+
+addEventListeners();
