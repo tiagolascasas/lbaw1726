@@ -26,7 +26,7 @@
             <i class="fa fa-bars"></i>
         </a>
 
-        <a class="navbar-brand" href="home.html">BOOKHUB</a>
+        <a class="navbar-brand" href="home">BOOKHUB</a>
 
         <div class="navbar-collapse collapse">
 
@@ -368,18 +368,19 @@
             </ul>
         </nav>
 
-        <section id="content">
+        <section id="content" class="w-100">
           @yield('content')
         </section>
 
 
-        <footer class="footer bg-dark">
-            <div class="container align-self-center">
-                <p class="mt-2 mb-0 text-center text-white" style="font-size: 16px">Copyright &copy; BookHub 2018</p>
+        <!-- Footer -->
+        <footer class="footer footer-offset py-2 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; BookHub 2018</p>
                 <p class="m-0 text-center text-white">
-                    <a class="text-white" href="about.html"> About</a> &nbsp; | &nbsp;
-                    <a class="text-white" href="faq.html"> FAQ</a> &nbsp; | &nbsp;
-                    <a class="text-white" href="contact.html"> Contact</a>
+                    <a class="text-white" href="about"> About</a> &nbsp; | &nbsp;
+                    <a class="text-white" href="faq"> FAQ</a> &nbsp; | &nbsp;
+                    <a class="text-white" href="contact"> Contact</a>
                 </p>
             </div>
         </footer>

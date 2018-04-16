@@ -4,6 +4,7 @@
 
 @section('content')
 
+    <!-- Page Content -->
         <main>
           <div class="content p-4">
             <!---  Welcome block --->
@@ -19,6 +20,8 @@
                 <!---  Active auctions grid --->
                 <div class="album py-4">
                     <div class="row">
+
+                        <!--- Items list -->
                         <div class="col-md-3">
                             <a href="auction.html" class="list-group-item-action">
                                 <div class="card mb-6 box-shadow">
@@ -38,6 +41,7 @@
                                 </div>
                             </a>
                         </div>
+
                         <div class="col-md-3">
                             <a href="auction.html" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
@@ -57,6 +61,7 @@
                                 </div>
                             </a>
                         </div>
+
                         <div class="col-md-3">
                             <a href="auction.html" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
@@ -96,6 +101,7 @@
                                 </div>
                             </a>
                         </div>
+
                         <div class="col-md-3">
                             <a href="auction.html" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
@@ -115,6 +121,7 @@
                                 </div>
                             </a>
                         </div>
+
                         <div class="col-md-3">
                             <a href="auction.html" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
@@ -174,12 +181,11 @@
                                 </div>
                             </a>
                         </div>
+
+                        <!-- show more button -->
                         <a href="#" class="btn btn-outline-primary my-2 btn-block">Show More</a>
                     </div>
                 </div>
               </div>
             </main>
-  <!-- Bookhub home top box panel and auctions list -->
-  nothing here
-
 @endsection

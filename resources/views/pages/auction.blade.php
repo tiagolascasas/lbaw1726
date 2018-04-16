@@ -5,8 +5,8 @@
 @section('content')
 
     <!-- Page Content -->
-        <div class="container p-5">
             <main>
+              <div class="container p-5">
                 <table class="table">
                     <tbody>
                         <tr>
@@ -87,8 +87,6 @@
                         </tr>
                     </tbody>
                 </table>
+              </div>
             </main>
-        </div>
-    </div>
-
     @endsection

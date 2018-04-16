@@ -207,3 +207,7 @@ label {
 .width100 {
     width: 100%;
 }
+
+.footer-offset{
+    bottom: -60px;
+}
