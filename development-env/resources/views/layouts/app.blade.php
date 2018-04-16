@@ -23,9 +23,9 @@
 </script>
   </head>
   <body>
-    @include('include.navbar')
-    @include('include.sidebar')
+    @include('includes.navbar')
+    @include('includes.sidebar')
     @yield('content')
-    @include('include.footer')
+    @include('includes.footer')
   </body>
 </html>
