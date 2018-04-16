@@ -9,11 +9,10 @@ Uma visão geral da aplicação web a implementar é apresentada nesta secção,
 | M01: Autentificação e perfil individual |  Recursos web associados à autentificação do utilizador e a gestão do perfil individual. Inclui as seguintes funcionalidades: login/logout, registo, recuperação de password, ver e editar a informação do perfil, pedir remoção de conta e vincular e desvincular conta PayPal. |
 | M02: Leilões |  Recursos web associados com os leilões. Inclui as seguintes funcionalidades: listagem de leilões, pesquisa, visualização, edição e licitação. |
 | M03: Listas do Utilizador autenticado |  Recursos web associados com os as listas de leilões associadas ao Utilizador autenticado. Inclui as seguintes funcionalidades: listagem de favoritos, adição e a sua remoção; listagem de leilões onde o membro participou; leilões criados pelo próprio membro, como vendedor; leilões onde o membro está a participar como comprador.|
-| M04: Notificações |   Recursos web associados às notificações. Inclui as seguintes funcionalidades: listagem de notificações e marcação de notificações como lidas.  |
-| M05: Comunicação entre membros |   Recursos web associados à comunicação entre membros. Inclui as seguintes funcionalidades: envio de mensagens e visualização de mensagens trocadas com outros membros, visualização, envio e remoção de *feedback*   |
-| M06: Autentificação e área de gestão admin |  Recursos web associados à autentificação e gestão pelo utilizador. Incluí as seguintes funcionalidades: login/logout, suspender/reativar/banir utilizadores, promover/revogar direitos de moderador e aprovar solicitações de remoção de conta. |
-| M07: Moderação |  Recursos web associados à moderação de leilões que aguardam aprovação. Incluí as seguintes funcionalidades: listagem de leilões que aguardam aprovação e respetiva aprovação. . |
-| M8: Páginas estáticas |  Recursos web associados às páginas estáticas: About, FAQ, Contact.  |
+| M04: Notificações |   Recursos web associados às notificações e comunicação entre membros. Inclui as seguintes funcionalidades: listagem de notificações, marcação de notificações como lidas, envio de mensagens e visualização de mensagens trocadas com outros membros, visualização, envio e remoção de *feedback*.  |
+| M05: Autentificação e área de gestão admin |  Recursos web associados à autentificação e gestão pelo utilizador. Incluí as seguintes funcionalidades: login/logout, suspender/reativar/banir utilizadores, promover/revogar direitos de moderador e aprovar solicitações de remoção de conta. |
+| M06: Moderação |  Recursos web associados à moderação de leilões que aguardam aprovação. Incluí as seguintes funcionalidades: listagem de leilões que aguardam aprovação e respetiva aprovação. |
+| M07: Páginas estáticas |  Recursos web associados às páginas estáticas: About, FAQ, Contact.  |
 
 
 
@@ -37,17 +36,43 @@ Esta secção documenta todos os recursos web por módulo indicando o *URL*, o m
 
 Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e Perfil Individual. Dado que todos os formulários são modais sem páginas próprias, são representadas apenas as ações que lhes complementam.
 
-* R101: Ação de login /login
-* R102: Ação de logout /logout
-* R103: Ação de registo /register
-* R104: Ver perfil /users/{id}
-* R105: Ação de editar perfil /users/{id}
-* R106: Ação de editar password users/{id}/password/edit
-* R107: Ação de associação de uma conta PayPal users/{id}/paypal
-* R108: Ação de remoção de uma conta PayPal users/{id}/paypal
+* R101: Ver formulário de login /login
+* R102: Ver formulário de registo /register
+* R103: Ação de login /login
+* R104: Ação de logout /logout
+* R105: Ação de registo /register
+* R106: Ver perfil /users/{id}
+* R107: Ver formulário de edição de perfil /users/{id}/edit
+* R108: Ação de editar perfil /users/{id}/edit
+* R109: Ver formulário de edição de palavra passe /users/{id}/password/edit
+* R110: Ação de editar password /users/{id}/password/edit
+* R111: Ver formulário de associação de conta Paypal /users/{id}/paypal/add
+* R112: Ação de associação de uma conta PayPal users/{id}/paypal
+* R113: Ver formulário de remoção de conta Paypal /users/{id}/paypal/remove
+* R114: Ação de remoção de uma conta PayPal users/{id}/paypal
 
 
-#### R101: Ação de login
+#### R101: Ver formulário de login
+
+|URL |	/login|
+|:---|:----|:-------|
+|Descrição |	Formulário para realizar o login |
+|Método |	GET |
+| IU |	Acedido através de uma navbar presente em todas as páginas |
+|SUBMIT|R103
+| Permissões  |	PUB |
+
+#### R102: Ver formulário de registo
+
+|URL |	/register||
+|:---|:----|:-------|
+|Descrição |	Formulário para se registar na plataforma |
+|Método |	GET |
+| IU |	Acedido através de uma navbar presente em todas as páginas |
+|SUBMIT|R105
+| Permissões  |	PUB |
+
+#### R103: Ação de login
 
 <table>
   <tr>
@@ -89,7 +114,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
 </table>
 
-#### R102: Ação de logout
+#### R104: Ação de logout
 
 <table >
   <tr>
@@ -121,7 +146,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
 </table>
 
-#### R103: Ação de registo
+#### R105: Ação de registo
 <table>
   <tr>
     <td  colspan="2">URL</td>
@@ -158,7 +183,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
   <td > </td>
-    <td >+address: String	</td>
+    <td >?address: String	</td>
     <td >Morada do visitante que se regista.</td>
   </tr>
  <tr>
@@ -176,12 +201,6 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
     <td >+password: String	</td>
     <td >Password do visitante que se regista</td>
   </tr>
- <tr>
-  <td > </td>
-    <td >+confirmPassword: String	</td>
-    <td >Password de confirmação do visitante que se regista</td>
-  </tr>
-  <tr>
   <td > Redirecciona </td>
     <td > R201 </td>
     <td > Sucesso</td>
@@ -197,7 +216,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
 </table>
 
-#### R104: Ver perfil
+#### R106: Ver perfil
 <table>
   <tr>
     <td  colspan="2">URL</td>
@@ -227,7 +246,17 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
 </table>
 
-#### R105: Ação de editar perfil
+#### R107: Ver formulário de edição de perfil
+
+|URL |	/users/{id}/edit||
+|:---|:----|:-------|
+|Descrição |	Formulário para editar a informação do perfil |
+|Método |	GET |
+| IU |	Modal presente em [IU08](https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08)|
+|SUBMIT|R108
+| Permissões  |	DON |
+
+#### R108: Ação de editar perfil
 <table >
   <tr>
     <td  colspan="2">URL</td>
@@ -263,7 +292,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
   <td > </td>
-    <td >+address: String	</td>
+    <td >?address: String	</td>
     <td >Morada do Membro.</td>
   </tr>
  <tr>
@@ -298,11 +327,22 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
 </table>
 
-#### R106: Ação de editar password
-<table >
+#### R109: Ver formulário de edição de palavra passe
+
+|URL |	/users/{id}/password/edit||
+|:---|:----|:-------|
+|Descrição |	Formulário para editar a palavra passe |
+|Método |	GET |
+| IU |	Modal presente em [IU08](https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08)|
+|SUBMIT|R110
+| Permissões  |	DON |
+
+#### R110: Ação de editar password
+
+<table>
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/users/{id}/password/reset</td>
+    <td  colspan="2">/users/{id}/password/edit</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -348,7 +388,17 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
 </table>
 
-#### R107: Ação de associação de uma conta PayPal users/{id}/paypal
+#### R111: Ver formulário de associação da conta Paypal
+
+|URL |	/users/{id}/paypal/add||
+|:---|:----|:-------|
+|Descrição |	Formulário para associar uma conta Paypal à conta do utilizador |
+|Método |	GET |
+| IU |	Modal presente em [IU08](https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08)|
+|SUBMIT|R112
+| Permissões  |	DON |
+
+#### R112: Ação de associação de uma conta PayPal
 <table >
   <tr>
     <td  colspan="2">URL</td>
@@ -388,11 +438,21 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
 </table>
 
-#### R108: Ação de remoção de uma conta PayPal users/{id}/paypal
+#### R113: Ver formulário de remoção da conta Paypal
+
+|URL |	/users/{id}/paypal/remove||
+|:---|:----|:-------|
+|Descrição |	Formulário para desassociar uma conta Paypal à conta do utilizador |
+|Método |	GET |
+| IU |	Modal presente em [IU08](https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08)|
+|SUBMIT|R114
+| Permissões  |	DON |
+
+#### R114: Ação de remoção de uma conta PayPal
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/users/{id}/paypal</td>
+    <td  colspan="2">/users/{id}/paypal/</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -436,8 +496,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 * R206: Ação de criação de um leilão /createAuction
 * R207: Formulário de edição de um leilão /editAuction/{id}
 * R208: Ação de edição de um leilão /editAuction/{id}
-* R209: Ação de licitar num leilão /auction/{id}/bid
-* R210: Ação de atualizar o valor da licitação atual /auction/{id}/bid
+* R209: API para licitar num leilão /api/bid/{id}
+* R210: API para obter o valor da licitação atual /api/bid/{id}
 
 #### R201: Ver página inicial com leilões
 
@@ -472,7 +532,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 
 |URL |	/api/search||
 |:---|:----|:-------|
-|Descrição |	Submete uma pesquisa de leilões, retornando a mesma página com os resultados |
+|Descrição |	Submete uma pesquisa de leilões, retornando JSON com os resultados. É usada extensivamente, não só para pesquisa mas como também para listas pessoais e moderação |
 |Método |	GET |
 |Parâmetros|
 ||?keywords: string | Palavras-chave da pesquisa
@@ -482,6 +542,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 ||?isbn: string | ISBN
 ||?lang: string | Idioma
 ||?category: string | Categoria
+||?isApproved: boolean | Leilão aprovado
+||?isEnded: boolean | Leilão terminado
 ||?maxBid: Float | Valor máximo da licitação atual
 ||?profile_search: string| Pode ser do tipo, "wishlist", "myauctions", "auctions_im_in", "history" ou nulo. Caso seja diferente de nulo o idMember tmb não pode ter valor nulo.
 ||?idMember: Integer| Id do membro que se pretende pesquisar os leilões aos quais ele está relacionado.
@@ -496,10 +558,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |Método |	GET |
 |Parâmetros|+id: Integer| Chave primária de um leilão
 | IU |	[IU03](https://tiagolascasas.github.io/lbaw1726/auction.html) |
-|Chamadas ajax|R210,R203
-|Retornos|200 OK| O pedido foi realizado com sucesso
-||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
-||404 Not Found| Erro caso o leilão com o id especificado não exista
+|Chamadas ajax|R210
 | Permissões  |	MMB |
 
 #### R205: Formulário de criação de um leilão
@@ -536,9 +595,9 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |Descrição |	Formulário para a edição de um leilão existente |
 |Método |	GET |
 |Parâmetros|+id: Integer| Chave primária de um leilão
-| IU | IUXX (sem mockup elaborada)|
+| IU | Modal presente em  [IU17](https://tiagolascasas.github.io/lbaw1726/auction_seller.html)|
 |SUBMIT|R208
-| Permissões  |	DON |
+| Permissões  |	VDD |
 
 #### R208: Ação de pedido de edição de um leilão
 
@@ -549,22 +608,21 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |Parâmetros|+id: Integer| Chave primária de um leilão
 |Corpo do pedido|+desc: string | Descrição do item
 ||?img: string | Novas imagens
-|Retornos|200 OK| O pedido de edição foi realizado com suceso
-||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
-||404 Not Found| Erro caso o leilão com o id especificado não exista
 |Redirecciona|R204
 | Permissões  |	VDD |
 
-#### R209: Ação de licitar num leilão
+#### R209: API para licitar num leilão
 
-|URL |	/auction/{id}/bid||
+|URL |	/api/bid/{id}||
 |:---|:----|:-------|
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	POST |
 |Parâmetros|+id: Integer | Chave primária de um leilão
 |Corpo do pedido|+userID: Integer | ID do utilizador autenticado
 ||+value: Float | Nova licitação
-|Redirecciona|R204
+|Retorna|200|Licitação concluída com sucesso
+||400|Erro especificado no header HTTP
+||404|Leilão especificado não existe ou é inválido
 | Permissões  |	MMB |
 
 #### R210: API para obter o valor da licitação atual
@@ -596,7 +654,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Descrição |	Ver a wishlist do utilizador autenticado |
 |Método |	GET |
 | IU |	[IU013](https://tiagolascasas.github.io/lbaw1726/wishlist.html) |
-|Chamadas Ajax|R203
+|Chamadas Ajax|R203, R210
 | Permissões  |	MMB |
 
 #### R302: Ação de adição de um leilão à __wishlist__
@@ -606,9 +664,8 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	PUT |
 |Parâmetros|+id: Integer | Chave primária de um leilão
-|Retornos|200 OK| O pedido de adição foi realizado com sucesso
-||400 Bad Request| Erro cuja causa está identificada no *header* HTTP
-||404 Not Found| Erro caso o leilão com o id especificado não exista
+|Redireciona|R204|Sucesso
+||R204|Insucesso
 | Permissões  |	MMB |
 
 #### R303: Ação de remoção de um leilão da __wishlist__
@@ -618,9 +675,8 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Descrição |	Aumenta o valor da licitação de um leilão |
 |Método |	DELETE |
 |Parâmetros|?id: Integer | Chave primária de um leilão
-|Retornos|200 OK| O pedido de remoção foi realizado com sucesso
-||400 Bad Request| Erro cuja causa está identificada no __header__ HTTP
-||404 Not Found| Erro caso o leilão com o id especificado não exista
+|Redireciona|R301|Sucesso
+||R301|Insucesso
 | Permissões  |	MMB |
 
 #### R304: Ver o histórico de leilões
@@ -631,7 +687,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Método |	GET |
 | IU |	[IU012](https://tiagolascasas.github.io/lbaw1726/history.html) |
 |Chamadas AJAX|R203
-| Permissões  |	MMB |
+| Permissões  |	MMB, VDD |
 
 #### R305: Ver a lista dos leilões criados
 
@@ -653,17 +709,35 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Chamadas AJAX|R203
 | Permissões  |	MMB |
 
-### Módulo 04: Notificações
+### Módulo 04: Comunicação
 
-Estes são os pontos de extremidade disponíveis no Módulo de Notificações:
-* R401: Acção listagem de notificações não lidas /notifications
-* R402: Acção marcar notificação como lida /notifications
+Estes são os pontos de extremidade disponíveis no Módulo de Comunicação:
 
-#### R401: Acção listagem de notificações não lidas
+* R401: Ver a lista das notificações não lidas /notifications
+* R402: API para listagem de notificações não lidas /api/notifications
+* R403: API para marcar notificação como lida /api/notifications/{id}
+* R404: Ver Mensagens /messages/{id}
+* R405: Formulário para criar Mensagem /messages/{id}/new_message
+* R406: Acção para criar Mensagem /messages/{id}/new_message
+* R407: Ação para listar comentários /users/{id}/comments
+* R408: Acção para criar comentário /users/{id}/comments
+* R409: Ação de reprovar comentário /users/{id}/comments/remove
+
+#### R401: Ver a lista das notificações não lidas
+
+|URL |	/notifications||
+|:---|:----|:-------|
+|Descrição |	Ver a lista das notificações não lidas |
+|Método |	GET |
+| IU | Dropdown presente na navbar de todas as páginas |
+|Chamadas AJAX|R402, R403
+| Permissões  |	DON |
+
+#### R402: API para listagem de notificações não lidas
 <table >
    <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/notifications</td>
+    <td  colspan="2">/api/notifications</td>
    </tr>
    <tr>
     <td  colspan="2">Descrição</td>
@@ -684,16 +758,16 @@ Estes são os pontos de extremidade disponíveis no Módulo de Notificações:
    </tr>
    <tr>
     <td  colspan="2">Permissões</td>
-    <td  colspan="2"> MMB </td>
+    <td  colspan="2"> DON </td>
    </tr>
 </table>
 
 
-#### R402: Acção marcar notificação como lida.
+#### R403: API para marcar notificação como lida
 <table >
    <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/notifications</td>
+    <td  colspan="2">/api/notifications/{id}</td>
    </tr>
    <tr>
     <td  colspan="2">Descrição</td>
@@ -730,21 +804,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Notificações:
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
-    <td  colspan="2"> MMB </td>
+    <td  colspan="2"> DON </td>
   </tr>
 </table>
 
-### Módulo 05: Comunicação entre membros
-
-Estes são os pontos de extremidade disponíveis no Módulo de Comunicação entre membros.
-* R501: Ver Mensagens /messages/{id}
-* R502: Formulário para criar Mensagem /messages/{id}/new_message
-* R503: Acção para criar Mensagem /messages/{id}/new_message
-* R504: Ação para listar comentários /users/{id}/comments
-* R505: Acção para criar comentário /users/{id}/comments
-* R506: Ação de reprovar comentário /users/{id}/comments/remove
-
-#### R501: Ver Mensagens
+#### R404: Ver Mensagens
 <table >
    <tr>
     <td  colspan="2">URL</td>
@@ -764,17 +828,13 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
     <td >Chave primária do membro autenticado</td>
    </tr>
    <tr>
-    <td  colspan="2">Corpo da resposta</td>
-    <td >JSON501</td>
-   </tr>
-   <tr>
     <td  colspan="2">Permissões</td>
     <td  colspan="2"> MMB </td>
    </tr>
 </table>
 
 
-#### R502:  Formulário criar Mensagem
+#### R405:  Formulário criar Mensagem
 <table >
    <tr>
     <td  colspan="2">URL</td>
@@ -795,7 +855,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    </tr>
    <tr>
     <td colspan="2">Submit </td>
-    <td >R503</td>
+    <td >R406</td>
    </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -803,7 +863,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
   </tr>
 </table>
 
-#### R503: Acção para criar Mensagem
+#### R406: Acção para criar Mensagem
 
 <table >
    <tr>
@@ -836,12 +896,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
 
     <tr>
   <td > Redirecciona </td>
-    <td >R501	</td>
+    <td >R404	</td>
     <td > Sucesso</td>
   </tr>  
     <tr>
   <td >  </td>
-     <td > R502	</td>
+     <td > R404	</td>
     <td > Insucesso </td>
   </tr>
    <tr>
@@ -850,7 +910,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    </tr>
 </table>
 
-#### R504: Ação para listar comentários
+#### R407: Ver lista de comentários
 <table>
    <tr>
     <td  colspan="2">URL</td>
@@ -870,8 +930,8 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
     <td >Chave primária do membro</td>
    </tr>
    <tr>
-    <td colspan="2">Corpo da resposta</td>
-    <td >JSON504</td>
+    <td colspan="2">IU</td>
+    <td colspan="2"> [IU08](https://tiagolascasas.github.io/lbaw1726/profile_owner.html) </td>
    </tr>
    <tr>
     <td colspan="2">Permissões</td>
@@ -879,7 +939,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    </tr>
 </table>
 
-#### R505: Acção para criar comentário.
+#### R405:  Formulário para criar um comentário
 <table >
    <tr>
     <td  colspan="2">URL</td>
@@ -887,16 +947,16 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    </tr>
    <tr>
     <td  colspan="2">Descrição</td>
-    <td  colspan="2">Cria uma novo comentário no perfil de um membro especificado.</td>
+    <td  colspan="2">Formulário de criação de um comentário</td>
    </tr>
    <tr>
     <td  colspan="2">Método</td>
-    <td  colspan="2">POST</td>
+    <td  colspan="2">GET</td>
    </tr>
    <tr>
     <td >Parâmetros</td>
     <td >+id: Integer	</td>
-    <td >Chave primária do membro</td>
+    <td >Chave primária do dono do perfil</td>
    </tr>
    <tr>
     <td >Corpo do pedido</td>
@@ -914,19 +974,63 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
     <td >Chave primária do membro que enviou o comentário</td>
   </tr>
    <tr>
+    <td colspan="2">Submit </td>
+    <td >R408</td>
+   </tr>
+  <tr>
+    <td  colspan="2">Permissões</td>
+    <td  colspan="2"> MMB </td>
+  </tr>
+</table>
+
+#### R408: Acção para criar comentário
+<table >
+   <tr>
+    <td  colspan="2">URL</td>
+    <td  colspan="2">/users/{id}/comments</td>
+   </tr>
+   <tr>
+    <td  colspan="2">Descrição</td>
+    <td  colspan="2">Cria uma novo comentário no perfil de um membro especificado.</td>
+   </tr>
+   <tr>
+    <td  colspan="2">Método</td>
+    <td  colspan="2">POST</td>
+   </tr>
+   <tr>
+    <td >Parâmetros</td>
+    <td >+id: Integer	</td>
+    <td >Chave primária do dono do perfil</td>
+   </tr>
+   <tr>
+    <td >Corpo do pedido</td>
+    <td >+liked: boolean	</td>
+    <td >Comentário positivo ou negativo</td>
+  </tr>
+   <tr>
+    <td ></td>
+    <td >+comment_text: text	</td>
+    <td >Corpo do comentário</td>
+  </tr>
+   <tr>
+    <td ></td>
+    <td >+idSender: Integer	</td>
+    <td >Chave primária do membro que enviou o comentário</td>
+  </tr>
+  <tr>
     <td ></td>
     <td >+idReceiver: Integer	</td>
     <td >Chave primária do membro a quem o comentário foi dado</td>
-   </tr>
+  </tr>
   <tr>
-    <td >Retorna</td>
-    <td >200 OK	</td>
-    <td >Comentário enviado com sucesso</td>
+    <td >Redireciona</td>
+    <td >R407	</td>
+    <td >Sucesso</td>
   </tr>  
   <tr>
     <td ></td>
-    <td >400 Pedido Incorreto	</td>
-    <td >Mensagem de erro é especificada via HTTP header.</td>
+    <td >R407</td>
+    <td >Insucesso</td>
   </tr>  
    <tr>
     <td  colspan="2">Permissões</td>
@@ -934,7 +1038,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
    </tr>
 </table>
 
-#### R506: Ação de remover comentário
+#### R409: Ação de remover comentário
 
 <table >
   <tr>
@@ -965,21 +1069,14 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
     <td > Id do comentário</td>
   </tr>
   <tr>
-    <td >Retorna</td>
-    <td  colspan="2">Permissões</td>
-    <td  colspan="2"> MMB </td>
-    <td >200 OK	</td>
-    <td >O comentário de feedback foi removido com sucesso.</td>
+    <td >Redireciona</td>
+    <td >R407	</td>
+    <td >Sucesso</td>
   </tr>  
   <tr>
     <td ></td>
-    <td >400 Pedido Incorreto	</td>
-    <td >Mensagem de erro é especificada via HTTP header.</td>
-  </tr>  
-  <tr>
-    <td ></td>
-    <td >404 Não encontrado.	</td>
-    <td >Comentário de feedback com a chave primária especificada não encontrado.</td>
+    <td >R407</td>
+    <td >Insucesso</td>
   </tr>
   <tr>
     <td  colspan="2">Permissões</td>
@@ -987,31 +1084,31 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação ent
   </tr>
 </table>
 
-### Módulo 06: Autentificação e área de gestão admin
+### Módulo 05: Autentificação e área de gestão admin
 
 Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e área de gestão admin:
-* R601: Formulário de login admin /adminLogin
-* R602: Ação de login admin /adminLogin
-* R603: Ver painel do admin /admin
-* R604: Aceitar pedido de remoção de conta /admin/terminate
-* R605: Ignorar pedido de remoção de conta /admin/ignore
-* R606: Ação suspensão /admin/suspend
-* R607: Ação de reativar suspensão /admin/reactivate
-* R608: Ação de banir permanentemente /admin/ban
-* R609: Ação de promover a moderador /admin/promote_moderator
-* R610: Ação de revocar privilegios de moderador /admin/remoke_moderator
+* R501: Formulário de login admin /adminLogin
+* R502: Ação de login admin /adminLogin
+* R503: Ver painel do admin /admin
+* R504: API para aceitar um pedido de remoção de conta /api/admin/terminate
+* R505: API para ignorar um pedido de remoção de conta /api/admin/ignore
+* R506: API para suspender um utilizador /api/admin/suspend
+* R507: API para reativar um utilizador /api/admin/reactivate
+* R508: API para banir permanentemente /api/admin/ban
+* R509: API para promover a moderador /api/admin/promote_moderator
+* R510: API parae revocar privilegios de moderador /api/admin/remoke_moderator
 
-#### R601: Formulário de login admin
+#### R501: Formulário de login admin
 
 |URL |	/adminLogin|
 |:---:|:----:|
 |Descrição |	Página com formulário para login do Administrador. |
 |Método |	GET |
 | IU |	[IU016](https://tiagolascasas.github.io/lbaw1726/adminLogin.html) |
-| SUBMIT |R602	 |
+| SUBMIT |R502	 |
 | Permissões  |	PUB |
 
-#### R602: Ação de login admin
+#### R502: Ação de login admin
 
 <table >
   <tr>
@@ -1038,12 +1135,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
   <tr>
   <td > Redirecciona </td>
-    <td > R603 	</td>
+    <td > R503 	</td>
     <td > Sucesso</td>
   </tr>  
     <tr>
   <td >  </td>
-     <td > R601	</td>
+     <td > R501	</td>
     <td > Insucesso </td>
   </tr>  
   <tr>
@@ -1053,22 +1150,22 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   <tr>
 </table>
 
-#### R603: Ver painel do admin
+#### R503: Ver painel do admin
 
 |URL |	/admin|
 |:---:|:----:|
 |Descrição |	Obter pedidos de remoção de conta. |
 |Método |	GET |
 | IU |	[IU015](https://tiagolascasas.github.io/lbaw1726/admin.html) |
-|Corpo da resposta|JSON603|
+|Chamadas AJAX| R504, R505, R506, R507, R508, R509, R510
 | Permissões  |	ADM |
 
-#### R604: Aceitar pedido de remoção de conta
+#### R504: API para aceitar um pedido de remoção de conta
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin/terminate</td>
+    <td  colspan="2">/api/admin/terminate</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1104,12 +1201,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
 </table>
 
-#### R605: Ignorar pedido de remoção de conta
+#### R505: API para ignorar um pedido de remoção de conta
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin/ignore</td>
+    <td  colspan="2">/api/admin/ignore</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1145,12 +1242,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
 </table>
 
-#### R606: Ação suspensão
+#### R506: API para suspender um utilizador
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin/suspend</td>
+    <td  colspan="2">/api/admin/suspend</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1186,12 +1283,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
 </table>
 
-#### R607: Ação de reativar suspensão
+#### R507: API para reativar um utilizador
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin/reactivate</td>
+    <td  colspan="2">/api/admin/reactivate</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1227,12 +1324,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
 </table>
 
-#### R608: Ação de banir permanentemente
+#### R508: API para banir permanentemente
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin/ban</td>
+    <td  colspan="2">/api/admin/ban</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1268,12 +1365,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
 </table>
 
-#### R609: Ação de promover a moderador
+#### R509: API para promover a moderador
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin/promote_moderator</td>
+    <td  colspan="2">/api/admin/promote_moderator</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1309,16 +1406,16 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
 </table>
 
-#### R610: Ação de revocar privilegios de moderador
+#### R510: API para revogar privilégios de moderador
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/admin/revoke_moderator</td>
+    <td  colspan="2">/api/admin/revoke_moderator</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
-    <td  colspan="2"> Recurso que revoca de moderador uma conta do membro especificado anteriormente promovida a moderador. </td>
+    <td  colspan="2"> Recurso que revoga de moderador uma conta do membro especificado anteriormente promovida a moderador. </td>
   </tr>
   <tr>
     <td  colspan="2">Método</td>
@@ -1350,29 +1447,32 @@ Estes são os pontos de extremidade disponíveis no Módulo de Autenticação e 
   </tr>
 </table>
 
-### Módulo 07: Moderação de leilões
+### Módulo 06: Moderação de leilões
 
 Estes são os pontos de extremidade disponíveis no Módulo de Moderação de leilões:
-* R701: Ver anúncios que aguardam aprovação /moderator
-* R702: Ação de aprovar anúncio /moderator/approve_auction
-* R703: Ação de reprovar anúncio /moderator/remove_auction
+* R601: Ver anúncios que aguardam aprovação /moderator
+* R602: API para aprovar um anúncio /api/moderator/approve_auction
+* R603: API para reprovar um anúncio /api/moderator/remove_auction
+* R604: Ver pedidos de edição de um anúncio /modifications
+* R605: API para aprovar a modificação de um anúncio /api/moderator/approve_modification
+* R606: API para rejeitar a modificação de um anúncio /api/moderator/reject_modification
 
-#### R701: Ver anúncios que aguardam aprovação
+#### R601: Ver anúncios que aguardam aprovação
 
 |URL |	/moderator|
 |:---|:----|
 |Descrição |	Obter pedidos de aprovação do anúncio. |
 |Método |	GET |
-| IU |	[IU014](https://github.com/tiagolascasas/lbaw1726/blob/master/artifacts/A3/A3.md#iu014-painel-do-moderador) |
+| IU |	[IU014](https://tiagolascasas.github.io/lbaw1726/moderator.html) |
 |Chamadas AJAX|R203|
 | Permissões  |	MDD |
 
-#### R702: Ação de aprovar anúncio
+#### R602: API para aprovar um anúncio
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/moderator/approve_auction</td>
+    <td  colspan="2">/api/moderator/approve_auction</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1380,7 +1480,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Moderação de le
   </tr>
   <tr>
     <td  colspan="2">Método</td>
-    <td  colspan="2">POST</td>
+    <td  colspan="2">PUT</td>
   </tr>
   <tr>
     <td > Corpo do pedido </td>
@@ -1409,12 +1509,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Moderação de le
   </tr>
 </table>
 
-#### R703: Ação de reprovar anúncio
+#### R603: API para reprovar um anúncio
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/moderator/remove_auction</td>
+    <td  colspan="2">/api/moderator/remove_auction</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1422,7 +1522,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Moderação de le
   </tr>
   <tr>
     <td  colspan="2">Método</td>
-    <td  colspan="2">POST</td>
+    <td  colspan="2">PUT</td>
   </tr>
   <tr>
     <td > Corpo do pedido </td>
@@ -1450,17 +1550,108 @@ Estes são os pontos de extremidade disponíveis no Módulo de Moderação de le
   </tr>
 </table>
 
+#### R604: Ver pedidos de edição de um anúncio
+
+|URL |	/modifications|
+|:---|:----|
+|Descrição |	Obter pedidos de aprovação do anúncio. |
+|Método |	GET |
+| IU |	[IU014](https://tiagolascasas.github.io/lbaw1726/review_modifications.html) |
+|Chamadas AJAX|R203|
+| Permissões  |	MDD |
+
+#### R605: API para aprovar a modificação de um anúncio
+
+<table >
+  <tr>
+    <td  colspan="2">URL</td>
+    <td  colspan="2">/api//moderator/approve_modification</td>
+  </tr>
+  <tr>
+    <td  colspan="2">Descrição</td>
+    <td  colspan="2"> Recurso que aprova um pedido de modificação de um leilão. </td>
+  </tr>
+  <tr>
+    <td  colspan="2">Método</td>
+    <td  colspan="2">PUT</td>
+  </tr>
+  <tr>
+    <td > Corpo do pedido </td>
+    <td > +id: integer </td>
+    <td > Id do pedido de modificação</td>
+  </tr>
+  <tr>
+    <td >Retorna</td>
+    <td >200 OK	</td>
+    <td >O pedido foi aprovado com sucesso</td>
+  </tr>  
+  <tr>
+    <td ></td>
+    <td >400 Pedido Incorreto	</td>
+    <td >Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td ></td>
+    <td >404 Não encontrado.	</td>
+    <td >Pedido com a chave primária especificada não encontrado.</td>
+  </tr>
+  <tr>
+    <td  colspan="2">Permissões</td>
+    <td  colspan="2"> MDD </td>
+  </tr>
+</table>
+
+#### R606: API para rejeitar a modificação de um anúncio
+
+<table >
+  <tr>
+    <td  colspan="2">URL</td>
+    <td  colspan="2">/api//moderator/reject_modification</td>
+  </tr>
+  <tr>
+    <td  colspan="2">Descrição</td>
+    <td  colspan="2"> Recurso que rejeita um pedido de modificação de um leilão. </td>
+  </tr>
+  <tr>
+    <td  colspan="2">Método</td>
+    <td  colspan="2">DELETE</td>
+  </tr>
+  <tr>
+    <td > Corpo do pedido </td>
+    <td > +id: integer </td>
+    <td > Id do pedido de modificação</td>
+  </tr>
+  <tr>
+    <td >Retorna</td>
+    <td >200 OK	</td>
+    <td >O pedido foi rejeitado com sucesso</td>
+  </tr>  
+  <tr>
+    <td ></td>
+    <td >400 Pedido Incorreto	</td>
+    <td >Mensagem de erro é especificada via HTTP header.</td>
+  </tr>  
+  <tr>
+    <td ></td>
+    <td >404 Não encontrado.	</td>
+    <td >Pedido com a chave primária especificada não encontrado.</td>
+  </tr>
+  <tr>
+    <td  colspan="2">Permissões</td>
+    <td  colspan="2"> MDD </td>
+  </tr>
+</table>
 
 
-### Módulo 08: Páginas estáticas
+### Módulo 07: Páginas estáticas
 
 Estes são os pontos de extremidade disponíveis no Módulo de Páginas Estáticas:
-* R801: Página Sobre /about
-* R802: Questões Frequentes /faq
-* R803: Contactos /contact
-* R804: Enviar mensagem de contacto /contact
+* R701: Página Sobre /about
+* R702: Questões Frequentes /faq
+* R703: Contactos /contact
+* R704: Enviar mensagem de contacto /contact
 
-#### R801 Página Sobre
+#### R701 Página Sobre
 
 |URL |	/about|
 |:---:|:----:|
@@ -1469,7 +1660,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Páginas Estátic
 | IU |	[IU05](https://tiagolascasas.github.io/lbaw1726/about.html) |
 | Permissões  |	PUB |
 
-#### R802: Questões Frequentes
+#### R702: Questões Frequentes
 
 |URL |	/faq|
 |:---:|:----:|
@@ -1478,16 +1669,17 @@ Estes são os pontos de extremidade disponíveis no Módulo de Páginas Estátic
 | IU |	[IU07](https://tiagolascasas.github.io/lbaw1726/faq.html) |
 | Permissões  |	PUB |
 
-#### R803: Contactos
+#### R703: Contactos
 
 |URL |	/contact|
 |:---:|:----:|
 |Descrição |	Obter página Contactos. |
 |Método |	GET |
 | IU |	[IU06](https://tiagolascasas.github.io/lbaw1726/contact.html) |
+|Chamadas AJAX|R704
 | Permissões  |	PUB |
 
-#### R804: Enviar mensagem de contacto
+#### R704: Enviar mensagem de contacto
 
 <table >
   <tr>
@@ -1536,31 +1728,6 @@ Estes são os pontos de extremidade disponíveis no Módulo de Páginas Estátic
 
 
 ## 4. JSON/XML Types
-
-
-JSON104: Informação de um membro
-```
-{
-  "member":[
-    "id":"3",
-    "address": "Rua Texeira Pascoais,41",
-    "age": "21",
-    "email": "up201405612@fe.up.pt",
-    "name": "Rúben Torres",
-    "password": "BBCVDFFGHFJHADSAFDTHGR",
-    "paypalEmail": "up201405612@fe.up.pt",
-    "phone": "914739821",
-    "postalCode": "4440-399",
-    "username": RTorres,
-    "dateCreated": "2001-12-23 14:39:53.662522-05",
-    "member_status": "normal",
-    "dateBanned": "NULL",
-    "dateSuspended": "NULL",
-    "dateTerminated": "NULL",
-    "idCountry": "1"
-  ]
-}
-```
 
 JSON201: lista simplificada de leilões
 ```
@@ -1624,74 +1791,17 @@ JSON401: Lista de notificações
 }
 ```
 
-JSON501: Lista de mensagens
-```
-{
-  "message": [
-    {
-      "id": "5",
-      "dateSent": "2001-12-23 14:39:53.662522-05",
-      "message_text": "Hey man!",
-      "idSender": "2",
-      "idReceiver": "3"
-    },
-    {
-      "id": "10",
-      "dateSent": "2001-12-31 09:50:53.662522-05",
-			"message_text": "How is it going?",
-      "idSender": "3",
-      "idReceiver": "2"
-    }
-  ]
-}
-```
+## Histórico de revisões
 
-JSON504: Lista de comentários
-```
-{
-  "comment": [
-    {
-      "id": "5",
-      "datePosted": "2001-12-23 14:39:53.662522-05",
-      "liked": "TRUE",
-      "comment_text": "Everything went great",
-      "is_removed": "FALSE",
-      "idParent": "NULL",
-      "idSender": "2",
-      "idReceiver": "3"
-    },
-    {
-      "id": "10",
-     	"datePosted": "2001-12-23 14:39:53.662522-05",
-      "liked": "TRUE",
-      "comment_text": "T",
-      "is_removed": "FALSE",
-      "idParent": "5",
-      "idSender": "3",
-      "idReceiver": "2"
-    }
-  ]
-}
-```
+Mudanças feitas à primeira submissão:
+1. Removidos retornos errados em recursos não AJAX, substituindo-os por redirecionamentos;
+2. Adicionados recursos referentes a elementos contidos numa navbar presente em todas as páginas, em especial no módulo 1;
+3. Foi corrigidas algumas chamadas entre formulários, ações e AJAX, em particular no módulo do moderador e administrador;
+4. Agregação dos módulos da comunicação e das notificações num só;
+5. Remoção de JSON desnecessário;
+6. Corrigidos parâmetros opcionais que tinham sido marcados como obrigatórios
 
-JSON603: Pedidos de remoção de conta
-```
-{
-    "requested_termination": [
-    {
-      "id": "1",
-      "dateRequested": "2001-12-23 14:39:53.662522-05",
-      "idMember": "2"
-    },
-    {
-      "id": "2",
-      "dateRequested": "2001-12-23 14:39:53.662522-05",
-      "idMember": "3"
-    }
-}
-```
 ***
-
 
 GROUP1726, 11/4/2018
 
