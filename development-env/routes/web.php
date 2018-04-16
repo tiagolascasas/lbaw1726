@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return redirect('login');
+    return redirect('about');
+});
+
+Route::get('about', function(){
+    return view('about');
 });
 
 // Cards
