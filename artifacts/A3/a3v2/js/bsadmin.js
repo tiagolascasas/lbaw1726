@@ -152,7 +152,6 @@ if (loginButton !== null) {
                 <a class="dropdown-item" href="auctionsIm_in.html">Auctions I'm in</a>
                 <a class="dropdown-item" href="history.html">History</a>
                 <a class="dropdown-item" href="wishlist.html">WishList</a>
-                <a class="dropdown-item" href="messages.html">Messages</a>
                 <a class="dropdown-item" href="#">Logout</a>
             </div>
         </li>`;
