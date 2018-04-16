@@ -597,7 +597,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |Parâmetros|+id: Integer| Chave primária de um leilão
 | IU | Modal presente em  [IU17](https://tiagolascasas.github.io/lbaw1726/auction_seller.html)|
 |SUBMIT|R208
-| Permissões  |	VDD |
+| Permissões  |	DON |
 
 #### R208: Ação de pedido de edição de um leilão
 
@@ -609,7 +609,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Leilões:
 |Corpo do pedido|+desc: string | Descrição do item
 ||?img: string | Novas imagens
 |Redirecciona|R204
-| Permissões  |	VDD |
+| Permissões  |	DON |
 
 #### R209: API para licitar num leilão
 
@@ -687,7 +687,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Método |	GET |
 | IU |	[IU012](https://tiagolascasas.github.io/lbaw1726/history.html) |
 |Chamadas AJAX|R203
-| Permissões  |	MMB, VDD |
+| Permissões  |	MMB, DON |
 
 #### R305: Ver a lista dos leilões criados
 
@@ -696,8 +696,8 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Descrição |	Ver a lista dos leilões criados pelo utilizador autenticado |
 |Método |	GET |
 | IU |	[IU10](https://tiagolascasas.github.io/lbaw1726/myAuctions.html) |
-|Chamadas AJAX|R203
-| Permissões  |	VDD |
+|Chamadas AJAX|R203,R210
+| Permissões  |	DON |
 
 #### R306: Ver a lista dos leilões em que se está a participar
 
@@ -706,7 +706,7 @@ Estes são os pontos de extremidade disponíveis no Módulo das Listas do Utiliz
 |Descrição |	Ver a lista dos leilões ativos em que o utilizador autenticado está a participar |
 |Método |	GET |
 | IU |	[IU011](https://tiagolascasas.github.io/lbaw1726/auctionsIm_in.html) |
-|Chamadas AJAX|R203
+|Chamadas AJAX|R203,R210
 | Permissões  |	MMB |
 
 ### Módulo 04: Comunicação
@@ -718,10 +718,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação:
 * R403: API para marcar notificação como lida /api/notifications/{id}
 * R404: Ver Mensagens /messages/{id}
 * R405: Formulário para criar Mensagem /messages/{id}/new_message
-* R406: Acção para criar Mensagem /messages/{id}/new_message
+* R406: Ação para criar Mensagem /messages/{id}/new_message
 * R407: Ação para listar comentários /users/{id}/comments
-* R408: Acção para criar comentário /users/{id}/comments
-* R409: Ação de reprovar comentário /users/{id}/comments/remove
+* R408: Formulário para criar um comentário /users/{id}
+* R409: Ação para criar comentário /users/{id}/comments
+* R410: Ação de reprovar comentário /users/{id}/comments/remove
 
 #### R401: Ver a lista das notificações não lidas
 
@@ -748,7 +749,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação:
     <td  colspan="2">GET</td>
    </tr>
    <tr>
-    <td colspan="2">Parâmetros</td>
+    <td >Parâmetros</td>
     <td >+id: Integer	</td>
     <td >Chave primária de um membro</td>
    </tr>
@@ -888,13 +889,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação:
     <td >+message_text: text	</td>
     <td >Corpo da mensagem</td>
   </tr>
- <tr>
+  <tr>
     <td ></td>
     <td >+idReceiver: Integer	</td>
     <td >Chave primária do membro a quem foi enviada a mensagem</td>
    </tr>
-
-    <tr>
+  <tr>
   <td > Redirecciona </td>
     <td >R404	</td>
     <td > Sucesso</td>
@@ -910,7 +910,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação:
    </tr>
 </table>
 
-#### R407: Ver lista de comentários
+#### R407: Ação para listar comentários
 <table>
    <tr>
     <td  colspan="2">URL</td>
@@ -931,7 +931,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação:
    </tr>
    <tr>
     <td colspan="2">IU</td>
-    <td colspan="2"> [IU08](https://tiagolascasas.github.io/lbaw1726/profile_owner.html) </td>
+    <td colspan="2"> <a href="https://tiagolascasas.github.io/lbaw1726/profile_owner.html">IU08</a> </td>
    </tr>
    <tr>
     <td colspan="2">Permissões</td>
@@ -939,11 +939,11 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação:
    </tr>
 </table>
 
-#### R405:  Formulário para criar um comentário
+#### R408:  Formulário para criar um comentário
 <table >
    <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/users/{id}/comments</td>
+    <td  colspan="2">/users/{id}</td>
    </tr>
    <tr>
     <td  colspan="2">Descrição</td>
@@ -983,7 +983,7 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação:
   </tr>
 </table>
 
-#### R408: Acção para criar comentário
+#### R409: Acção para criar comentário
 <table >
    <tr>
     <td  colspan="2">URL</td>
@@ -1038,12 +1038,12 @@ Estes são os pontos de extremidade disponíveis no Módulo de Comunicação:
    </tr>
 </table>
 
-#### R409: Ação de remover comentário
+#### R410: Ação de remover comentário
 
 <table >
   <tr>
     <td  colspan="2">URL</td>
-    <td  colspan="2">/users/{id_usr}/comments/{id_comm}remove</td>
+    <td  colspan="2">/users/{id}/comments/remove</td>
   </tr>
   <tr>
     <td  colspan="2">Descrição</td>
@@ -1708,16 +1708,6 @@ Estes são os pontos de extremidade disponíveis no Módulo de Páginas Estátic
   <td > </td>
     <td >+message: string	</td>
     <td >Mensagem do utilizador </td>
-  </tr>  
-  <tr>
-    <td >Retorna</td>
-    <td >200 OK	</td>
-    <td >Mensagem enviada com sucesso</td>
-  </tr>  
-  <tr>
-    <td ></td>
-    <td >400 Pedido Incorreto	</td>
-    <td >Mensagem de erro é especificada via HTTP header.</td>
   </tr>  
   <tr>
     <td  colspan="2">Permissões</td>
