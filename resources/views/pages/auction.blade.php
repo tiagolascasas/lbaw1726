@@ -5,7 +5,7 @@
 @section('content')
 
     <!-- Page Content -->
-            <main>
+            <main  data-id="{{$auction->id}}">
               <div class="container p-5">
                 <table class="table">
                     <tbody>
@@ -19,10 +19,10 @@
                                     </ol>
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
-                                            <img class="d-block w-100" src="img/leviathanwakes.jpg" alt="First slide">
+                                            <img class="d-block w-100" src="{{ asset('img/book.png') }}" alt="First slide">
                                         </div>
                                         <div class="carousel-item">
-                                            <img class="d-block w-100" src="img/leviathanwakes_1.jpg" alt="Second slide">
+                                            <img class="d-block w-100" src="{{ asset('img/book.png') }}" alt="Second slide">
                                         </div>
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -36,11 +36,11 @@
                                 </div>
                             </td>
                             <td style="width: 16.66%"><strong>Title</strong></td>
-                            <td>Leviathan Wakes (The Expanse #1)</td>
+                            <td>{{$auction->title}}</td>
                         </tr>
                         <tr>
                             <td><strong>Author</strong></td>
-                            <td>James S.A. Corey</td>
+                            <td> {{$auction->author}} </td>
                         </tr>
                         <tr>
                             <td><strong>Publisher</strong></td>
@@ -48,7 +48,7 @@
                         </tr>
                         <tr>
                             <td><strong>ISBN</strong></td>
-                            <td>1841499889</td>
+                            <td>{{$auction->isbn}}</td>
                         </tr>
                         <tr>
                             <td><strong>Language</strong></td>
@@ -61,19 +61,19 @@
 
                         <tr>
                             <td><strong>Description</strong></td>
-                            <td>First edition of the book, brand-new</td>
+                            <td>{{$auction->description}}</td>
                         </tr>
                         <tr>
                             <td><strong>Time left: </strong>
-                                <p class="text-danger">5 mins</p>
+                                <p class="text-danger">x mins</p>
                             </td>
                             <td><strong>Current bid: </strong>
-                                <p class="text-success">€ 7.16</td>
+                                <p class="text-success">€ 0.00</td>
                             <td>
                                 <form>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <input type="number" min="7.17" placeholder="8.17" step="0.01" class="form-control">
+                                            <input type="number" min="0.00" placeholder="0.00" step="0.01" class="form-control">
                                         </div>
                                     </div>
                                 </form>
@@ -82,7 +82,7 @@
                                 <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-outline-secondary p-2 " type="button" onclick="profile_func()">nelsoncosta</button>
+                                <a class="button btn btn-sm btn-outline-secondary p-2 " type="button" href="{{ url('profile/') }}">nelsoncosta</a>
                             </td>
                         </tr>
                     </tbody>

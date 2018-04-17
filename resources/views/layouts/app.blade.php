@@ -26,7 +26,7 @@
             <i class="fa fa-bars"></i>
         </a>
 
-        <a class="navbar-brand" href="home">BOOKHUB</a>
+        <a class="navbar-brand" href="{{ url('home/') }}">BOOKHUB</a>
 
         <div class="navbar-collapse collapse">
 
@@ -378,9 +378,9 @@
             <div class="container">
                 <p class="m-0 text-center text-white">Copyright &copy; BookHub 2018</p>
                 <p class="m-0 text-center text-white">
-                    <a class="text-white" href="about"> About</a> &nbsp; | &nbsp;
-                    <a class="text-white" href="faq"> FAQ</a> &nbsp; | &nbsp;
-                    <a class="text-white" href="contact"> Contact</a>
+                    <a class="text-white" href="{{ url('about/') }}"> About</a> &nbsp; | &nbsp;
+                    <a class="text-white" href="{{ url('faq/') }}"> FAQ</a> &nbsp; | &nbsp;
+                    <a class="text-white" href="{{ url('contact/') }}"> Contact</a>
                 </p>
             </div>
         </footer>

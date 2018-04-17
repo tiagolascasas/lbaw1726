@@ -49,4 +49,4 @@ Route::get('home', 'HomeController@show');
 Route::get('create', 'CreateAuctionController@show');
 
 // Auction Item Page
-Route::get('auction', 'AuctionController@show');
+Route::get('auction/{id}', 'AuctionController@show');
