@@ -6,21 +6,10 @@
             <label for="username">Username</label>
         <input class="form-control" id="username" name="username" type="text" placeholder="Your Username">
         </div>
-        @if ($errors->has('username'))
-            <span class="error">
-            {{ $errors->first('username') }}
-            </span>
-        @endif
-
         <div class="form-group">
             <label for="password" >Password</label>
             <input class="form-control" id="password" type="password" name="password" required placeholder="Your password">
         </div>
-        @if ($errors->has('password'))
-            <span class="error">
-                {{ $errors->first('password') }}
-            </span>
-        @endif
         <div class="form-group">
             <div class="form-check">
                 <label class="form-check-label">
