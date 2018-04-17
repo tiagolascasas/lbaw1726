@@ -4,7 +4,7 @@
   <div class="modal-body">
     <div class="form-group">
       <label for="name">Name</label>
-      <input class="form-control" id="name" name"name" type="text" placeholder="Your Complete Name" required>
+      <input class="form-control" id="name" name="name" type="text" placeholder="Your Complete Name" required>
     </div>
     <div class="form-group">
       <label for="usernameR">Username</label>
