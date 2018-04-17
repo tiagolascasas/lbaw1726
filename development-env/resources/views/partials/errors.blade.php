@@ -6,13 +6,12 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Errors</h4>
+        <h4 class="modal-title align-self-center">Errors</h4>
       </div>
-      <div class="modal-body alert alert-danger">
+      <div class="modal-body">
       <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li class="alert alert-danger">{{ $error }}</li>
             @endforeach
         </ul>
       </div>
