@@ -176,7 +176,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
                 </div>
-                @include('partials.login')
+                @include('auth.login')
             </div>
         </div>
     </div>
