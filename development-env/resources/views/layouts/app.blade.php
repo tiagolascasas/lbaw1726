@@ -20,16 +20,8 @@
 </head>
 
 <body>
-@if ($errors->has('username'))
-            <span class="error">
-            {{ $errors->first('username') }}
-            </span>
-        @endif
-@if ($errors->has('password'))
-            <span class="error">
-                {{ $errors->first('password') }}
-            </span>
-        @endif
+    @include(includes.errors)
+
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
         <a href="#" class="sidebar-toggle hidden-p-md-up pb-1 text-light mr-3 navbar-brand">
             <i class="fa fa-bars"></i>
