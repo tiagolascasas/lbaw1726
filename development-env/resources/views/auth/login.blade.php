@@ -3,30 +3,39 @@
 @section('content')
 <form method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="username">Username</label>
+        <input class="form-control" id="username" name="username" type="text" placeholder="Your Username">
+        </div>
+        @if ($errors->has('username'))
+            <span class="error">
+            {{ $errors->first('username') }}
+            </span>
+        @endif
 
-    <label for="email">E-mail</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
-    @if ($errors->has('email'))
-        <span class="error">
-          {{ $errors->first('email') }}
-        </span>
-    @endif
-
-    <label for="password" >Password</label>
-    <input id="password" type="password" name="password" required>
-    @if ($errors->has('password'))
-        <span class="error">
-            {{ $errors->first('password') }}
-        </span>
-    @endif
-
-    <label>
-        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-    </label>
-
-    <button type="submit">
-        Login
-    </button>
-    <a class="button button-outline" href="{{ route('register') }}">Register</a>
+        <div class="form-group">
+            <label for="password" >Password</label>
+            <input class="form-control" id="password" type="password" name="password" required placeholder="Your password">
+        </div>
+        @if ($errors->has('password'))
+            <span class="error">
+                {{ $errors->first('password') }}
+            </span>
+        @endif
+        <div class="form-group">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+            </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-block" data-dismiss="modal" type="submit">
+            LOGIN
+        </button>
+    </div>  
 </form>
 @endsection
+

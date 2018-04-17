@@ -20,7 +20,9 @@
 </head>
 
 <body>
-
+@if (Auth::check())
+        <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
+        @endif
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
         <a href="#" class="sidebar-toggle hidden-p-md-up pb-1 text-light mr-3 navbar-brand">
             <i class="fa fa-bars"></i>
@@ -174,27 +176,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputUser">Username</label>
-                            <input class="form-control" id="exampleInputUser" type="text" placeholder="Your Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPasswordL">Password</label>
-                            <input class="form-control" id="exampleInputPasswordL" type="password" placeholder="Your password">
-                        </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox"> Remember Me</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-primary btn-block" href="#" data-dismiss="modal">LOGIN</a>
-                </div>
+                @include('auth.login')
             </div>
         </div>
     </div>
