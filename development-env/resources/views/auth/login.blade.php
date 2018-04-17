@@ -1,6 +1,4 @@
-@extends('layouts.app')
 
-@section('content')
 <form method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
     <div class="modal-body">
@@ -37,5 +35,5 @@
         </button>
     </div>  
 </form>
-@endsection
+
 
