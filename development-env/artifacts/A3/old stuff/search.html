@@ -1,0 +1,338 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BookHub - Search</title>
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="fixed-nav  bg-dark" id="page-top">
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <a class="navbar-brand" href="profile.html">B O O K H U B</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Categories">
+                    <div class="sidebar-header">
+                        <h5 class="nav-link-text">Categories</h5>
+                    </div>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-fw fa-history"></i>
+                        <span class="nav-link-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Category 1">
+                    <a href="#category1Submenu" data-toggle="collapse" aria-expanded="false" class="nav-link">
+                        <i class="fa fa-fw fa-level-up"></i>
+                        <span class="nav-link-text">Category 1</span>
+                    </a>
+                    <ul class="collapse list-unstyled" id="category1Submenu">
+                        <li>
+                            <a href="#" class="nav-link"> <span class="nav-link-text">Category 11</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link"> <span class="nav-link-text">Category 11</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link"> <span class="nav-link-text">Category 11</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Category 2">
+                    <a href="#category2Submenu" data-toggle="collapse" aria-expanded="false" class="nav-link">
+                        <i class="fa fa-fw fa-level-up"></i>
+                        <span class="nav-link-text">Category 2</span>
+                    </a>
+                    <ul class="collapse list-unstyled" id="category2Submenu">
+                        <li>
+                            <a href="#" class="nav-link"> <span class="nav-link-text">Category 21</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link"> <span class="nav-link-text">Category 22</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link"> <span class="nav-link-text">Category 23</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item active" data-toggle="tooltip" data-placement="right" title="Category 3">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-fw fa-star"></i>
+                        <span class="nav-link-text">Category 3</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-fw fa-envelope"></i>
+                        <span class="d-lg-none">Feedback
+                        <span class="badge badge-pill badge-primary">6 New</span>
+                        </span>
+                        <span class="indicator text-primary d-none d-lg-block">
+                        <i class="fa fa-fw fa-circle"></i>
+                    </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+                        <h6 class="dropdown-header">New Feedback:</h6>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <strong>John Doe</strong>
+                            <span class="small float-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message small">Hey there! Cool Product!</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <strong>Jane Doe</strong>
+                            <span class="small float-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message small">Really Nice! Will recomend!</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item small" href="#">View all feedback</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-fw fa-bell"></i>
+                        <span class="d-lg-none">Alerts
+                       <span class="badge badge-pill badge-warning">6 New</span>
+                        </span>
+                        <span class="indicator text-warning d-none d-lg-block">
+                    <i class="fa fa-fw fa-circle"></i>
+                </span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+                        <h6 class="dropdown-header">New Alerts:</h6>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-success">
+                        <strong>Memorial do Convento</strong>
+                    </span>
+                            <span class="small float-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message small">Your auction has ended. 750€ in your account!</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <span class="text-danger">
+                        <strong>Os Maias</strong>
+                    </span>
+                            <span class="small float-right text-muted">11:21 AM</span>
+                            <div class="dropdown-message small">This auction has ended. You lost it.</div>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item small" href="#">View all alerts</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0 mr-lg-2">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Search for...">
+                            <span class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                        </div>
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <main role="main">
+
+        <form class="ml-4 mr-4">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label>Search keyword(s)</label>
+                    <input type="text" class="form-control" id="search">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>Publisher</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Title</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>ISBN</label>
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="search">Author</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Language</label>
+                    <select class="form-control">
+                        <option selected>All languages</option>
+                        <option>Portuguese</option>
+                        <option>English</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Maximum current bid in €</label>
+                    <div class="form-check">
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-primary col-md-12">Search</button>
+                </div>
+            </div>
+        </form>
+
+            <section class="jumbotron text-center">
+                <div class="container">
+                    <h2 class="jumbotron-heading">Your search results for "lord of the rings":</h2>
+                </div>
+            </section>
+
+            <div class="album py-5 bg-light">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="#" class="list-group-item-action">
+                                <div class="card mb-4 box-shadow">
+                                    <div class="col-md-6 img-fluid media-object align-self-center ">
+                                        <img width=100% src="img/lotr.jpg">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text text-center hidden-p-md-down">The Lord of the Rings (single volume)</p>
+                                        <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">nelsoncosta</button>
+                                            </div>
+                                            <small class="text-success">€ 39.98 </small>
+                                            <small class="text-danger">< 2 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#" class="list-group-item-action">
+                                <div class="card mb-4 box-shadow">
+                                    <div class="col-md-6 img-fluid media-object align-self-center ">
+                                        <img width=100% src="img/fellowship.jpg">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text text-center hidden-p-md-down">The Fellowship of the Ring (The Lord of the Rings #1)</p>
+                                        <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">nelsoncosta</button>
+                                            </div>
+                                            <small class="text-success">€ 4.17 </small>
+                                            <small class="text-danger">< 5 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#" class="list-group-item-action">
+                                <div class="card mb-4 box-shadow">
+                                    <div class="col-md-6 img-fluid media-object align-self-center ">
+                                        <img width=100% src="img/two_towers.jpg">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text text-center hidden-p-md-down">The Two Towers (The Lord of the Rings #2)</p>
+                                        <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">nelsoncosta</button>
+                                            </div>
+                                            <small class="text-success">€ 4.17 </small>
+                                            <small class="text-danger">< 5 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-md-4">
+                            <a href="#" class="list-group-item-action">
+                                <div class="card mb-4 box-shadow">
+                                    <div class="col-md-6 img-fluid media-object align-self-center ">
+                                        <img width=100% src="img/return.jpg">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text text-center hidden-p-md-down">The Return of the King (The Lord of the Rings #3)</p>
+                                        <p class="card-text text-center hidden-p-md-down">By J. R. R. Tolkien</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">nelsoncosta</button>
+                                            </div>
+                                            <small class="text-success">€ 4.17 </small>
+                                            <small class="text-danger">< 5 mins</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- Footer -->
+    <footer class="py-2 bg-dark fixed-footer">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; BookHub 2018</p>
+            <p class="m-0 text-center text-white">
+                <a class="text-white" href="about.html"> About</a> &nbsp | &nbsp
+                <a class="text-white" href="faq.html"> FAQ</a> &nbsp | &nbsp
+                <a class="text-white" href="contact.html"> Contact</a></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+</body>
+
+</html>

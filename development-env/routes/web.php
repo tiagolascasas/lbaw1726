@@ -9,11 +9,14 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+
+
 
 Route::get('/', function () {
     return redirect('login');
 });
+
+*/
 
 // Cards
 Route::get('cards', 'CardController@list');
@@ -33,3 +36,17 @@ Route::post('login', 'Auth\LoginController@login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+
+
+Route::get('/', function () {
+    return redirect('home');
+});
+
+// Home
+Route::get('home', 'HomeController@show');
+
+// Create Auction
+Route::get('create', 'CreateAuctionController@show');
+
+// Auction Item Page
+Route::get('auction/{id}', 'AuctionController@show');
