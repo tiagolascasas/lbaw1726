@@ -20,8 +20,15 @@
 </head>
 
 <body>
-@if (Auth::check())
-        <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
+@if ($errors->has('username'))
+            <span class="error">
+            {{ $errors->first('username') }}
+            </span>
+        @endif
+@if ($errors->has('password'))
+            <span class="error">
+                {{ $errors->first('password') }}
+            </span>
         @endif
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
         <a href="#" class="sidebar-toggle hidden-p-md-up pb-1 text-light mr-3 navbar-brand">
@@ -190,61 +197,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputName">Name</label>
-                            <input class="form-control" id="exampleInputName" type="text" placeholder="Your Complete Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputUsername">Username</label>
-                            <input class="form-control" id="exampleInputUsername" type="text" placeholder="Username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputAge">Age</label>
-                            <input class="form-control" id="exampleInputAge" type="number" placeholder="Age" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail">Email Address</label>
-                            <input class="form-control" id="exampleInputEmail" type="email" placeholder="example@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputAddress">Address</label>
-                            <input class="form-control" id="exampleInputAddress" type="text" placeholder="Example Address, 4441" required>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <label for="exampleConfirmPostalCode">Postal Code</label>
-                                    <input class="form-control" id="exampleConfirmPostalCode" type="text" placeholder="XXXX-XXX" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="exampleInputCountry">Country</label>
-                                    <input class="form-control" id="exampleInputCountry" type="text" placeholder="Your Country" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPhone">Phone Number</label>
-                            <input class="form-control" id="exampleInputPhone" type="tel" placeholder="Your phone number" required>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <label for="exampleInputPasswordR">Password</label>
-                                    <input class="form-control" id="exampleInputPasswordR" type="password" placeholder="Your password" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="exampleConfirmPassword">Confirm Password</label>
-                                    <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirm password" required>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-primary btn-block" href="#" data-dismiss="modal">REGISTER</a>
-                </div>
+               @include('auth.register')
             </div>
         </div>
     </div>

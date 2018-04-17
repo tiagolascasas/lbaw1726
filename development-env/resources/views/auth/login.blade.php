@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary btn-block" data-dismiss="modal" type="submit">
+        <button class="btn btn-primary btn-block" type="submit">
             LOGIN
         </button>
     </div>  
