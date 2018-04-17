@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CategoryAuction extends Model
+class Language extends Model
 {
 
     /**
@@ -19,7 +19,6 @@ class CategoryAuction extends Model
      *
      * @var string
      */
-    protected $table = 'category_auction';
+    protected $table = 'language';
 
-    protected $primaryKey = 'idauction';
 }
