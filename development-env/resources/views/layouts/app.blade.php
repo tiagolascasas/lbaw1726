@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    @include(partials.errors)
+    
 
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
         <a href="#" class="sidebar-toggle hidden-p-md-up pb-1 text-light mr-3 navbar-brand">
