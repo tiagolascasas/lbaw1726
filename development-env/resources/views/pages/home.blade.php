@@ -8,7 +8,6 @@
 
 @section('content')
 
-@include(partials.errors)
 <!-- Page Content -->
     <main>
       <div class="content p-4 mt-3">

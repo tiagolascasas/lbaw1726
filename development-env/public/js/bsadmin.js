@@ -16,6 +16,10 @@ $(document).ready(function() {
     }
 });
 
+$(window).on('load', function() {
+    $('#myModalError').modal('show');
+});
+
 function searchfunc() {
     window.location.href = "search.html";
 };

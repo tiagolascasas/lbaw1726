@@ -21,7 +21,6 @@
 
 <body>
     
-
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
         <a href="#" class="sidebar-toggle hidden-p-md-up pb-1 text-light mr-3 navbar-brand">
             <i class="fa fa-bars"></i>
@@ -294,7 +293,8 @@
                 </li>
             </ul>
         </nav>
-
+        
+        @include('partials.errors')
         <section id="content" class="w-100">
           @yield('content')
         </section>
