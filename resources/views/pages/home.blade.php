@@ -6,7 +6,7 @@
 
     <!-- Page Content -->
         <main>
-          <div class="content p-4">
+          <div class="content p-4 mt-3">
             <!---  Welcome block --->
                 <section class="jumbotron text-center">
                     <div class="container">
@@ -18,12 +18,12 @@
                 </section>
 
                 <!---  Active auctions grid --->
-                <div class="album py-4">
+                <div class="album py-2">
                     <div class="row">
 
                         <!--- Items list -->
                         <div class="col-md-3">
-                            <a href="auction.html" class="list-group-item-action">
+                            <a href="auction" class="list-group-item-action">
                                 <div class="card mb-6 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center">
                                         <img class="width100" src="img/theorphanstale.jpg" alt="the orphan stale">
@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="auction.html" class="list-group-item-action">
+                            <a href="auction" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
                                         <img class="width100" src="img/bornacrime.jpg" alt=" born a crime">
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="auction.html" class="list-group-item-action">
+                            <a href="auction" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
                                         <img class="width100" src="img/levithanwakes.jpg" alt="Levithan Wakes">
@@ -83,7 +83,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="auction.html" class="list-group-item-action">
+                            <a href="auction" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
                                         <img class="width100" src="img/knowinggodbyname.jpg" alt="knowing god by name">
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="auction.html" class="list-group-item-action">
+                            <a href="auction" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
                                         <img class="width100" src="img/thehusbandssecret.jpg" alt="the husbands secret">
@@ -123,7 +123,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="auction.html" class="list-group-item-action">
+                            <a href="auction" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
                                         <img class="width100" src="img/knowinggodbyname.jpg" alt="knowing god by name">
@@ -143,7 +143,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="auction.html" class="list-group-item-action">
+                            <a href="auction" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
                                         <img class="width100" src="img/levithanwakes.jpg" alt="Levithan Wakes">
@@ -163,7 +163,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="auction.html" class="list-group-item-action">
+                            <a href="auction" class="list-group-item-action">
                                 <div class="card mb-4 box-shadow">
                                     <div class="col-md-6 img-fluid media-object align-self-center ">
                                         <img class="width100" src="img/theorphanstale.jpg" alt="the orphan stale">
@@ -183,7 +183,7 @@
                         </div>
 
                         <!-- show more button -->
-                        <a href="#" class="btn btn-outline-primary my-2 btn-block">Show More</a>
+                        <a href="#" class="btn btn-outline-primary mt-2 btn-block">Show More</a>
                     </div>
                 </div>
               </div>
