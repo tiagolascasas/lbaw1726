@@ -30,7 +30,37 @@
         </div>
         <div class="col-md-6">
           <label for="idcountry">Country</label>
-          <input class="form-control" id="idcountry" name="idcountry" type="text" placeholder="Your Country" required>
+          <select class="form-control" id="idcountry" name="idcountry" required>
+            <option value="1">Austria</option>
+            <option value="2">Italy</option>
+            <option value="3">Belgium</option>
+  <option value="4">Latvia</option>
+  <option value="5">Bulgaria</option>
+  <option value="6">Lithuania</option>
+  <option value="7">Croatia</option>
+  <option value="8">Luxembourg</option>
+  <option value="9">Cyprus</option>
+  <option value="10">Malta</option>
+  <option value="11">Czech Republic</option>
+  <option value="12">Netherlands</option>
+  <option value="13">Denmark</option>
+  <option value="14">Indonesia</option>
+  <option value="15">Poland</option>
+  <option value="16">Estonia</option>
+  <option value="17"selected>Portugal</option>
+  <option value="18">Finland</option>
+  <option value="19">Romania</option>
+  <option value="20">France</option>
+  <option value="21">Slovakia</option>
+  <option value="22">Germany</option>
+  <option value="23">Slovenia</option>
+  <option value="24">Greece</option>
+  <option value="25">Spain</option>
+  <option value="26">Hungary</option>
+  <option value="27">Sweden</option>
+  <option value="28">Ireland</option>
+  <option value="29">United Kingdom</option>
+</select>
         </div>
       </div>
     </div>
@@ -55,4 +85,3 @@
     <button class="btn btn-primary btn-block" type"submit">REGISTER</button>
   </div>
 </form>
-
