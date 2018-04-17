@@ -18,8 +18,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'address', 'age', 'email', 'password','phone','postalcode','username','idcountry',
     ];
+
+    return User::create([
+        'address' => $data['address'],
+        'age' => $data['age'],
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => bcrypt($data['password']),
+        'phone' => $data['phone'],
+        'postalcode' => $data['postalcode'],
+        'username' => $data['username'],
+        'idcountry' => $data['idcountry'],
+    ]);
 
     /**
      * The attributes that should be hidden for arrays.
