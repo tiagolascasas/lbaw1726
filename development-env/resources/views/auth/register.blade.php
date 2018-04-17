@@ -45,8 +45,8 @@
           <input class="form-control" id="passwordR" name="passwordR" type="password" placeholder="Your password" required>
         </div>
         <div class="col-md-6">
-          <label for="confirmPass">Confirm Password</label>
-          <input class="form-control" id="confirmPass" name="confirmPass" type="password" placeholder="Confirm password" required>
+          <label for="password-confirm">Confirm Password</label>
+          <input class="form-control" id="password-confirm" type="password" name="password_confirmation" placeholder="Confirm password" required>
         </div>
       </div>
     </div>
