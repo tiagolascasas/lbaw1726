@@ -145,6 +145,56 @@
                     </div>
 
                 </li>
+                @if (Auth::check())
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle container" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-fw fa-bell"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right notifications" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">New Alerts:</h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">
+                            <span class="text-success text-left">
+                               <strong>Memorial do Convento</strong>
+                            </span>
+                    <span class="small text-right text-muted">11:21 AM</span>
+                    <div class="dropdown-message"><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                </a>
+                <a class="dropdown-item" href="#">
+                            <span class="text-danger text-left">
+                                <strong>Os Maias</strong>
+                            </span>
+                    <span class="small text-right text-muted">11:21 AM</span>
+                    <div class="dropdown-message"><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                </a>
+                <a class="dropdown-item" href="#">
+                            <span class="text-danger text-left">
+                                <strong>Os Maias</strong>
+                            </span>
+                    <span class="small text-right text-muted">11:21 AM</span>
+                    <div class="dropdown-message"><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
+                </a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown">
+                <i class="fa fa-user"></i> Username
+            </a>
+            <a class="nav-link dropdown-toggle  hidden-p-md-up" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown">
+                <i class="fa fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1 navbarDropdownMenuLink2">
+                <a class="dropdown-item" href="profile_owner.html">Profile</a>
+                <a class="dropdown-item" href="create">Create auction</a>
+                <a class="dropdown-item" href="myAuctions.html">My Auctions</a>
+                <a class="dropdown-item" href="auctionsIm_in.html">Auctions I'm in</a>
+                <a class="dropdown-item" href="history.html">History</a>
+                <a class="dropdown-item" href="wishlist.html">WishList</a>
+                <a class="dropdown-item" href="messages.html">Messages</a>
+                <a class="dropdown-item" href="#">Logout</a>
+            </div>
+        </li>
+                @else
                 <li class="nav-item ">
                     <a class="nav-link hidden-p-md-down" data-toggle="modal" href="#" data-target="#myModalLogin">
                         <i class="fa fa-sign-in-alt"></i> Login
@@ -161,6 +211,7 @@
                         <i class="fa fa-user-plus"></i>
                     </a>
                 </li>
+                @endif
             </ul>
         </div>
     </nav>
