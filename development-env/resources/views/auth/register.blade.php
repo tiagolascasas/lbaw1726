@@ -8,7 +8,7 @@
     </div>
     <div class="form-group">
       <label for="usernameR">Username</label>
-      <input class="form-control" id="usernameR" name="usernameR" type="text" placeholder="Username" required>
+      <input class="form-control" id="usernameR" name="username" type="text" placeholder="Username" required>
     </div>
     <div class="form-group">
       <label for="age">Age</label>
@@ -42,7 +42,7 @@
       <div class="form-row">
         <div class="col-md-6">
           <label for="passwordR">Password</label>
-          <input class="form-control" id="passwordR" name="passwordR" type="password" placeholder="Your password" required>
+          <input class="form-control" id="passwordR" name="password" type="password" placeholder="Your password" required>
         </div>
         <div class="col-md-6">
           <label for="password-confirm">Confirm Password</label>
