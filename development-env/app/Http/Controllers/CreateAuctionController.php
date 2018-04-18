@@ -55,13 +55,13 @@ class CreateAuctionController extends Controller
      */
     public function create(Request $request)
     {
-      // if (!Auth::check()) return redirect('/home');
-      // $this->authorize('create', $auction);
+      if (!Auth::check()) return redirect('/home');
+      $this->authorize('create', $auction);
 
       $saveAuction = new Auction;
       $saveCategoryAuction = new CategoryAuction;
 
-      // $auction->user_id = Auth::user()->id;
+      $auction->user_id = Auth::user()->id;
       $saveAuction->idseller = 1; //change to up line after auth is ready
 
       $savePublisher = Publisher::where('publishername', $request->input('publisher'))->get()->first();

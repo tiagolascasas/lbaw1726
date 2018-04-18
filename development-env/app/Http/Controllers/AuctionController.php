@@ -32,15 +32,15 @@ class AuctionController extends Controller
 
 
     /**
-     * Shows the card for a given id.
+     * Shows the auction for a given id.
      *
      * @param  int  $id
      * @return Response
      */
     public function show($id)
     {
-      // if (!Auth::check()) return redirect('/home');
-      // $this->authorize('show', $auction);
+       if (!Auth::check()) return redirect('/home');
+       $this->authorize('show', $auction);
 
       $auction = Auction::find($id);
 

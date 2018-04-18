@@ -3,7 +3,7 @@
 @section('title', 'Bookhub - Create Auction')
 
 @php
-    $sellerName =  App\Member::where('id', $auction->idseller)->get()->first()->name;
+    $sellerName =  App\User::where('id', $auction->idseller)->get()->first()->name;
     $languagename = App\Language::where('id', $auction->idlanguage)->get()->first()->languagename;
 
     //get publisher name if exists
