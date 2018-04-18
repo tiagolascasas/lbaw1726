@@ -87,13 +87,12 @@ class CreateAuctionController extends Controller
 
       $saveAuction->save();
 
-      if ($saveCategory->id!=NULL){
+      if ($saveCategory!=NULL){
         $saveCategoryAuction->idcategory = $saveCategory->id;
         $saveCategoryAuction->idauction = $saveAuction->id;
         $saveCategoryAuction->save();
       }
 
       return view('pages.auction', ['auction' => $saveAuction]);
-      // return Auction::show($saveAuction->id);
     }
 }
