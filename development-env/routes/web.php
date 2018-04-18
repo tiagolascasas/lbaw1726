@@ -18,7 +18,6 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-
 Route::get('/', function () {
     return redirect('home');
 });
@@ -29,7 +28,6 @@ Route::get('home', 'HomeController@show');
 // Create Auction
 Route::get('create', 'CreateAuctionController@show')->name('create');
 Route::post('create', 'CreateAuctionController@create');
-
 
 // Auction Item Page
 Route::get('auction/{id}', 'AuctionController@show');

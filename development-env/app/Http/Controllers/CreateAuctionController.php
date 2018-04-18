@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Auction;
 use App\Category;
 use App\CategoryAuction;
-use App\Member;
 use App\Language;
 use App\Publisher;
 
@@ -56,13 +55,12 @@ class CreateAuctionController extends Controller
     public function create(Request $request)
     {
       if (!Auth::check()) return redirect('/home');
-      $this->authorize('create', $auction);
+      // $this->authorize('create', $auction);
 
       $saveAuction = new Auction;
       $saveCategoryAuction = new CategoryAuction;
 
-      $auction->user_id = Auth::user()->id;
-      $saveAuction->idseller = 1; //change to up line after auth is ready
+      $saveAuction->idseller = Auth::user()->id;
 
       $savePublisher = Publisher::where('publishername', $request->input('publisher'))->get()->first();
 

@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    
+
     <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
         <a href="#" class="sidebar-toggle hidden-p-md-up pb-1 text-light mr-3 navbar-brand">
             <i class="fa fa-bars"></i>
@@ -178,7 +178,7 @@
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown">
-                <i class="fa fa-user"></i> Username
+                <i class="fa fa-user"></i> {{Auth::user()->username}}
             </a>
             <a class="nav-link dropdown-toggle  hidden-p-md-up" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown">
                 <i class="fa fa-user"></i>
@@ -344,7 +344,7 @@
                 </li>
             </ul>
         </nav>
-        
+
         @include('partials.errors')
         <section id="content" class="w-100">
           @yield('content')

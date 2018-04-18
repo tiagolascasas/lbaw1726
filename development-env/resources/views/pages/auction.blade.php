@@ -126,4 +126,5 @@
                 </table>
               </div>
             </main>
+
     @endsection
