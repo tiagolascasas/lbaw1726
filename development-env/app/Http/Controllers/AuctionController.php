@@ -29,25 +29,19 @@ class AuctionController extends Controller
     |
     */
 
-
-
-
         /**
-         * Creates a new card.
+         * Creates a new auction.
          *
-         * @return Card The card created.
+         * @return Auction The auction created.
          */
         public function create(Request $request)
         {
-          $aution = new Auction();
-          //create category
-          //create publisher
-          //create bid
+          $auction = new Auction();
 
-          // $this->authorize('create', $auction);
+          $this->authorize('create', $auction);
 
-          // $auction->user_id = Auth::user()->id;
-          $auction->user_id = 1; //change to up line after auth is ready
+          $auction->user_id = Auth::user()->id;
+
 
           $auction->title = $request->input('title');
           $auction->author = $request->input('author');
@@ -56,11 +50,6 @@ class AuctionController extends Controller
           $auction->isbn = $request->input('isbn');
 
           $auction->save();
-          //save category
-          //save publisher
-          //save bid
-
-
           return $auction;
         }
 
@@ -77,18 +66,16 @@ class AuctionController extends Controller
 
 
     /**
-     * Shows the card for a given id.
+     * Shows the auction for a given id.
      *
      * @param  int  $id
      * @return Response
      */
     public function show($id)
     {
-      // if (!Auth::check()) return redirect('/home');
+      if (!Auth::check()) return redirect('/home');
 
       $auction = Auction::find($id);
-
-      // $this->authorize('show', $card);
 
 
       return view('pages.auction', ['auction' => $auction]);
