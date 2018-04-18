@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Auction;
 use App\Category;
 use App\CategoryAuction;
-use App\Member;
 use App\Bid;
 
 

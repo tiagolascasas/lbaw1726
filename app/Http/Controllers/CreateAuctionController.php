@@ -42,7 +42,7 @@ class CreateAuctionController extends Controller
 
     public function show()
     {
-
+      if (!Auth::check()) return redirect('/home');
       return view('pages.create');
     }
 
