@@ -15,7 +15,6 @@ CREATE TABLE country (
     countryName text NOT NULL UNIQUE
 );
 
-
 --3
 CREATE TABLE member (
     id SERIAL PRIMARY KEY,
@@ -34,10 +33,10 @@ CREATE TABLE member (
     dateSuspended TIMESTAMP WITH TIME zone DEFAULT NULL,
     dateTerminated  TIMESTAMP WITH TIME zone DEFAULT NULL,
     idCountry  INTEGER NOT NULL REFERENCES country(id),
+    idImage  INTEGER REFERENCES image(id),
     CONSTRAINT status_ck CHECK ((member_status = ANY (ARRAY['moderator'::text, 'suspended'::text, 'banned'::text, 'normal'::text, 'terminated'::text]))),
     CONSTRAINT age_ck CHECK (age>=18)
 );
-
 
 
 --4
@@ -46,26 +45,6 @@ CREATE TABLE requested_termination (
     dateRequested  TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     idMember INTEGER NOT NULL REFERENCES member(id)
 );
-
---6
-CREATE TABLE category (
-    id SERIAL PRIMARY KEY,
-    categoryName text NOT NULL UNIQUE
-);
-
---7
-CREATE TABLE publisher (
-    id SERIAL PRIMARY KEY,
-    publisherName  text NOT NULL UNIQUE
-);
-
---8
-
-CREATE TABLE language (
-    id SERIAL PRIMARY KEY,
-    languageName text NOT NULL UNIQUE
-);
-
 
 --5
 
@@ -85,6 +64,25 @@ CREATE TABLE auction (
     idSeller INTEGER NOT NULL REFERENCES member(id),
     CONSTRAINT auction_status_ck CHECK ((auction_status = ANY (ARRAY['approved'::text, 'removed'::text, 'waitingApproval'::text]))),
     CONSTRAINT duration_ck CHECK (duration >= '00:05:00'::interval)
+);
+
+--6
+CREATE TABLE category (
+    id SERIAL PRIMARY KEY,
+    categoryName text NOT NULL UNIQUE
+);
+
+--7
+CREATE TABLE publisher (
+    id SERIAL PRIMARY KEY,
+    publisherName  text NOT NULL UNIQUE
+);
+
+--8
+
+CREATE TABLE language (
+    id SERIAL PRIMARY KEY,
+    languageName text NOT NULL UNIQUE
 );
 
 --9
@@ -142,13 +140,13 @@ CREATE TABLE notification_auction (
     CONSTRAINT notification_auction_pk PRIMARY KEY (idAuction, idNotification)
 );
 
+
 --15
 CREATE TABLE image (
     id SERIAL PRIMARY KEY,
     source text NOT NULL UNIQUE,
     idAuction  INTEGER REFERENCES auction(id),
-    idAuctionModification  INTEGER REFERENCES auction_modification(id),
-	idMember INTEGER REFERENCES member(id)
+    idAuctionModification  INTEGER REFERENCES auction_modification(id)
 );
 
 --16
@@ -315,20 +313,3 @@ CREATE TRIGGER tr_change_auction_modification_is_approved
     BEFORE UPDATE ON auction_modification
         FOR EACH ROW
 		      EXECUTE PROCEDURE change_auction_modification_is_approved();
-			  
-CREATE FUNCTION image_auction_or_member() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-    
-	IF (NEW.idMember!=NULL) AND (NEW.idAuction!=NULL OR NEW.idAuctionModification!= NULL) THEN
-        RAISE EXCEPTION 'An image cant belong to an auction and an user';
-    END IF;
-	RETURN NEW;
-END
-$BODY$
-LANGUAGE plpgsql;
-
-CREATE TRIGGER tr_image_auction_or_member
-     BEFORE INSERT OR UPDATE ON image
-        FOR EACH ROW
-		      EXECUTE PROCEDURE image_auction_or_member();
