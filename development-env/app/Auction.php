@@ -20,4 +20,5 @@ class Auction extends Model
    * @var string
    */
   protected $table = 'auction';
+
 }

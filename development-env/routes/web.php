@@ -27,7 +27,9 @@ Route::get('/', function () {
 Route::get('home', 'HomeController@show');
 
 // Create Auction
-Route::get('create', 'CreateAuctionController@show');
+Route::get('create', 'CreateAuctionController@show')->name('create');
+Route::post('create', 'CreateAuctionController@create');
+
 
 // Auction Item Page
 Route::get('auction/{id}', 'AuctionController@show');
