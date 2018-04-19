@@ -242,7 +242,7 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label>Description</label>
-                    <textarea id="description" name="description" rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important" value="{{ old('desc') }}" required></textarea>
+                    <textarea id="description" name="description" rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important" value="{{ old('description') }}" required></textarea>
                     @if ($errors->has('description'))
                       <span class="error">
                         {{ $errors->first('description') }}

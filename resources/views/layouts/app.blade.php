@@ -32,7 +32,7 @@
 
             <ul class="navbar-nav ml-auto" id="navbarList">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle hidden-p-md-down" href="#" id="catDropDown" data-toggle="dropdown" aria-expanded="true">
+                    <a class="nav-link dropdown-toggle hidden-p-md-down" href="#" id="catDropDown" data-toggle="dropdown" aria-expanded="false">
                                 All
                             </a>
                     <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="catDropDown">

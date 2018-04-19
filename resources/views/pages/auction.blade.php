@@ -41,13 +41,12 @@
 
 @section('content')
 
-    <!-- Page Content -->
+    <!-- Auction Content -->
             <main  data-id="{{$auction->id}}">
               <div class="container p-5">
                 <table class="table">
                     <tbody>
                         <tr>
-                            <!--<td rowspan="6" colspan="2"><img width=200px src="img/levithanwakes.jpg"></td>-->
                             <td rowspan="7" colspan="2" style="width: 26.33%">
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">

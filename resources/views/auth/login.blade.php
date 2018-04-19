@@ -4,7 +4,7 @@
     <div class="modal-body">
         <div class="form-group">
             <label for="username">Username</label>
-        <input class="form-control" id="username" name="username" type="text" placeholder="Your Username">
+        <input class="form-control" id="username" name="username" type="text" placeholder="Your Username"  value="{{ old('username') }}" required>
         </div>
         <div class="form-group">
             <label for="password" >Password</label>
@@ -22,7 +22,5 @@
         <button class="btn btn-primary btn-block" type="submit">
             LOGIN
         </button>
-    </div>  
+    </div>
 </form>
-
-
