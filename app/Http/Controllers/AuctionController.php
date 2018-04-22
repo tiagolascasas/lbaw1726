@@ -39,11 +39,10 @@ class AuctionController extends Controller
      */
     public function show($id)
     {
-       if (!Auth::check()) return redirect('/home');
-       // $this->authorize('show', $auction);
+        if (!Auth::check()) return redirect('/home');
 
-      $auction = Auction::find($id);
+        $auction = Auction::find($id);
 
-      return view('pages.auction', ['auction' => $auction]);
+        return view('pages.auction', ['auction' => $auction]);
     }
 }

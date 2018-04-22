@@ -363,19 +363,10 @@
             </div>
         </footer>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bsadmin.js"></script>
-
-        <script type="text/javascript" src={{ asset('jquery.min/app.js') }} defer>
-            </script>
-        <script type="text/javascript" src={{ asset('js/bootstrap.min.js') }} defer>
-            </script>
-        <script type="text/javascript" src={{ asset('js/popper.min.js') }} defer>
-            </script>
-        <script type="text/javascript" src={{ asset('js/bsadmin.js') }} defer>
-            </script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bsadmin.js') }}"></script>
 
     </body>
 
