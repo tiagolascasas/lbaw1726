@@ -35,3 +35,6 @@ Route::get('auction/{id}', 'AuctionController@show');
 // Profile Page
 Route::get('profile/{id}', 'ProfileController@show')->name('profile');
 
+//API
+Route::get('/api/search', 'API\SearchController@index');
+
