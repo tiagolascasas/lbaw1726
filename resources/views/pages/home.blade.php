@@ -8,8 +8,8 @@
 
 @section('content')
 
+<!---  Active auctions grid -->
 <div class="content p-4 mt-3">
-    <main>
         <section class="jumbotron text-center">
             <div class="container">
                 <h1 class="jumbotron-heading"><b>Welcome to Bookhub!</b></h1>
@@ -22,14 +22,12 @@
                  @endif
             </div>
         </section>
-<!---  Active auctions grid -->
         <div class="album py-2">
             <div class="row">
              <!--- Items list -->
             @include('pages.auctionItems')
             </div>
         </div>
-    </main>
 </div>
 
 @endsection
