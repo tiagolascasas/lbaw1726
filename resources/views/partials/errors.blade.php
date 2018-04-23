@@ -1,6 +1,6 @@
 @if ($errors->any())
 <!-- Modal -->
-<div id="myModalError" class="modal fade hide" role="dialog">
+<div id="myModalError" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
 
     <!-- Modal content-->
