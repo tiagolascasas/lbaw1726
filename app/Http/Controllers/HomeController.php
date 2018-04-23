@@ -24,8 +24,6 @@ class HomeController extends Controller
 
     public function show()
     {
-        $user = Auth::user();
-        Javascript::put([ 'user.id' => $user->id, 'user.username' => $user->username ]);
       return view('pages.home');
     }
 }
