@@ -367,7 +367,9 @@
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/bsadmin.js') }}"></script>
-
+    <script>
+        var user = {!! json_encode((array)auth()->user()) !!};
+    </script>
     </body>
 
     </html>

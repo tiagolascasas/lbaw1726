@@ -2,7 +2,9 @@ $(document).ready(function() {
     // toggle sidebar when button clicked
     $(".sidebar-toggle").on("click", function() {
         $(".sidebar").toggleClass("toggled");
-        $('#fixed-footer').removeClass('#fixed-footer').addClass("footer");
+        $("#fixed-footer")
+            .removeClass("#fixed-footer")
+            .addClass("footer");
     });
 
     // auto-expand submenu if an item is active
@@ -16,24 +18,22 @@ $(document).ready(function() {
     }
 });
 
-$(window).on('load', function() {
-    $('#myModalError').modal('show');
+$(window).on("load", function() {
+    $("#myModalError").modal("show");
 });
 
 function searchfunc() {
     window.location.href = "search.html";
-};
+}
 
 function profile_func() {
     window.location.href = "profile_not_owner.html";
-};
-
+}
 
 let feedback = document.querySelector("#myfeedback");
 
-
-        if (feedback !== null)
-            feedback.innerHTML = `<form id="feedbackform">
+if (feedback !== null)
+    feedback.innerHTML = `<form id="feedbackform">
                 <div class="btn-group mb-3" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-success">
                         <i class="fa fa-thumbs-up btn btn-success"></i>
@@ -52,5 +52,3 @@ let feedback = document.querySelector("#myfeedback");
                 </div>
 
             </form>`;
-
-}
