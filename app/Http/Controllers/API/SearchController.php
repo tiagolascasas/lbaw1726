@@ -26,6 +26,7 @@ class SearchController extends Controller
                 $response=DB::select('select * from auction where auction_status = approved AND idSeller!=?', [Auth::user()->id]);
             else
                 $response=DB::select('select * from auction where auction_status = approved');
+            echo var_dump($response);
             return response()->json($response);
         }
     }

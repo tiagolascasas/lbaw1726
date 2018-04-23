@@ -23,7 +23,7 @@ $(window).on("load", function() {
 });
 
 let xmlhttp = new XMLHttpRequest();
-xmlhttp.open("GET", "/api/search", true);
+xmlhttp.open("GET", "api/search", true);
 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xmlhttp.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
