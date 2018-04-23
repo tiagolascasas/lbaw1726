@@ -9,7 +9,7 @@
 @section('content')
 
 <!---  Active auctions grid -->
-<div class="content p-4 mt-3">
+<div class="content p-4">
         <section class="jumbotron text-center">
             <div class="container">
                 <h1 class="jumbotron-heading"><b>Welcome to Bookhub!</b></h1>
