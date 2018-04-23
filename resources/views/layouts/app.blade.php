@@ -346,9 +346,8 @@
         </nav>
 
         @include('partials.errors')
-        <section id="content" class="w-100">
-          @yield('content')
-        </section>
+        @yield('content')
+    </div>
 
 
         <!-- Footer -->
