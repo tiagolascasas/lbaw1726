@@ -22,9 +22,9 @@ class SearchController extends Controller
     public function index(Request $request){
         {   $response;
             if(Auth::check())
-                $response=DB::select('select * from auction where auction_status = approved AND idSeller!=?', [Auth::user()->id]);
+                $response=DB::select('select * from auction where auction_status = ? AND idSeller!=?', ['approved',Auth::user()->id]);
             else
-                $response=DB::select('select * from auction where auction_status = approved');
+                $response=DB::select('select * from auction where auction_status = ?',['approved']);
             return response()->json($response);
         }
     }
