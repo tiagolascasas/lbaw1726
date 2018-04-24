@@ -22,7 +22,7 @@ class SearchController extends Controller
     public function index(Request $request){
         {   
 
-            if ( ! $request->ajax() && !$request->pjax())
+            if ( !($request->ajax() || $request->pjax()) )
                 return response('Forbidden.', 403);
 
             if($request->input('type_search')=="home"){
