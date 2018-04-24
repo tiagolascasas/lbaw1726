@@ -115,7 +115,7 @@
                                     <label for="phone1">Phone Number</label>
                                     <input class="form-control" id="phone1" type="text" placeholder="123456789">
                                 </div>
-                                <button class="btn btn-primary btn-block mb-4">Save any new changes</button>
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Save any new changes</button>
                             </form>
                         </div>
                     </div>
