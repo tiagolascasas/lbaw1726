@@ -2,7 +2,7 @@
     <main  data-id="{{$user}}">
         <div class="container-fluid bg-white">
             <div class="bg-white mb-0 mt-4 panel">
-                <h5><i class="fa fa-user-circle"></i> {{$user->username}}'s profile</h5>
+                <h5><i class="fa fa-user-circle"></i> {{$user->username}}&rsquo;s profile</h5>
             </div>
             <hr id="hr_space" class="mt-2">
             <div class="row">
@@ -86,6 +86,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="POST" action="{{Auth::user()->id}}/edit">
+                                {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputName">Name</label>
                                     <input class="form-control" type="text" id="exampleInputName" placeholder="Jack Oliveira da Siva Smith">
