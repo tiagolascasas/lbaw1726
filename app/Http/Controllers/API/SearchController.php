@@ -21,18 +21,16 @@ class SearchController extends Controller
 
     public function index(Request $request){
         {   
-
-            if ( !($request->ajax() || $request->pjax()) )
-                return response('Forbidden.', 403);
-
-            if($request->input('type_search')=="home"){
-                $response;
-                if(Auth::check())
-                    $response=DB::select('select * from auction where auction_status = ? AND idSeller!=?', ['approved',Auth::user()->id]);
-                else
-                    $response=DB::select('select * from auction where auction_status = ?',['approved']);
-            return response()->json($response);
-            }
+            if ( $request->ajax() || $request->pjax()){
+                if($request->input('type_search')=="home"){
+                    $response;
+                    if(Auth::check())
+                        $response=DB::select('select * from auction where auction_status = ? AND idSeller!=?', ['approved',Auth::user()->id]);
+                    else
+                        $response=DB::select('select * from auction where auction_status = ?',['approved']);
+                    return response()->json($response);
+                }
+            }else return response('Forbidden.', 403);
 
             return response('Error', 400)
                   ->header('Content-Type', 'text/plain');
