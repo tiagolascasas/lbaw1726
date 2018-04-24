@@ -94,12 +94,7 @@ class CreateAuctionController extends Controller
         $saveCategoryAuction->save();
       }
 
-      //$this->validate($request, ['images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
-/*
-      $file = $request->file('images');
-      var_dump($file);
-      adasdasd
-     die;*/
+      /*Get images and store them*/
       $input=$request->all();
       $images = array();
       if($files=$request->file('images')){
@@ -110,13 +105,13 @@ class CreateAuctionController extends Controller
         }
       }
 
+      /*Store image sources in database*/
       foreach ($images as $image){
           $saveImage = new Image;
           $saveImage->source = $image;
-          $saveImage->idAuction = $saveAuction->id;
+          $saveImage->idauction = $saveAuction->id;
           $saveImage->save();
       }
-      die;
 
 
       //$saveImage->source = $request->input('filename');
