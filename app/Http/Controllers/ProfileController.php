@@ -63,7 +63,7 @@ class ProfileController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->
+            return redirect()
                         ->route('profile', ['id' => Auth::user()->id])
                         ->withErrors($validator)
                         ->withInput();
