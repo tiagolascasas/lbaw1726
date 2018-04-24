@@ -29,7 +29,7 @@ if (window.location.pathname === "/home") {
 function ajaxCall(method, url, data, handler) {
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.open(method, url, true);
-    xmlhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             window[handler](this.responseText);
