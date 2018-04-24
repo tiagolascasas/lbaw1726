@@ -42,14 +42,13 @@ function homeHandler(response) {
     auctions = JSON.parse(response);
     let album = document.querySelector('#auctionAlbum');
     console.log(album);
-    album.innerHTML = `<div class="row">`;
+    let htmlAuction = `<div class="row">`;
     let i = 0;
     auctions.forEach(element => {
         if (i % 4 === 0 && i !== 0) {
-            album.innerHTML += `</div><div class="row">`;
-            console.log(i);
+            htmlAuction += `</div><div class="row">`;
         }
-        album.innerHTML += `<div class="col-md-3 auctionItem"  data-id="${element.id}">
+        htmlAuction += `<div class="col-md-3 auctionItem"  data-id="${element.id}">
         <a href="auction/${element.id}" class="list-group-item-action">
             <div class="card mb-4 box-shadow">
                 <div class="col-md-6 img-fluid media-object align-self-center ">
@@ -70,7 +69,8 @@ function homeHandler(response) {
     </div>`;
         i++;
     });
-    album.innerHTML += `</div>`;
+    htmlAuction += `</div>`;
+    album.innerHTML = htmlAuction;
 }
 
 function searchfunc() {
