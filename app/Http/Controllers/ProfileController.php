@@ -49,7 +49,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Get a validator for an incoming profile edit request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -69,7 +69,7 @@ class ProfileController extends Controller
         if (!Auth::check()) return redirect('/home');
 
         $user = User::find($id);
-
-        return view('pages.profile', ['user' => $user]);
+        
+        var_dump($request);
     }
 }
