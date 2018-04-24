@@ -46,7 +46,7 @@ class CreateAuctionController extends Controller
       return view('pages.create');
     }
 
-
+ 
     /**
      * Creates a new auction.
      *
@@ -93,6 +93,6 @@ class CreateAuctionController extends Controller
         $saveCategoryAuction->save();
       }
 
-      return view('pages.auction', ['auction' => $saveAuction]);
+      return redirect()->route('auction',['id' => $saveAuction->id]);
     }
 }

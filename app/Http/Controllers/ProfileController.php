@@ -48,28 +48,44 @@ class ProfileController extends Controller
         return view('pages.profile', ['user' => $user]);
     }
 
-    /**
-     * Get a validator for an incoming profile edit request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
+
 
     public function editUser(Request $request, $id)
     {
-        if (!Auth::check()) return redirect('/home');
+        if (Auth::user()->id!=$id) return redirect('/home');
 
-        $user = User::find($id);
+        $validator = Validator::make($request->all(), [
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|string|email|max:255|unique:users',
+            'age' => 'nullable|min:18|integer',
+            'address' => 'nullable|string|max:255',
+            'idcountry' => 'nullable|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                        ->route('profile', ['id' => Auth::user()->id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $input =$request->all();
-        var_dump($input);
+
+        if($input['name']!==NULL)
+            DB::update('update users set name = ? where id = ?', [$input['name'],$id]);
+        if($input['age']!==NULL)
+            DB::update('update users set age = ? where id = ?', [$input['age'],$id]);
+        if($input['email']!==NULL)
+            DB::update('update users set email = ? where id = ?', [$input['email'],$id]);
+        if($input['address']!==NULL)
+            DB::update('update users set address = ? where id = ?', [$input['address'],$id]);
+        if($input['postalcode']!==NULL)
+            DB::update('update users set postalCode = ? where id = ?', [$input['postalcode'],$id]);
+        if($input['idcountry']!==NULL)
+            DB::update('update users set idCountry = ? where id = ?', [$input['idcountry'],$id]);
+        if($input['phone']!==NULL)
+            DB::update('update users set phone = ? where id = ?', [$input['phone'],$id]);
+
+        return redirect()->route('profile', ['id' => Auth::user()->id]);
     }
 }

@@ -4,6 +4,6 @@
 
 @section('content')
 
-@include('pages.profileNotOwner')
+@include('pages.profileOwner')
 
 @endsection

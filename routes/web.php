@@ -23,28 +23,27 @@ Route::get('/', function () {
 });
 
 // Home
-Route::get('home', 'HomeController@show');
+Route::get('home', 'HomeController@show')->name('home');
 
 // Create Auction
 Route::get('create', 'CreateAuctionController@show')->name('create');
 Route::post('create', 'CreateAuctionController@create');
 
 // Auction Item Page
-Route::get('auction/{id}', 'AuctionController@show');
+Route::get('auction/{id}', 'AuctionController@show')->name('auction');
 
 // Profile Page
 Route::get('profile/{id}', 'ProfileController@show')->name('profile');
-
 Route::post('profile/{id}/edit', 'ProfileController@editUser')->name('profile.edit');;
 
 //Contact
-Route::get('contact', 'ContactController@show');
+Route::get('contact', 'ContactController@show')->name('contact');
 
 //FAQ
-Route::get('faq', 'FaqController@show');
+Route::get('faq', 'FaqController@show')->name('faq');
 
 //About
-Route::get('about', 'AboutController@show');
+Route::get('about', 'AboutController@show')->name('about');
 
 //API
 Route::get('api/search', 'API\SearchController@index');
