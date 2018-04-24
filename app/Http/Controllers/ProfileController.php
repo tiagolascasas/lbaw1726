@@ -48,25 +48,26 @@ class ProfileController extends Controller
         return view('pages.profile', ['user' => $user]);
     }
 
-    /**
-     * Get a validator for an incoming profile edit request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
-    }
+
 
     public function editUser(Request $request, $id)
     {
         if (Auth::user()->id!=$id) return redirect('/home');
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|string|email|max:255|unique:users',
+            'age' => 'nullable|min:18|integer',
+            'address' => 'nullable|string|max:255',
+            'idcountry' => 'nullable|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->
+                        ->route('profile', ['id' => Auth::user()->id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $input =$request->all();
 

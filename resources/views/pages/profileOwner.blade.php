@@ -89,28 +89,28 @@
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="InputName">Name</label>
-                                    <input class="form-control" type="text" id="InputName" name="name" placeholder="Jack Oliveira da Siva Smith">
+                                    <input class="form-control" type="text" id="InputName" name="name" placeholder="Jack Oliveira da Siva Smith" value="{{ old('name') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="InputAge">Age</label>
-                                    <input class="form-control" id="InputAge" name="age" type="number" placeholder="22">
+                                    <input class="form-control" id="InputAge" name="age" type="number" placeholder="22" value="{{ old('age') }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="InputEmail1">Email address</label>
-                                    <input class="form-control" type="email" name="email" placeholder="jack.smith@gmail.com">
+                                    <input class="form-control" type="email" name="email" placeholder="jack.smith@gmail.com" value="{{ old('email') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="address1">Address</label>
-                                    <input class="form-control" id="address1" name="address" type="text" placeholder="Street A, 125">
+                                    <input class="form-control" id="address1" name="address" type="text" placeholder="Street A, 125" value="{{ old('address') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="postalcode1">Postal Code</label>
-                                    <input class="form-control" id="postalcode1" name="postalcode" type="text" placeholder="2000-132">
+                                    <input class="form-control" id="postalcode1" name="postalcode" type="text" placeholder="2000-132" value="{{ old('postalcode') }}">
                                 </div>
                                 <div class="form-group">
                                         <label for="Inputidcountry">Country</label>
-                                        <select class="form-control" id="Inputidcountry" name="idcountry" value="{{ old('idcountry') }}" required>
+                                        <select class="form-control" id="Inputidcountry" name="idcountry" value="{{ old('idcountry') }}" >
                                           <option value="1" {{ old('idcountry') == 1 ? 'selected' : '' }}>Austria</option>
                                           <option value="2" {{ old('idcountry') == 2 ? 'selected' : '' }}>Italy</option>
                                           <option value="3" {{ old('idcountry') == 3 ? 'selected' : '' }}>Belgium</option>
@@ -144,7 +144,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone1">Phone Number</label>
-                                    <input class="form-control" id="phone1" name="phone" type="tel" placeholder="123456789">
+                                    <input class="form-control" id="phone1" name="phone" type="tel" placeholder="123456789" value="{{ old('phone') }}">
                                 </div>
                                 <button  type="submit" class="btn btn-primary btn-block mb-4">Save any new changes</button>
                             </form>
