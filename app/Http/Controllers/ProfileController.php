@@ -69,7 +69,7 @@ class ProfileController extends Controller
         if (!Auth::check()) return redirect('/home');
 
         $user = User::find($id);
-        
-        var_dump($request);
+        $input =$request->all();
+        var_dump($input);
     }
 }
