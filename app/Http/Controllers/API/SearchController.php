@@ -19,13 +19,12 @@ class SearchController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function index(Request $request){
-        {   
+    public function index(Request $request){ 
             /*if ( !($request->ajax() || $request->pjax())){
                 return response('Forbidden.', 403);
             }*/
 
-            if( $request->input('type_search')=='home')
+            if( $request->input('type_search')=='home'){
                     $response;
                     if(Auth::check())
                         $response=DB::select('select * from auction where auction_status = ? AND idSeller!=?', ['approved',Auth::user()->id]);
@@ -36,6 +35,4 @@ class SearchController extends Controller
 
             return response('Error', 400)
                   ->header('Content-Type', 'text/plain');
-        }
-    }
 }
