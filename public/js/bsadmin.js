@@ -47,6 +47,7 @@ function homeHandler(response) {
     auctions.forEach(element => {
         if (i % 4 === 0 && i !== 0) {
             album.innerHTML += `</div><div class="row">`;
+            console.log(i);
         }
         album.innerHTML += `<div class="col-md-3 auctionItem"  data-id="${element.id}">
         <a href="auction/${element.id}" class="list-group-item-action">
