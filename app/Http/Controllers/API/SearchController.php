@@ -22,7 +22,7 @@ class SearchController extends Controller
     public function index(Request $request){
         {   
             if ( $request->ajax() || $request->pjax()){
-                if(Input::get('type_search')=='home')
+                if(Input::has('type_search'))
                     $response;
                     if(Auth::check())
                         $response=DB::select('select * from auction where auction_status = ? AND idSeller!=?', ['approved',Auth::user()->id]);
