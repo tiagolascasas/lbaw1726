@@ -70,6 +70,6 @@ class ProfileController extends Controller
 
         $user = User::find($id);
 
-        echo 'working kinda';
+        return view('pages.profile', ['user' => $user]);
     }
 }
