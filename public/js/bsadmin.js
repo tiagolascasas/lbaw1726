@@ -22,8 +22,9 @@ $(window).on("load", function() {
     $("#myModalError").modal("show");
 });
 
-if (window.location.pathname = "/home") {
+if (window.location.pathname === "/home") {
     let auctions = JSON.parse(ajaxCall("GET", "api/search", ""));
+    console.log(auctions);
     let album = document.querySelector('#auctionAlbum');
     album.innerHTML = `<div class="row">`;
     for (let i = 0; i < auctions.length; i++) {
