@@ -70,6 +70,6 @@ class ProfileController extends Controller
 
         $user = User::find($id);
 
-        return $request;
+        echo 'working kinda';
     }
 }
