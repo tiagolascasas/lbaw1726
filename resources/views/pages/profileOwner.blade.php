@@ -85,7 +85,7 @@
                         </button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="{{Auth::user()->id}}/edit">
+                            <form method="POST" action="{{ route('profile.edit', ['id' => Auth::user()->id]) }}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputName">Name</label>

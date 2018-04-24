@@ -35,7 +35,7 @@ Route::get('auction/{id}', 'AuctionController@show');
 // Profile Page
 Route::get('profile/{id}', 'ProfileController@show')->name('profile');
 
-Route::post('profile/{id}/edit', 'ProfileController@editUser');
+Route::post('profile/{id}/edit', 'ProfileController@editUser')->name('profile.edit');;
 
 //Contact
 Route::get('contact', 'ContactController@show');
