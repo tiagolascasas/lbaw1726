@@ -46,7 +46,7 @@ class CreateAuctionController extends Controller
       return view('pages.create');
     }
 
-
+ 
     /**
      * Creates a new auction.
      *
