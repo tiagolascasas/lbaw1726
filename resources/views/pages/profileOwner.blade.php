@@ -85,7 +85,7 @@
                         </button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="{{ route('profile/{{Auth::user()->id}}/edit') }}">
+                            <form method="POST" action="{{ route('profile/Auth::user()->id/edit') }}">
                                 <div class="form-group">
                                     <label for="exampleInputName">Name</label>
                                     <input class="form-control" type="text" id="exampleInputName" placeholder="Jack Oliveira da Siva Smith">
