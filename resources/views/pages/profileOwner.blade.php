@@ -110,7 +110,8 @@
                                 </div>
                                 <div class="form-group">
                                         <label for="Inputidcountry">Country</label>
-                                        <select class="form-control" id="Inputidcountry" name="idcountry" value="{{ old('idcountry') }}" >
+                                        <select class="form-control" id="Inputidcountry" name="idcountry">
+                                          <option selected value> -- select an option -- </option>
                                           <option value="1" {{ old('idcountry') == 1 ? 'selected' : '' }}>Austria</option>
                                           <option value="2" {{ old('idcountry') == 2 ? 'selected' : '' }}>Italy</option>
                                           <option value="3" {{ old('idcountry') == 3 ? 'selected' : '' }}>Belgium</option>

@@ -30,8 +30,7 @@
         </div>
         <div class="col-md-6">
           <label for="idcountry">Country</label>
-          <select class="form-control" id="idcountry" name="idcountry">
-            <option selected value="NULL"> -- select an option -- </option>
+          <select class="form-control" id="idcountry" name="idcountry" value="{{ old('idcountry') }}" required>
             <option value="1" {{ old('idcountry') == 1 ? 'selected' : '' }}>Austria</option>
             <option value="2" {{ old('idcountry') == 2 ? 'selected' : '' }}>Italy</option>
             <option value="3" {{ old('idcountry') == 3 ? 'selected' : '' }}>Belgium</option>
