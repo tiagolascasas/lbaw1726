@@ -23,8 +23,9 @@ $(window).on("load", function() {
 });
 
 if (window.location.pathname === "/home") {
-    let auctions = JSON.parse(ajaxCall("GET", "api/search", ""));
+    let auctions = ajaxCall("GET", "api/search", "");
     console.log(auctions);
+    console.log(JSON.parse(auctions));
     let album = document.querySelector('#auctionAlbum');
     album.innerHTML = `<div class="row">`;
     for (let i = 0; i < auctions.length; i++) {
