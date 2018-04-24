@@ -23,7 +23,7 @@ $(window).on("load", function() {
 });
 
 if (window.location.pathname === "/home") {
-    ajaxCall("GET", "api/search", "type_search=home", "homeHandler");
+    ajaxCall("GET", "api/search", 'type_search=home', "homeHandler");
 }
 
 function ajaxCall(method, url, data, handler) {
