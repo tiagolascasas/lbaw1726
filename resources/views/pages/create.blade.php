@@ -11,7 +11,7 @@
     </div>
     <hr id="hr_space" class="mt-2">
     <main>
-        <form class="ml-4 mr-4" method="POST" action="{{ route('create') }}">
+        <form class="ml-4 mr-4" method="POST" action="{{ route('create') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -253,10 +253,10 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label>Image(s) of the book</label>
-                    <input id="filebutton" name="filebutton" class="form-control" type="file" multiple>
-                    @if ($errors->has('filebutton'))
+                    <input id="images" name="images[]" class="form-control" type="file" accept="image/*" multiple>
+                    @if ($errors->has('images'))
                       <span class="error">
-                        {{ $errors->first('filebutton') }}
+                        {{ $errors->first('images') }}
                       </span>
                     @endif
                 </div>

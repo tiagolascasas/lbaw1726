@@ -11,6 +11,7 @@ use App\Category;
 use App\CategoryAuction;
 use App\Language;
 use App\Publisher;
+use App\Image;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -46,7 +47,7 @@ class CreateAuctionController extends Controller
       return view('pages.create');
     }
 
- 
+
     /**
      * Creates a new auction.
      *
@@ -92,6 +93,34 @@ class CreateAuctionController extends Controller
         $saveCategoryAuction->idauction = $saveAuction->id;
         $saveCategoryAuction->save();
       }
+
+      //$this->validate($request, ['images' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048']);
+/*
+      $file = $request->file('images');
+      var_dump($file);
+      adasdasd
+     die;*/
+      $input=$request->all();
+      $images = array();
+      if($files=$request->file('images')){
+        foreach($files as $file){
+            $name=$file->getClientOriginalName();
+            $file->move('image',$name);
+            $images[]=$name;
+        }
+      }
+
+      foreach ($images as $image){
+          $saveImage = new Image;
+          $saveImage->source = $image;
+          $saveImage->idAuction = $saveAuction->id;
+          $saveImage->save();
+      }
+      die;
+
+
+      //$saveImage->source = $request->input('filename');
+      //$saveImage->idusers = $saveAuction->id;
 
       return redirect()->route('auction',['id' => $saveAuction->id]);
     }
