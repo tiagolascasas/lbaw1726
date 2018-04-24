@@ -22,15 +22,48 @@ $(window).on("load", function() {
     $("#myModalError").modal("show");
 });
 
-let xmlhttp = new XMLHttpRequest();
-xmlhttp.open("GET", "api/search", true);
-xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status === 200) {
-        console.log(this.responseText);
+if (window.location.pathname = "/home") {
+    let auctions = JSON.parse(ajaxCall("GET", "api/search", ""));
+    let album = document.querySelector('#auctionAlbum');
+    album.innerHTML = `<div class="row">`;
+    for (let i = 0; i < auctions.length; i++) {
+        if (i % 4 === 0 && i !== 0) {
+            album.innerHTML += `</div><div class="row">`;
+        }
+        album.innerHTML += `<div class="col-md-3 auctionItem"  data-id="${auctions[i].id}">
+        <a href="auction/${auctions[i].id}" class="list-group-item-action">
+            <div class="card mb-4 box-shadow">
+                <div class="col-md-6 img-fluid media-object align-self-center ">
+                    <img class="width100" src="{{ asset('img/book.png') }}" alt="the orphan stale">
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-center hidden-p-md-down font-weight-bold" style="font-size: larger">{{ $auction->title }} </p>
+                    <p class="card-text text-center hidden-p-md-down">By ${auctions[i].author} </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <i class="fas fa-star btn btn-sm text-primary"></i>
+                        <small class="text-success">€ 0.00 </small>
+                        <small class="text-danger">
+                                &lt; x mins</small>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>`
     }
-};
-xmlhttp.send();
+    album.innerHTML += `</div>`;
+}
+
+function ajaxCall(method, url, data) {
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open(method, url, true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            return this.responseText;
+        }
+    };
+    xmlhttp.send(data);
+}
 
 function searchfunc() {
     window.location.href = "search.html";
