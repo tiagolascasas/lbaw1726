@@ -23,19 +23,19 @@ $(window).on("load", function() {
 });
 
 if (window.location.pathname === "/home") {
-    ajaxCall("GET", "api/search", 'type_search=home', "homeHandler");
+    ajaxCallGet("api/search?type_search=home", "homeHandler");
 }
 
-function ajaxCall(method, url, data, handler) {
+function ajaxCallGet(url, handler) {
     let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open(method, url, true);
+    xmlhttp.open("GET", url, true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             window[handler](this.responseText);
         }
     };
-    xmlhttp.send(data);
+    xmlhttp.send();
 }
 
 function homeHandler(response) {
