@@ -35,4 +35,5 @@ class SearchController extends Controller
 
             return response('Error', 400)
                   ->header('Content-Type', 'text/plain');
+    }
 }
