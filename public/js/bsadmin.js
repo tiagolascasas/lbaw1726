@@ -23,7 +23,23 @@ $(window).on("load", function() {
 });
 
 if (window.location.pathname === "/home") {
-    let auctions = ajaxCall("GET", "api/search", "");
+    ajaxCall("GET", "api/search", "", "homeHandler");
+}
+
+function ajaxCall(method, url, data, handler) {
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open(method, url, true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            window[handler](this.responseText);
+        }
+    };
+    xmlhttp.send(data);
+}
+
+function homeHandler(response) {
+    auctions = response;
     console.log(auctions);
     console.log(JSON.parse(auctions));
     let album = document.querySelector('#auctionAlbum');
@@ -53,18 +69,6 @@ if (window.location.pathname === "/home") {
     </div>`
     }
     album.innerHTML += `</div>`;
-}
-
-function ajaxCall(method, url, data) {
-    let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open(method, url, true);
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            return this.responseText;
-        }
-    };
-    xmlhttp.send(data);
 }
 
 function searchfunc() {
