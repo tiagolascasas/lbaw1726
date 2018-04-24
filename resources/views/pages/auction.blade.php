@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Bookhub - Create Auction')
+@section('title', 'Auction')
 
 @php
     $sellerName =  App\User::where('id', $auction->idseller)->get()->first()->name;

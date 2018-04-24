@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Bookhub - Home')
+@section('title', 'Home')
 
 @php
   $auctions = App\Auction::all();
@@ -31,7 +31,7 @@
 <div class="album py-2">
     <div class="row">
       <!--- Items list -->
-      @each('partials.auctionItem', $auctions, 'auction')
+      @include('pages.auctionItems')
     </div>
 </div>
 

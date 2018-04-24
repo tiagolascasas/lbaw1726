@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Auction;
 use App\Category;
 use App\CategoryAuction;
-use App\Member;
+use App\User;
 use App\Bid;
 
 
@@ -28,8 +28,6 @@ class AuctionController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-
 
     /**
      * Shows the auction for a given id.

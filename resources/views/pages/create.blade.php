@@ -1,12 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Bookhub - Create Auction')
+@section('title', 'Create Auction')
 
 @section('content')
-    <!-- Content -->
-
-
-
+    <!-- Content create auction -->
     <div class="container-fluid bg-white">
     <div class="bg-white mb-0 mt-4 pt-4 panel">
         <h4>

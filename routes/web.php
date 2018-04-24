@@ -31,3 +31,7 @@ Route::post('create', 'CreateAuctionController@create');
 
 // Auction Item Page
 Route::get('auction/{id}', 'AuctionController@show');
+
+// Profile Page
+Route::get('profile/{id}', 'ProfileController@show')->name('profile');
+
