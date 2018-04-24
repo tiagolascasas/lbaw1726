@@ -66,10 +66,25 @@ class ProfileController extends Controller
 
     public function editUser(Request $request, $id)
     {
-        if (!Auth::check()) return redirect('/home');
+        if (Auth::user()->id!=$id) return redirect('/home');
 
-        $user = User::find($id);
         $input =$request->all();
-        var_dump($input);
+
+        if($input['name']!==NULL)
+            DB::update('update users set name = ? where id = ?', [$input['name'],$id]);
+        if($input['age']!==NULL)
+            DB::update('update users set age = ? where id = ?', [$input['age'],$id]);
+        if($input['email']!==NULL)
+            DB::update('update users set email = ? where id = ?', [$input['email'],$id]);
+        if($input['address']!==NULL)
+            DB::update('update users set address = ? where id = ?', [$input['address'],$id]);
+        if($input['postalcode']!==NULL)
+            DB::update('update users set postalCode = ? where id = ?', [$input['postalcode'],$id]);
+        if($input['idcountry']!==NULL)
+            DB::update('update users set idCountry = ? where id = ?', [$input['idcountry'],$id]);
+        if($input['phone']!==NULL)
+            DB::update('update users set phone = ? where id = ?', [$input['phone'],$id]);
+
+        return redirect()->route('profile', ['id' => Auth::user()->id]);
     }
 }
