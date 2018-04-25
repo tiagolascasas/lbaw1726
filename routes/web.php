@@ -35,6 +35,15 @@ Route::get('auction/{id}', 'AuctionController@show');
 // Profile Page
 Route::get('profile/{id}', 'ProfileController@show')->name('profile');
 
+
+//Contact
+Route::get('contact', 'ContactController@show');
+
+//FAQ
+Route::get('faq', 'FaqController@show');
+
+//About
+Route::get('about', 'AboutController@show');
+
 //API
 Route::get('api/search', 'API\SearchController@index');
-
