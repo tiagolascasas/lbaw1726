@@ -2,47 +2,10 @@
 
 @section('title', 'Auction')
 
-@php
-    $sellerName =  App\User::where('id', $auction->idseller)->get()->first()->name;
-    $languagename = App\Language::where('id', $auction->idlanguage)->get()->first()->languagename;
-
-    //get publisher name if exists
-    if($auction->idpublisher!=NULL){
-          $publishername = App\Publisher::where('id', $auction->idpublisher)->get()->first()->publishername;
-    }
-    else{
-          $publishername = "No publisher";
-    }
-
-    //get category name if exists
-    if($auction->idcategory!=NULL){
-          $categoryname = App\CategoryAuction::where('id', $auction->idcategory)->get()->first()->categoryname;
-    }
-    else{
-          $categoryname = "No category";
-    }
-
-    $categorynumber = App\CategoryAuction::where('idauction', $auction->id)->get()->first();
-    if ($categorynumber!=NULL){
-        $categoryname = App\Category::where('id', $categorynumber->idcategory )->get()->first();
-        if ($categoryname != NULL){
-          $categoryname = $categoryname->categoryname;
-        }
-        else {
-          $categoryname = "No category";
-        }
-    }
-    else {
-      $categoryname = "No category";
-    }
-
-
-@endphp
-
 @section('content')
 
     <!-- Auction Content -->
-            <main  data-id="{{$auction->id}}">
+            <main  data-id="{{$auction, $categoryName}}">
               <div class="container p-5">
                 <table class="table">
                     <tbody>
@@ -80,7 +43,7 @@
                         </tr>
                         <tr>
                             <td><strong>Publisher</strong></td>
-                            <td>{{$publishername}}</td>
+                            <td>{{$auction->publisher->publishername}}</td>
                         </tr>
                         <tr>
                             <td><strong>ISBN</strong></td>
@@ -88,11 +51,11 @@
                         </tr>
                         <tr>
                             <td><strong>Language</strong></td>
-                            <td>{{$languagename}}</td>
+                            <td>{{$auction->language->languagename}}</td>
                         </tr>
                         <tr>
                             <td><strong>Category</strong></td>
-                            <td>{{$categoryname}}</td>
+                            <td>{{$categoryName}}</td>
                         </tr>
 
                         <tr>
@@ -118,7 +81,7 @@
                                 <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
                             </td>
                             <td>
-                                <a class="button btn btn-sm btn-outline-secondary p-2 " type="button" href="{{ url('profile/') }}">{{$sellerName}}</a>
+                                <a class="button btn btn-sm btn-outline-secondary p-2 " type="button" href="{{ url("profile/{$auction->user->id}") }}">{{$auction->user->name}}</a>
                             </td>
                         </tr>
                     </tbody>

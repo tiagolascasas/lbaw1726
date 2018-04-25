@@ -21,4 +21,31 @@ class Auction extends Model
    */
   protected $table = 'auction';
 
+  /**
+   *
+   * The user that created this auction
+   *
+   */
+  public function user(){
+    return $this->belongsTo('App\User','idseller','id');
+  }
+
+  /**
+   *
+   * This auction's language
+   *
+   */
+  public function language(){
+    return $this->hasOne('App\Language','id','idlanguage');
+  }
+
+  /**
+   *
+   * This auction's publisher
+   *
+   */
+  public function publisher(){
+    return $this->hasOne('App\Publisher','id','idpublisher');
+  }  
+
 }

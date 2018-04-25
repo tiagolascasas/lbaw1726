@@ -1,5 +1,5 @@
     <!-- Profile Content -->
-    <main  data-id="{{$user,$countryName}}">
+    <main  data-id="{{$user}}">
         <div class="container-fluid bg-white">
             <div class="bg-white mb-0 mt-4 panel">
                 <h5><i class="fa fa-user-circle"></i> {{$user->username}}'s profile</h5>
@@ -40,7 +40,7 @@
                                 <strong>Country</strong>
                             </td>
                             <td>
-                                {{$countryName}}
+                                {{$user->country->countryname}}
                             </td>
                         </tr>
                     </tbody>

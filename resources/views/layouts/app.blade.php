@@ -184,8 +184,8 @@
                 <i class="fa fa-user"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1 navbarDropdownMenuLink2">
-                <a class="dropdown-item" href="profile_owner.html">Profile</a>
-                <a class="dropdown-item" href="create">Create auction</a>
+                <a class="dropdown-item" href="profile/{{Auth::user()->id}}">Profile</a>
+                <a class="dropdown-item" href="{{ url("create/") }}">Create auction</a>
                 <a class="dropdown-item" href="myAuctions.html">My Auctions</a>
                 <a class="dropdown-item" href="auctionsIm_in.html">Auctions I'm in</a>
                 <a class="dropdown-item" href="history.html">History</a>

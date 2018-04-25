@@ -19,4 +19,12 @@ class Bid extends Model
    * @var string
    */
   protected $table = 'bid';
+
+  public function user(){
+    return $this->belongsTo('App\User','idbuyer','id');
+  }
+
+  public function auction(){
+    return $this->belongsTo('App\Auction','idauction','id');
+  }
 }

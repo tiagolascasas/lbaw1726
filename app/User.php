@@ -29,4 +29,32 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     *
+     * This user's country
+     *
+     */
+    public function country(){
+        return $this->hasOne('App\Country','id','idcountry');
+    }
+
+    /**
+     *
+     * This user's auctions
+     *
+     */
+    public function auctions(){
+       return $this->hasMany('App\Auction','id','idseller');
+    }
+
+
+    /**
+     *
+     * This user's bids
+     *
+     */
+    public function bids(){
+       return $this->hasMany('App\Bid','id','idbuyer');
+    }
 }

@@ -41,6 +41,21 @@ class AuctionController extends Controller
 
         $auction = Auction::find($id);
 
-        return view('pages.auction', ['auction' => $auction]);
+        //get the category number and the category name
+        $categoryNumber = CategoryAuction::where('idauction', $auction->id)->get()->first();
+        if ($categoryNumber!=NULL){
+            $categoryName = Category::where('id', $categoryNumber->idcategory )->get()->first();
+            if ($categoryName != NULL){
+              $categoryName = $categoryName->categoryname;
+            }
+            else {
+              $categoryName = "No category";
+            }
+        }
+        else {
+          $categoryName = "No category";
+        }
+
+        return view('pages.auction', ['auction' => $auction,'categoryName' => $categoryName]);
     }
 }

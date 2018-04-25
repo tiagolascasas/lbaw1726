@@ -44,8 +44,6 @@ class ProfileController extends Controller
 
         $user = User::find($id);
 
-        $countryName = Country::find($user->idcountry)->countryname;
-
-        return view('pages.profile', ['user' => $user,'countryName' => $countryName]);
+        return view('pages.profile', ['user' => $user]);
     }
 }
