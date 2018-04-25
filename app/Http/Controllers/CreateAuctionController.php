@@ -93,6 +93,6 @@ class CreateAuctionController extends Controller
         $saveCategoryAuction->save();
       }
 
-      return view('pages.auction', ['auction' => $saveAuction]);
+      return redirect()->route('auction',['id' => $saveAuction->id]);
     }
 }
