@@ -21,11 +21,8 @@
             </div>
         </section>
         <!---  Active auctions grid -->
-        <div class="album py-2">
-            <div class="row">
-             <!--- Items list -->
-            @include('pages.auctionItems')
-            </div>
+        <div id="auctionAlbum" class="album py-2">
+           
         </div>
 </div>
 

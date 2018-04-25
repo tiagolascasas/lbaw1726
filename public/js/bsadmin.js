@@ -22,15 +22,56 @@ $(window).on("load", function() {
     $("#myModalError").modal("show");
 });
 
-let xmlhttp = new XMLHttpRequest();
-xmlhttp.open("GET", "api/search", true);
-xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status === 200) {
-        console.log(this.responseText);
-    }
-};
-xmlhttp.send();
+if (window.location.pathname === "/home") {
+    ajaxCall("GET", "api/search", "", "homeHandler");
+}
+
+function ajaxCall(method, url, data, handler) {
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open(method, url, true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            window[handler](this.responseText);
+        }
+    };
+    xmlhttp.send(data);
+}
+
+function homeHandler(response) {
+    auctions = JSON.parse(response);
+    let album = document.querySelector('#auctionAlbum');
+    console.log(album);
+    let htmlAuction = `<div class="row">`;
+    let i = 0;
+    auctions.forEach(element => {
+        if (i % 4 === 0 && i !== 0) {
+            htmlAuction += `</div><div class="row">`;
+        }
+        htmlAuction += `<div class="col-md-3 auctionItem"  data-id="${element.id}">
+        <a href="auction/${element.id}" class="list-group-item-action">
+            <div class="card mb-4 box-shadow">
+                <div class="col-md-6 img-fluid media-object align-self-center ">
+                    <img class="width100" src="../img/book.png" alt="the orphan stale">
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-center hidden-p-md-down font-weight-bold" style="font-size: larger"> ${element.title} </p>
+                    <p class="card-text text-center hidden-p-md-down">By ${element.author} </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <i class="fas fa-star btn btn-sm text-primary"></i>
+                        <small class="text-success">€ 0.00 </small>
+                        <small class="text-danger">
+                                &lt; x mins</small>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>`;
+        i++;
+    });
+    htmlAuction += `</div>`;
+    album.innerHTML = htmlAuction;
+}
 
 function searchfunc() {
     window.location.href = "search.html";
