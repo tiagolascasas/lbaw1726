@@ -11,6 +11,7 @@ use App\Category;
 use App\CategoryAuction;
 use App\User;
 use App\Bid;
+use App\Image;
 
 
 use App\Http\Controllers\Controller;
@@ -56,6 +57,9 @@ class AuctionController extends Controller
           $categoryName = "No category";
         }
 
-        return view('pages.auction', ['auction' => $auction,'categoryName' => $categoryName]);
+        //get the images
+        $images = DB::table('image')->where('idauction', $id)->pluck('source');
+
+        return view('pages.auction', ['auction' => $auction,'categoryName' => $categoryName, 'images' => $images]);
     }
 }

@@ -13,16 +13,16 @@
                             <td rowspan="7" colspan="2" style="width: 26.33%">
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                        @foreach($images as $key => $image)
+                                        <li data-target="#carouselExampleIndicators" data-slide-to={{$key}} @if ($key === 0) class="active" @endif></li>
+                                        @endforeach
                                     </ol>
                                     <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img class="d-block w-100" src="{{ asset('img/book.png') }}" alt="First slide">
+                                        @foreach($images as $key => $image)
+                                        <div class=@if ($key === 0) "carousel-item active" @else "carousel-item" @endif >
+                                            <img class="d-block w-100" src="{{asset('img/'.$image)}}" alt="{{$image}}" >
                                         </div>
-                                        <div class="carousel-item">
-                                            <img class="d-block w-100" src="{{ asset('img/book.png') }}" alt="Second slide">
-                                        </div>
+                                        @endforeach
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

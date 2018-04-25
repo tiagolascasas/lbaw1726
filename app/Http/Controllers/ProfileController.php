@@ -86,6 +86,10 @@ class ProfileController extends Controller
         if($input['phone']!==NULL)
             DB::update('update users set phone = ? where id = ?', [$input['phone'],$id]);
 
-        return redirect()->route('profile', ['id' => Auth::user()->id]);
+        $image = DB::table('image')->where('iduser', $id)->pluck('source')[0];
+        if ($image == NULL)
+          $image = "default.jpg";
+
+        return redirect()->route('profile', ['id' => Auth::user()->id, 'image' => $image]);
     }
 }

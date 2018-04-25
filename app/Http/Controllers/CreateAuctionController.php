@@ -100,7 +100,7 @@ class CreateAuctionController extends Controller
       if($files=$request->file('images')){
         foreach($files as $file){
             $name=$file->getClientOriginalName();
-            $file->move('image',$name);
+            $file->move('img',$name);
             $images[]=$name;
         }
       }

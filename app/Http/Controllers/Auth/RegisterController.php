@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Storage;
 use App\User;
+use App\Image;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,7 +67,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $file = $data['images'][0];
+        $file->move('avatars', $file->getClientOriginalName());
+
+        $saveUser = new User;
+        $saveUser->create([
             'address' => $data['address'],
             'age' => $data['age'],
             'name' => $data['name'],
@@ -76,5 +82,12 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'idcountry' => $data['idcountry'],
         ]);
+
+        $saveImage = new Image;
+        $saveImage->source = $file->getClientOriginalName();
+        $saveImage->idusers = $saveUser->id;
+        $saveImage->save();
+
+        return $saveUser;
     }
 }

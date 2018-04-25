@@ -1,3 +1,4 @@
+
 ------------------------------------------
 --Tables
 ------------------------------------------
@@ -146,7 +147,7 @@ CREATE TABLE notification_auction (
 --15
 CREATE TABLE image (
     id SERIAL PRIMARY KEY,
-    source text NOT NULL UNIQUE,
+    source text NOT NULL,
     idAuction  INTEGER REFERENCES auction(id),
     idAuctionModification  INTEGER REFERENCES auction_modification(id),
 	idusers INTEGER REFERENCES users(id)
@@ -316,11 +317,11 @@ CREATE TRIGGER tr_change_auction_modification_is_approved
     BEFORE UPDATE ON auction_modification
         FOR EACH ROW
 		      EXECUTE PROCEDURE change_auction_modification_is_approved();
-			  
+
 CREATE FUNCTION image_auction_or_users() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    
+
 	IF (NEW.idusers!=NULL) AND (NEW.idAuction!=NULL OR NEW.idAuctionModification!= NULL) THEN
         RAISE EXCEPTION 'An image cant belong to an auction and an user';
     END IF;
