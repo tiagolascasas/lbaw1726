@@ -67,8 +67,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $file = $data['images'][0];
-        $file->move('avatars', $file->getClientOriginalName());
+       // $file = $data['images'][0];
+       // $file->move('avatars', $file->getClientOriginalName());
 
         $saveUser = new User;
         $saveUser->create([
@@ -83,10 +83,10 @@ class RegisterController extends Controller
             'idcountry' => $data['idcountry'],
         ]);
 
-        $saveImage = new Image;
-        $saveImage->source = $file->getClientOriginalName();
-        $saveImage->idusers = $saveUser->id;
-        $saveImage->save();
+        //$saveImage = new Image;
+        //$saveImage->source = $file->getClientOriginalName();
+        //$saveImage->idusers = $saveUser->id;
+        //$saveImage->save();
 
         return $saveUser;
     }
