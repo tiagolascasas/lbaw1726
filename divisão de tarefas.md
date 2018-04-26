@@ -38,6 +38,8 @@
 
 #### Módulo 05 - Admin (Recursos R501 - R510):
 
+**Ignorar para já**
+
 - US71
 - US72
 - US73
@@ -54,6 +56,8 @@
 - US64
 
 #### Módulo 07 (Recursos R701 - R704):
+
+**Daniel**
 
 - US13
 - US14
