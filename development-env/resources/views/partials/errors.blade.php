@@ -1,7 +1,7 @@
 @if ($errors->any())
 <!-- Modal -->
 <div id="myModalError" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -9,14 +9,12 @@
         <h4 class="modal-title align-self-center">Errors</h4>
       </div>
       <div class="modal-body">
-      <ul>
             @foreach ($errors->all() as $error)
-                <li class="alert alert-danger">{{ $error }}</li>
+                <p class="alert alert-danger">{{ $error }}</p>
             @endforeach
-        </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
     </div>
 
