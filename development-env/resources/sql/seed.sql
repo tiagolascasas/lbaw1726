@@ -1,3 +1,4 @@
+
 ------------------------------------------
 --Tables
 ------------------------------------------
@@ -17,7 +18,7 @@ CREATE TABLE country (
 
 
 --3
-CREATE TABLE member (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     address text,
     age SMALLINT NOT NULL,
@@ -29,12 +30,13 @@ CREATE TABLE member (
     postalCode text NOT NULL,
     username text NOT NULL UNIQUE,
     dateCreated TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    member_status text NOT NULL DEFAULT 'normal'::text,
+    users_status text NOT NULL DEFAULT 'normal'::text,
     dateBanned TIMESTAMP WITH TIME zone DEFAULT NULL,
     dateSuspended TIMESTAMP WITH TIME zone DEFAULT NULL,
     dateTerminated  TIMESTAMP WITH TIME zone DEFAULT NULL,
     idCountry  INTEGER NOT NULL REFERENCES country(id),
-    CONSTRAINT status_ck CHECK ((member_status = ANY (ARRAY['moderator'::text, 'suspended'::text, 'banned'::text, 'normal'::text, 'terminated'::text]))),
+    remember_token VARCHAR,
+    CONSTRAINT status_ck CHECK ((users_status = ANY (ARRAY['moderator'::text, 'suspended'::text, 'banned'::text, 'normal'::text, 'terminated'::text]))),
     CONSTRAINT age_ck CHECK (age>=18)
 );
 
@@ -44,7 +46,7 @@ CREATE TABLE member (
 CREATE TABLE requested_termination (
     id SERIAL PRIMARY KEY,
     dateRequested  TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
-    idMember INTEGER NOT NULL REFERENCES member(id)
+    idusers INTEGER NOT NULL REFERENCES users(id)
 );
 
 --6
@@ -82,7 +84,7 @@ CREATE TABLE auction (
     dateRemoved TIMESTAMP WITH TIME zone DEFAULT NULL,
     idPublisher INTEGER REFERENCES publisher(id),
     idLanguage INTEGER NOT NULL REFERENCES language(id),
-    idSeller INTEGER NOT NULL REFERENCES member(id),
+    idSeller INTEGER NOT NULL REFERENCES users(id),
     CONSTRAINT auction_status_ck CHECK ((auction_status = ANY (ARRAY['approved'::text, 'removed'::text, 'waitingApproval'::text]))),
     CONSTRAINT duration_ck CHECK (duration >= '00:05:00'::interval)
 );
@@ -97,14 +99,14 @@ CREATE TABLE category_auction (
 
 --10
 CREATE TABLE whishlist (
-    idBuyer INTEGER NOT NULL REFERENCES member(id),
+    idBuyer INTEGER NOT NULL REFERENCES users(id),
     idAuction INTEGER NOT NULL REFERENCES auction(id),
     CONSTRAINT wish_list_pk PRIMARY KEY (idBuyer, idAuction)
 );
 
 --11
 CREATE TABLE bid (
-    idBuyer INTEGER NOT NULL REFERENCES member(id),
+    idBuyer INTEGER NOT NULL REFERENCES users(id),
     idAuction INTEGER NOT NULL REFERENCES auction(id),
     bidDate TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     bidValue REAL,
@@ -130,7 +132,7 @@ CREATE TABLE notification (
     information text,
     is_seen boolean DEFAULT FALSE,
     dateSeen TIMESTAMP WITH TIME zone,
-    idMember INTEGER NOT NULL REFERENCES member(id)
+    idusers INTEGER NOT NULL REFERENCES users(id)
 );
 
 
@@ -145,10 +147,10 @@ CREATE TABLE notification_auction (
 --15
 CREATE TABLE image (
     id SERIAL PRIMARY KEY,
-    source text NOT NULL UNIQUE,
+    source text NOT NULL,
     idAuction  INTEGER REFERENCES auction(id),
     idAuctionModification  INTEGER REFERENCES auction_modification(id),
-	idMember INTEGER REFERENCES member(id)
+	idusers INTEGER REFERENCES users(id)
 );
 
 --16
@@ -156,8 +158,8 @@ CREATE TABLE message (
     id SERIAL PRIMARY KEY,
     dateSent TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL,
     message_text text NOT NULL,
-    idSender INTEGER NOT NULL REFERENCES member(id),
-    idReceiver INTEGER NOT NULL REFERENCES member(id),
+    idSender INTEGER NOT NULL REFERENCES users(id),
+    idReceiver INTEGER NOT NULL REFERENCES users(id),
     CONSTRAINT check_sender_receiver CHECK (idSender != idReceiver)
 );
 
@@ -169,8 +171,8 @@ CREATE TABLE comment (
     comment_text text NOT NULL,
     is_removed boolean DEFAULT FALSE,
     idParent INTEGER REFERENCES comment(id),
-    idSender INTEGER NOT NULL REFERENCES member(id),
-    idReceiver INTEGER NOT NULL REFERENCES member(id),
+    idSender INTEGER NOT NULL REFERENCES users(id),
+    idReceiver INTEGER NOT NULL REFERENCES users(id),
     CONSTRAINT check_comment_parent CHECK (id != idParent)
 );
 
@@ -178,7 +180,7 @@ CREATE TABLE comment (
  --INDEXES
 ----------------------------------------------------
 
-CREATE INDEX user_id ON member USING hash (id);
+CREATE INDEX user_id ON users USING hash (id);
 
 CREATE INDEX auction_id ON auction USING hash (id);
 
@@ -217,15 +219,15 @@ CREATE TRIGGER tr_check_number_of_row_admin
     EXECUTE PROCEDURE check_number_of_row_admin();
 
 
-CREATE FUNCTION change_member_status() RETURNS TRIGGER AS
+CREATE FUNCTION change_users_status() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    IF EXISTS (SELECT * FROM member WHERE NEW.id = member.id) THEN
-	    IF NEW.member_status='banned' THEN
+    IF EXISTS (SELECT * FROM users WHERE NEW.id = users.id) THEN
+	    IF NEW.users_status='banned' THEN
             NEW.dateBanned := now();
-        ELSIF NEW.member_status='suspended' THEN
+        ELSIF NEW.users_status='suspended' THEN
             NEW.dateSuspended:= now();
-        ELSIF NEW.member_status='terminated' THEN
+        ELSIF NEW.users_status='terminated' THEN
             NEW.dateTerminated:= now();
         END IF;
     END IF;
@@ -234,10 +236,10 @@ END
 $BODY$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER tr_change_member_status
-    BEFORE UPDATE ON member
+CREATE TRIGGER tr_change_users_status
+    BEFORE UPDATE ON users
         FOR EACH ROW
-		      EXECUTE PROCEDURE change_member_status();
+		      EXECUTE PROCEDURE change_users_status();
 
 
 CREATE FUNCTION change_auction_status() RETURNS TRIGGER AS
@@ -315,12 +317,12 @@ CREATE TRIGGER tr_change_auction_modification_is_approved
     BEFORE UPDATE ON auction_modification
         FOR EACH ROW
 		      EXECUTE PROCEDURE change_auction_modification_is_approved();
-			  
-CREATE FUNCTION image_auction_or_member() RETURNS TRIGGER AS
+
+CREATE FUNCTION image_auction_or_users() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-    
-	IF (NEW.idMember!=NULL) AND (NEW.idAuction!=NULL OR NEW.idAuctionModification!= NULL) THEN
+
+	IF (NEW.idusers!=NULL) AND (NEW.idAuction!=NULL OR NEW.idAuctionModification!= NULL) THEN
         RAISE EXCEPTION 'An image cant belong to an auction and an user';
     END IF;
 	RETURN NEW;
@@ -328,10 +330,10 @@ END
 $BODY$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER tr_image_auction_or_member
+CREATE TRIGGER tr_image_auction_or_users
      BEFORE INSERT OR UPDATE ON image
         FOR EACH ROW
-		      EXECUTE PROCEDURE image_auction_or_member();
+		      EXECUTE PROCEDURE image_auction_or_users();
 
 
 --1
@@ -541,33 +543,33 @@ INSERT INTO "publisher" (publisherName) VALUES ('Vintage Books');
 
 
 --3
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('2066 Straubel Court', 28, 'eluty0@bizjournals.com', 'Eustacia Luty', 'oRE56BNQ', 'eluty0@theguardian.com', '+46 904 159 9108', '692 24', 'eluty0', 'normal', 22);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('7361 Mallard Road', 19, 'ehould1@hp.com', 'Edmund Hould', 'pEU60gGA', 'ehould1@opensource.org', '+998 945 505 7553', '692 24', 'ehould1', 'normal', 3);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('5 John Wall Drive', 21, 'clittrell2@imgur.com', 'Clemmy Littrell', 'Uh4dAtIR', 'clittrell2@wunderground.com', '+63 781 701 0990', '8301', 'clittrell2', 'normal', 1);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('10 Shoshone Terrace', 48, 'ndolley3@tiny.cc', 'Nev Dolley', '9QbuY0de', 'ndolley3@paypal.com', '+62 912 696 8250', '692 24', 'ndolley3', 'normal', 1);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('6 John Wall Crossing', 56, 'nfant4@sina.com.cn', 'Nissy Fant', '2eagNED2', 'nfant4@telegraph.co.uk', '+86 998 868 7658', '692 24', 'nfant4', 'normal', 1);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('93 Moland Circle', 48, 'ihaylock5@nps.gov', 'Izak Haylock', 'Xn9P6fn9', 'ihaylock5@ca.gov', '+1 405 965 4695', '73129', 'ihaylock5', 'normal', 20);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('41185 Arrowood Street', 64, 'fblum6@bing.com', 'Filberto Blum', 'jb4VQLkf', 'fblum6@vk.com', '+46 813 516 1461', '351 88', 'fblum6', 'normal', 12);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('528 Golden Leaf Parkway', 56, 'mkees7@house.gov', 'Marietta Kees', 'uUMLA25z', 'mkees7@soundcloud.com', '+7 598 409 8497', '678030', 'mkees7', 'normal', 18);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('05804 Randy Crossing', 24, 'gblanc8@chicagotribune.com', 'Gerladina Blanc', 'ggbEHY7j', 'gblanc8@dagondesign.com', '+1 408 842 4388', '95138', 'gblanc8', 'normal', 14);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('55 Kennedy Circle', 30, 'jscanterbury9@symantec.com', 'Joceline Scanterbury', 'Z4WdQmIb', 'jscanterbury9@cbc.ca', '+86 607 522 5709', '692 24', 'jscanterbury9', 'normal', 14);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('5416 Karstens Road', 26, 'aticehursta@home.pl', 'Annamaria Ticehurst', '1acALjhr', 'aticehursta@wisc.edu', '+7 393 867 7780', '649743', 'aticehursta', 'normal', 11);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('9 Lerdahl Drive', 24, 'jmckeefryb@nationalgeographic.com', 'Jesse McKeefry', 'qz5YPb0B', 'jmckeefryb@newsvine.com', '+86 739 638 1745', '692 24', 'jmckeefryb', 'normal', 7);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('5 Leroy Point', 33, 'cjobbingsc@php.net', 'Christos Jobbings', 'm2wDFcfd', 'cjobbingsc@earthlink.net', '+351 909 729 1955', '4615-131', 'cjobbingsc', 'normal', 22);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('9894 Union Park', 52, 'cmackiewiczd@a8.net', 'Clay Mackiewicz', 'ktAA8NYY', 'cmackiewiczd@noaa.gov', '+86 520 608 3542', '692 24', 'cmackiewiczd', 'normal', 16);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('41 Pierstorff Park', 58, 'dproome@meetup.com', 'Donal Proom', 'Buq6BSfL', 'dproome@bbb.org', '+7 776 314 7169', '181518', 'dproome', 'normal', 6);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('2 Petterle Crossing', 43, 'cgristonf@admin.ch', 'Constantino Griston','uKD716by', 'cgristonf@amazon.de', '+593 422 998 3244', '692 24', 'cgristonf', 'normal', 7);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('84 Fremont Pass', 36, 'cstofferg@bigcartel.com', 'Consuelo Stoffer', 'BmrUL6gv', 'cstofferg@hatena.ne.jp', '+86 573 198 3621', '692 24', 'cstofferg', 'normal', 17);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('203 Anzinger Hill', 33, 'bselesnickh@microsoft.com', 'Brocky Selesnick', 'srH1tc53', 'bselesnickh@answers.com', '+86 150 134 1271', '692 24', 'bselesnickh', 'normal', 10);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('8 Tomscot Center', 18, 'jkennificki@upenn.edu', 'Jarvis Kennifick', 'Cc3NuZTf', 'jkennificki@cbc.ca', '+81 862 520 2384', '360-0201', 'jkennificki', 'normal', 16);
-INSERT INTO "member" (address, age, email, name, password, paypalEmail, phone, postalCode, username, member_status, idCountry) VALUES ('159 Kropf Avenue', 28, 'tlinkinj@netlog.com', 'Trefor Linkin', 'ef76XTc1', 'tlinkinj@yellowpages.com', '+62 395 867 0445', '692 24', 'tlinkinj', 'normal', 18);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('2066 Straubel Court', 28, 'eluty0@bizjournals.com', 'Eustacia Luty', 'oRE56BNQ', 'eluty0@theguardian.com', '+46 904 159 9108', '692 24', 'eluty0', 'normal', 22);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('7361 Mallard Road', 19, 'ehould1@hp.com', 'Edmund Hould', 'pEU60gGA', 'ehould1@opensource.org', '+998 945 505 7553', '692 24', 'ehould1', 'normal', 3);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('5 John Wall Drive', 21, 'clittrell2@imgur.com', 'Clemmy Littrell', 'Uh4dAtIR', 'clittrell2@wunderground.com', '+63 781 701 0990', '8301', 'clittrell2', 'normal', 1);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('10 Shoshone Terrace', 48, 'ndolley3@tiny.cc', 'Nev Dolley', '9QbuY0de', 'ndolley3@paypal.com', '+62 912 696 8250', '692 24', 'ndolley3', 'normal', 1);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('6 John Wall Crossing', 56, 'nfant4@sina.com.cn', 'Nissy Fant', '2eagNED2', 'nfant4@telegraph.co.uk', '+86 998 868 7658', '692 24', 'nfant4', 'normal', 1);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('93 Moland Circle', 48, 'ihaylock5@nps.gov', 'Izak Haylock', 'Xn9P6fn9', 'ihaylock5@ca.gov', '+1 405 965 4695', '73129', 'ihaylock5', 'normal', 20);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('41185 Arrowood Street', 64, 'fblum6@bing.com', 'Filberto Blum', 'jb4VQLkf', 'fblum6@vk.com', '+46 813 516 1461', '351 88', 'fblum6', 'normal', 12);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('528 Golden Leaf Parkway', 56, 'mkees7@house.gov', 'Marietta Kees', 'uUMLA25z', 'mkees7@soundcloud.com', '+7 598 409 8497', '678030', 'mkees7', 'normal', 18);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('05804 Randy Crossing', 24, 'gblanc8@chicagotribune.com', 'Gerladina Blanc', 'ggbEHY7j', 'gblanc8@dagondesign.com', '+1 408 842 4388', '95138', 'gblanc8', 'normal', 14);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('55 Kennedy Circle', 30, 'jscanterbury9@symantec.com', 'Joceline Scanterbury', 'Z4WdQmIb', 'jscanterbury9@cbc.ca', '+86 607 522 5709', '692 24', 'jscanterbury9', 'normal', 14);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('5416 Karstens Road', 26, 'aticehursta@home.pl', 'Annamaria Ticehurst', '1acALjhr', 'aticehursta@wisc.edu', '+7 393 867 7780', '649743', 'aticehursta', 'normal', 11);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('9 Lerdahl Drive', 24, 'jmckeefryb@nationalgeographic.com', 'Jesse McKeefry', 'qz5YPb0B', 'jmckeefryb@newsvine.com', '+86 739 638 1745', '692 24', 'jmckeefryb', 'normal', 7);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('5 Leroy Point', 33, 'cjobbingsc@php.net', 'Christos Jobbings', 'm2wDFcfd', 'cjobbingsc@earthlink.net', '+351 909 729 1955', '4615-131', 'cjobbingsc', 'normal', 22);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('9894 Union Park', 52, 'cmackiewiczd@a8.net', 'Clay Mackiewicz', 'ktAA8NYY', 'cmackiewiczd@noaa.gov', '+86 520 608 3542', '692 24', 'cmackiewiczd', 'normal', 16);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('41 Pierstorff Park', 58, 'dproome@meetup.com', 'Donal Proom', 'Buq6BSfL', 'dproome@bbb.org', '+7 776 314 7169', '181518', 'dproome', 'normal', 6);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('2 Petterle Crossing', 43, 'cgristonf@admin.ch', 'Constantino Griston','uKD716by', 'cgristonf@amazon.de', '+593 422 998 3244', '692 24', 'cgristonf', 'normal', 7);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('84 Fremont Pass', 36, 'cstofferg@bigcartel.com', 'Consuelo Stoffer', 'BmrUL6gv', 'cstofferg@hatena.ne.jp', '+86 573 198 3621', '692 24', 'cstofferg', 'normal', 17);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('203 Anzinger Hill', 33, 'bselesnickh@microsoft.com', 'Brocky Selesnick', 'srH1tc53', 'bselesnickh@answers.com', '+86 150 134 1271', '692 24', 'bselesnickh', 'normal', 10);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('8 Tomscot Center', 18, 'jkennificki@upenn.edu', 'Jarvis Kennifick', 'Cc3NuZTf', 'jkennificki@cbc.ca', '+81 862 520 2384', '360-0201', 'jkennificki', 'normal', 16);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('159 Kropf Avenue', 28, 'tlinkinj@netlog.com', 'Trefor Linkin', 'ef76XTc1', 'tlinkinj@yellowpages.com', '+62 395 867 0445', '692 24', 'tlinkinj', 'normal', 18);
 
 --4
-INSERT INTO "requested_termination"  (idMember) VALUES (19);
-INSERT INTO "requested_termination"  (idMember) VALUES (8);
-INSERT INTO "requested_termination"  (idMember) VALUES (17);
-INSERT INTO "requested_termination"  (idMember) VALUES (3);
-INSERT INTO "requested_termination"  (idMember) VALUES (13);
+INSERT INTO "requested_termination"  (idusers) VALUES (19);
+INSERT INTO "requested_termination"  (idusers) VALUES (8);
+INSERT INTO "requested_termination"  (idusers) VALUES (17);
+INSERT INTO "requested_termination"  (idusers) VALUES (3);
+INSERT INTO "requested_termination"  (idusers) VALUES (13);
 
 --5
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Rachelle Wadge', 'rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', '02:00:00', '878551550-7', 'ligula in lacus curabitur at', 'approved', 7, 93, 12);
@@ -666,36 +668,36 @@ INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAucti
 INSERT INTO "auction_modification" (newDescription, is_approved, idApprovedAuction) VALUES ('vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque', 'false',10);
 
 --13
-INSERT INTO "notification" (information, idMember) VALUES ('neque duis bibendum morbi non quam nec dui luctus rutrum', 8);
-INSERT INTO "notification" (information, idMember) VALUES ('eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet', 6);
-INSERT INTO "notification" (information, idMember) VALUES ('augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia', 2);
-INSERT INTO "notification" (information, idMember) VALUES ('ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum', 13);
-INSERT INTO "notification" (information, idMember) VALUES ('convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in', 7);
-INSERT INTO "notification" (information, idMember) VALUES ('potenti cras in purus eu magna vulputate luctus cum sociis', 7);
-INSERT INTO "notification" (information, idMember) VALUES ('et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros', 11);
-INSERT INTO "notification" (information, idMember) VALUES ('odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis', 9);
-INSERT INTO "notification" (information, idMember) VALUES ('porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac', 9);
-INSERT INTO "notification" (information, idMember) VALUES ('ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper', 8);
-INSERT INTO "notification" (information, idMember) VALUES ('nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede', 3);
-INSERT INTO "notification" (information, idMember) VALUES ('sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet', 5);
-INSERT INTO "notification" (information, idMember) VALUES ('eget congue eget semper rutrum nulla nunc purus phasellus in', 10);
-INSERT INTO "notification" (information, idMember) VALUES ('viverra eget congue eget semper rutrum nulla nunc purus phasellus', 2);
-INSERT INTO "notification" (information, idMember) VALUES ('diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien', 14);
-INSERT INTO "notification" (information, idMember) VALUES ('lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi', 18);
-INSERT INTO "notification" (information, idMember) VALUES ('sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus', 7);
-INSERT INTO "notification" (information, idMember) VALUES ('libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit', 20);
-INSERT INTO "notification" (information, idMember) VALUES ('velit id pretium iaculis diam erat fermentum justo nec condimentum neque', 12);
-INSERT INTO "notification" (information, idMember) VALUES ('mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet', 14);
-INSERT INTO "notification" (information, idMember) VALUES ('et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor', 3);
-INSERT INTO "notification" (information, idMember) VALUES ('primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio', 19);
-INSERT INTO "notification" (information, idMember) VALUES ('phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id', 10);
-INSERT INTO "notification" (information, idMember) VALUES ('suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et', 17);
-INSERT INTO "notification" (information, idMember) VALUES ('sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien', 8);
-INSERT INTO "notification" (information, idMember) VALUES ('orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi', 8);
-INSERT INTO "notification" (information, idMember) VALUES ('felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', 5);
-INSERT INTO "notification" (information, idMember) VALUES ('condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat', 17);
-INSERT INTO "notification" (information, idMember) VALUES ('odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus', 8);
-INSERT INTO "notification" (information, idMember) VALUES ('donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi', 10);
+INSERT INTO "notification" (information, idusers) VALUES ('neque duis bibendum morbi non quam nec dui luctus rutrum', 8);
+INSERT INTO "notification" (information, idusers) VALUES ('eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet', 6);
+INSERT INTO "notification" (information, idusers) VALUES ('augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia', 2);
+INSERT INTO "notification" (information, idusers) VALUES ('ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum', 13);
+INSERT INTO "notification" (information, idusers) VALUES ('convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in', 7);
+INSERT INTO "notification" (information, idusers) VALUES ('potenti cras in purus eu magna vulputate luctus cum sociis', 7);
+INSERT INTO "notification" (information, idusers) VALUES ('et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros', 11);
+INSERT INTO "notification" (information, idusers) VALUES ('odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis', 9);
+INSERT INTO "notification" (information, idusers) VALUES ('porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac', 9);
+INSERT INTO "notification" (information, idusers) VALUES ('ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper', 8);
+INSERT INTO "notification" (information, idusers) VALUES ('nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede', 3);
+INSERT INTO "notification" (information, idusers) VALUES ('sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet', 5);
+INSERT INTO "notification" (information, idusers) VALUES ('eget congue eget semper rutrum nulla nunc purus phasellus in', 10);
+INSERT INTO "notification" (information, idusers) VALUES ('viverra eget congue eget semper rutrum nulla nunc purus phasellus', 2);
+INSERT INTO "notification" (information, idusers) VALUES ('diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien', 14);
+INSERT INTO "notification" (information, idusers) VALUES ('lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi', 18);
+INSERT INTO "notification" (information, idusers) VALUES ('sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus', 7);
+INSERT INTO "notification" (information, idusers) VALUES ('libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit', 20);
+INSERT INTO "notification" (information, idusers) VALUES ('velit id pretium iaculis diam erat fermentum justo nec condimentum neque', 12);
+INSERT INTO "notification" (information, idusers) VALUES ('mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet', 14);
+INSERT INTO "notification" (information, idusers) VALUES ('et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor', 3);
+INSERT INTO "notification" (information, idusers) VALUES ('primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio', 19);
+INSERT INTO "notification" (information, idusers) VALUES ('phasellus in felis donec semper sapien a libero nam dui proin leo odio porttitor id', 10);
+INSERT INTO "notification" (information, idusers) VALUES ('suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et', 17);
+INSERT INTO "notification" (information, idusers) VALUES ('sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien', 8);
+INSERT INTO "notification" (information, idusers) VALUES ('orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi', 8);
+INSERT INTO "notification" (information, idusers) VALUES ('felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', 5);
+INSERT INTO "notification" (information, idusers) VALUES ('condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat', 17);
+INSERT INTO "notification" (information, idusers) VALUES ('odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus', 8);
+INSERT INTO "notification" (information, idusers) VALUES ('donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi', 10);
 
 --14
 INSERT INTO "notification_auction" (idAuction, idNotification) VALUES (12, 19);
@@ -774,6 +776,3 @@ INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idR
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra', true, null, 5, 12);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris', false, null, 12, 7);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac', false, null, 5, 6);
-
-
-

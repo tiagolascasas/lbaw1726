@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'address', 'age', 'email', 'password','phone','postalcode','username','idcountry',
     ];
 
     /**
@@ -31,9 +31,30 @@ class User extends Authenticatable
     ];
 
     /**
-     * The cards this user owns.
+     *
+     * This user's country
+     *
      */
-     public function cards() {
-      return $this->hasMany('App\Card');
+    public function country(){
+        return $this->hasOne('App\Country','id','idcountry');
+    }
+
+    /**
+     *
+     * This user's auctions
+     *
+     */
+    public function auctions(){
+       return $this->hasMany('App\Auction','id','idseller');
+    }
+
+
+    /**
+     *
+     * This user's bids
+     *
+     */
+    public function bids(){
+       return $this->hasMany('App\Bid','id','idbuyer');
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Storage;
 use App\User;
+use App\Image;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -19,7 +21,6 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
     use RegistersUsers;
 
     /**
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/cards';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -50,6 +51,10 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:users',
+            'age' => 'required|min:18|integer',
+            'address' => 'required|string|max:255',
+            'idcountry' => 'required|integer',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -62,10 +67,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+       // $file = $data['images'][0];
+       // $file->move('avatars', $file->getClientOriginalName());
+
+        $saveUser = new User;
+        $saveUser->create([
+            'address' => $data['address'],
+            'age' => $data['age'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone' => $data['phone'],
+            'postalcode' => $data['postalcode'],
+            'username' => $data['username'],
+            'idcountry' => $data['idcountry'],
         ]);
+
+        //$saveImage = new Image;
+        //$saveImage->source = $file->getClientOriginalName();
+        //$saveImage->idusers = $saveUser->id;
+        //$saveImage->save();
+
+        return $saveUser;
     }
 }
