@@ -344,10 +344,13 @@
                 </li>
             </ul>
         </nav>
+    </div>
+
+
 
         @include('partials.errors')
         @yield('content')
-    </div>
+
 
 
         <!-- Footer -->
