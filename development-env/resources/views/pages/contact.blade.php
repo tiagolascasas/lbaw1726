@@ -11,14 +11,15 @@
                 <div class="row">
                     <div class="col-md-6">
                         <p class="lead">Contact us through this form if you have any questions or issues regarding the platform</p>
-                        <form id="contact-form" method="post" action="contact.php">
+                            <form class="ml-4 mr-4" method="POST" action="{{ route('contact') }}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="messages"></div>
                             <div class="controls">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="form_name">Name</label>
-                                            <input id="form_name" type="text" name="name" class="form-control" placeholder="Enter your name" required="required" data-error="Userame is required.">
+                                            <label for="name">Name</label>
+                                            <input id="name" type="text" name="name" class="form-control" placeholder="Enter your name" required="required" data-error="Userame is required.">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -26,8 +27,8 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="form_email">E-mail</label>
-                                            <input id="form_email" type="email" name="email" class="form-control" placeholder="Enter your e-mail" required="required" data-error="Valid e-mail is required.">
+                                            <label for="email">E-mail</label>
+                                            <input id="email" type="email" name="email" class="form-control" placeholder="Enter your e-mail" required="required" data-error="Valid e-mail is required.">
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -35,8 +36,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="form_message">Message</label>
-                                            <textarea id="form_message" name="message" class="form-control" placeholder="Enter your message" rows="4" required="required" data-error="Please, enter the message."></textarea>
+                                            <label for="message">Message</label>
+                                            <textarea id="message" name="message" class="form-control" placeholder="Enter your message" rows="4" required="required" data-error="Please, enter the message."></textarea>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>

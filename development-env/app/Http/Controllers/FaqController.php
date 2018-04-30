@@ -38,6 +38,6 @@ class FaqController extends Controller
     public function show()
     {
 
-        return view('pages.faq');
+        return view('pages.faq', ['ua' => $ua => $ip ]);
     }
 }
