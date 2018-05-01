@@ -23,12 +23,16 @@
 
 #### Módulo 03 - Listas (Recursos R301 - R306):
 
+**Nelson**
+
 - US46
 - USXX ver leilões criados
 - USXX ver leilões licitados
 - USXX ver histórico
 
 #### Módulo 04 - Comunicação (Recursos R401 - R410):
+
+**Nelson**
 
 - US41
 - US42
