@@ -2,10 +2,6 @@
 
 @section('title', 'Home')
 
-@php
-  $auctions = App\Auction::all();
-@endphp
-
 @section('content')
 <div class="content p-4 mt-3">
         <section class="jumbotron text-center">
@@ -21,7 +17,6 @@
             </div>
         </section>
         <!---  Active auctions grid -->
-        <div id="auctionAlbum" class="album py-2">
-        </div>
+        <div id="auctionAlbum" class="album py-2"></div>
 </div>
 @endsection

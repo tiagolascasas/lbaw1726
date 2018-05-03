@@ -34,7 +34,7 @@ Route::get('auction/{id}', 'AuctionController@show')->name('auction');
 
 // Profile Page
 Route::get('profile/{id}', 'ProfileController@show')->name('profile');
-Route::post('profile/{id}/edit', 'ProfileController@editUser')->name('profile.edit');;
+Route::post('profile/{id}/edit', 'ProfileController@editUser')->name('profile.edit');
 
 //Contact
 Route::get('contact', 'ContactController@show')->name('contact');
@@ -48,3 +48,8 @@ Route::get('about', 'AboutController@show')->name('about');
 
 //API
 Route::get('api/search', 'API\SearchController@index');
+
+//Moderator
+Route::get('moderator','ModeratorController@show')->name('moderator');
+Route::post('moderator', 'ModeratorController@approve')->name('moderator.approve');
+Route::post('moderator', 'ModeratorController@reject')->name('moderator.reject');

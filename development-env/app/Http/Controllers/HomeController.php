@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use App\Auction;
+
 class HomeController extends Controller
 {
 
@@ -24,6 +26,11 @@ class HomeController extends Controller
 
     public function show()
     {
-      return view('pages.home');
+
+
+      $auctions = Auction::all();
+
+
+      return view('pages.home',['auctions'=>$auctions]);
     }
 }
