@@ -49,7 +49,12 @@ Route::get('about', 'AboutController@show')->name('about');
 //API
 Route::get('api/search', 'API\SearchController@index');
 
+//Search Page
+Route::get('search', 'SearchController@show')->name('search');
+
 //Moderator
 Route::get('moderator','ModeratorController@show')->name('moderator');
-Route::post('moderator', 'ModeratorController@approve')->name('moderator.approve');
-Route::post('moderator', 'ModeratorController@reject')->name('moderator.reject');
+Route::get('moderator/approve/{id}', 'ModeratorController@approve')->name('moderator.approve'); //change to post ajax
+Route::get('moderator/remove/{id}', 'ModeratorController@remove')->name('moderator.remove'); //change to post ajax
+Route::get('moderator/approve_mod/{id}', 'ModeratorController@approve_mod')->name('moderator.approve_mod'); //change to post ajax
+Route::get('moderator/remove_mod/{id}', 'ModeratorController@remove_mod')->name('moderator.remove_mod'); //change to post ajax

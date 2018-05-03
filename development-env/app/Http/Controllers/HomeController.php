@@ -30,7 +30,6 @@ class HomeController extends Controller
 
       $auctions = Auction::all();
 
-
       return view('pages.home',['auctions'=>$auctions]);
     }
 }

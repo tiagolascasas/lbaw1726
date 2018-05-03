@@ -1,5 +1,5 @@
 <div class="col-md-3 auctionItem"  data-id="{{$auction->id}}">
-    <a href="auction/{{$auction->id}}" class="list-group-item-action">
+    <a href="{{ url('auction/')}}/{{$auction->id}}" class="list-group-item-action">
         <div class="card mb-4 box-shadow">
             <div class="col-md-6 img-fluid media-object align-self-center ">
                 <img class="width100" src="{{ asset('img/book.png') }}" alt="the orphan stale">
