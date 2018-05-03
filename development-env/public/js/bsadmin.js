@@ -103,3 +103,16 @@ if (feedback !== null)
                 </div>
 
             </form>`;
+
+if (window.location.pathname === "/search")
+{
+    let searchForm = document.querySelector("#searchForm");
+    searchForm.onsubmit = function(event)
+    {
+        event.preventDefault();
+        let params = "api/search";
+
+
+        ajaxCallGet(params, "searchHandler");
+    }
+}

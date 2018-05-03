@@ -28,7 +28,7 @@
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <!-- Approve new auctions list -->
                     @each('partials.moderatingAuction', $auctions, 'auction')
-                    @empty($auctionsw)
+                    @empty($auctions)
                       <div class="alert alert-info" role="alert">
                       Nothing to approve here.
                       </div>

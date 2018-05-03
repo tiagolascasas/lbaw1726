@@ -57,7 +57,7 @@
 - US61
 - US62
 - US63
-- US64
+- US64 (baixa prioridade)
 
 #### Módulo 07 (Recursos R701 - R704):
 
