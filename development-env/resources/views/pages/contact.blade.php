@@ -5,13 +5,14 @@
 @section('content')
 
 <!--- Contact Content -->
+
         <div class="container-fluid bg-white">
             <main>
                 <h1 class="my-4">Contact</h1>
                 <div class="row">
                     <div class="col-md-6">
                         <p class="lead">Contact us through this form if you have any questions or issues regarding the platform</p>
-                            <form class="ml-4 mr-4" method="POST" action="{{ route('contact') }}" enctype="multipart/form-data">
+                            <form id="contactForm" class="ml-4 mr-4" method="POST" action="{{ route('contact') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="messages"></div>
                             <div class="controls">
@@ -42,7 +43,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="submit" class="btn btn-success btn-send border border-primary bg-primary" value="Send message">
+                                        <button onclick="submitContactMessage()" id="contactSubmitButton" class="btn btn-send text-white border border-success bg-success"> Send Message</button>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -51,6 +52,10 @@
                                 </div>
                             </div>
                         </form>
+                    <!-- Alert Notification Message-->
+                    <div id="contactAlert">
+                    </div>
+
                     </div>
                     <div class="col-md-6 mb-5 pb-3">
                         <p class="lead"> FEUP - Faculdade de Engenharia da Universidade do Porto</p>
@@ -67,4 +72,7 @@
         </div>
     </div>
 
+
+
 @endsection
+

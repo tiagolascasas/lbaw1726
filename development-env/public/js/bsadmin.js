@@ -116,3 +116,71 @@ if (window.location.pathname === "/search")
         ajaxCallGet(params, "searchHandler");
     }
 }
+
+// Contact AJAX form validator and sender with notification alert
+if (window.location.pathname === "/contact")
+{
+    $("#contactForm").click(function( event ) {
+    event.preventDefault();
+    });
+
+    function submitContactMessage(){
+        let openAlertF="<div class='alert alert-danger alert-dismissible mb-4' id='contactAlert'> <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+        let closeAlert="</div>";
+        
+        if ( $('#contactForm')[0].checkValidity() ){
+            let spinningCircle = "<i class='fa fas fa-circle-notch fa-spin' style='font-size:24px'></i>";
+            let defaultText="Send Message";
+            let openAlertS="<div class='alert alert-success alert-dismissible mb-4' id='contactAlert' data-dismiss='alert'> <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+
+            $("#contactSubmitButton").html(spinningCircle);
+            $.ajax({
+                   type: "POST",
+                   url: "/contact",
+                   data: $("#contactForm").serialize(),
+                   success: function(data)
+                   {
+                        $("#contactAlert").html(openAlertS+data+closeAlert);
+                        $("#contactSubmitButton").html(defaultText);
+                        $("#contactForm")[0].reset();
+                   },
+                   error: function(data)
+                   {
+                     $("#contactSubmitButton").html(defaultText);
+                     $("#contactAlert").html(openAlertF+"Something unexpected hapened. Please contact directly at: admin@bookhub.com"+closeAlert);
+                   }
+            });
+        } else {
+            $("#contactAlert").html(openAlertF+"Please fill all above fields correctly to send message."+closeAlert);
+        }
+    }
+}
+
+// Moderator AJAX actions
+if (window.location.pathname === "/moderator")
+{
+     function moderatorAction(modAction,auctionId,auctionModId=-1){
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }   
+        });
+
+       $.ajax({
+              url: "/moderator",
+              method: 'post',
+              data: {
+                 ida: auctionId,
+                 idm: auctionModId,
+                 action: modAction
+              },
+              success: function(result){
+                location.reload();
+              },
+              error: function(data){
+                console.log(data);
+                alert("fail" + ' ' + this.data)
+              }
+        });
+    }
+}

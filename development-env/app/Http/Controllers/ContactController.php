@@ -49,7 +49,9 @@ class ContactController extends Controller
      * @return Response
      */
     public function message(Request $request)
-    {
+    {  
+        $errorMsg = "Something unexpected hapened. Please contact the admin directly through: admin@bookhub.com";
+        $successMessage = "Your message was sent. Within 48h, you should receive a reply in your e-mail: ".$request->input('email');
 
         //ip and user agent information
         $ip = $request->ip();
@@ -67,7 +69,7 @@ class ContactController extends Controller
         # Send the email 
         $result = $mailgun->sendMessage("$domain",
                   array('from'    => 'Home remote Sandbox <postmaster@sandboxeb3d0437da8c4b4f8d5a428ed93f64cc.mailgun.org>',
-                        'to'      => 'Daniel Azevedo <daniel.azevedo@fe.up.pt>',
+                        'to'      => 'Bookhub admin <daniel.azevedo@fe.up.pt>',
                         'subject' => 'Contact message',
                         'text'    => 'Someone droped a contact message using the contact page.
                         '.'IP: '.$ip.'
@@ -78,8 +80,12 @@ class ContactController extends Controller
                         'require_tls'       => 'false',
                         'skip_verification' => 'true'
                         ));
-
-        return view('pages.contact');
+        if ($result){
+            return $successMessage;
+        }
+        else{
+            return $failMessage;
+        }
     }
 
 }

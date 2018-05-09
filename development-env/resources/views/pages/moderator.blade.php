@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Moderator Page')
+@section('title', 'Moderator Panel')
 
 @section('content')
-
-
 
         <!-- Approve new auctions -->
         <div class="container-fluid bg-white">
@@ -17,7 +15,7 @@
               <!-- Tab design -->
               <ul class="nav nav-tabs mb-2" id="myTab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Create Requests</a>
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Creation Requests</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Modification Requests</a>
@@ -38,7 +36,7 @@
                     <!-- Approve modifying auctions list -->
                     @foreach ($auction_modifications as $auction_modification)
 
-                      {{-- Get the data from auction to modify --}}
+                      {{-- Get the data from of auctions to modify --}}
                       @foreach ($auctions_to_mod as $auction_to_mod)
                           @break ($auction_modification->idapprovedauction == $auction_to_mod->id)
                       @endforeach

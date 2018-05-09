@@ -8,8 +8,8 @@
             {{$auction_to_mod->title}}
             </a>
             <div class="col-lg-4 text-center align-self-center p-3 text-danger">
-                <a href="{{ url('moderator/approve_mod/')}}/{{$auction_modification->idapprovedauction}}"><i class="fas fa-check fa-2x btn btn-success align-self-center p-2 m-2"></i></a>
-                <a href="{{ url('moderator/remove_mod/')}}/{{$auction_modification->idapprovedauction}}" class="fas fa-ban fa-2x btn btn-danger align-self-center p-2 m-2" id="reject" name="reject" type="text"></a>
+                <a onclick="moderatorAction('approve_modification',{{$auction_to_mod->id}},{{$auction_modification->id}})"><i class="fas fa-check fa-2x btn btn-success align-self-center p-2 m-2"></i></a>
+                <a onclick="moderatorAction('remove_modification',{{$auction_to_mod->id}},{{$auction_modification->id}})"><i class="fas fa-ban fa-2x btn btn-danger align-self-center p-2 m-2" id="reject" name="reject" type="text"></i></a>
             </div>
         </div>
     </div>
