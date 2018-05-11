@@ -25,8 +25,16 @@ class ModeratorController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    private function isNotModerator(){
+      if (Auth::user()->users_status!="moderator")
+        return true;
+    }
+
     public function show()
     {
+      if ($this->isNotModerator())
+        return redirect('home');
+
       $auctions = Auction::where('auction_status', "waitingApproval")->get(); //new auctions
       $auction_modifications = AuctionModification::where('dateapproved',null)->get(); //auctions waiting mod
       $auction_modifications_ids = AuctionModification::where('dateapproved',null)->get()->pluck('idapprovedauction');
@@ -54,15 +62,17 @@ class ModeratorController extends Controller
     }
 
     private function db_approve_modification($ida,$idm){
-        $auction = Auction::find($ida);
-        $auction_modified = AuctionModification::find($idm);
+        DB::transaction(function() use ($ida,$idm){
+          $auction = Auction::find($ida);
+          $auction_modified = AuctionModification::find($idm);
 
-        $auction_modified->dateapproved = DB::raw('now()');
-        $auction_modified->is_approved = true;
-        $auction_modified->save();
+          $auction_modified->dateapproved = DB::raw('now()');
+          $auction_modified->is_approved = true;
+          $auction_modified->save();
 
-        $auction->description = $auction_modified->newdescription;
-        $auction->save();
+          $auction->description = $auction_modified->newdescription;
+          $auction->save();
+        });
     }
 
     private function db_remove_modification($idm){
@@ -73,61 +83,9 @@ class ModeratorController extends Controller
         $auction_modified->save();
     }
 
-    public function approveCreation($id){
-      // add authentification check
-      
-      $this->db_approve_creation($id);
-
-      //change to ajax
-      $auctions = Auction::where('auction_status', "waitingApproval")->get();
-      $auction_modifications = AuctionModification::where('dateapproved',null)->get();
-      $auction_modifications_ids = AuctionModification::where('dateapproved',null)->get()->pluck('id');
-      $auctions_to_mod = Auction::whereIn('id',$auction_modifications_ids)->get();
-      return view('pages.moderator',['auctions'=>$auctions,'auction_modifications'=>$auction_modifications,'auctions_to_mod'=>$auctions_to_mod]);
-    }
-
-    public function removeCreation($id){
-      //add authentification check
-
-      $this->db_remove_creation($id);
-
-      //change to ajax
-      $auctions = Auction::where('auction_status', "waitingApproval")->get();
-      $auction_modifications = AuctionModification::where('dateapproved',null)->get();
-      $auction_modifications_ids = AuctionModification::where('dateapproved',null)->get()->pluck('id');
-      $auctions_to_mod = Auction::whereIn('id',$auction_modifications_ids)->get();
-      return view('pages.moderator',['auctions'=>$auctions,'auction_modifications'=>$auction_modifications,'auctions_to_mod'=>$auctions_to_mod]);
-    }
-
-    public function approveModification($id){
-        // add authentification check
-        
-        $this->db_approve_modification($id);
-
-        //change to ajax
-      $auctions = Auction::where('auction_status', "waitingApproval")->get();
-      $auction_modifications = AuctionModification::where('dateapproved',null)->get();
-      $auction_modifications_ids = AuctionModification::where('dateapproved',null)->get()->pluck('id');
-      $auctions_to_mod = Auction::whereIn('id',$auction_modifications_ids)->get();
-      return view('pages.moderator',['auctions'=>$auctions,'auction_modifications'=>$auction_modifications,'auctions_to_mod'=>$auctions_to_mod]);
-    }
-
-    public function removeModification($id){
-        //add authentification check
-
-        $this->db_remove_modification($id);
-
-        //change to ajax
-      $auctions = Auction::where('auction_status', "waitingApproval")->get();
-      $auction_modifications = AuctionModification::where('dateapproved',null)->get();
-      $auction_modifications_ids = AuctionModification::where('dateapproved',null)->get()->pluck('id');
-      $auctions_to_mod = Auction::whereIn('id',$auction_modifications_ids)->get();
-      return view('pages.moderator',['auctions'=>$auctions,'auction_modifications'=>$auction_modifications,'auctions_to_mod'=>$auctions_to_mod]);
-    }
-
-    public function approve_ajax(Request $request){
-        // add authentification check
-
+    public function action(Request $request){
+        if ($this->isNotModerator())
+          return redirect('home');
 
         if ($request->action=="approve_creation"){
           $this->db_approve_creation($request->ida);
@@ -149,9 +107,6 @@ class ModeratorController extends Controller
         return response()->json(['success'=>'Data is successfully added and the respose was to ','action'=>$request->action,'requestIdModification'=>$request->idm,'did'=>'4']);
         }
 
-
-        return response()->json(['unexpected'=>'Data did not hit any of the if conditions','action'=>$request->action]);
-
-        //change to ajax
+        return response()->json(['unexpected'=>'Error: unknown request action','action'=>$request->action]);
     }
 }

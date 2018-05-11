@@ -54,8 +54,4 @@ Route::get('search', 'SearchController@show')->name('search');
 
 //Moderator
 Route::get('moderator','ModeratorController@show')->name('moderator');
-Route::get('moderator/approve_c/{id}', 'ModeratorController@approveCreation')->name('moderator.approveCreation'); //change to post ajax
-Route::get('moderator/remove_c/{id}', 'ModeratorController@removeCreation')->name('moderator.removeCreation'); //change to post ajax
-Route::get('moderator/approve_m/{id}', 'ModeratorController@approveModification')->name('moderator.approveModification'); //change to post ajax
-Route::get('moderator/remove_m/{id}', 'ModeratorController@removeModification')->name('moderator.removeModification'); //change to post ajax
-Route::post('moderator','ModeratorController@approve_ajax')->name('moderator');
+Route::post('moderator','ModeratorController@action')->name('moderator');
