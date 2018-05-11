@@ -79,6 +79,9 @@
                             </td>
                             <td>
                                 <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
+                                @if (Auth::user()->users_status=="moderator")
+                                <button id="mod_remove_auction" onclick="moderatorAction('remove_auction',{{$auction->id}})" class="btn btn-danger p-2" type="button" href="{{ url("profile/{$auction->user->id}") }}"><i class="far fa-trash-alt"></i></button>
+                                @endif
                             </td>
                             <td>
                                 <a class="button btn btn-sm btn-outline-secondary p-2 " type="button" href="{{ url("profile/{$auction->user->id}") }}">{{$auction->user->name}}</a>
@@ -89,4 +92,4 @@
               </div>
             </main>
 
-    @endsection
+@endsection

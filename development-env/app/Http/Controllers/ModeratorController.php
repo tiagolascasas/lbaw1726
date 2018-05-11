@@ -43,6 +43,12 @@ class ModeratorController extends Controller
       return view('pages.moderator',['auctions'=>$auctions,'auction_modifications'=>$auction_modifications,'auctions_to_mod'=>$auctions_to_mod]);
     }
 
+    private function db_remove_auction($id){
+        DB::table('auction')
+          ->where('id', $id)
+          ->update(['auction_status' => 'removed','dateremoved' => 'now()']);
+    }
+
     /**
     *
     * Aprove a new auction
@@ -51,14 +57,13 @@ class ModeratorController extends Controller
     private function db_approve_creation($id){
         DB::table('auction')
               ->where('id', $id)
-              ->update(['auction_status' => 'approved']);
+              ->update(['auction_status' => 'approved','dateapproved'=>'now()']);
     }
 
     private function db_remove_creation($id){
         DB::table('auction')
               ->where('id', $id)
-              ->update(['auction_status' => 'removed']);
-
+              ->update(['auction_status' => 'removed','dateapproved' => 'now()']);
     }
 
     private function db_approve_modification($ida,$idm){
@@ -89,24 +94,29 @@ class ModeratorController extends Controller
 
         if ($request->action=="approve_creation"){
           $this->db_approve_creation($request->ida);
-          return response()->json(['success'=>'Data is successfully added and the respose was to ','action'=>$request->action,'requestId'=>$request->ida,'did'=>'1']);
+          return response()->json(['success'=>'Auction creation was successfully approved.','action'=>$request->action,'requestId'=>$request->ida,'did'=>'1']);
         }
 
         else if ($request->action=="remove_creation"){
           $this->db_remove_creation($request->ida);
-          return response()->json(['success'=>'Data is successfully added and the respose was to ','action'=>$request->action,'requestId'=>$request->ida,'did'=>'2']);
+          return response()->json(['success'=>'Auction creation was successfully removed.','action'=>$request->action,'requestId'=>$request->ida,'did'=>'2']);
         }
 
         else if ($request->action=="approve_modification"){
           $this->db_approve_modification($request->ida,$request->idm);
-          return response()->json(['success'=>'Data is successfully added and the respose was to ','action'=>$request->action,'requestIdModification'=>$request->idm,'did'=>'3']);
+          return response()->json(['success'=>'Auction modification was successfully approved.','action'=>$request->action,'requestIdModification'=>$request->idm,'did'=>'3']);
         }
 
         else if ($request->action=="remove_modification"){
           $this->db_remove_modification($request->idm);
-        return response()->json(['success'=>'Data is successfully added and the respose was to ','action'=>$request->action,'requestIdModification'=>$request->idm,'did'=>'4']);
+          return response()->json(['success'=>'Auction modification was successfully removed.','action'=>$request->action,'requestIdModification'=>$request->idm,'did'=>'4']);
         }
 
-        return response()->json(['unexpected'=>'Error: unknown request action','action'=>$request->action]);
+        else if ($request->action="remove_auction"){
+          $this->db_remove_auction($request->ida);
+          return response()->json(['success'=>'Auction was successfully removed.','action'=>$request->action,'requestIdModification'=>$request->idm,'did'=>'5']);
+        }
+
+        return response()->json(['unexpected'=>'Error: unknown action stated in request.','action'=>$request->action]);
     }
 }

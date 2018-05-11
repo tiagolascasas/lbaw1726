@@ -156,31 +156,27 @@ if (window.location.pathname === "/contact")
     }
 }
 
-// Moderator AJAX actions
-if (window.location.pathname === "/moderator")
-{
-     function moderatorAction(modAction,auctionId,auctionModId=-1){
-        $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }   
-        });
+function moderatorAction(modAction,auctionId,auctionModId=-1){
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }   
+    });
 
-       $.ajax({
-              url: "/moderator",
-              method: 'post',
-              data: {
-                 ida: auctionId,
-                 idm: auctionModId,
-                 action: modAction
-              },
-              success: function(result){
-                location.reload();
-              },
-              error: function(data){
-                console.log(data);
-                alert("fail" + ' ' + this.data)
-              }
-        });
-    }
+   $.ajax({
+          url: "/moderator",
+          method: 'post',
+          data: {
+             ida: auctionId,
+             idm: auctionModId,
+             action: modAction
+          },
+          success: function(result){
+            location.reload();
+          },
+          error: function(data){
+            console.log(data);
+            alert("fail" + ' ' + this.data)
+          }
+    });
 }

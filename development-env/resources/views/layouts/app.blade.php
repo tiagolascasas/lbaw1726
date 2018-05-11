@@ -1,4 +1,4 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -186,13 +186,16 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1 navbarDropdownMenuLink2">
                 <a class="dropdown-item" href="{{ url("profile/") }}/{{Auth::user()->id}}">Profile</a>
+                @if(Auth::user()->users_status=="moderator")
+                <a class="dropdown-item" href="{{ url("moderator") }}">Moderator Panel</a>
+                @endif
                 <a class="dropdown-item" href="{{ url("create/") }}">Create auction</a>
                 <a class="dropdown-item" href="myAuctions.html">My Auctions</a>
                 <a class="dropdown-item" href="auctionsIm_in.html">Auctions I'm in</a>
                 <a class="dropdown-item" href="history.html">History</a>
                 <a class="dropdown-item" href="wishlist.html">WishList</a>
                 <a class="dropdown-item" href="messages.html">Messages</a>
-                <a class="dropdown-item" href="logout">Logout</a>
+                <a class="dropdown-item" href="{{ url("logout") }}">Logout</a>
             </div>
         </li>
                 @else
