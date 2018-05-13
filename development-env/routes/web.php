@@ -50,7 +50,8 @@ Route::get('about', 'AboutController@show')->name('about');
 Route::get('api/search', 'API\SearchController@index');
 
 //Search Page
-Route::post('search', 'SearchController@show')->name('search');
+Route::get('search', 'SearchController@show')->name('search');
+Route::post('search', 'SearchController@simpleSearch')->name('search');
 
 //Moderator
 Route::get('moderator','ModeratorController@show')->name('moderator');

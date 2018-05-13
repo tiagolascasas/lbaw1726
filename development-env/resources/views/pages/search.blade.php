@@ -11,40 +11,40 @@
     </div>
     <hr id="hr_space" class="mt-2">
     <main>
-        <a class="btn btn-primary col-md-12 mb-4" method="GET" action="" id="showbtn" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn btn-primary col-md-12 mb-4" id="showbtn" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Advanced search options
         </a>
-        <form class="ml-4 mr-4 collapse" id="searchForm">
+        <form class="ml-4 mr-4 collapse" id="collapseExample">
             <div class="form-row">
                 <div class="form-group col-md-6 ">
                     <label class="font-weight-bold">Search keyword(s)</label>
-                    <input type="text" class="form-control" id="keywords" name="keywords">
+                    <input type="text" class="form-control" id="advSearch">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">Title</label>
-                    <input type="text" class="form-control" id="title" name="title">
+                    <input type="text" class="form-control">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">Publisher</label>
-                    <input type="text" class="form-control" id="publisher" name="publisher">
+                    <input type="text" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">ISBN</label>
-                    <input type="text" class="form-control" id="isbn" name="isbn">
+                    <input type="text" class="form-control">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="search" class="font-weight-bold">Author</label>
-                    <input type="text" class="form-control" id="author" name="author">
+                    <input type="text" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">Category</label>
-                    <select class="form-control" id="category" name="category">
+                    <select class="form-control">
                         <option value="">&nbsp;</option>
                         <option>Arts&amp;Music</option>
                         <option>Biographies</option>
@@ -77,7 +77,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">Language</label>
-                    <select class="form-control" id="language" name="language">
+                    <select class="form-control">
                             <option value="">&nbsp;</option>
                             <option>English</option>
                             <option>Bulgarian</option>
@@ -107,28 +107,26 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="search" class="font-weight-bold">Maximum current bid in €</label>
-                    <input type="number" step="0.5" class="form-control" id="maxBid" name="maxBid">
+                    <input type="number" step="0.5" class="form-control">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <button id="searchButton" type="submit" class="btn btn-primary col-md-12">Search</button>
+                    <button type="submit" class="btn btn-primary col-md-12">Search</button>
                 </div>
             </div>
         </form>
 
         <section class="jumbotron text-center p-1 m-2" style="background-color: lightgrey">
             <div class="container">
-                <h3 id="searchTerm" class="jumbotron-heading m-4"></h3>
+                <h3 class="jumbotron-heading m-4">{{ $responseSentence }}</h3>
             </div>
         </section>
 
-        <div class="album p-2">
-            <div id="searchResults" class="row">
-                <!--auction template-->
-            </div>
-        </div>
+        <!--auctions partial-->
+
     </main>
 </div>
 </div>
+
 @endsection
