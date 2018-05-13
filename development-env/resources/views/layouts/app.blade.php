@@ -116,9 +116,10 @@
                     </div>
                 </li>
                 <li class="nav-item hidden-p-md-down">
-                    <form class="form-inline my-2 my-lg-0 mr-lg-2 " method="POST" action="{{ route('search') }}">
+                    <form class="form-inline my-2 my-lg-0 mr-lg-2 searchNav" method="POST" action="{{ route('search') }}">
                         <div class="input-group">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="category">
                             <input name="searchTerm" class="form-control" type="text" placeholder="Search for...">
                             <span class="input-group-append">
                             <button class="btn btn-primary" type="submit">
@@ -134,9 +135,10 @@
                         <i class="fa fa-search"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-label="navbarDropdownSearch">
-                        <form class="form-inline" method="POST" action="{{ route('search') }}">
+                        <form class="form-inline searchNav" method="POST" action="{{ route('search') }}">
                             <div class="input-group">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="hidden" name="category">
                                 <input name="searchTerm" class="form-control" type="text" placeholder="Search for...">
                                 <span class="input-group-append">
                                     <button class="btn btn-primary" type="submit">

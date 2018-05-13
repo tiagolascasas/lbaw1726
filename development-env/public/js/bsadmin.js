@@ -104,6 +104,7 @@ if (feedback !== null)
 
             </form>`;
 
+//JS for search-related stuff
 if (window.location.pathname === "/search")
 {
     let searchForm = document.querySelector("#searchForm");
@@ -117,6 +118,32 @@ if (window.location.pathname === "/search")
     }
 }
 
+let cats = document.querySelectorAll(".dropdown-item");
+let navbarSearches = document.querySelectorAll(".searchNav");
+let selectedCat = document.querySelector("#catDropDown");
+
+for (let i = 0; i < cats.length; i++)
+{
+    cats[i].addEventListener("click", function()
+    {
+        let cat = cats[i].innerHTML;
+        selectedCat.innerHTML = cat;
+        for (let j = 0; j < navbarSearches.length; j++)
+            navbarSearches[j].value = cat;
+    });
+}
+
+/*
+let navbarSearches = document.querySelector(".searchNav");
+for (int i = 0; i < navbarSearches.length; i++)
+{
+    console.log("Navbar search " + i);
+    navbarSearches[i].addEventListener("submit", function()
+    {
+
+    });
+}*/
+
 // Contact AJAX form validator and sender with notification alert
 if (window.location.pathname === "/contact")
 {
@@ -127,7 +154,7 @@ if (window.location.pathname === "/contact")
     function submitContactMessage(){
         let openAlertF="<div class='alert alert-danger alert-dismissible mb-4' id='contactAlert'> <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
         let closeAlert="</div>";
-        
+
         if ( $('#contactForm')[0].checkValidity() ){
             let spinningCircle = "<i class='fa fas fa-circle-notch fa-spin' style='font-size:24px'></i>";
             let defaultText="Send Message";
@@ -160,7 +187,7 @@ function moderatorAction(modAction,auctionId,auctionModId=-1){
     $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }   
+    }
     });
 
    $.ajax({
