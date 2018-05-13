@@ -116,11 +116,11 @@
                     </div>
                 </li>
                 <li class="nav-item hidden-p-md-down">
-                    <form class="form-inline my-2 my-lg-0 mr-lg-2 ">
+                    <form class="form-inline my-2 my-lg-0 mr-lg-2 " method="GET" action="{{ route('search') }}">
                         <div class="input-group">
                             <input class="form-control" type="text" placeholder="Search for...">
                             <span class="input-group-append">
-                            <button class="btn btn-primary" type="button" onclick="searchfunc()">
+                            <button class="btn btn-primary" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
                          </span>
@@ -133,11 +133,11 @@
                         <i class="fa fa-search"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-label="navbarDropdownSearch">
-                        <form class="form-inline">
+                        <form class="form-inline" method="GET" action="{{ route('search') }}">
                             <div class="input-group">
                                 <input class="form-control" type="text" placeholder="Search for...">
                                 <span class="input-group-append">
-                                    <button class="btn btn-primary" type="button" onclick="searchfunc()">
+                                    <button class="btn btn-primary" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                  </span>
