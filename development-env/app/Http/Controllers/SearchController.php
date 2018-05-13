@@ -51,15 +51,19 @@ class SearchController extends Controller
         $searchTerm = $input['searchTerm'];
         $category = $input['category'];
 
-        $query = 'select distinct * from auction, image, category_auction, category where auction_status = ? and auction.id = image.idAuction ';
+        //FOR TESTING ONLY
+        $query = 'select distinct on (auction.id) * from auction, category_auction, category where auction_status = ? ';
         $parameters = ['waitingApproval'];
+        //USE THIS ON THE END
+        //$query = 'select distinct on (auction.id) * from auction, image, category_auction, category where auction_status = ? and auction.id = image.idAuction ';
+        //$parameters = ['approved'];
         $responseSentence = [];
 
         if ($searchTerm != null)
         {
             $query .= 'and title = ? ';
             array_push($parameters, $searchTerm);
-            array_push($responseSentence, 'title "' . $searchTerm . '"');
+            array_push($responseSentence, ' with title "' . $searchTerm . '"');
         }
         if ($category !== 'All')
         {
@@ -67,10 +71,14 @@ class SearchController extends Controller
             array_push($parameters, $category);
             array_push($responseSentence, 'in category ' . $category);
         }
+        else
+        {
+            array_push($responseSentence, 'in any category');
+        }
         $query .= 'limit 12';
 
         $responseSentence = implode(' and ', $responseSentence);
-        $responseSentence = 'Your search results for ' . $responseSentence . ':';
+        $responseSentence = 'Your search results for auctions ' . $responseSentence . ':';
 
         $auctions = DB::select($query, $parameters);
 

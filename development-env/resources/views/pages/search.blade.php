@@ -112,7 +112,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <button type="submit" class="btn btn-primary col-md-12">Search</button>
+                    <button type="submit" id="advSearchSubmit" class="btn btn-primary col-md-12">Search</button>
                 </div>
             </div>
         </form>
@@ -124,6 +124,7 @@
         </section>
 
         <!--auctions partial-->
+        @include('pages.auctionItems', ['auctions' => $auctions])
 
     </main>
 </div>

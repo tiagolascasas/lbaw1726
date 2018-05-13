@@ -109,7 +109,7 @@ if (feedback !== null)
 //use ajax on advanced search form
 if (window.location.pathname === "/search")
 {
-    let searchForm = document.querySelector("#searchForm");
+    let searchForm = document.querySelector("#advSearchSubmit");
     searchForm.onsubmit = function(event)
     {
         event.preventDefault();
