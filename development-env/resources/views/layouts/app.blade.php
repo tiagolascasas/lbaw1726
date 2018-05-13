@@ -119,7 +119,7 @@
                     <form class="form-inline my-2 my-lg-0 mr-lg-2 searchNav" method="POST" action="{{ route('search') }}">
                         <div class="input-group">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="category">
+                            <input type="hidden" name="category" value="All">
                             <input name="searchTerm" class="form-control" type="text" placeholder="Search for...">
                             <span class="input-group-append">
                             <button class="btn btn-primary" type="submit">
@@ -138,7 +138,7 @@
                         <form class="form-inline searchNav" method="POST" action="{{ route('search') }}">
                             <div class="input-group">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="hidden" name="category">
+                                <input type="hidden" name="category" value="All">
                                 <input name="searchTerm" class="form-control" type="text" placeholder="Search for...">
                                 <span class="input-group-append">
                                     <button class="btn btn-primary" type="submit">

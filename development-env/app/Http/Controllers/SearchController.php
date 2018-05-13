@@ -28,7 +28,7 @@ class SearchController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'searchTerm' => 'nullable|string',
-            //category
+            'category' => 'nullable|string',
         ]);
 
         if ($validator->fails())
@@ -41,9 +41,24 @@ class SearchController extends Controller
 
         $input = $request->all();
         $searchTerm = $input['searchTerm'];
-        //$category = $input['category'];
+        $category = $input['category'];
 
-        $auctions = DB::select('select distinct * from auction, image where auction_status = ? and title = ? and auction.id = image.idAuction limit 12',['approved', $searchTerm]);
+        $query = 'select distinct * from auction, image, category_auction, category where auction_status = ? and auction.id = image.idAuction ';
+        $parameters = ['waitingApproval'];
+
+        if ($searchTerm != null)
+        {
+            $query .= 'and title = ? ';
+            array_push($parameters, $searchTerm);
+        }
+        if ($category !== 'All')
+        {
+            $query .= 'and category_auction.idAuction = auction.id and category_auction.idCategory = category.id and categoryName = ? ';
+            array_push($parameters, $category);
+        }
+        $query .= 'limit 12';
+
+        $auctions = DB::select($query, $parameters);
 
         return view('pages.search', ['auctions' => $auctions]);
     }

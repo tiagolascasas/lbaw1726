@@ -105,6 +105,8 @@ if (feedback !== null)
             </form>`;
 
 //JS for search-related stuff
+
+//use ajax on advanced search form
 if (window.location.pathname === "/search")
 {
     let searchForm = document.querySelector("#searchForm");
@@ -118,8 +120,9 @@ if (window.location.pathname === "/search")
     }
 }
 
+//set the category for the navbar search box
 let cats = document.querySelectorAll(".dropdown-item");
-let navbarSearches = document.querySelectorAll(".searchNav");
+let navbarSearches = document.querySelectorAll("input[name='category']");
 let selectedCat = document.querySelector("#catDropDown");
 
 for (let i = 0; i < cats.length; i++)
@@ -132,17 +135,6 @@ for (let i = 0; i < cats.length; i++)
             navbarSearches[j].value = cat;
     });
 }
-
-/*
-let navbarSearches = document.querySelector(".searchNav");
-for (int i = 0; i < navbarSearches.length; i++)
-{
-    console.log("Navbar search " + i);
-    navbarSearches[i].addEventListener("submit", function()
-    {
-
-    });
-}*/
 
 // Contact AJAX form validator and sender with notification alert
 if (window.location.pathname === "/contact")
