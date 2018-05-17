@@ -4,6 +4,50 @@
 
 @section('content')
 
+        <!-- Modification changes modal -->
+        <div class="modal fade" id="auctionModificationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Description changes</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div id="bookInfo" class="mb-4">
+                <h4>
+                  <i class="fas fa-book"></i> Title
+                </h4>
+                  <div id="bookTitle" class="lead">
+                  </div>
+                </div>
+                <h4>
+                    <i class="fas fa-quote-left"></i>
+                    Old description
+                </h4>
+                <hr>
+                <div id="oldDescription" class="alert-danger mb-3">
+                OLd ldalsdlasdl
+                </div>
+                <h4>
+                    <i class="fas fa-quote-right"></i>
+                    New description
+                </h4>
+                <hr>
+                <div id="newDescription" class="alert-success">
+                new qdwqwdq
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button onclick="" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button onclick="" id="removeBtn" type="button" class="btn btn-danger" data-dismiss="modal">Remove</button>
+                <button onclick="" id="approveBtn" type="button" class="btn btn-success" data-dismiss="modal">Approve</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Approve new auctions -->
         <div class="container-fluid bg-white">
             <!-- Title-->

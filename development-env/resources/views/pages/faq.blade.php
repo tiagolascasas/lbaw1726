@@ -5,11 +5,9 @@
 @section('content')
 
 <!--- FAQ Content -->
-
         <div class="container p-5">
             <main>
                 <h1 class="my-4 text-center">FAQ - Frequently Asked Questions</h1>
-
                 <!-- FAQ block start -->
                 <div class="container py-5">
                     <div class="panel-group" id="faqAccordion">
@@ -180,7 +178,6 @@
             </main>
         </div>
     </div>
-
 
 
 @endsection

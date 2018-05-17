@@ -1,4 +1,4 @@
-<div class="list-group-item list-group-item-action text-muted mb-2">
+<div class="list-group-item list-group-item-action text-muted mb-2" id="mr-{{$auction_modification->idapprovedauction}}">
     <div class="container">
         <div class="row">
             <div class="col-sm-auto img-fluid media-object align-self-center ">
@@ -8,8 +8,7 @@
             {{$auction_to_mod->title}}
             </a>
             <div class="col-lg-4 text-center align-self-center p-3 text-danger">
-                <a onclick="moderatorAction('approve_modification',{{$auction_to_mod->id}},{{$auction_modification->id}})"><i class="fas fa-check fa-2x btn btn-success align-self-center p-2 m-2"></i></a>
-                <a onclick="moderatorAction('remove_modification',{{$auction_to_mod->id}},{{$auction_modification->id}})"><i class="fas fa-ban fa-2x btn btn-danger align-self-center p-2 m-2" id="reject" name="reject" type="text"></i></a>
+                <button onclick="moderatorAction('get_new_description',{{$auction_to_mod->id}},{{$auction_modification->id}})" data-toggle="modal" data-target="#auctionModificationModal" type="button" class="btn btn-primary"><h5 class="align-self-center "><i class="far fa-file-alt fa-2x btn btn-primary "></i> See changes </h5></button>
             </div>
         </div>
     </div>

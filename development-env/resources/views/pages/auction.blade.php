@@ -7,6 +7,49 @@
     <!-- Auction Content -->
             <main  data-id="{{$auction, $categoryName}}">
               <div class="container p-5">
+                @if (Auth::user()->users_status=="moderator")
+                <!-- Moderator additional info alert box -->
+                <div class="alert alert-secondary" role="alert">
+                    <h5>
+                        <i class="fas fa-info"></i>
+                        Moderating additional info:
+                    </h5>
+                    <hr>
+                    <ul class="list-group">
+                        <li class="list-group-item bg-secondary text-white"><b>Status:</b> {{$auction->auction_status}}</li>
+                        <li class="list-group-item"><b>Date approved:</b> {{$auction->dateapproved}}</li>
+                        <li class="list-group-item bg-secondary text-white"><b>Date removed:</b> {{$auction->dateremoved}}</li>
+                    </ul>
+                </div>
+                <!-- Moderator remove auction modal pop-up -->
+                <div class="modal fade" id="removeAuctionModal" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" >Auction action</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        @if ($auction->auction_status!="removed")
+                        Are you sure you want to mark this auction as removed?
+                        @else
+                        Do you want to undo the remove?
+                        @endif
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        @if ($auction->auction_status!="removed")
+                        <button type="button" class="btn btn-danger" id="mod_remove_auction" onclick="moderatorAction('remove_auction',{{$auction->id}})">Yes</button>
+                        @else
+                        <button type="button" class="btn btn-success" id="mod_restore_auction" onclick="moderatorAction('restore_auction',{{$auction->id}})">Yes</button>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                @endif
                 <table class="table">
                     <tbody>
                         <tr>
@@ -80,7 +123,12 @@
                             <td>
                                 <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
                                 @if (Auth::user()->users_status=="moderator")
-                                <button id="mod_remove_auction" onclick="moderatorAction('remove_auction',{{$auction->id}})" class="btn btn-danger p-2" type="button" href="{{ url("profile/{$auction->user->id}") }}"><i class="far fa-trash-alt"></i></button>
+                                <!-- Moderator remove auction button -->
+                                @if($auction->auction_status!="removed")
+                                <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal"" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                @else
+                                <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal"" class="btn btn-success"><i class="fas fa-undo"></i></button>
+                                @endif
                                 @endif
                             </td>
                             <td>
