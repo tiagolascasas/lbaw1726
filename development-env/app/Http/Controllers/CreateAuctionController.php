@@ -125,8 +125,21 @@ class CreateAuctionController extends Controller
       if (!Auth::check()) return redirect('/home');
       // $this->authorize('create', $auction);
 
-      $createdAuction=$this->db_create($request);
+      try{
 
-      return redirect()->route('auction',['id' => $createdAuction->id]);
+        $createdAuction=$this->db_create($request);
+  
+      } catch(QueryException $qe) {
+        $errors = new MessageBag();
+
+        $errors->add('An error ocurred', "There was a problem creating the auction. Try Again!");
+
+        return redirect()
+        ->route('create')
+        ->withErrors($errors);
+     }
+
+     return redirect()->route('auction',['id' => $createdAuction->id]);
+
     }
 }

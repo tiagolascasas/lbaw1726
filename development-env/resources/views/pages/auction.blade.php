@@ -84,7 +84,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a class="button btn btn-sm btn-outline-secondary p-2 " type="button" href="{{ url("profile/{$auction->user->id}") }}">{{$auction->user->name}}</a>
+                                <a class="button btn btn-sm btn-outline-secondary p-2 " type="button" href="{{ url("profile/{$auction->user->id}") }}"><b>{{$auction->user->name}}</b></a>
                             </td>
                         </tr>
                     </tbody>
