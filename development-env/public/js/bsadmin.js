@@ -179,6 +179,7 @@ if (window.location.pathname === "/auction")
     //get the current highest bid value periodically
     window.setInterval(function()
     {
+        console.log("Requesting bid value");
         let auctionID = getAuctionID();
         let requestURL = "/api/bid/" + auctionID;
         ajaxCallGet(requestURL, getBidHandler);
@@ -188,6 +189,7 @@ if (window.location.pathname === "/auction")
     let bidBox = document.querySelector("#bid-box");
     bidBox.addEventListener("click", function()
     {
+        console.log("Sending a new bid");
         let currVal = document.querySelector("#currentBid");
         currVal = parseInt(currVal);
 
@@ -214,6 +216,7 @@ function getAuctionID()
 
 function getBidHandler(response)
 {
+    console.log("Received current bid value");
     let answer = JSON.parse(response);
     let newVal = answer['currentMaxBid'];
     let currentBidValue = document.querySelector("#currentMaxBid").value = newVal + "€";
@@ -221,6 +224,7 @@ function getBidHandler(response)
 
 function postBidHandler(response)
 {
+    console.log("Received bidding result");
     let answer = JSON.parse(response);
     let success = answer['success'];
     if (!success)   //replace with modals
