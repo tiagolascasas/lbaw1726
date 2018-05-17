@@ -14,12 +14,12 @@
 
 **Tiago**
 
-- US11
-- US12
-- US43
-- US45
-- US51
-- US52
+- US11: Como Utilizador, quero poder visualizar os leilões existentes, de modo a ver os seus detalhes.
+- US12:  	Como Utilizador, quero poder pesquisar leilões usando diferentes critérios de pesquisa, de modo a encontrar o que procuro.
+- US43: Como Comprador, quero poder licitar em leilões, de modo a tentar comprar o livro em questão.
+- US45:  	Como Comprador, quero receber notificações, de modo a saber quando um leilão onde tenha licitado sofra alguma alteração.
+- US51: Como Vendedor, quero poder criar novos leilões, de modo a leiloar itens que possuo.
+- US52: Como Vendedor, quero poder requisitar uma modificação à descrição do meu leilão, de modo a providenciar mais informação sobre o produto.
 
 #### Módulo 03 - Listas (Recursos R301 - R306):
 
