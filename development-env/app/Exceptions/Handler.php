@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\MessageBag;
 
 class Handler extends ExceptionHandler
 {
@@ -47,7 +48,15 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
-    {
-        return parent::render($request, $exception);
+    {  
+        $errors = new MessageBag();
+
+        // add your error messages:
+        $errors->add('An unexpected error ocurred', "An unexpected error ocurred");
+
+        return redirect()
+        ->route('home')
+        ->withErrors($errors);
+
     }
 }
