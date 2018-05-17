@@ -48,6 +48,8 @@ Route::get('about', 'AboutController@show')->name('about');
 
 //API
 Route::get('api/search', 'API\SearchController@index');
+Route::get('api/bid', 'API\BidController@getMaxBid');
+Route::post('api/bid', 'API\BidController@bidNewValue');
 
 //Search Page
 Route::get('search', 'SearchController@show')->name('search');

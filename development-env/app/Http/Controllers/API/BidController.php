@@ -25,7 +25,16 @@ class BidController extends Controller
         {
             return response('Forbidden.', 403);
         }
+
+        $auctionID = $request->input('auctionID');
+        //$query = "SELECT max(bidValue) FROM bid WHERE idAuction = ?";
+
+
+        DB::select($query, [$auctionID]);
+
         $response = [];
+
+
 
         return response()->json($response);
     }

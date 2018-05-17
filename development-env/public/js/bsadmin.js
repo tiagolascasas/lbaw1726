@@ -181,7 +181,7 @@ if (window.location.pathname === "/auction")
     {
         console.log("Requesting bid value");
         let auctionID = getAuctionID();
-        let requestURL = "/api/bid/" + auctionID;
+        let requestURL = "/api/bid/?auctionID=" + auctionID;
         ajaxCallGet(requestURL, getBidHandler);
     }, 2000);
 
@@ -202,7 +202,7 @@ if (window.location.pathname === "/auction")
         let auctionID = getAuctionID();
 
         let params = {"auctionID": auctionID, "value": currVal};
-        ajaxCallGet("api/bid/", postBidHandler);
+        ajaxCallPost("api/bid", params, postBidHandler);
     });
 }
 
