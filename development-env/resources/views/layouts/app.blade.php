@@ -38,78 +38,78 @@
                             </a>
                     <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="catDropDown">
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                     Arts&amp;Music</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                     Biographies</a>
 
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                     Business</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                     Kids</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                     Comics</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                     Cooking</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                     Computation&amp;Tech</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                     Education</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                     Health&amp;Fitness</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                     History</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                     Horror</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                                             Religion</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                                             Science</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                                                 Self-Help</a>
 
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                                                     Travel</a>
 
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="category-dropdown dropdown-item">
                                                    Other</a>
                         <b class="px-2">
                                                         Literature</b>
                         <ul class="list-unstyled">
                             <li>
-                                <a href="#" class="dropdown-item">All</a>
+                                <a href="#" class="category-dropdown dropdown-item">All</a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item">Anthologies</a>
+                                <a href="#" class="category-dropdown dropdown-item">Anthologies</a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item">Classics</a>
+                                <a href="#" class="category-dropdown dropdown-item">Classics</a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item">Contemporary</a>
+                                <a href="#" class="category-dropdown dropdown-item">Contemporary</a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item">Sci-Fi&amp;Fantasy</a>
+                                <a href="#" class="category-dropdown dropdown-item">Sci-Fi&amp;Fantasy</a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item">Romance</a>
+                                <a href="#" class="category-dropdown dropdown-item">Romance</a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item">Crime</a>
+                                <a href="#" class="category-dropdown dropdown-item">Crime</a>
                             </li>
                         </ul>
 
@@ -376,6 +376,7 @@
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/easytimer.min.js') }}"></script>
     <script src="{{ asset('js/bsadmin.js') }}"></script>
     </body>
 

@@ -64,15 +64,15 @@
                         </tr>
                         <tr>
                             <td><strong>Time left: </strong>
-                                <p class="text-danger">x mins</p>
+                                <p id="timeLeft" class="text-danger">1d 12h 34m 12s</p>
                             </td>
                             <td><strong>Current bid: </strong>
-                                <p class="text-success">€ 0.00</td>
+                                <p id="currentMaxBid" class="text-success">0.00€</td>
                             <td>
                                 <form>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <input type="number" min="0.00" placeholder="0.00" step="0.01" class="form-control">
+                                            <input id="currentBid" type="number" min="0.00" placeholder="0.00" step="0.01" class="form-control">
                                         </div>
                                     </div>
                                 </form>

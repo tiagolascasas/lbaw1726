@@ -1,3 +1,6 @@
+/**
+  * JS related to the style on all pages
+  */
 $(document).ready(function() {
     // toggle sidebar when button clicked
     $(".sidebar-toggle").on("click", function() {
@@ -18,14 +21,17 @@ $(document).ready(function() {
     }
 });
 
+
+/**
+  * Error handling
+  */
 $(window).on("load", function() {
     $("#myModalError").modal("show");
 });
 
-if (window.location.pathname === "/home") {
-    ajaxCallGet("api/search?type_search=home", "homeHandler");
-}
-
+/**
+  * AJAX functions for GET and POST
+  */
 function ajaxCallGet(url, handler) {
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", url, true);
@@ -36,6 +42,32 @@ function ajaxCallGet(url, handler) {
         }
     };
     xmlhttp.send();
+}
+
+function ajaxCallPost(url, params, handler) {
+    let data = encodeForAjax(params);
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", url, true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            window[handler](this.responseText);
+        }
+    };
+    xmlhttp.send(data);
+}
+
+function encodeForAjax(data) {
+  return Object.keys(data).map(function(k){
+    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+  }).join('&');
+}
+
+/**
+  * JS for the home page
+  */
+if (window.location.pathname === "/home") {
+    ajaxCallGet("api/search?type_search=home", "homeHandler");
 }
 
 function homeHandler(response) {
@@ -73,14 +105,9 @@ function homeHandler(response) {
     album.innerHTML = htmlAuction;
 }
 
-function searchfunc() {
-    window.location.href = "search.html";
-}
-
-function profile_func() {
-    window.location.href = "profile_not_owner.html";
-}
-
+/**
+  * JS for the feedback functionalities
+  */
 let feedback = document.querySelector("#myfeedback");
 
 if (feedback !== null)
@@ -104,10 +131,10 @@ if (feedback !== null)
 
             </form>`;
 
-//JS for search-related stuff
-
-//use ajax on advanced search form
-if (window.location.pathname === "/search")
+/**
+  *JS for search-related stuff and APIs
+  */
+if (window.location.pathname === "/search") //use ajax on advanced search form
 {
     let searchForm = document.querySelector("#advSearchSubmit");
     searchForm.onsubmit = function(event)
@@ -115,13 +142,12 @@ if (window.location.pathname === "/search")
         event.preventDefault();
         let params = "api/search";
 
-
         ajaxCallGet(params, "searchHandler");
     }
 }
 
 //set the category for the navbar search box
-let cats = document.querySelectorAll(".dropdown-item");
+let cats = document.querySelectorAll(".category-dropdown");
 let navbarSearches = document.querySelectorAll("input[name='category']");
 let selectedCat = document.querySelector("#catDropDown");
 
@@ -136,7 +162,72 @@ for (let i = 0; i < cats.length; i++)
     });
 }
 
-// Contact AJAX form validator and sender with notification alert
+/**
+  * JS for bidding-related stuff and APIs
+  */
+if (window.location.pathname === "/auction")
+{
+    //decrease time left every second
+    window.setInterval(function()
+    {
+        let timeLeft = querySelector("#timeLeft").value;
+        timeLeft = timeLeft.split(" ");
+        }
+
+
+    }, 1000);
+
+    //get the current highest bid value periodically
+    window.setInterval(function()
+    {
+        let auctionID = getAuctionID();
+        let requestURL = "/api/bid/" + auctionID;
+        ajaxCallGet(requestURL, getBidHandler);
+    }, 2000);
+
+    //post new bid value
+    let bidBox = document.querySelector("#bid-box");
+    bidBox.addEventListener("click", function()
+    {
+        let currVal = document.querySelector("#currentBid");
+        currVal = parseInt(currVal);
+
+        let maxVal = document.querySelector("#currentMaxBid");
+        maxVal = parseFloat(maxVal);
+
+        if (currVal <= maxVal)  //replace by modal
+            alert("You cannot bid a value lower than the current highest bid");
+
+        let auctionID = getAuctionID();
+
+        let params = {"auctionID": auctionID, "value": currVal};
+        ajaxCallGet("api/bid/", postBidHandler);
+    });
+}
+
+function getAuctionID()
+{
+    let auctionID = window.location.href.split('/').pop;
+    if (auctionID.endsWith('#'))
+        auctionID = auctionID.susbstring(0, auctionID.length - 1);
+    return auctionID;
+}
+
+function getBidHandler(response)
+{
+    let answer = JSON.parse(response);
+    let newVal = answer['currentMaxBid'];
+    let currentBidValue = document.querySelector("#currentMaxBid").value = newVal + "€";
+}
+
+function postBidHandler(response)
+{
+
+}
+
+/**
+  * Contact AJAX form validator and sender with notification alert
+  */
 if (window.location.pathname === "/contact")
 {
     $("#contactForm").click(function( event ) {
@@ -175,6 +266,9 @@ if (window.location.pathname === "/contact")
     }
 }
 
+/**
+  * JS for moderation actions
+  */
 function moderatorAction(modAction,auctionId,auctionModId=-1){
     $.ajaxSetup({
     headers: {
