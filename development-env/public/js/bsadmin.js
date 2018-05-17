@@ -172,8 +172,7 @@ if (window.location.pathname === "/auction")
     {
         let timeLeft = querySelector("#timeLeft").value;
         timeLeft = timeLeft.split(" ");
-        }
-
+        //use easytimer
 
     }, 1000);
 
@@ -222,7 +221,12 @@ function getBidHandler(response)
 
 function postBidHandler(response)
 {
-
+    let answer = JSON.parse(response);
+    let success = answer['success'];
+    if (!success)   //replace with modals
+        alert("Bid was successful, you are now leading the auction");
+    else
+        alert("Unable to bid; someone bidded a higher value than yours");
 }
 
 /**
