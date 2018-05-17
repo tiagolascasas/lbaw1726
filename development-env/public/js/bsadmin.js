@@ -32,31 +32,26 @@ $(window).on("load", function() {
 /**
   * Functions for GET and POST AJAX requests
   */
-function ajaxCallGet(url, handler) {
+function ajaxCallGet(url, handler)
+{
     let xmlhttp = new XMLHttpRequest();
+
     xmlhttp.open("GET", url, true);
     xmlhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-/*    xmlhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            window[handler](this.responseText);
-        }
-    };*/
     xmlhttp.onload = handler;
     xmlhttp.send();
 }
 
-function ajaxCallPost(url, params, handler) {
-    let data = encodeForAjax(params);
-    let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", url, true);
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-/*    xmlhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            window[handler](this.responseText);
-        }
-    };*/
-    xmlhttp.onload = handler;
-    xmlhttp.send(data);
+function ajaxCallPost(url, params, handler)
+{
+    let token = document.querySelector("#csrfToken").content;
+    params._token = token;
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: params,
+        success: handler
+    });
 }
 
 function encodeForAjax(data) {
@@ -224,7 +219,6 @@ if (window.location.href.includes("auction/"))
     //get the current highest bid value periodically
     window.setInterval(function()
     {
-        console.log("Requesting bid value");
         let auctionID = getAuctionID();
         let requestURL = "/api/bid/?auctionID=" + auctionID;
         ajaxCallGet(requestURL, getBidHandler);
@@ -235,19 +229,23 @@ if (window.location.href.includes("auction/"))
     bidBox.addEventListener("click", function()
     {
         console.log("Sending a new bid");
-        let currVal = document.querySelector("#currentBid");
-        currVal = parseInt(currVal);
+        let currVal = document.querySelector("#currentBid").value;
+        currVal = parseFloat(currVal);
 
-        let maxVal = document.querySelector("#currentMaxBid");
+        let maxVal = document.querySelector("#currentMaxBid").innerHTML;
         maxVal = parseFloat(maxVal);
 
         if (currVal <= maxVal)  //replace by modal
+        {
+            console.log(currVal + " " + maxVal);
             alert("You cannot bid a value lower than the current highest bid");
+            return;
+        }
 
         let auctionID = getAuctionID();
 
         let params = {"auctionID": auctionID, "value": currVal};
-        ajaxCallPost("api/bid", params, postBidHandler);
+        ajaxCallPost("/api/bid", params, postBidHandler);
     });
 }
 
@@ -261,22 +259,18 @@ function getAuctionID()
 
 function getBidHandler()
 {
-    console.log("Received current bid value");
     let answer = JSON.parse(this.responseText);
-    console.log(this.responseText);
     let newVal = answer['max'];
-    let currentBidValue = document.querySelector("#currentMaxBid").value = newVal + "€";
+    let currentBidValue = document.querySelector("#currentMaxBid").innerHTML = newVal + "€";
 }
 
-function postBidHandler(response)
+function postBidHandler(data)
 {
-    console.log("Received bidding result");
-/*    let answer = JSON.parse(response);
-    let success = answer['success'];
-    if (!success)   //replace with modals
+    let success = data['success'];
+    if (success)
         alert("Bid was successful, you are now leading the auction");
     else
-        alert("Unable to bid; someone bidded a higher value than yours");*/
+        alert("Unable to bid; someone bidded a higher value than yours");
 }
 
 /**
