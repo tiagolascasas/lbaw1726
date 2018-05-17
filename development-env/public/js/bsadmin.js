@@ -30,17 +30,18 @@ $(window).on("load", function() {
 });
 
 /**
-  * AJAX functions for GET and POST
+  * Functions for GET and POST AJAX requests
   */
 function ajaxCallGet(url, handler) {
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", url, true);
     xmlhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xmlhttp.onreadystatechange = function() {
+/*    xmlhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             window[handler](this.responseText);
         }
-    };
+    };*/
+    xmlhttp.onload = handler;
     xmlhttp.send();
 }
 
@@ -49,11 +50,12 @@ function ajaxCallPost(url, params, handler) {
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.onreadystatechange = function() {
+/*    xmlhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             window[handler](this.responseText);
         }
-    };
+    };*/
+    xmlhttp.onload = handler;
     xmlhttp.send(data);
 }
 
@@ -165,16 +167,59 @@ for (let i = 0; i < cats.length; i++)
 /**
   * JS for bidding-related stuff and APIs
   */
-if (window.location.pathname === "/auction")
+if (window.location.href.includes("auction/"))
 {
     //decrease time left every second
-    window.setInterval(function()
-    {
-        let timeLeft = querySelector("#timeLeft").value;
-        timeLeft = timeLeft.split(" ");
-        //use easytimer
+    let timeLeft = document.querySelector("#timeLeft").innerHTML;
+    let elements = timeLeft.split(" ");
+    let days, hours, minutes, seconds;
 
-    }, 1000);
+    switch(elements.length)
+    {
+        case 4:
+            days = parseInt(elements[0].slice(0,-1));
+            hours = parseInt(elements[1].slice(0,-1));
+            minutes = parseInt(elements[2].slice(0,-1));
+            seconds = parseInt(elements[3].slice(0,-1));
+            break;
+        case 3:
+            days = 0;
+            hours = parseInt(elements[1].slice(0,-1));
+            minutes = parseInt(elements[2].slice(0,-1));
+            seconds = parseInt(elements[3].slice(0,-1));
+            break;
+        case 2:
+            days = 0;
+            hours = 0;
+            minutes = parseInt(elements[2].slice(0,-1));
+            seconds = parseInt(elements[3].slice(0,-1));
+            break;
+        case 1:
+            days = 0;
+            hours = 0;
+            minutes = 0;
+            seconds = parseInt(elements[3].slice(0,-1));
+            break;
+    }
+
+    let timer = new Timer();
+    timer.start({countdown: true, startValues: {days: days, hours: hours, minutes: minutes, seconds: seconds}});
+    timer.addEventListener('secondsUpdated', function(e)
+    {
+        let newTime = "";
+        if (timer.getTimeValues().days > 0)
+            newTime += timer.getTimeValues().days + "d ";
+        if (timer.getTimeValues().hours > 0)
+            newTime += timer.getTimeValues().hours + "h ";
+        if (timer.getTimeValues().minutes > 0)
+            newTime += timer.getTimeValues().minutes + "m ";
+        if (timer.getTimeValues().seconds > 0)
+            newTime += timer.getTimeValues().seconds + "s";
+        if (newTime == "")
+            newTime = "Auction has ended!";
+
+        document.querySelector("#timeLeft").innerHTML = newTime;
+    });
 
     //get the current highest bid value periodically
     window.setInterval(function()
@@ -208,29 +253,30 @@ if (window.location.pathname === "/auction")
 
 function getAuctionID()
 {
-    let auctionID = window.location.href.split('/').pop;
+    let auctionID = window.location.href.split('/').pop();
     if (auctionID.endsWith('#'))
         auctionID = auctionID.susbstring(0, auctionID.length - 1);
     return auctionID;
 }
 
-function getBidHandler(response)
+function getBidHandler()
 {
     console.log("Received current bid value");
-    let answer = JSON.parse(response);
-    let newVal = answer['currentMaxBid'];
+    let answer = JSON.parse(this.responseText);
+    console.log(this.responseText);
+    let newVal = answer['max'];
     let currentBidValue = document.querySelector("#currentMaxBid").value = newVal + "€";
 }
 
 function postBidHandler(response)
 {
     console.log("Received bidding result");
-    let answer = JSON.parse(response);
+/*    let answer = JSON.parse(response);
     let success = answer['success'];
     if (!success)   //replace with modals
         alert("Bid was successful, you are now leading the auction");
     else
-        alert("Unable to bid; someone bidded a higher value than yours");
+        alert("Unable to bid; someone bidded a higher value than yours");*/
 }
 
 /**

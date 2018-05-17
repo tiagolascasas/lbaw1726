@@ -27,14 +27,8 @@ class BidController extends Controller
         }
 
         $auctionID = $request->input('auctionID');
-        //$query = "SELECT max(bidValue) FROM bid WHERE idAuction = ?";
-
-
-        DB::select($query, [$auctionID]);
-
-        $response = [];
-
-
+        $query = "SELECT max(bidValue) FROM bid WHERE idAuction = ?";
+        $response = DB::select($query, [$auctionID]);
 
         return response()->json($response);
     }

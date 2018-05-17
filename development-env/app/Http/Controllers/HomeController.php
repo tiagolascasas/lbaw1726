@@ -26,10 +26,8 @@ class HomeController extends Controller
 
     public function show()
     {
+        $auctions = Auction::all();
 
-
-      $auctions = Auction::all();
-
-      return view('pages.home',['auctions'=>$auctions]);
+        return view('pages.home',['auctions'=>$auctions]);
     }
 }
