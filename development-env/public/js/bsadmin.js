@@ -292,12 +292,36 @@ function moderatorAction(modAction,auctionId,auctionModId=-1){
              idm: auctionModId,
              action: modAction
           },
+
           success: function(result){
-            location.reload();
+            // Fade elements on approve/remove
+            if (window.location.pathname === "/moderator"){
+                if (modAction=="approve_creation" || modAction=="remove_creation"){
+                    $(`#cr-${auctionId}`).fadeOut();
+                }
+                else if (modAction=="get_new_description"){
+                    let description=JSON.parse(result);
+                    let action_approve="moderatorAction('approve_modification',"+auctionId+","+auctionModId+")";
+                    let action_remove="moderatorAction('remove_modification',"+auctionId+","+auctionModId+")";
+                    //put description text in modal
+                    $("#bookTitle").text(description.title);
+                    $("#oldDescription").text(description.old);
+                    $("#newDescription").text(description.new);
+                    //change action of modal buttons
+                    $("#approveBtn").attr("onclick", action_approve); 
+                    $("#removeBtn").attr("onclick", action_remove); 
+
+                }
+                else {
+                    $(`#mr-${auctionId}`).fadeOut();
+                }
+            } else{
+                location.reload();
+            }
           },
           error: function(data){
             console.log(data);
-            alert("fail" + ' ' + this.data)
+            alert("Check the log.")
           }
     });
 }

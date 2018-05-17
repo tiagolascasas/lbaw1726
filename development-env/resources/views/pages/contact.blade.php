@@ -5,7 +5,6 @@
 @section('content')
 
 <!--- Contact Content -->
-
         <div class="container-fluid bg-white">
             <main>
                 <h1 class="my-4">Contact</h1>
@@ -71,8 +70,6 @@
             </main>
         </div>
     </div>
-
-
 
 @endsection
 
