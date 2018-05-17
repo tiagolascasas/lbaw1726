@@ -47,40 +47,51 @@ class SearchController extends Controller
                         ->withInput();
         }
 
-        $input = $request->all();
-        $searchTerm = $input['searchTerm'];
-        $category = $input['category'];
+        try{
+            $input = $request->all();
+            $searchTerm = $input['searchTerm'];
+            $category = $input['category'];
 
         //FOR TESTING ONLY
-        $query = 'select distinct on (auction.id) * from auction, category_auction, category where auction_status = ? ';
-        $parameters = ['waitingApproval'];
+            $query = 'select distinct on (auction.id) * from auction, category_auction, category where auction_status = ? ';
+            $parameters = ['waitingApproval'];
         //USE THIS ON THE END
         //$query = 'select distinct on (auction.id) * from auction, image, category_auction, category where auction_status = ? and auction.id = image.idAuction ';
         //$parameters = ['approved'];
-        $responseSentence = [];
+            $responseSentence = [];
 
-        if ($searchTerm != null)
-        {
-            $query .= 'and title = ? ';
-            array_push($parameters, $searchTerm);
-            array_push($responseSentence, ' with title "' . $searchTerm . '"');
-        }
-        if ($category !== 'All')
-        {
-            $query .= 'and category_auction.idAuction = auction.id and category_auction.idCategory = category.id and categoryName = ? ';
-            array_push($parameters, $category);
-            array_push($responseSentence, 'in category ' . $category);
-        }
-        else
-        {
-            array_push($responseSentence, 'in any category');
-        }
-        $query .= 'limit 12';
+            if ($searchTerm != null)
+            {
+              $query .= 'and title = ? ';
+                array_push($parameters, $searchTerm);
+                array_push($responseSentence, ' with title "' . $searchTerm . '"');
+            }
+            if ($category !== 'All')
+            {
+                $query .= 'and category_auction.idAuction = auction.id and category_auction.idCategory = category.id and categoryName = ? ';
+                array_push($parameters, $category);
+                array_push($responseSentence, 'in category ' . $category);
+            }
+            else
+            {
+                array_push($responseSentence, 'in any category');
+            }
+            $query .= 'limit 12';
 
-        $responseSentence = implode(' and ', $responseSentence);
-        $responseSentence = 'Your search results for auctions ' . $responseSentence . ':';
+            $responseSentence = implode(' and ', $responseSentence);
+            $responseSentence = 'Your search results for auctions ' . $responseSentence . ':';
 
-        $auctions = DB::select($query, $parameters);
+            $auctions = DB::select($query, $parameters);
+
+        } catch(QueryException $qe) {
+            $errors = new MessageBag();
+    
+            $errors->add('An error ocurred', "There was a problem searching for auctions. Try Again!");
+    
+            return redirect()
+            ->route('search')
+            ->withErrors($errors);
+         }
 
         return view('pages.search', ['auctions' => $auctions, 'responseSentence' => $responseSentence]);
     }
