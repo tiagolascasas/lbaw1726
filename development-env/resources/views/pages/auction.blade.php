@@ -146,14 +146,18 @@
                             </td>
                             <td>
                                 @if (Auth::check())
-                                <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
                                     @if (Auth::user()->users_status=="moderator")
-                                    <!-- Moderator remove auction button -->
+                                    <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
+                                        <!-- Moderator remove auction button -->
                                         @if($auction->auction_status!="removed")
-                                        <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal"" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                        <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                         @else
-                                        <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal"" class="btn btn-success"><i class="fas fa-undo"></i></button>
+                                        <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal" class="btn btn-success"><i class="fas fa-undo"></i></button>
                                         @endif
+                                    @elif ($auction->sellerID == Auth::user()->id)
+                                    <button id="bid-box" type="submit" disabled class="btn btn-outline-secondary col-md-8">You cannot bid on your own auction</button>
+                                    @else
+                                    <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
                                     @endif
                                 @else
                                 <button id="bid-box" type="submit" disabled class="btn btn-outline-secondary col-md-8">You must be logged in to bid</button>

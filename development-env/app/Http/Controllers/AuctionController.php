@@ -57,12 +57,19 @@ class AuctionController extends Controller
         }
 
         //calculate the remaining time
-        $start =strtotime($auction->dateapproved);
-        $duration = $auction->duration;
-        $end = $start + $duration;
-        $current = time();
-        $timeLeft = $end - $current;
-        $timestamp = $this->createTimestamp($timeLeft);
+        if ($auction->dateapproved != null)
+        {
+            $start =strtotime($auction->dateapproved);
+            $duration = $auction->duration;
+            $end = $start + $duration;
+            $current = time();
+            $timeLeft = $end - $current;
+            $timestamp = $this->createTimestamp($timeLeft);
+        }
+        else
+        {
+            $timestamp = "Auction hasn't been approved yet";
+        }
 
         //get the images, or the default image if there are no images
         $images = DB::table('image')->where('idauction', $id)->pluck('source');
@@ -86,7 +93,7 @@ class AuctionController extends Controller
     {
         if ($time <= 0)
             return "Auction has ended!";
-            
+
         $ts = "";
         $ts .= intdiv($time, 86400) . "d ";
         $time = $time % 86400;

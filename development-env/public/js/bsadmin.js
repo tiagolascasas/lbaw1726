@@ -166,55 +166,58 @@ if (window.location.href.includes("auction/"))
 {
     //decrease time left every second
     let timeLeft = document.querySelector("#timeLeft").innerHTML;
-    let elements = timeLeft.split(" ");
-    let days, hours, minutes, seconds;
-
-    switch(elements.length)
+    if (timeLeft !== "Auction hasn't been approved yet" && timeLeft !== "Auction has ended!")
     {
-        case 4:
-            days = parseInt(elements[0].slice(0,-1));
-            hours = parseInt(elements[1].slice(0,-1));
-            minutes = parseInt(elements[2].slice(0,-1));
-            seconds = parseInt(elements[3].slice(0,-1));
-            break;
-        case 3:
-            days = 0;
-            hours = parseInt(elements[0].slice(0,-1));
-            minutes = parseInt(elements[1].slice(0,-1));
-            seconds = parseInt(elements[2].slice(0,-1));
-            break;
-        case 2:
-            days = 0;
-            hours = 0;
-            minutes = parseInt(elements[0].slice(0,-1));
-            seconds = parseInt(elements[1].slice(0,-1));
-            break;
-        case 1:
-            days = 0;
-            hours = 0;
-            minutes = 0;
-            seconds = parseInt(elements[0].slice(0,-1));
-            break;
+        let elements = timeLeft.split(" ");
+        let days, hours, minutes, seconds;
+
+        switch(elements.length)
+        {
+            case 4:
+                days = parseInt(elements[0].slice(0,-1));
+                hours = parseInt(elements[1].slice(0,-1));
+                minutes = parseInt(elements[2].slice(0,-1));
+                seconds = parseInt(elements[3].slice(0,-1));
+                break;
+            case 3:
+                days = 0;
+                hours = parseInt(elements[0].slice(0,-1));
+                minutes = parseInt(elements[1].slice(0,-1));
+                seconds = parseInt(elements[2].slice(0,-1));
+                break;
+            case 2:
+                days = 0;
+                hours = 0;
+                minutes = parseInt(elements[0].slice(0,-1));
+                seconds = parseInt(elements[1].slice(0,-1));
+                break;
+            case 1:
+                days = 0;
+                hours = 0;
+                minutes = 0;
+                seconds = parseInt(elements[0].slice(0,-1));
+                break;
+        }
+
+        let timer = new Timer();
+        timer.start({countdown: true, startValues: {days: days, hours: hours, minutes: minutes, seconds: seconds}});
+        timer.addEventListener('secondsUpdated', function(e)
+        {
+            let newTime = "";
+            if (timer.getTimeValues().days > 0)
+                newTime += timer.getTimeValues().days + "d ";
+            if (timer.getTimeValues().hours > 0)
+                newTime += timer.getTimeValues().hours + "h ";
+            if (timer.getTimeValues().minutes > 0)
+                newTime += timer.getTimeValues().minutes + "m ";
+            if (timer.getTimeValues().seconds > 0)
+                newTime += timer.getTimeValues().seconds + "s";
+            if (newTime == "")
+                newTime = "Auction has ended!";
+
+            document.querySelector("#timeLeft").innerHTML = newTime;
+        });
     }
-
-    let timer = new Timer();
-    timer.start({countdown: true, startValues: {days: days, hours: hours, minutes: minutes, seconds: seconds}});
-    timer.addEventListener('secondsUpdated', function(e)
-    {
-        let newTime = "";
-        if (timer.getTimeValues().days > 0)
-            newTime += timer.getTimeValues().days + "d ";
-        if (timer.getTimeValues().hours > 0)
-            newTime += timer.getTimeValues().hours + "h ";
-        if (timer.getTimeValues().minutes > 0)
-            newTime += timer.getTimeValues().minutes + "m ";
-        if (timer.getTimeValues().seconds > 0)
-            newTime += timer.getTimeValues().seconds + "s";
-        if (newTime == "")
-            newTime = "Auction has ended!";
-
-        document.querySelector("#timeLeft").innerHTML = newTime;
-    });
 
     //get the current highest bid value periodically
     window.setInterval(function()
@@ -229,6 +232,16 @@ if (window.location.href.includes("auction/"))
     bidBox.addEventListener("click", function()
     {
         let currVal = document.querySelector("#currentBid").value;
+        if (currVal == "")
+        {
+            let header = document.querySelector("#bidResultHeader");
+            let body = document.querySelector("#bidResultBody");
+            header.innerHTML = "Bidding value not set";
+            body.innerHTML = "You must choose a value to bid";
+            body.className = "alert alert-danger";
+            $("#bidResult").modal();
+            return;
+        }
         currVal = parseFloat(currVal);
 
         let maxVal = document.querySelector("#currentMaxBid").innerHTML;
@@ -273,17 +286,19 @@ function postBidHandler(data)
     let header = document.querySelector("#bidResultHeader");
     let body = document.querySelector("#bidResultBody");
 
+    console.log(data);
     let success = data['success'];
+    let message = data['message'];
     if (success)
     {
         header.innerHTML = "Successful bid";
-        body.innerHTML = "Your bid was successful. You are now leading the auction!";
+        body.innerHTML = message;
         body.className = "alert alert-success";
     }
     else
     {
         header.innerHTML = "Unsuccessful bid";
-        body.innerHTML = "Your bid was unsuccessful. Someone probably sent a larger bid at the same time as yours.";
+        body.innerHTML = message;
         body.className = "alert alert-danger";
     }
     $("#bidResult").modal();

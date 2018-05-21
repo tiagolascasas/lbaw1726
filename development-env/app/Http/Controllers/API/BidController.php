@@ -46,16 +46,21 @@ class BidController extends Controller
         $userID = Auth::user()->id;
         $bidValue = $request->input('value');
 
+        $message = "";
+        $success = true;
+
         $exists = DB::select("SELECT * FROM bid WHERE idBuyer = ? and idAuction = ?", [$userID, $auctionID]);
         if (sizeof($exists) > 0)
         {
             DB::update("UPDATE bid SET bidValue = ?, bidDate = now() WHERE idBuyer = ? AND idAuction = ?", [$bidValue, $userID, $auctionID]);
+            $message = "Successfully updated your previous bid. You are now leading the auction!";
         }
         else
         {
             DB::insert("INSERT INTO bid (idBuyer, idAuction, bidValue) VALUES (?, ?, ?)", [$userID, $auctionID, $bidValue]);
+            $message = "Successfully registered your bid. You are now leading the auction!";
         }
 
-        return response()->json(['success' => "true"]);
+        return response()->json(['success' => $success, 'message' => $message]);
     }
 }
