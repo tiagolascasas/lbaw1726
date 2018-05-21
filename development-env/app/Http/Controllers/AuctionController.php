@@ -72,6 +72,8 @@ class AuctionController extends Controller
         //get the current max bid
         $query = "SELECT max(bidValue) FROM bid WHERE idAuction = ?";
         $maxBid = DB::select($query, [$id]);
+        if ($maxBid[0]->max == null)
+            $maxBid[0]->max = 0.00;
 
         return view('pages.auction', ['auction' => $auction,
                                         'categoryName' => $categoryName,
@@ -82,6 +84,9 @@ class AuctionController extends Controller
 
     private function createTimestamp($time)
     {
+        if ($time <= 0)
+            return "Auction has ended!";
+            
         $ts = "";
         $ts .= intdiv($time, 86400) . "d ";
         $time = $time % 86400;
@@ -90,8 +95,20 @@ class AuctionController extends Controller
         $ts .= intdiv($time, 60) . "m ";
         $ts .= $time % 60 . "s";
 
-        if (strcmp($ts, "0s") == 0)
-            $ts = "Auction has ended!";
+        if (strpos($ts, "0d ") !== false)
+        {
+            $ts = str_replace("0d ", "", $ts);
+            if (strpos($ts, "0h ") !== false)
+            {
+                $ts = str_replace("0h ", "", $ts);
+                if (strpos($ts, "0m ") !== false)
+                {
+                    $ts = str_replace("0m ", "", $ts);
+                    if (strpos($ts, "0s") !== false)
+                        $ts = "Auction has ended!";
+                }
+            }
+        }
         return $ts;
     }
 }

@@ -29,6 +29,8 @@ class BidController extends Controller
         $auctionID = $request->input('auctionID');
         $query = "SELECT max(bidValue) FROM bid WHERE idAuction = ?";
         $response = DB::select($query, [$auctionID]);
+        if ($response[0]->max == null)
+            $response[0]->max = 0.00;
 
         return response()->json($response[0]);
     }
@@ -48,12 +50,10 @@ class BidController extends Controller
         if (sizeof($exists) > 0)
         {
             DB::update("UPDATE bid SET bidValue = ?, bidDate = now() WHERE idBuyer = ? AND idAuction = ?", [$bidValue, $userID, $auctionID]);
-            error_log("UPDATING");
         }
         else
         {
             DB::insert("INSERT INTO bid (idBuyer, idAuction, bidValue) VALUES (?, ?, ?)", [$userID, $auctionID, $bidValue]);
-            error_log("INSERTING");
         }
 
         return response()->json(['success' => "true"]);

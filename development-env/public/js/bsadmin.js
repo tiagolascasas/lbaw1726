@@ -179,21 +179,21 @@ if (window.location.href.includes("auction/"))
             break;
         case 3:
             days = 0;
-            hours = parseInt(elements[1].slice(0,-1));
-            minutes = parseInt(elements[2].slice(0,-1));
-            seconds = parseInt(elements[3].slice(0,-1));
+            hours = parseInt(elements[0].slice(0,-1));
+            minutes = parseInt(elements[1].slice(0,-1));
+            seconds = parseInt(elements[2].slice(0,-1));
             break;
         case 2:
             days = 0;
             hours = 0;
-            minutes = parseInt(elements[2].slice(0,-1));
-            seconds = parseInt(elements[3].slice(0,-1));
+            minutes = parseInt(elements[0].slice(0,-1));
+            seconds = parseInt(elements[1].slice(0,-1));
             break;
         case 1:
             days = 0;
             hours = 0;
             minutes = 0;
-            seconds = parseInt(elements[3].slice(0,-1));
+            seconds = parseInt(elements[0].slice(0,-1));
             break;
     }
 
@@ -348,8 +348,8 @@ function moderatorAction(modAction,auctionId,auctionModId=-1){
                     $("#oldDescription").text(description.old);
                     $("#newDescription").text(description.new);
                     //change action of modal buttons
-                    $("#approveBtn").attr("onclick", action_approve); 
-                    $("#removeBtn").attr("onclick", action_remove); 
+                    $("#approveBtn").attr("onclick", action_approve);
+                    $("#removeBtn").attr("onclick", action_remove);
 
                 }
                 else {
