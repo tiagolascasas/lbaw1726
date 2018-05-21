@@ -247,7 +247,7 @@ if (window.location.href.includes("auction/"))
         let maxVal = document.querySelector("#currentMaxBid").innerHTML;
         maxVal = parseFloat(maxVal);
 
-        if (currVal <= maxVal)  //replace by modal
+        if (currVal <= maxVal)
         {
             let header = document.querySelector("#bidResultHeader");
             let body = document.querySelector("#bidResultBody");
@@ -282,7 +282,6 @@ function getBidHandler()
 
 function postBidHandler(data)
 {
-    //let modal = document.querySelector("#bidResult");
     let header = document.querySelector("#bidResultHeader");
     let body = document.querySelector("#bidResultBody");
 

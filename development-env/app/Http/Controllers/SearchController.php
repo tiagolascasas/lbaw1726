@@ -32,6 +32,11 @@ class SearchController extends Controller
         return view('pages.search', ['auctions' => $auctions, 'responseSentence' => $responseSentence]);
     }
 
+    private function get_duplicates($array)
+    {
+        return array_unique(array_diff_assoc($array, array_unique($array)));
+    }
+
     public function simpleSearch(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -47,51 +52,64 @@ class SearchController extends Controller
                         ->withInput();
         }
 
-        try{
-            $input = $request->all();
-            $searchTerm = $input['searchTerm'];
-            $category = $input['category'];
+        $input = $request->all();
+        $searchTerm = $input['searchTerm'];
+        $category = $input['category'];
+        $approved = "approved";
+        $responseSentence = [];
+        $ids = [];
+        $debug = "DEBUG: ";
+        $auctions = [];
 
-        //FOR TESTING ONLY
-            $query = 'select distinct on (auction.id) * from auction, category_auction, category where auction_status = ? ';
-            $parameters = ['waitingApproval'];
-        //USE THIS ON THE END
-        //$query = 'select distinct on (auction.id) * from auction, image, category_auction, category where auction_status = ? and auction.id = image.idAuction ';
-        //$parameters = ['approved'];
-            $responseSentence = [];
-
+        try
+        {
+            //get ids of auctions with
             if ($searchTerm != null)
             {
-              $query .= 'and title = ? ';
-                array_push($parameters, $searchTerm);
+                $res = DB::select("SELECT auction.id FROM auction WHERE title @@ plainto_tsquery('english',?) and auction_status = ?", [$searchTerm, $approved]);
+                foreach ($res as $entry)
+                    array_push($ids, $entry->id);
+
                 array_push($responseSentence, ' with title "' . $searchTerm . '"');
             }
             if ($category !== 'All')
             {
-                $query .= 'and category_auction.idAuction = auction.id and category_auction.idCategory = category.id and categoryName = ? ';
-                array_push($parameters, $category);
+                $res = DB::select('SELECT auction.id FROM auction, category_auction, category WHERE category_auction.idAuction = auction.id and category_auction.idCategory = category.id and categoryName = ? and auction_status = ?', [$category, $approved]);
+                foreach ($res as $entry)
+                    array_push($ids, $entry->id);
+
                 array_push($responseSentence, 'in category ' . $category);
             }
             else
             {
+                $res = DB::select("SELECT id FROM auction WHERE auction_status = ?", [$approved]);
+                foreach ($res as $entry)
+                    array_push($ids, $entry->id);
+
                 array_push($responseSentence, 'in any category');
             }
-            $query .= 'limit 12';
+
+            //$ids = $this->get_duplicates($ids);
+
+            $parameters = implode(",", $ids);
+            $debug .= $parameters;
+
+            $query = "SELECT id, title, author FROM auction WHERE id IN (" . $parameters . ")";
+            $auctions = DB::select($query, []);
 
             $responseSentence = implode(' and ', $responseSentence);
             $responseSentence = 'Your search results for auctions ' . $responseSentence . ':';
-
-            $auctions = DB::select($query, $parameters);
-
-        } catch(QueryException $qe) {
+        }
+        catch(QueryException $qe)
+        {
             $errors = new MessageBag();
-    
+
             $errors->add('An error ocurred', "There was a problem searching for auctions. Try Again!");
-    
+
             return redirect()
             ->route('search')
             ->withErrors($errors);
-         }
+        }
 
         return view('pages.search', ['auctions' => $auctions, 'responseSentence' => $responseSentence]);
     }
