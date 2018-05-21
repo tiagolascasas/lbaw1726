@@ -1,3 +1,24 @@
+------------------------------------------
+--Reset database
+------------------------------------------
+
+drop table if exists administrator;
+drop table if exists country;
+drop table if exists users;
+drop table if exists requested_termination;
+drop table if exists category;
+drop table if exists publisher;
+drop table if exists language;
+drop table if exists auction;
+drop table if exists category_auction;
+drop table if exists wishlist;
+drop table if exists bid;
+drop table if exists auction_modification;
+drop table if exists notification;
+drop table if exists comment;
+drop table if exists notification_auction;
+drop table if exists message;
+drop table if exists image;
 
 ------------------------------------------
 --Tables
@@ -575,16 +596,18 @@ INSERT INTO "requested_termination"  (idusers) VALUES (3);
 INSERT INTO "requested_termination"  (idusers) VALUES (13);
 
 --5
-INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Rachelle Wadge', 'rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', '02:00:00', '878551550-7', 'ligula in lacus curabitur at', 'approved', 7, 93, 12);
-INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Elfie Videan', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', '08:00:00', '406669717-8', 'donec posuere', 'approved', 6, 118, 12);
-INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Alisander Freckleton', 'blandit mi in porttitor pede justo eu massa donec dapibus', '18:00:00', '986634222-0', 'fusce lacus purus aliquet', 'approved', 3, 10, 10);
-INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Audi Kleingrub', 'nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum', '18:00:00', '067934878-6', 'dui nec nisi volutpat eleifend', 'approved', 6, 81, 1);
-INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Merci Szreter', 'orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in', '18:00:00', '404602964-1', 'turpis elementum', 'approved', 7, 2, 12);
-INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Lurette Kennet', 'arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci', '23:00:00', '633223264-1', 'non interdum', 'approved', 7, 17, 4);
-INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Gardner Stoffer', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui', '23:00:00', '292310247-9', 'dictumst etiam', 'approved', 7, 88, 8);
-INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Raynard Mapstone', 'donec posuere metus vitae ipsum aliquam non mauris morbi non lectus', '19:00:00', '650395953-2', 'cursus urna ut', 'approved', 6, 85, 8);
-INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Andris Dornin', 'non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit', '19:00:00', '270101807-2', 'sagittis dui vel nisl', 'approved', 6, 43, 12);
-INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller) VALUES ('Tricia Sture', 'fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor', '19:00:00', '201829112-2', 'justo etiam pretium iaculis', 'approved', 1, 89, 12);
+--approved auctions, time of approval = insert time
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Rachelle Wadge', 'rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', '02:00:00', '878551550-7', 'ligula in lacus curabitur at', 'approved', 7, 93, 12, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Elfie Videan', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', '08:00:00', '406669717-8', 'donec posuere', 'approved', 6, 118, 12, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Alisander Freckleton', 'blandit mi in porttitor pede justo eu massa donec dapibus', '18:00:00', '986634222-0', 'fusce lacus purus aliquet', 'approved', 3, 10, 10, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Audi Kleingrub', 'nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum', '18:00:00', '067934878-6', 'dui nec nisi volutpat eleifend', 'approved', 6, 81, 1, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Merci Szreter', 'orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in', '18:00:00', '404602964-1', 'turpis elementum', 'approved', 7, 2, 12, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Lurette Kennet', 'arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci', '23:00:00', '633223264-1', 'non interdum', 'approved', 7, 17, 4, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Gardner Stoffer', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui', '23:00:00', '292310247-9', 'dictumst etiam', 'approved', 7, 88, 8, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Raynard Mapstone', 'donec posuere metus vitae ipsum aliquam non mauris morbi non lectus', '19:00:00', '650395953-2', 'cursus urna ut', 'approved', 6, 85, 8, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Andris Dornin', 'non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim sit', '19:00:00', '270101807-2', 'sagittis dui vel nisl', 'approved', 6, 43, 12, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Tricia Sture', 'fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor', '19:00:00', '201829112-2', 'justo etiam pretium iaculis', 'approved', 1, 89, 12, now());
+--unapproved auctions
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Harcourt Hibbart', 'et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a', '19:00:00', '663418251-5', 'cursus urna ut tellus nulla ut', 4, 109, 14);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Sheilah Holdin', 'ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce', '19:00:00', '620263498-7', 'non ligula pellentesque ultrices', 4, 125, 14);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Earvin Heis', 'at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis', '00:05:00', '438334161-6', 'ut nulla', 1, 1, 14);

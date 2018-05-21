@@ -56,7 +56,12 @@ class AuctionController extends Controller
           $categoryName = "No category";
         }
 
-        //get the images
+        //calculate the remaining time
+        $start = $auction->dateApproved;
+        print_r($auction);
+        die;
+
+        //get the images, or the default image if there are no images
         $images = DB::table('image')->where('idauction', $id)->pluck('source');
         if (sizeof($images) == 0)
             $images = ["default_no_img.png"];
