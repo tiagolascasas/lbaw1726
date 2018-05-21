@@ -58,6 +58,8 @@ class AuctionController extends Controller
 
         //get the images
         $images = DB::table('image')->where('idauction', $id)->pluck('source');
+        if (sizeof($images) == 0)
+            $images = ["default_no_img.png"];
 
         //get the current max bid
         $query = "SELECT max(bidValue) FROM bid WHERE idAuction = ?";
