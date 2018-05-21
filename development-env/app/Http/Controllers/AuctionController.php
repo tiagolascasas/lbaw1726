@@ -38,6 +38,7 @@ class AuctionController extends Controller
      */
     public function show($id)
     {
+        //get the full auction information
         $auction = Auction::find($id);
 
         //get the category number and the category name
@@ -58,6 +59,13 @@ class AuctionController extends Controller
         //get the images
         $images = DB::table('image')->where('idauction', $id)->pluck('source');
 
-        return view('pages.auction', ['auction' => $auction,'categoryName' => $categoryName, 'images' => $images]);
+        //get the current max bid
+        $query = "SELECT max(bidValue) FROM bid WHERE idAuction = ?";
+        $maxBid = DB::select($query, [$id]);
+
+        return view('pages.auction', ['auction' => $auction,
+                                        'categoryName' => $categoryName,
+                                        'images' => $images,
+                                        'maxBid' => $maxBid[0]->max]);
     }
 }

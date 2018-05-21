@@ -112,7 +112,7 @@
                                 <p id="timeLeft" class="text-danger">1d 12h 34m 12s</p>
                             </td>
                             <td><strong>Current bid: </strong>
-                                <p id="currentMaxBid" class="text-success">0.00€</td>
+                                <p id="currentMaxBid" class="text-success">{{$maxBid}}€</td>
                             <td>
                                 <form>
                                     <div class="form-row">
