@@ -23,7 +23,7 @@
 
 #### Módulo 03 - Listas (Recursos R301 - R306):
 
-**Nelson**
+**Tiago**
 
 - US46
 - USXX ver leilões criados
