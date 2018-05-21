@@ -9,9 +9,8 @@
                 <p class="card-text text-center hidden-p-md-down">By {{ $auction->author }} </p>
                 <div class="d-flex justify-content-between align-items-center">
                     <i class="fas fa-star btn btn-sm text-primary"></i>
-                    <small class="text-success">€ 0.00 </small>
-                    <small class="text-danger">
-                            &lt; x mins</small>
+                    <small class="text-success">{{$auction->bidValue}} € </small>
+                    <small class="text-danger">{{$auction->timestamp}}</small>
                 </div>
             </div>
         </div>

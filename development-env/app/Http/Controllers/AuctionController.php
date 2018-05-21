@@ -59,12 +59,7 @@ class AuctionController extends Controller
         //calculate the remaining time
         if ($auction->dateapproved != null)
         {
-            $start =strtotime($auction->dateapproved);
-            $duration = $auction->duration;
-            $end = $start + $duration;
-            $current = time();
-            $timeLeft = $end - $current;
-            $timestamp = $this->createTimestamp($timeLeft);
+            $timestamp = $this->createTimestamp($auction->dateapproved, $auction->duration);
         }
         else
         {
@@ -89,8 +84,14 @@ class AuctionController extends Controller
                                         'timestamp' => $timestamp]);
     }
 
-    private function createTimestamp($time)
+    public static function createTimestamp($dateApproved, $duration)
     {
+        $start =strtotime($dateApproved);
+        $duration = $duration;
+        $end = $start + $duration;
+        $current = time();
+        $time = $end - $current;
+
         if ($time <= 0)
             return "Auction has ended!";
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\AuctionController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Validator;
 
@@ -94,8 +95,11 @@ class SearchController extends Controller
             $parameters = implode(",", $ids);
             $debug .= $parameters;
 
-            $query = "SELECT id, title, author FROM auction WHERE id IN (" . $parameters . ")";
+            $query = "SELECT auction.id, title, author, duration, dateApproved FROM auction WHERE auction.id IN (" . $parameters . ")";
             $auctions = DB::select($query, []);
+
+            $this->buildTimestamps($auctions);
+            $this->getMaxBids($auctions);
 
             $responseSentence = implode(' and ', $responseSentence);
             $responseSentence = 'Your search results for auctions ' . $responseSentence . ':';
@@ -112,5 +116,24 @@ class SearchController extends Controller
         }
 
         return view('pages.search', ['auctions' => $auctions, 'responseSentence' => $responseSentence]);
+    }
+
+    private function buildTimestamps($auctions)
+    {
+
+        foreach ($auctions as $auction)
+        {
+            $ts = AuctionController::createTimestamp($auction->dateapproved, $auction->duration);
+            $auction->timestamp = $ts;
+        }
+    }
+
+    private function getMaxBids($auctions)
+    {
+        foreach ($auctions as $auction)
+        {
+            $res = DB::select("SELECT max(bidValue) FROM bid WHERE idAuction = ?", [$auction->id]);
+            $auction->bidValue = $res[0]->max;
+        }
     }
 }
