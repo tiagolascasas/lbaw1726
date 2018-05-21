@@ -64,18 +64,16 @@ class CreateAuctionController extends Controller
               $savePublisher = $savePublisher->id;
             }
 
-
             $saveCategory = Category::where('categoryname', $request->input('category'))->get()->first();
 
             $saveAuction->idpublisher = $savePublisher;
-
             $saveAuction->idlanguage = Language::where('languagename', $request->input('language'))->get()->first()->id;
 
             $saveAuction->title = $request->input('title');
             $saveAuction->author = $request->input('author');
             $saveAuction->description = $request->input('description');
-            $saveAuction->duration = $request->input('duration');
             $saveAuction->isbn = $request->input('isbn');
+            $saveAuction->duration = $this->buildDuration($request);
 
             $saveAuction->save();
 
@@ -109,7 +107,7 @@ class CreateAuctionController extends Controller
             //$saveImage->idusers = $saveAuction->id;
 
             /*Return the saved auction*/
-            return $saveAuction;            
+            return $saveAuction;
         });
 
         return $createdAuction;
@@ -122,24 +120,30 @@ class CreateAuctionController extends Controller
      */
     public function create(Request $request)
     {
-      if (!Auth::check()) return redirect('/home');
-      // $this->authorize('create', $auction);
+        if (!Auth::check()) return redirect('/home');
 
-      try{
+        try{
+            $createdAuction=$this->db_create($request);
+        } catch(QueryException $qe) {
+            $errors = new MessageBag();
 
-        $createdAuction=$this->db_create($request);
-  
-      } catch(QueryException $qe) {
-        $errors = new MessageBag();
+            $errors->add('An error ocurred', "There was a problem creating the auction. Try Again!");
 
-        $errors->add('An error ocurred', "There was a problem creating the auction. Try Again!");
+            return redirect()
+            ->route('create')
+            ->withErrors($errors);
+        }
+        return redirect()->route('auction',['id' => $createdAuction->id]);
 
-        return redirect()
-        ->route('create')
-        ->withErrors($errors);
-     }
+    }
 
-     return redirect()->route('auction',['id' => $createdAuction->id]);
+    private function buildDuration(Request $request)
+    {
+        $days = $request->input('days');
+        $hours = $request->input('hours');
+        $minutes = $request->input('minutes');
 
+        $totalSeconds = $days * 86400 + $hours * 3600 + $minutes * 60;
+        return $totalSeconds;
     }
 }

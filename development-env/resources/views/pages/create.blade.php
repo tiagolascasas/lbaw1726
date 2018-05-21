@@ -262,13 +262,68 @@
                 </div>
             </div>
 
+            <label><i class="fa fa-clock"></i> Duration</label>
             <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label><i class="fa fa-clock"></i> Time left</label>
-                    <input id="duration" name="duration" type="time" class="form-control" value="{{ old('time') }}" required>
-                    @if ($errors->has('time'))
+                <div class="form-group col-md-1.5">
+                    <label>Days</label>
+                    <select id="days" name="days" class="form-control" required>
+                        <option value="">&nbsp;</option>
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                    </select>
+                    @if ($errors->has('images'))
                       <span class="error">
-                        {{ $errors->first('duration') }}
+                        {{ $errors->first('images') }}
+                      </span>
+                    @endif
+                </div>
+                <div class="form-group col-md-1.5">
+                    <label>Hours</label>
+                    <select id="hours" name="hours" class="form-control" required>
+                        <option value="">&nbsp;</option>
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                    </select>
+                    @if ($errors->has('hours'))
+                      <span class="error">
+                        {{ $errors->first('hours') }}
+                      </span>
+                    @endif
+                </div>
+                <div class="form-group col-md-1">
+                    <label>Minutes</label>
+                    <input id="minutes" class="form-control" type="number" name="minutes" min="0" max="59" required value="0">
+                    @if ($errors->has('minutes'))
+                      <span class="error">
+                        {{ $errors->first('minutes') }}
                       </span>
                     @endif
                 </div>
@@ -322,7 +377,7 @@
                           {{ $errors->first('isbn') }}
                         </span>
                       @endif
-                      I agree with the terms of service above</label>
+                      I have read and agree with the terms of service above</label>
                 </div>
             </div>
 
