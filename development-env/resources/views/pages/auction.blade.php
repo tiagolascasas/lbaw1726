@@ -109,7 +109,7 @@
                         </tr>
                         <tr>
                             <td><strong>Time left: </strong>
-                                <p id="timeLeft" class="text-danger">1d 12h 34m 12s</p>
+                                <p id="timeLeft" class="text-danger">{{$timestamp}}</p>
                             </td>
                             <td><strong>Current bid: </strong>
                                 <p id="currentMaxBid" class="text-success">{{$maxBid}}€</td>

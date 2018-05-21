@@ -57,9 +57,12 @@ class AuctionController extends Controller
         }
 
         //calculate the remaining time
-        $start = $auction->dateApproved;
-        print_r($auction);
-        die;
+        $start =strtotime($auction->dateapproved);
+        $duration = $auction->duration;
+        $end = $start + $duration;
+        $current = time();
+        $timeLeft = $end - $current;
+        $timestamp = $this->createTimestamp($timeLeft);
 
         //get the images, or the default image if there are no images
         $images = DB::table('image')->where('idauction', $id)->pluck('source');
@@ -73,6 +76,22 @@ class AuctionController extends Controller
         return view('pages.auction', ['auction' => $auction,
                                         'categoryName' => $categoryName,
                                         'images' => $images,
-                                        'maxBid' => $maxBid[0]->max]);
+                                        'maxBid' => $maxBid[0]->max,
+                                        'timestamp' => $timestamp]);
+    }
+
+    private function createTimestamp($time)
+    {
+        $ts = "";
+        $ts .= intdiv($time, 86400) . "d ";
+        $time = $time % 86400;
+        $ts .= intdiv($time, 3600) . "h ";
+        $time = $time % 3600;
+        $ts .= intdiv($time, 60) . "m ";
+        $ts .= $time % 60 . "s";
+
+        if (strcmp($ts, "0s") == 0)
+            $ts = "Auction has ended!";
+        return $ts;
     }
 }
