@@ -228,7 +228,6 @@ if (window.location.href.includes("auction/"))
     let bidBox = document.querySelector("#bid-box");
     bidBox.addEventListener("click", function()
     {
-        console.log("Sending a new bid");
         let currVal = document.querySelector("#currentBid").value;
         currVal = parseFloat(currVal);
 
@@ -237,8 +236,12 @@ if (window.location.href.includes("auction/"))
 
         if (currVal <= maxVal)  //replace by modal
         {
-            console.log(currVal + " " + maxVal);
-            alert("You cannot bid a value lower than the current highest bid");
+            let header = document.querySelector("#bidResultHeader");
+            let body = document.querySelector("#bidResultBody");
+            header.innerHTML = "Insufficient bidding value";
+            body.innerHTML = "Your bid cannot be lower or equal to the current bid.";
+            body.className = "alert alert-danger";
+            $("#bidResult").modal();
             return;
         }
 
@@ -266,11 +269,24 @@ function getBidHandler()
 
 function postBidHandler(data)
 {
+    //let modal = document.querySelector("#bidResult");
+    let header = document.querySelector("#bidResultHeader");
+    let body = document.querySelector("#bidResultBody");
+
     let success = data['success'];
     if (success)
-        alert("Bid was successful, you are now leading the auction");
+    {
+        header.innerHTML = "Successful bid";
+        body.innerHTML = "Your bid was successful. You are now leading the auction!";
+        body.className = "alert alert-success";
+    }
     else
-        alert("Unable to bid; someone bidded a higher value than yours");
+    {
+        header.innerHTML = "Unsuccessful bid";
+        body.innerHTML = "Your bid was unsuccessful. Someone probably sent a larger bid at the same time as yours.";
+        body.className = "alert alert-danger";
+    }
+    $("#bidResult").modal();
 }
 
 /**

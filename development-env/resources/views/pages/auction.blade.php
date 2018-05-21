@@ -52,6 +52,24 @@
                 </div>
                 @endif
                 @endif
+                <div id="bidResult" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 id="bidResultHeader" class="modal-title align-self-center"></h4>
+                      </div>
+                      <div class="modal-body">
+                            <p id="bidResultBody" class="alert alert-danger"></p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
                 <table class="table">
                     <tbody>
                         <tr>
