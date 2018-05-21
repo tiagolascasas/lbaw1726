@@ -38,8 +38,6 @@ class AuctionController extends Controller
      */
     public function show($id)
     {
-        if (!Auth::check()) return redirect('/home');
-
         $auction = Auction::find($id);
 
         //get the category number and the category name

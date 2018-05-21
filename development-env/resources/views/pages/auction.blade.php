@@ -7,6 +7,7 @@
     <!-- Auction Content -->
             <main  data-id="{{$auction, $categoryName}}">
               <div class="container p-5">
+                @if (Auth::check())
                 @if (Auth::user()->users_status=="moderator")
                 <!-- Moderator additional info alert box -->
                 <div class="alert alert-secondary" role="alert">
@@ -49,6 +50,7 @@
                     </div>
                   </div>
                 </div>
+                @endif
                 @endif
                 <table class="table">
                     <tbody>
@@ -115,20 +117,28 @@
                                 <form>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
+                                            @if (Auth::check())
                                             <input id="currentBid" type="number" min="0.00" placeholder="0.00" step="0.01" class="form-control">
+                                            @else
+                                            <input id="currentBid" disabled type="number" min="0.00" placeholder="0.00" step="0.01" class="form-control">
+                                            @endif
                                         </div>
                                     </div>
                                 </form>
                             </td>
                             <td>
+                                @if (Auth::check())
                                 <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
-                                @if (Auth::user()->users_status=="moderator")
-                                <!-- Moderator remove auction button -->
-                                @if($auction->auction_status!="removed")
-                                <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal"" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                    @if (Auth::user()->users_status=="moderator")
+                                    <!-- Moderator remove auction button -->
+                                        @if($auction->auction_status!="removed")
+                                        <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal"" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                        @else
+                                        <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal"" class="btn btn-success"><i class="fas fa-undo"></i></button>
+                                        @endif
+                                    @endif
                                 @else
-                                <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal"" class="btn btn-success"><i class="fas fa-undo"></i></button>
-                                @endif
+                                <button id="bid-box" type="submit" disabled class="btn btn-outline-secondary col-md-8">You must be logged in to bid</button>
                                 @endif
                             </td>
                             <td>
