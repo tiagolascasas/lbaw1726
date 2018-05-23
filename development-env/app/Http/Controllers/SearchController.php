@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\AuctionController;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Validator;
-
-use App\Auction;
 
 class SearchController extends Controller
 {
     /**
-    * Create a new controller instance.
-    *
-    * @return void
-    */
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -45,12 +40,11 @@ class SearchController extends Controller
             'category' => 'nullable|string',
         ]);
 
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return redirect()
-                        ->route('home')
-                        ->withErrors($validator)
-                        ->withInput();
+                ->route('home')
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $input = $request->all();
@@ -65,27 +59,26 @@ class SearchController extends Controller
         try
         {
             //get ids of auctions with
-            if ($searchTerm != null)
-            {
+            if ($searchTerm != null) {
                 $res = DB::select("SELECT auction.id FROM auction WHERE title @@ plainto_tsquery('english',?) and auction_status = ?", [$searchTerm, $approved]);
-                foreach ($res as $entry)
+                foreach ($res as $entry) {
                     array_push($ids, $entry->id);
+                }
 
                 array_push($responseSentence, ' with title "' . $searchTerm . '"');
             }
-            if ($category !== 'All')
-            {
+            if ($category !== 'All') {
                 $res = DB::select('SELECT auction.id FROM auction, category_auction, category WHERE category_auction.idAuction = auction.id and category_auction.idCategory = category.id and categoryName = ? and auction_status = ?', [$category, $approved]);
-                foreach ($res as $entry)
+                foreach ($res as $entry) {
                     array_push($ids, $entry->id);
+                }
 
                 array_push($responseSentence, 'in category ' . $category);
-            }
-            else
-            {
+            } else {
                 $res = DB::select("SELECT id FROM auction WHERE auction_status = ?", [$approved]);
-                foreach ($res as $entry)
+                foreach ($res as $entry) {
                     array_push($ids, $entry->id);
+                }
 
                 array_push($responseSentence, 'in any category');
             }
@@ -103,16 +96,14 @@ class SearchController extends Controller
 
             $responseSentence = implode(' and ', $responseSentence);
             $responseSentence = 'Your search results for auctions ' . $responseSentence . ':';
-        }
-        catch(QueryException $qe)
-        {
+        } catch (QueryException $qe) {
             $errors = new MessageBag();
 
             $errors->add('An error ocurred', "There was a problem searching for auctions. Try Again!");
 
             return redirect()
-            ->route('search')
-            ->withErrors($errors);
+                ->route('search')
+                ->withErrors($errors);
         }
 
         return view('pages.search', ['auctions' => $auctions, 'responseSentence' => $responseSentence]);
@@ -121,8 +112,7 @@ class SearchController extends Controller
     private function buildTimestamps($auctions)
     {
 
-        foreach ($auctions as $auction)
-        {
+        foreach ($auctions as $auction) {
             $ts = AuctionController::createTimestamp($auction->dateapproved, $auction->duration);
             $auction->timestamp = $ts;
         }
@@ -130,8 +120,7 @@ class SearchController extends Controller
 
     private function getMaxBids($auctions)
     {
-        foreach ($auctions as $auction)
-        {
+        foreach ($auctions as $auction) {
             $res = DB::select("SELECT max(bidValue) FROM bid WHERE idAuction = ?", [$auction->id]);
             $auction->bidValue = $res[0]->max;
         }

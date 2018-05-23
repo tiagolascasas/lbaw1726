@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-
-use App\Auction;
-use App\Category;
-use App\CategoryAuction;
-use App\User;
-use App\Bid;
-use App\Country;
-
-
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
@@ -31,8 +22,6 @@ class ProfileController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
-
     /**
      * Shows the User profile for a given id.
      *
@@ -41,18 +30,25 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        if (!Auth::check()) return redirect('/home');
+        if (!Auth::check()) {
+            return redirect('/home');
+        }
 
         $user = User::find($id);
 
-        return view('pages.profile', ['user' => $user]);
+        $images = DB::table('image')->where('idusers', $id)->pluck('source');
+        if (sizeof($images) == 0) {
+            $images = ["default.png"];
+        }
+
+        return view('pages.profile', ['user' => $user, 'image' => $images[0]]);
     }
-
-
 
     public function editUser(Request $request, $id)
     {
-        if (Auth::user()->id!=$id) return redirect('/home');
+        if (Auth::user()->id != $id) {
+            return redirect('/home');
+        }
 
         $validator = Validator::make($request->all(), [
             'name' => 'nullable|string|max:255',
@@ -64,31 +60,59 @@ class ProfileController extends Controller
 
         if ($validator->fails()) {
             return redirect()
-                        ->route('profile', ['id' => Auth::user()->id])
-                        ->withErrors($validator)
-                        ->withInput();
+                ->route('profile', ['id' => Auth::user()->id])
+                ->withErrors($validator)
+                ->withInput();
         }
 
-        $input =$request->all();
+        $input = $request->all();
 
-        if($input['name']!==NULL)
-            DB::update('update users set name = ? where id = ?', [$input['name'],$id]);
-        if($input['age']!==NULL)
-            DB::update('update users set age = ? where id = ?', [$input['age'],$id]);
-        if($input['email']!==NULL)
-            DB::update('update users set email = ? where id = ?', [$input['email'],$id]);
-        if($input['address']!==NULL)
-            DB::update('update users set address = ? where id = ?', [$input['address'],$id]);
-        if($input['postalcode']!==NULL)
-            DB::update('update users set postalCode = ? where id = ?', [$input['postalcode'],$id]);
-        if($input['idcountry']!==NULL)
-            DB::update('update users set idCountry = ? where id = ?', [$input['idcountry'],$id]);
-        if($input['phone']!==NULL)
-            DB::update('update users set phone = ? where id = ?', [$input['phone'],$id]);
+        if ($input['name'] !== null) {
+            DB::update('update users set name = ? where id = ?', [$input['name'], $id]);
+        }
+
+        if ($input['age'] !== null) {
+            DB::update('update users set age = ? where id = ?', [$input['age'], $id]);
+        }
+
+        if ($input['email'] !== null) {
+            DB::update('update users set email = ? where id = ?', [$input['email'], $id]);
+        }
+
+        if ($input['address'] !== null) {
+            DB::update('update users set address = ? where id = ?', [$input['address'], $id]);
+        }
+
+        if ($input['postalcode'] !== null) {
+            DB::update('update users set postalCode = ? where id = ?', [$input['postalcode'], $id]);
+        }
+
+        if ($input['idcountry'] !== null) {
+            DB::update('update users set idCountry = ? where id = ?', [$input['idcountry'], $id]);
+        }
+
+        if ($input['phone'] !== null) {
+            DB::update('update users set phone = ? where id = ?', [$input['phone'], $id]);
+        }
+
 /*
-        $image = DB::table('image')->where('iduser', $id)->pluck('source')[0];
-        if ($image == NULL)
-          $image = "default.png";*/
+$image = DB::table('image')->where('iduser', $id)->pluck('source')[0];
+if ($image == NULL)
+$image = "default.png";*/
+
+        //TODO lol wut check tomorrow
+        if ($request->hasFile('images')) {
+            $file = $request->file('images');
+            $name = time() . $file[0]->getClientOriginalName();
+            $file[0]->move('img', $name);
+
+            if (sizeof(DB::select('select * FROM image WHERE idusers = ?', [$id])) > 0) {
+                DB::update('update image set source = ? where idusers = ?', [$name, $id]);
+            } else {
+                DB::insert('INSERT INTO image (source,idusers) VALUES(?,?)', [$name, $id]);
+            }
+
+        }
 
         return redirect()->route('profile', ['id' => Auth::user()->id]);
     }

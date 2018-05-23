@@ -7,7 +7,7 @@
             <hr id="hr_space" class="mt-2">
             <div class="row">
                 <div class="col-lg-2 col-sm-6 text-center mb-4">
-                    <img class="img-fluid d-block mx-auto" src="{{asset('avatars/default.png')}}" alt="{{$user->name}} photo">
+                    <img class="img-fluid d-block mx-auto" src="{{asset('img/'.$image)}}" alt="{{$user->name}} photo">
                 </div>
                 <table class="table table-striped col-lg-4">
                     <tbody>
@@ -147,6 +147,19 @@
                                     <label for="phone1">Phone Number</label>
                                     <input class="form-control" id="phone1" name="phone" type="tel" placeholder="123456789" value="{{ old('phone') }}">
                                 </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <label>Your profile picture</label>
+                                            <input id="images" name="images" class="form-control" type="file" accept="image/*">
+                                            @if ($errors->has('images'))
+                                              <span class="error">
+                                                {{ $errors->first('images') }}
+                                              </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                  </div>
                                 <button  type="submit" class="btn btn-primary btn-block mb-4">Save any new changes</button>
                             </form>
                         </div>

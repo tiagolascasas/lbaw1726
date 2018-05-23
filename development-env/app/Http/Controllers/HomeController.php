@@ -2,14 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 use App\Auction;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -28,6 +22,6 @@ class HomeController extends Controller
     {
         $auctions = Auction::all();
 
-        return view('pages.home',['auctions'=>$auctions]);
+        return view('pages.home', ['auctions' => $auctions]);
     }
 }

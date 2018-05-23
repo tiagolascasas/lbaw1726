@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Storage;
-use App\User;
-use App\Image;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -20,7 +18,7 @@ class RegisterController extends Controller
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
-    */
+     */
     use RegistersUsers;
 
     /**
@@ -67,8 +65,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-       // $file = $data['images'][0];
-       // $file->move('avatars', $file->getClientOriginalName());
+        // $file = $data['images'][0];
+        // $file->move('avatars', $file->getClientOriginalName());
 
         $saveUser = new User;
         $saveUser->create([

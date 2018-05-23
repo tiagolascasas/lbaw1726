@@ -80,19 +80,6 @@
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <div class="form-row">
-          <div class="col-md-12">
-              <label>Your profile picture</label>
-              <input id="images" name="images[]" class="form-control" type="file" accept="image/*">
-              @if ($errors->has('images'))
-                <span class="error">
-                  {{ $errors->first('images') }}
-                </span>
-              @endif
-          </div>
-      </div>
-    </div>
     </div>
   <div class="modal-footer">
     <button class="btn btn-primary btn-block" type"submit">REGISTER</button>

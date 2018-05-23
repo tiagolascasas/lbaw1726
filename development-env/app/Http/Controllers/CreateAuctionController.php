@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-
 use App\Auction;
 use App\Category;
 use App\CategoryAuction;
+use App\Http\Controllers\Controller;
+use App\Image;
 use App\Language;
 use App\Publisher;
-use App\Image;
-
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CreateAuctionController extends Controller
 {
@@ -27,8 +24,7 @@ class CreateAuctionController extends Controller
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
-    */
-
+     */
 
     /**
      * Create a new controller instance.
@@ -42,26 +38,30 @@ class CreateAuctionController extends Controller
 
     public function show()
     {
-      if (!Auth::check()) return redirect('/home');
-      return view('pages.create');
+        if (!Auth::check()) {
+            return redirect('/home');
+        }
+
+        return view('pages.create');
     }
 
-    private function db_create(Request $request){
+    private function db_create(Request $request)
+    {
         // create auction transaction
-        $createdAuction = DB::transaction(function() use ($request) {
+        $createdAuction = DB::transaction(function () use ($request) {
             $saveAuction = new Auction;
             $saveCategoryAuction = new CategoryAuction;
             $saveAuction->idseller = Auth::user()->id;
 
             $savePublisher = Publisher::where('publishername', $request->input('publisher'))->get()->first();
 
-            if ($savePublisher==NULL){
-              $savePublisher = new Publisher;
-              $savePublisher->publishername = $request->input('publisher');
-              $savePublisher->save();
-              $savePublisher = $savePublisher->id;
-            } else{
-              $savePublisher = $savePublisher->id;
+            if ($savePublisher == null) {
+                $savePublisher = new Publisher;
+                $savePublisher->publishername = $request->input('publisher');
+                $savePublisher->save();
+                $savePublisher = $savePublisher->id;
+            } else {
+                $savePublisher = $savePublisher->id;
             }
 
             $saveCategory = Category::where('categoryname', $request->input('category'))->get()->first();
@@ -77,31 +77,30 @@ class CreateAuctionController extends Controller
 
             $saveAuction->save();
 
-            if ($saveCategory!=NULL){
-              $saveCategoryAuction->idcategory = $saveCategory->id;
-              $saveCategoryAuction->idauction = $saveAuction->id;
-              $saveCategoryAuction->save();
+            if ($saveCategory != null) {
+                $saveCategoryAuction->idcategory = $saveCategory->id;
+                $saveCategoryAuction->idauction = $saveAuction->id;
+                $saveCategoryAuction->save();
             }
 
             /*Get images and store them*/
-            $input=$request->all();
+            $input = $request->all();
             $images = array();
-            if($files=$request->file('images')){
-              foreach($files as $file){
-                  $name=$file->getClientOriginalName();
-                  $file->move('img',$name);
-                  $images[]=$name;
-              }
+            if ($files = $request->file('images')) {
+                foreach ($files as $file) {
+                    $name = $file->getClientOriginalName();
+                    $file->move('img', $name);
+                    $images[] = $name;
+                }
             }
 
             /*Store image sources in database*/
-            foreach ($images as $image){
+            foreach ($images as $image) {
                 $saveImage = new Image;
                 $saveImage->source = $image;
                 $saveImage->idauction = $saveAuction->id;
                 $saveImage->save();
             }
-
 
             //$saveImage->source = $request->input('filename');
             //$saveImage->idusers = $saveAuction->id;
@@ -113,27 +112,28 @@ class CreateAuctionController extends Controller
         return $createdAuction;
     }
 
-
     /**
      * Creates a new auction and redirects to it's page.
      *
      */
     public function create(Request $request)
     {
-        if (!Auth::check()) return redirect('/home');
+        if (!Auth::check()) {
+            return redirect('/home');
+        }
 
-        try{
-            $createdAuction=$this->db_create($request);
-        } catch(QueryException $qe) {
+        try {
+            $createdAuction = $this->db_create($request);
+        } catch (QueryException $qe) {
             $errors = new MessageBag();
 
             $errors->add('An error ocurred', "There was a problem creating the auction. Try Again!");
 
             return redirect()
-            ->route('create')
-            ->withErrors($errors);
+                ->route('create')
+                ->withErrors($errors);
         }
-        return redirect()->route('auction',['id' => $createdAuction->id]);
+        return redirect()->route('auction', ['id' => $createdAuction->id]);
 
     }
 
