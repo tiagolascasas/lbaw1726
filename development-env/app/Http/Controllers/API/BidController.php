@@ -48,6 +48,7 @@ class BidController extends Controller
 
         $message = "";
         $success = true;
+        $info = "Your bid has been beaten.";
 
         $exists = DB::select("SELECT * FROM bid WHERE idBuyer = ? and idAuction = ?", [$userID, $auctionID]);
         if (sizeof($exists) > 0)
@@ -57,9 +58,14 @@ class BidController extends Controller
         }
         else
         {
+            $lastbidder = DB::select('SELECT bid.idBuyer FROM bid WHERE idAuction = ?', [$auctionID]);
+
             DB::insert("INSERT INTO bid (idBuyer, idAuction, bidValue) VALUES (?, ?, ?)", [$userID, $auctionID, $bidValue]);
             $message = "Successfully registered your bid. You are now leading the auction!";
+            DB::insert("INSERT INTO notification (information, idusers) VALUES (?,?)",[$info,$lastbidder]);
         }
+
+
 
         return response()->json(['success' => $success, 'message' => $message]);
     }

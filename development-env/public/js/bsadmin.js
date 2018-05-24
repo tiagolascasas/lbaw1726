@@ -42,6 +42,15 @@ function ajaxCallGet(url, handler)
     xmlhttp.send();
 }
 
+function ajaxCallGet2(url, handler)
+{
+    $.ajax({
+      url: url,
+      type:'GET',
+      success: notificationsHandler
+    });
+}
+
 function ajaxCallPost(url, params, handler)
 {
     let token = document.querySelector("#csrfToken").content;
@@ -100,6 +109,50 @@ function auctionAlbumHandler(response) {
     htmlAuction += `</div>`;
     album.innerHTML = htmlAuction;
 }
+
+let counter = document.querySelector("#counter");
+
+function notificationsClick(){
+    counter.innerHTML = "";
+    ajaxCallGet2('api/notifications','notificationsHandler');
+}
+
+function notificationsHandler(response){
+  let notifications = JSON.parse(JSON.stringify(response));
+  let notification_list = document.querySelector("#not_itens");
+  let html_notification =`<h6 class="dropdown-header">New Alerts:</h6>
+                          <div class="dropdown-divider"></div>`;
+  if(notifications.length == 0){
+    html_notification += `<a class="dropdown-item">
+                            <div class="dropdown-message"><span class="text-left small">No new notifications.</span></div>
+</a>`;
+  }
+  else{
+    counter.innerHTML = notifications.length;
+    notifications.forEach(function(element){
+      let time_sent = element.datesent.substring(10,16);
+      html_notification += `<a class="dropdown-item" data-id="${element.id}" method = "GET" href="{{route(auction/${element.idAuction})}}">
+                              <span class="text text-left">
+                                <strong>${element.title}</strong>
+                              </span>
+                              <span class="small text-right text-muted">${time_sent}</span>
+                              <div class="dropdown-message">
+                                <span class="text-left small">${element.information}</span>
+                              </div>
+                            </a>`;
+    let params = {"notification_id":element.id};
+    ajaxCallPost('api/notifications/{id}',params,'sucess');
+    });
+  }
+
+
+  notification_list.innerHTML = html_notification;
+}
+
+setInterval(function(){
+  ajaxCallGet2('api/notifications','notificationsHandler');
+  notificationsHandler();
+}, 5000);
 
 /**
   * JS for the feedback functionalities

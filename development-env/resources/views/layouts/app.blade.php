@@ -112,7 +112,6 @@
                                 <a href="#" class="category-dropdown dropdown-item">Crime</a>
                             </li>
                         </ul>
-
                     </div>
                 </li>
                 <li class="nav-item hidden-p-md-down">
@@ -151,34 +150,13 @@
 
                 </li>
                 @if (Auth::check())
-        <li class="nav-item dropdown ">
-            <a class="nav-link dropdown-toggle container" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown"  id = "dropdown_noti">
+            <a class="nav-link dropdown-toggle container" id="alertsDropdown" href="#" data-toggle="dropdown"  onclick="notificationsClick()" aria-haspopup="true" aria-expanded="false">
+                <i class="label label-pill label-light count" id = "counter" style="border-radius:10px;"></i>
+                <span class="badge badge-danger"></span>
                 <i class="fa fa-fw fa-bell"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-right notifications" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">New Alerts:</h6>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                            <span class="text-success text-left">
-                               <strong>Memorial do Convento</strong>
-                            </span>
-                    <span class="small text-right text-muted">11:21 AM</span>
-                    <div class="dropdown-message"><span class="text-left small">Your auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
-                </a>
-                <a class="dropdown-item" href="#">
-                            <span class="text-danger text-left">
-                                <strong>Os Maias</strong>
-                            </span>
-                    <span class="small text-right text-muted">11:21 AM</span>
-                    <div class="dropdown-message"><span class="text-left small">This auction has ended.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
-                </a>
-                <a class="dropdown-item" href="#">
-                            <span class="text-danger text-left">
-                                <strong>Os Maias</strong>
-                            </span>
-                    <span class="small text-right text-muted">11:21 AM</span>
-                    <div class="dropdown-message"><span class="text-left small">Someone covered your offer.</span><span class="float-right hover"><i class="far fa-check-circle"></i></span></div>
-                </a>
+            <div class="dropdown-menu dropdown-menu-right notifications" id = "not_itens" aria-labelledby="alertsDropdown">
             </div>
         </li>
         <li class="nav-item dropdown">

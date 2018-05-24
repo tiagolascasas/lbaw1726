@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Auction;
+use App\NotificationAuction;
+use App\Notification;
 
 class NotificationsController extends Controller
 {
@@ -25,9 +28,12 @@ class NotificationsController extends Controller
             return response('Forbidden.', 403);
         }
 
-        $response = DB::select('SELECT notification.id, notification.information, notification_auction.idAuction FROM notification, notification_auction
-        WHERE notification.is_seen=FALSE
-        AND notification.idusers=? AND notification_auction.idNotification=notification.id', [Auth::user()->id]);
+        $response = DB::select('SELECT notification.id, notification.information,notification.dateSent, notification_auction.idAuction, auction.title
+                                FROM notification, notification_auction, auction
+                                WHERE notification.is_seen=FALSE
+                                AND notification.idusers=?
+                                AND notification_auction.idNotification=notification.id
+                                AND notification_auction.idAuction=auction.id', [Auth::user()->id]);
 
         return response()->json($response);
     }
@@ -38,7 +44,7 @@ class NotificationsController extends Controller
             return response('Forbidden.', 403);
         }
 
-        $id = $request->input('id_notification');
+        $id = $request->input('notification_id');
         if ($id !== null) {
             try {
                 DB::update("UPDATE notification SET is_seen = TRUE WHERE idusers = ? AND id=?", [Auth::user()->id, $id]);

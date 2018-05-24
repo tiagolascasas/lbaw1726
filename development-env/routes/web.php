@@ -52,6 +52,8 @@ Route::get('about', 'AboutController@show')->name('about');
 Route::get('api/search', 'API\SearchController@index');
 Route::get('api/bid', 'API\BidController@getMaxBid');
 Route::post('api/bid', 'API\BidController@bidNewValue');
+Route::get('api/notifications', 'API\NotificationsController@getNotifications');
+Route::post('api/notifications/{id}','API\NotificationsController@markAsSeen');
 
 //Search Page
 Route::get('search', 'SearchController@show')->name('search');
