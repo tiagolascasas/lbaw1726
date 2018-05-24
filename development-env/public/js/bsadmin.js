@@ -312,7 +312,7 @@ if (window.location.href.includes("search"))
         this.preventDefault();
         let data = $("form").serialize();
         ajaxCallGet("api/search?" + data, advSearchHandler);
-    };
+    });
 }
 
 function advSearchHandler()
@@ -372,7 +372,7 @@ function moderatorAction(modAction,auctionId,auctionModId=-1){
     });
 
    $.ajax({
-          url: "/moderator",
+          url: "/api/moderator",
           method: 'post',
           data: {
              ida: auctionId,
