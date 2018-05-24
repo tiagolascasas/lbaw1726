@@ -60,3 +60,6 @@ Route::post('search', 'SearchController@simpleSearch')->name('search');
 //Moderator
 Route::get('moderator','ModeratorController@show')->name('moderator');
 Route::post('moderator','ModeratorController@action')->name('moderator');
+
+//Administrator
+Route::get('admin','AdministratorController@show')->name('admin');

@@ -87,6 +87,7 @@ class SearchController extends Controller
             }
         }*/
 
+
         $query .= "limit 12";
         //array_push($parameters, $request->input('limit'));
 

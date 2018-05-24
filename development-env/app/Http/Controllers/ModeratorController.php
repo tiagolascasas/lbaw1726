@@ -24,7 +24,7 @@ class ModeratorController extends Controller
 
     private function isNotModerator()
     {
-        if (Auth::user()->users_status != "moderator") {
+        if (Auth::user()==null || Auth::user()->users_status != "moderator") {
             return true;
         }
 
@@ -33,7 +33,8 @@ class ModeratorController extends Controller
     public function show()
     {
         if ($this->isNotModerator()) {
-            return redirect('home');
+            $erorIsnotAModerator="You need to be a moderator to acess this page";
+            return redirect('home')->withErrors($erorIsnotAModerator);;
         }
 
         $auctions = Auction::where('auction_status', "waitingApproval")->get(); //new auctions
