@@ -144,19 +144,8 @@ class AdminController extends Controller
         return response('OK', 200);
     }
 
-
-
-    private function isNotAdmin(){
-        if (Auth::user()==null || Auth::user()->users_status != "admin") {
-            return true;
-        }
-    }
-
     public function action(Request $request)
     {
-        if ($this->isNotAdmin()) {
-            return redirect('home');
-        }
 
 
 
