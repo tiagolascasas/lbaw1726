@@ -80,11 +80,11 @@ class SearchController extends Controller
         }
         if ($request->input('notLoad') != null)
         {
-            for ($id in $request->input('notLoad'))
-            {
-                $query .= "and auction.id != ?";
-                array_push($parameters, $id);
-            }
+           // for ($id in $request->input('notLoad'))
+           // {
+           //     $query .= "and auction.id != ?";
+           //     array_push($parameters, $id);
+           // }
         }
 
         $query .= "order by title limit ?";
