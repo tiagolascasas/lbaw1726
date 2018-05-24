@@ -41,7 +41,13 @@ class ProfileController extends Controller
             $images = ["default.png"];
         }
 
-        return view('pages.profile', ['user' => $user, 'image' => $images[0]]);
+        $paypalMsg = "";
+        if ($user->paypalEmail != NULL)
+            $paypalMsg = "You are linked to PayPal";
+        else
+            $paypalMsg = "You are unlinked to PayPal";
+
+        return view('pages.profile', ['user' => $user, 'image' => $images[0], 'paypalMsg' => $paypalMsg]);
     }
 
     public function editUser(Request $request, $id)
@@ -115,5 +121,45 @@ $image = "default.png";*/
         }
 
         return redirect()->route('profile', ['id' => Auth::user()->id]);
+    }
+
+    public function addPaypal(Request $request, $id)
+    {
+        if (Auth::user()->id != $id)
+        {
+            return redirect('/home');
+        }
+
+        $validator = Validator::make($request->all(), [
+            'paypalEmail' => 'nullable|string|email'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('profile', ['id' => Auth::user()->id])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $input = $request->all();
+        $email = $input['paypalEmail'];
+
+        DB::update('UPDATE user SET paypalEmail = ? WHERE id = ?', [$paypalEmail, $id]);
+
+        return redirect()->route('profile', ['id' => $id]);
+    }
+
+    public function removePaypal(Request $request, $id)
+    {
+        if (Auth::user()->id != $id)
+        {
+            return redirect('/home');
+        }
+
+        $paypalEmail = "NULL";
+
+        DB::update('UPDATE user SET paypalEmail = ? WHERE id = ?', [$paypalEmail, $id]);
+
+        return redirect()->route('profile', ['id' => $id]);
     }
 }

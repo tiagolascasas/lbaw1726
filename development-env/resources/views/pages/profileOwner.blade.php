@@ -197,6 +197,47 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="paypalUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalPasswordLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalPasswordLabel">Link a PayPal account</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="{{ route('users/{id}/paypal') }}">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Your new PayPal email</label>
+                                    <input class="form-control" name="paypalEmail" type="email" placeholder="example@example.com">
+                                </div>
+                                <button class="btn btn-primary btn-block mb-4">Link your PayPal account</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="paypalRemoveModal" tabindex="-1" role="dialog" aria-labelledby="myModalPasswordLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalPasswordLabel">Unlink your PayPal account</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="DELETE" action="{{ route('users/{id}/paypal') }}">
+                                <p>Are you sure you wish to unlink your PayPal account? You won't be able to buy or sell without it.</p>
+                                <button class="btn btn-primary btn-block mb-4">Unlink your PayPal account</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--
             <div class="list-group panel">
                 <a href="#" class="list-group-item list-group-item-action text-muted">
                     <div class="container">
@@ -252,6 +293,38 @@
                         </div>
                     </div>
                 </a>
+            </div>-->
+            <div class="container-fluid bg-white">
+                <div class="bg-white mb-0 mt-4 mb-4 panel">
+                    <h6><i class="fa fa-th-large"></i> Payments and transfers</h6>
+                </div>
+                <p>BookHub requires the use of PayPal in order to bid and/or create auctions. Be mindful of these three points:</p>
+                <ul>
+                    <li>All transactions related to an auction are performed automatically once that auction is over and cannot be reverted;</li>
+                    <li>You can neither create nor bid on auctions until you associate a valid PayPal account to your BookHub account;</li>
+                    <li>You cannot unlink your PayPal account if you have bid on an ongoing auction or if you have any auction of your own still active.</li>
+                </ul>
+                <p><strong>{{$paypalMsg}}</strong></p>
+
+                <div class="list-group">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <a class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#paypalUpdateModal">
+                                    <i class="fa fa-link"></i> Associate a Paypal account
+                                </a>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <a class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#paypalRemoveModal">
+                                    <i class="fa fa-unlink"></i> Unlink your Paypal account
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
       </div>
   	</main>
