@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\MessageBag;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -55,12 +56,12 @@ class Handler extends ExceptionHandler
         $errors->add('An unexpected error ocurred', "An unexpected error ocurred");
 
         //render for dev env
-        return parent::render($request, $exception);
+        if($exception instanceof \Illuminate\Validation\ValidationException)
+            return parent::render($request, $exception);
 
-        //for prod env
-        //return redirect()
-        //->route('home')
-        //->withErrors($errors);
+        return redirect()
+        ->route('home')
+        ->withErrors($errors);
 
 
     }
