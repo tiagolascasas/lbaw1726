@@ -20,7 +20,7 @@ class AdminController extends Controller
 
     public function terminate(Request $request)
     {
-        if (!($request->ajax() || $request->pjax() ||Auth::Check() || Auth::user()->users_status == 'admin')) {
+        if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
             return response('Forbidden.', 403);
         }
 
@@ -28,7 +28,7 @@ class AdminController extends Controller
         if ($id !== null) {
             try {
                 DB::update("UPDATE users SET users_status = terminated WHERE id = ?", [$id]);
-                DB::delete('DELETE FROM requested_termination WHERE idusers=?',[$id]);
+                DB::delete('DELETE FROM requested_termination WHERE idusers=?', [$id]);
             } catch (QueryException $qe) {
                 return response('NOT FOUND', 404);
             }
@@ -41,14 +41,14 @@ class AdminController extends Controller
 
     public function ignore(Request $request)
     {
-        if (!($request->ajax() || $request->pjax() ||Auth::Check() || Auth::user()->users_status == 'admin')) {
+        if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
             return response('Forbidden.', 403);
         }
 
         $id = $request->input('id_member');
         if ($id !== null) {
             try {
-                DB::delete('DELETE FROM requested_termination WHERE idusers=?',[$id]);
+                DB::delete('DELETE FROM requested_termination WHERE idusers=?', [$id]);
             } catch (QueryException $qe) {
                 return response('NOT FOUND', 404);
             }
@@ -62,7 +62,7 @@ class AdminController extends Controller
 
     public function suspend(Request $request)
     {
-        if (!($request->ajax() || $request->pjax() ||Auth::Check() || Auth::user()->users_status == 'admin')) {
+        if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
             return response('Forbidden.', 403);
         }
 
@@ -84,7 +84,7 @@ class AdminController extends Controller
     //tmb é chamada para revoker moderator
     public function reactivate_or_revokeModerator(Request $request)
     {
-        if (!($request->ajax() || $request->pjax() ||Auth::Check() || Auth::user()->users_status == 'admin')) {
+        if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
             return response('Forbidden.', 403);
         }
 
@@ -103,7 +103,7 @@ class AdminController extends Controller
 
     public function ban(Request $request)
     {
-        if (!($request->ajax() || $request->pjax() ||Auth::Check() || Auth::user()->users_status == 'admin')) {
+        if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
             return response('Forbidden.', 403);
         }
 
@@ -124,7 +124,7 @@ class AdminController extends Controller
 
     public function promote_moderator(Request $request)
     {
-        if (!($request->ajax() || $request->pjax() ||Auth::Check() || Auth::user()->users_status == 'admin')) {
+        if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
             return response('Forbidden.', 403);
         }
 

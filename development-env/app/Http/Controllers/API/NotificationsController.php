@@ -21,7 +21,7 @@ class NotificationsController extends Controller
 
     public function getNotifications(Request $request)
     {
-        if (!($request->ajax() || $request->pjax() || Auth::check())) {
+        if (!($request->ajax() || $request->pjax()) || !Auth::check()) {
             return response('Forbidden.', 403);
         }
 
@@ -34,7 +34,7 @@ class NotificationsController extends Controller
 
     public function markAsSeen(Request $request)
     {
-        if (!($request->ajax() || $request->pjax() || Auth::check())) {
+        if (!($request->ajax() || $request->pjax())|| !Auth::check()) {
             return response('Forbidden.', 403);
         }
 
