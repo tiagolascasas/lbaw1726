@@ -55,12 +55,12 @@ class Handler extends ExceptionHandler
         $errors->add('An unexpected error ocurred', "An unexpected error ocurred");
 
         //render for dev env
-        //return parent::render($request, $exception);
+        return parent::render($request, $exception);
 
         //for prod env
-        return redirect()
-        ->route('home')
-        ->withErrors($errors);
+        //return redirect()
+        //->route('home')
+        //->withErrors($errors);
 
 
     }

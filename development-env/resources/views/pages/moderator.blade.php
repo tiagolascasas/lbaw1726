@@ -28,7 +28,7 @@
                 </h4>
                 <hr>
                 <div id="oldDescription" class="alert-danger mb-3">
-                OLd ldalsdlasdl
+                Getting data from server...
                 </div>
                 <h4>
                     <i class="fas fa-quote-right"></i>
@@ -36,7 +36,7 @@
                 </h4>
                 <hr>
                 <div id="newDescription" class="alert-success">
-                new qdwqwdq
+                Getting data from server...
                 </div>
               </div>
               <div class="modal-footer">
