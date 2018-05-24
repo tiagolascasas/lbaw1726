@@ -64,13 +64,12 @@ function encodeForAjax(data) {
   * JS for the home page
   */
 if (window.location.pathname === "/home") {
-    ajaxCallGet("api/search?type_search=home", "homeHandler");
+    ajaxCallGet("api/search?type_search=home", "auctionAlbumHandler");
 }
 
-function homeHandler(response) {
+function auctionAlbumHandler(response) {
     auctions = JSON.parse(response);
     let album = document.querySelector('#auctionAlbum');
-    console.log(album);
     let htmlAuction = `<div class="row">`;
     let i = 0;
     auctions.forEach(element => {
@@ -285,7 +284,6 @@ function postBidHandler(data)
     let header = document.querySelector("#bidResultHeader");
     let body = document.querySelector("#bidResultBody");
 
-    console.log(data);
     let success = data['success'];
     let message = data['message'];
     if (success)
@@ -301,6 +299,25 @@ function postBidHandler(data)
         body.className = "alert alert-danger";
     }
     $("#bidResult").modal();
+}
+
+/**
+  * JS for the advanced search page
+  */
+if (window.location.href.includes("search"))
+{
+    let advSearch = document.querySelector("#advSearch");
+    advSearch.addEventListener('submit', function()
+    {
+        this.preventDefault();
+        let data = $("form").serialize();
+        ajaxCallGet("api/search?" + data, advSearchHandler);
+    };
+}
+
+function advSearchHandler()
+{
+
 }
 
 /**

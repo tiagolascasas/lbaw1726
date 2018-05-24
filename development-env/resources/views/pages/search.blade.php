@@ -11,40 +11,40 @@
     </div>
     <hr id="hr_space" class="mt-2">
     <main>
-        <a class="btn btn-primary col-md-12 mb-4" id="showbtn" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn btn-primary col-md-12 mb-4" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Advanced search options
         </a>
-        <form class="ml-4 mr-4 collapse" id="collapseExample">
+        <form class="ml-4 mr-4 collapse" id="advSearch">
             <div class="form-row">
                 <div class="form-group col-md-6 ">
                     <label class="font-weight-bold">Search keyword(s)</label>
-                    <input type="text" class="form-control" id="advSearch">
+                    <input type="text" name="keywords" class="form-control">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">Title</label>
-                    <input type="text" class="form-control">
+                    <input type="text" name="title" class="form-control">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">Publisher</label>
-                    <input type="text" class="form-control">
+                    <input type="text" name="publisher" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">ISBN</label>
-                    <input type="text" class="form-control">
+                    <input type="text" name="isbn" class="form-control">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="search" class="font-weight-bold">Author</label>
-                    <input type="text" class="form-control">
+                    <input type="text" name="author" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">Category</label>
-                    <select class="form-control">
+                    <select class="form-control" name="category">
                         <option value="">&nbsp;</option>
                         <option>Arts&amp;Music</option>
                         <option>Biographies</option>
@@ -77,7 +77,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">Language</label>
-                    <select class="form-control">
+                    <select class="form-control" name="language">
                             <option value="">&nbsp;</option>
                             <option>English</option>
                             <option>Bulgarian</option>
@@ -107,7 +107,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="search" class="font-weight-bold">Maximum current bid in €</label>
-                    <input type="number" step="0.5" class="form-control">
+                    <input type="number" step="0.5" class="form-control" name="maxBid">
                 </div>
             </div>
             <div class="form-row">

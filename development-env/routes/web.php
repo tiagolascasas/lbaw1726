@@ -40,6 +40,7 @@ Route::post('profile/{id}/edit', 'ProfileController@editUser')->name('profile.ed
 Route::get('contact', 'ContactController@show')->name('contact');
 Route::post('contact', 'ContactController@message');
 
+
 //FAQ
 Route::get('faq', 'FaqController@show')->name('faq');
 

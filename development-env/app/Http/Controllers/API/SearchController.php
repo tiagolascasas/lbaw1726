@@ -27,7 +27,7 @@ class SearchController extends Controller
         }
 
         $parameters = [];
-        $query = "select * from auction, image, publisher where auction.id = image.idAuction ";
+        $query = "select id, title,  ";
 
         if ($request->input('keywords') != null)
         {
@@ -50,7 +50,7 @@ class SearchController extends Controller
         {
 
         }
-        if ($request->input('lang') != null)
+        if ($request->input('language') != null)
         {
 
         }
@@ -77,7 +77,7 @@ class SearchController extends Controller
         if ($request->input('idMember') != null)
         {
 
-        }
+        }/*
         if ($request->input('notLoad') != null)
         {
             for ($id in $request->input('notLoad'))
@@ -85,21 +85,12 @@ class SearchController extends Controller
                 $query .= "and auction.id != ?";
                 array_push($parameters, $id);
             }
-        }
+        }*/
 
-        $query .= "order by title limit ?";
-        array_push($parameters, $request->input('limit'));
+        $query .= "limit 12";
+        //array_push($parameters, $request->input('limit'));
 
         $response = DB::select($query, $parameters);
         return response()->json($response);
-
-/*if(Auth::check())
-$response=DB::select('select * from auction where auction_status = ? AND idSeller!=?', ['approved',Auth::user()->id]);
-else
-$response=DB::select('select * from auction where auction_status = ?',['approved']);
-return response()->json($response);
-        }
-        else
-            return response('Error', 400)->header('Content-Type', 'text/plain');*/
     }
 }

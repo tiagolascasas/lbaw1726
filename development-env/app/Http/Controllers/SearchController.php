@@ -28,11 +28,6 @@ class SearchController extends Controller
         return view('pages.search', ['auctions' => $auctions, 'responseSentence' => $responseSentence]);
     }
 
-    private function get_duplicates($array)
-    {
-        return array_unique(array_diff_assoc($array, array_unique($array)));
-    }
-
     public function simpleSearch(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -53,7 +48,6 @@ class SearchController extends Controller
         $approved = "approved";
         $responseSentence = [];
         $ids = [];
-        $debug = "DEBUG: ";
         $auctions = [];
 
         try
@@ -83,10 +77,7 @@ class SearchController extends Controller
                 array_push($responseSentence, 'in any category');
             }
 
-            //$ids = $this->get_duplicates($ids);
-
             $parameters = implode(",", $ids);
-            $debug .= $parameters;
 
             $query = "SELECT auction.id, title, author, duration, dateApproved FROM auction WHERE auction.id IN (" . $parameters . ")";
             $auctions = DB::select($query, []);
