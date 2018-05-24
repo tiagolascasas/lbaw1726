@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -140,5 +142,60 @@ class AdminController extends Controller
         }
 
         return response('OK', 200);
+    }
+
+
+
+    private function isNotAdmin(){
+        if (Auth::user()==null || Auth::user()->users_status != "admin") {
+            return true;
+        }
+    }
+
+    public function action(Request $request)
+    {
+        if ($this->isNotAdmin()) {
+            return redirect('home');
+        }
+
+
+
+        //get id from username if it's not defined
+        if ($request->id_member==-1){
+            $user=User::where('username',$request->username)->limit(1)->get()->first();
+            if (isset($user->id))
+                $request->merge(['id_member' => $user->id]);
+            else
+                return "Error: Username doesn't exist";   //if can't find username or it's null in the requested action
+        }
+
+        $action = $request->action;
+
+        if ($action === "remove_profile") {
+            return $this->terminate($request);
+        }
+
+        if ($action === "ignore_del_request") {
+            return $this->ignore($request);
+        }
+
+        if ($action === "suspend") {
+            return $this->suspend($request);
+        }
+
+        if ($action === "normal") {
+            return $this->reactivate_or_revokeModerator($request);
+        }
+
+        if ($action === "ban") {
+            return $this->ban($request);
+        }
+
+        if ($action === "promote") {
+            return $this->promote_moderator($request);
+        }
+
+        //Unkown action error
+        return $this->unkown_action($request);
     }
 }

@@ -7,7 +7,7 @@
  <!-- Admin dashboard -->
         <div class="container-fluid bg-white">
             <!-- Title-->
-            <div class="bg-white mb-0 mt-4 panel">
+            <div class="bg-white danimb-0 mt-4 panel">
                 <h5>
                     <i class="fa fa-gavel"></i> Manage users </h5>
             </div>
@@ -15,26 +15,18 @@
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label>Select an user</label>
-                        <input class="form-control" type="text" list="userList" placeholder="username">
-                        <datalist class="form-control" id="userList" hidden>
-                            <option value="tiagolascasas">
-                            <option value="rubentorres">
-                            <option value="nelsoncosta">
-                            <option value="danielazevedo">
-                            <option value="user1">
-                            <option value="user2">
-                        </datalist>
+                        <input id="usernameInput" name="username" class="form-control" type="text" placeholder="username">
                     </div>
                 </div>
                 <a class="btn btn-primary col-md-12 mb-4" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 Take an action
                 </a>
                 <div class="collapse" id="collapseExample">
-                    <button type="submit" class="btn col-md-12 mb-2 btn-outline-secondary">Suspend user indefinitely</button>
-                    <button type="submit" class="btn col-md-12 mb-2 btn-outline-secondary">Reactivate suspended user</button>
-                    <button type="submit" class="btn col-md-12 mb-2 btn-outline-secondary">Ban user permanently</button>
-                    <button type="submit" class="btn col-md-12 mb-2 btn-outline-secondary">Promote user to moderator</button>
-                    <button type="submit" class="btn col-md-12 mb-2 btn-outline-secondary">Revoke moderator privileges</button>
+                    <span  class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('suspend',-1,document.getElementById('usernameInput').value)">Suspend user indefinitely</span>
+                    <span class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('normal',-1,document.getElementById('usernameInput').value)">Reactivate suspended user</span>
+                    <span  class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('ban',-1,document.getElementById('username').value)">Ban user permanently</span>
+                    <span class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('promote',-1,document.getElementById('usernameInput').value)">Promote user to moderator</span>
+                    <span class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('normal',-1,document.getElementById('usernameInput').value)">Revoke moderator privileges</span>
                 </div>
             </form>
             <div class="bg-white mb-0 mt-4 panel">
@@ -47,7 +39,7 @@
             <div class="my-3">
 
 
-                @each('partials.adminAccountDeletionRequest', $delRequests, 'delRequests')
+                @each('partials.adminAccountDeletionRequest', $delRequests, 'delRequest')
 
             </div>
         </div>

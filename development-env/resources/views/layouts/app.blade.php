@@ -171,6 +171,9 @@
                 @if(Auth::user()->users_status=="moderator")
                 <a class="dropdown-item" href="{{ url("moderator") }}">Moderator Panel</a>
                 @endif
+                @if(Auth::user()->users_status=="admin")
+                <a class="dropdown-item" href="{{ url("admin") }}">Admin Panel</a>
+                @endif                
                 <a class="dropdown-item" href="{{ url("create/") }}">Create auction</a>
                 <a class="dropdown-item" href="myAuctions.html">My Auctions</a>
                 <a class="dropdown-item" href="auctionsIm_in.html">Auctions I'm in</a>

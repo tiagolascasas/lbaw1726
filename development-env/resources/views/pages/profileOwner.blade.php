@@ -207,7 +207,7 @@
                         </button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="{{ route('users/{id}/paypal') }}">
+                            <form method="POST" action="{{ route('profile.paypal',$user->id) }}">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Your new PayPal email</label>
                                     <input class="form-control" name="paypalEmail" type="email" placeholder="example@example.com">
@@ -229,7 +229,7 @@
                         </button>
                         </div>
                         <div class="modal-body">
-                            <form method="DELETE" action="{{ route('users/{id}/paypal') }}">
+                            <form method="DELETE" action="{{ route('profile.paypal.remove',$user->id) }}">
                                 <p>Are you sure you wish to unlink your PayPal account? You won't be able to buy or sell without it.</p>
                                 <button class="btn btn-primary btn-block mb-4">Unlink your PayPal account</button>
                             </form>

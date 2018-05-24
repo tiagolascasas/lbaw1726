@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Auction;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use App\RequestedTermination;
 use App\Http\Controllers\Controller;
 
@@ -41,6 +43,17 @@ class AdministratorController extends Controller
 
     /**
 	 *
+     * Check if it's admin
+     *
+     */
+    private function isNotAdmin(){
+        if (Auth::user()==null || Auth::user()->users_status != "admin") {
+            return true;
+        }
+    }
+
+    /**
+	 *
      * Get all the account deletion requests
      *
      */
@@ -49,7 +62,7 @@ class AdministratorController extends Controller
     }
 
     /**
-	 *
+	 *isNotAdmin
      * Get all the account deletion requests
      *
      */
@@ -59,13 +72,16 @@ class AdministratorController extends Controller
 
 
     /**
-     * Shows the auction for a given id.
+     * Shows the admin dashboard 
      *
-     * @param  int  $id
      * @return Response
      */
     public function show()
     {
+    	if ($this->isNotAdmin()){
+            return response('Forbidden.', 403);
+        }
+
     	$delRequests=$this->getDeletionRequests();
         return view('pages.admin',['delRequests'=>$delRequests]);
     }

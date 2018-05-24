@@ -34,7 +34,7 @@ class ModeratorController extends Controller
     {
         if ($this->isNotModerator()) {
             $erorIsnotAModerator="You need to be a moderator to acess this page";
-            return redirect('home')->withErrors($erorIsnotAModerator);;
+            return redirect('home')->withErrors($erorIsnotAModerator);
         }
 
         $auctions = Auction::where('auction_status', "waitingApproval")->get(); //new auctions

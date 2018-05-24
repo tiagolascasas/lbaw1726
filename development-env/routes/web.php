@@ -65,3 +65,4 @@ Route::post('api/moderator','API\ModeratorController@action')->name('moderator')
 
 //Administrator
 Route::get('admin','AdministratorController@show')->name('admin');
+Route::post('api/admin','API\AdminController@action')->name('admin');

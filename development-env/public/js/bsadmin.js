@@ -465,3 +465,41 @@ function moderatorAction(modAction,auctionId,auctionModId=-1){
           }
     });
 }
+
+/**
+  * JS for Administrator actions
+  */
+function adminAction(adminAction,id_member=-1,username=""){
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+    });
+
+   $.ajax({
+          url: "/api/admin",
+          method: 'post',
+          data: {
+             id_member: id_member,
+             username: username,
+             action: adminAction
+          },
+
+          success: function(result){
+            // Fade elements on approve/remove
+            console.log(result);
+            if (window.location.pathname === "/admin"){
+                if (adminAction=="remove_profile" || adminAction=="ignore_del_request"){
+                    $(`#dr-${id_member}`).fadeOut();
+                }
+            } else{
+                location.reload();
+            }
+          },
+          error: function(data){
+            console.log(data);
+            alert("Check the log.")
+          }
+    });
+
+}
