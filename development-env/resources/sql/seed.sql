@@ -1,13 +1,5 @@
 ------------------------------------------
 --Tables
-------------------------------------------
---1
-
-CREATE TABLE administrator (
-    id SERIAL PRIMARY KEY,
-    username text NOT NULL UNIQUE,
-    password text NOT NULL
-);
 
 --2
 CREATE TABLE country (
@@ -35,7 +27,7 @@ CREATE TABLE users (
     dateTerminated  TIMESTAMP WITH TIME zone DEFAULT NULL,
     idCountry  INTEGER NOT NULL REFERENCES country(id),
     remember_token VARCHAR,
-    CONSTRAINT status_ck CHECK ((users_status = ANY (ARRAY['moderator'::text, 'suspended'::text, 'banned'::text, 'normal'::text, 'terminated'::text]))),
+    CONSTRAINT status_ck CHECK ((users_status = ANY (ARRAY['moderator'::text, 'suspended'::text, 'banned'::text, 'normal'::text, 'terminated'::text,'admin'::text]))),
     CONSTRAINT age_ck CHECK (age>=18)
 );
 
@@ -203,7 +195,7 @@ CREATE INDEX author_index ON auction USING GIST (to_tsvector('english', author))
 CREATE FUNCTION check_number_of_row_admin() RETURNS TRIGGER AS
 $BODY$
 BEGIN
-  IF ((SELECT count(*) FROM administrator) > 0)
+  IF ((SELECT count(*) FROM users WHERE users.users_status='admin'::text) > 1)
     THEN
         RAISE EXCEPTION 'There can be only one administrator';
     END IF;
@@ -213,7 +205,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER tr_check_number_of_row_admin
-  BEFORE INSERT ON administrator
+  BEFORE INSERT ON users
   FOR EACH ROW
     EXECUTE PROCEDURE check_number_of_row_admin();
 
@@ -336,7 +328,6 @@ CREATE TRIGGER tr_image_auction_or_users
 
 
 --1
-INSERT INTO "administrator" (username, password) VALUES ('admin','AXkWnVFw');
 
 --2
 INSERT INTO "country" (countryName) VALUES ('Austria');
@@ -369,6 +360,7 @@ INSERT INTO "country" (countryName) VALUES ('Sweden');
 INSERT INTO "country" (countryName) VALUES ('Ireland');
 INSERT INTO "country" (countryName) VALUES ('United Kingdom');
 
+INSERT INTO "users" (address, age, email, name, password, phone, postalCode, username, users_status, idCountry) VALUES ('admin', 21, 'admin@fe.up.pt', 'admin', '$2y$10$c1H9bNvOoNdOtoDAJDfrNOooEt7UPWTW6eeD9XTnfOL7BUGzjSpW6', '111111111', '1111-111', 'admin', 'admin', 17);
 --8
 INSERT INTO "language" (languageName) VALUES('English');
 INSERT INTO "language" (languageName) VALUES('Afar');
@@ -578,7 +570,7 @@ INSERT INTO "requested_termination"  (idusers) VALUES (13);
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Rachelle Wadge', 'rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', '3000', '878551550-7', 'ligula in lacus curabitur at', 'approved', 7, 93, 12, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Elfie Videan', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', '3000', '406669717-8', 'donec posuere', 'approved', 6, 118, 12, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Alisander Freckleton', 'blandit mi in porttitor pede justo eu massa donec dapibus', '3000', '986634222-0', 'fusce lacus purus aliquet', 'approved', 3, 10, 10, now());
-INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Audi Kleingrub', 'nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum', '3000', '067934878-6', 'dui nec nisi volutpat eleifend', 'approved', 6, 81, 1, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Audi Kleingrub', 'nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum', '3000', '067934878-6', 'dui nec nisi volutpat eleifend', 'approved', 6, 81, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Merci Szreter', 'orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in', '3000', '404602964-1', 'turpis elementum', 'approved', 7, 2, 12, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Lurette Kennet', 'arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci', '6000', '633223264-1', 'non interdum', 'approved', 7, 17, 4, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Gardner Stoffer', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui', '6000', '292310247-9', 'dictumst etiam', 'approved', 7, 88, 8, now());
@@ -597,7 +589,7 @@ INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, 
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Marietta Shama', 'vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus', '360050', '716386818-9', 'justo pellentesque viverra', 1, 117, 14);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Gloria McCaskill', 'id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam', '360050', '903576151-0', 'sit amet justo morbi ut', 4, 110, 14);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Germana Castree', 'quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere', '360050', '707493571-9', 'in purus eu magna vulputate', 4, 32, 3);
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Ginnifer Frain', 'eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat', '360050', '156227457-0', 'ligula nec sem duis', 1, 102, 1);
+INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Ginnifer Frain', 'eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat', '360050', '156227457-0', 'ligula nec sem duis', 1, 102, 2);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Renaldo Lambis', 'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas', '360050', '432923138-7', 'duis ac nibh fusce', 3, 42, 14);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Adah Balding', 'id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed', '360050', '065642982-8', 'non lectus aliquam sit amet diam', 5, 99, 6);
 INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Ricki Breznovic', 'curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut', '360050', '816917757-X', 'orci luctus et ultrices posuere cubilia', 3, 3, 4);
@@ -622,7 +614,7 @@ INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(5,25);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(4,21);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(12,12);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(19,3);
-INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(1,6);
+INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(2,6);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(8,19);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(9,12);
 INSERT INTO "whishlist" (idBuyer, idAuction) VALUES(7,16);
@@ -650,9 +642,9 @@ INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (19, 5, 95.52);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (15, 9, 85.09);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (15, 10, 60.05);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (17, 5, 8.21);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (1, 8, 41.85);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (2, 8, 41.85);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 9, 30.02);
-INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (1, 9, 53.92);
+INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (2, 9, 53.92);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 19, 90.93);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (13, 20, 11.07);
 INSERT INTO "bid" (idBuyer, idAuction, bidValue) VALUES (16, 15, 38.45);
@@ -743,7 +735,7 @@ INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('duis bibend
 INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('erat curabitur gravida nisi at nibh in hac habitasse platea', 16, 15);
 INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel', 6, 10);
 INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus', 7, 8);
-INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien', 1, 2);
+INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien', 2, 3);
 INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est', 3, 5);
 INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis', 10, 17);
 INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis', 20, 3);
@@ -757,11 +749,11 @@ INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idR
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis', true, null, 3, 6);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec', false, null, 6, 11);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt', false, null, 4, 9);
-INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede', true, null, 2, 1);
+INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede', true, null, 3, 2);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius', true, null, 11, 8);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices', true, null, 14, 19);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut', false, null, 10, 17);
-INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'natoque penatibus et magnis dis parturient montes nascetur ridiculus mus', false, null, 1, 5);
+INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'natoque penatibus et magnis dis parturient montes nascetur ridiculus mus', false, null, 2, 5);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'nullam orci pede venenatis non sodales sed tincidunt eu felis fusce', true, null, 5, 10);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla', true, null, 10, 11);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam', true, null, 20, 11);
@@ -772,7 +764,7 @@ INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idR
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut', true, null, 7, 14);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis', true, null, 4, 2);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'lectus pellentesque at nulla suspendisse potenti cras in purus eu magna', false, null, 13, 13);
-INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut', true, null, 15, 1);
+INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut', true, null, 15, 2);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta', true, null, 14, 11);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (true, 'lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui', false, null, 15, 16);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'vestibulum proin eu mi nulla ac enim in tempor turpis', true, null, 19, 17);
