@@ -54,9 +54,14 @@ class Handler extends ExceptionHandler
         // add your error messages:
         $errors->add('An unexpected error ocurred', "An unexpected error ocurred");
 
+        //render for dev env
+        //return parent::render($request, $exception);
+
+        //for prod env
         return redirect()
         ->route('home')
         ->withErrors($errors);
+
 
     }
 }

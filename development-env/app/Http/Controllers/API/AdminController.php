@@ -98,9 +98,7 @@ class AdminController extends Controller
         } else {
             return response('Incorrect Request', 400);
         }
-
         return response('OK', 200);
-
     }
 
     public function ban(Request $request)
