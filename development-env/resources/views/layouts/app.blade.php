@@ -175,10 +175,10 @@
                 <a class="dropdown-item" href="{{ url("admin") }}">Admin Panel</a>
                 @endif                
                 <a class="dropdown-item" href="{{ url("create/") }}">Create auction</a>
-                <a class="dropdown-item" href="myAuctions.html">My Auctions</a>
-                <a class="dropdown-item" href="auctionsIm_in.html">Auctions I'm in</a>
-                <a class="dropdown-item" href="history.html">History</a>
-                <a class="dropdown-item" href="wishlist.html">WishList</a>
+                <a class="dropdown-item" href="{{ url("myauctions") }}">My Auctions</a>
+                <a class="dropdown-item" href="{{ url("auctions_im_in") }}">Auctions I'm in</a>
+                <a class="dropdown-item" href="{{ url("history") }}">History</a>
+                <a class="dropdown-item" href="{{ url("wishlist") }}">WishList</a>
                 <a class="dropdown-item" href="messages.html">Messages</a>
                 <a class="dropdown-item" href="{{ url("logout") }}">Logout</a>
             </div>

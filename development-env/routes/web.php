@@ -59,6 +59,12 @@ Route::post('api/notifications/{id}','API\NotificationsController@markAsSeen');
 Route::get('search', 'SearchController@show')->name('search');
 Route::post('search', 'SearchController@simpleSearch')->name('search');
 
+//ListPages
+Route::get('history', 'ListController@history')->name('history');
+Route::get('myauctions', 'ListController@myauctions')->name('myauctions');
+Route::get('auctions_im_in','ListController@auctions_imIn')->name('auctions_im_in');
+Route::get('wishlist','ListController@wishlist')->name('wishlist');
+
 //Moderator
 Route::get('moderator','ModeratorController@show')->name('moderator');
 Route::post('api/moderator','API\ModeratorController@action')->name('moderator');

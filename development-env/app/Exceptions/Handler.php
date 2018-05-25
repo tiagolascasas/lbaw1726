@@ -59,9 +59,10 @@ class Handler extends ExceptionHandler
         if($exception instanceof \Illuminate\Validation\ValidationException)
             return parent::render($request, $exception);
 
-        return redirect()
+            return parent::render($request, $exception);
+       /* return redirect()
         ->route('home')
-        ->withErrors($errors);
+        ->withErrors($errors);*/
 
 
     }
