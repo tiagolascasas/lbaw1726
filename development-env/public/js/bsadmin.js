@@ -1,9 +1,11 @@
 /**
-  * JS related to the style on all pages
-  */
-$(document).ready(function() {
+ * JS related to the style on all pages
+ */
+$(document).ready(function()
+{
     // toggle sidebar when button clicked
-    $(".sidebar-toggle").on("click", function() {
+    $(".sidebar-toggle").on("click", function()
+    {
         $(".sidebar").toggleClass("toggled");
         $("#fixed-footer")
             .removeClass("#fixed-footer")
@@ -13,7 +15,8 @@ $(document).ready(function() {
     // auto-expand submenu if an item is active
     var active = $(".sidebar .active");
 
-    if (active.length && active.parent(".collapse").length) {
+    if (active.length && active.parent(".collapse").length)
+    {
         var parent = active.parent(".collapse");
 
         parent.prev("a").attr("aria-expanded", true);
@@ -23,15 +26,16 @@ $(document).ready(function() {
 
 
 /**
-  * Error handling
-  */
-$(window).on("load", function() {
+ * Error handling
+ */
+$(window).on("load", function()
+{
     $("#myModalError").modal("show");
 });
 
 /**
-  * Functions for GET and POST AJAX requests
-  */
+ * Functions for GET and POST AJAX requests
+ */
 function ajaxCallGet(url, handler)
 {
     let xmlhttp = new XMLHttpRequest();
@@ -44,10 +48,11 @@ function ajaxCallGet(url, handler)
 
 function ajaxCallGet2(url, handler)
 {
-    $.ajax({
-      url: url,
-      type:'GET',
-      success: notificationsHandler
+    $.ajax(
+    {
+        url: url,
+        type: 'GET',
+        success: notificationsHandler
     });
 }
 
@@ -55,7 +60,8 @@ function ajaxCallPost(url, params, handler)
 {
     let token = document.querySelector("#csrfToken").content;
     params._token = token;
-    $.ajax({
+    $.ajax(
+    {
         url: url,
         type: 'POST',
         data: params,
@@ -63,26 +69,38 @@ function ajaxCallPost(url, params, handler)
     });
 }
 
-function encodeForAjax(data) {
-  return Object.keys(data).map(function(k){
-    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
-  }).join('&');
+function encodeForAjax(data)
+{
+    return Object.keys(data).map(function(k)
+    {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+    }).join('&');
 }
 
 /**
-  * JS for the home page
-  */
-if (window.location.pathname === "/home") {
-    ajaxCallGet("api/search?type_search=home", "auctionAlbumHandler");
+ * JS for the home page
+ */
+if (window.location.pathname === "/home")
+{
+    ajaxCallGet("api/search?auctionStatus=approved", auctionAlbumHandler);
 }
 
-function auctionAlbumHandler(response) {
-    auctions = JSON.parse(response);
-    let album = document.querySelector('#auctionAlbum');
+function auctionAlbumHandler()
+{
+    console.log(this.responseText);
+    auctions = JSON.parse(this.responseText);
+    let album = document.querySelector('#auctionsAlbum');
+    album.innerHTML = makeAlbum(auctions);
+}
+
+function makeAlbum(auctions)
+{
     let htmlAuction = `<div class="row">`;
     let i = 0;
-    auctions.forEach(element => {
-        if (i % 4 === 0 && i !== 0) {
+    auctions.forEach(element =>
+    {
+        if (i % 4 === 0 && i !== 0)
+        {
             htmlAuction += `</div><div class="row">`;
         }
         htmlAuction += `<div class="col-md-3 auctionItem"  data-id="${element.id}">
@@ -107,31 +125,40 @@ function auctionAlbumHandler(response) {
         i++;
     });
     htmlAuction += `</div>`;
-    album.innerHTML = htmlAuction;
+    return htmlAuction;
 }
 
+/**
+ * JS for the notifications
+ */
 let counter = document.querySelector("#counter");
 
-function notificationsClick(){
+function notificationsClick()
+{
     counter.innerHTML = "";
-    ajaxCallGet2('api/notifications','notificationsHandler');
+    ajaxCallGet2('api/notifications', 'notificationsHandler');
 }
 
-function notificationsHandler(response){
-  let notifications = JSON.parse(JSON.stringify(response));
-  let notification_list = document.querySelector("#not_itens");
-  let html_notification =`<h6 class="dropdown-header">New Alerts:</h6>
+
+function notificationsHandler(response)
+{
+    let notifications = JSON.parse(JSON.stringify(response));
+    let notification_list = document.querySelector("#not_itens");
+    let html_notification = `<h6 class="dropdown-header">New Alerts:</h6>
                           <div class="dropdown-divider"></div>`;
-  if(notifications.length == 0){
-    html_notification += `<a class="dropdown-item">
+    if (notifications.length == 0)
+    {
+        html_notification += `<a class="dropdown-item">
                             <div class="dropdown-message"><span class="text-left small">No new notifications.</span></div>
 </a>`;
-  }
-  else{
-    counter.innerHTML = notifications.length;
-    notifications.forEach(function(element){
-      let time_sent = element.datesent.substring(10,16);
-      html_notification += `<a class="dropdown-item" data-id="${element.id}" method = "GET" href="{{route(auction/${element.idAuction})}}">
+    }
+    else
+    {
+        counter.innerHTML = notifications.length;
+        notifications.forEach(function(element)
+        {
+            let time_sent = element.datesent.substring(10, 16);
+            html_notification += `<a class="dropdown-item" data-id="${element.id}" method = "GET" href="{{route(auction/${element.idAuction})}}">
                               <span class="text text-left">
                                 <strong>${element.title}</strong>
                               </span>
@@ -140,23 +167,24 @@ function notificationsHandler(response){
                                 <span class="text-left small">${element.information}</span>
                               </div>
                             </a>`;
-    let params = {"notification_id":element.id};
-    ajaxCallPost('api/notifications/{id}',params,'sucess');
-    });
-  }
-
-
-  notification_list.innerHTML = html_notification;
+            let params = {
+                "notification_id": element.id
+            };
+            ajaxCallPost('api/notifications/{id}', params, 'sucess');
+        });
+    }
+    notification_list.innerHTML = html_notification;
 }
 
-setInterval(function(){
-  ajaxCallGet2('api/notifications','notificationsHandler');
-  notificationsHandler();
+setInterval(function()
+{
+    ajaxCallGet2('api/notifications', 'notificationsHandler');
+    notificationsHandler();
 }, 5000);
 
 /**
-  * JS for the feedback functionalities
-  */
+ * JS for the feedback functionalities
+ */
 let feedback = document.querySelector("#myfeedback");
 
 if (feedback !== null)
@@ -181,8 +209,8 @@ if (feedback !== null)
             </form>`;
 
 /**
-  *JS for search-related stuff and APIs
-  */
+ *JS for search-related stuff and APIs
+ */
 if (window.location.pathname === "/search") //use ajax on advanced search form
 {
     let searchForm = document.querySelector("#advSearchSubmit");
@@ -212,8 +240,8 @@ for (let i = 0; i < cats.length; i++)
 }
 
 /**
-  * JS for bidding-related stuff and APIs
-  */
+ * JS for bidding-related stuff and APIs
+ */
 if (window.location.href.includes("auction/"))
 {
     //decrease time left every second
@@ -223,36 +251,46 @@ if (window.location.href.includes("auction/"))
         let elements = timeLeft.split(" ");
         let days, hours, minutes, seconds;
 
-        switch(elements.length)
+        switch (elements.length)
         {
             case 4:
-                days = parseInt(elements[0].slice(0,-1));
-                hours = parseInt(elements[1].slice(0,-1));
-                minutes = parseInt(elements[2].slice(0,-1));
-                seconds = parseInt(elements[3].slice(0,-1));
+                days = parseInt(elements[0].slice(0, -1));
+                hours = parseInt(elements[1].slice(0, -1));
+                minutes = parseInt(elements[2].slice(0, -1));
+                seconds = parseInt(elements[3].slice(0, -1));
                 break;
             case 3:
                 days = 0;
-                hours = parseInt(elements[0].slice(0,-1));
-                minutes = parseInt(elements[1].slice(0,-1));
-                seconds = parseInt(elements[2].slice(0,-1));
+                hours = parseInt(elements[0].slice(0, -1));
+                minutes = parseInt(elements[1].slice(0, -1));
+                seconds = parseInt(elements[2].slice(0, -1));
                 break;
             case 2:
                 days = 0;
                 hours = 0;
-                minutes = parseInt(elements[0].slice(0,-1));
-                seconds = parseInt(elements[1].slice(0,-1));
+                minutes = parseInt(elements[0].slice(0, -1));
+                seconds = parseInt(elements[1].slice(0, -1));
                 break;
             case 1:
                 days = 0;
                 hours = 0;
                 minutes = 0;
-                seconds = parseInt(elements[0].slice(0,-1));
+                seconds = parseInt(elements[0].slice(0, -1));
                 break;
         }
 
         let timer = new Timer();
-        timer.start({countdown: true, startValues: {days: days, hours: hours, minutes: minutes, seconds: seconds}});
+        timer.start(
+        {
+            countdown: true,
+            startValues:
+            {
+                days: days,
+                hours: hours,
+                minutes: minutes,
+                seconds: seconds
+            }
+        });
         timer.addEventListener('secondsUpdated', function(e)
         {
             let newTime = "";
@@ -312,7 +350,10 @@ if (window.location.href.includes("auction/"))
 
         let auctionID = getAuctionID();
 
-        let params = {"auctionID": auctionID, "value": currVal};
+        let params = {
+            "auctionID": auctionID,
+            "value": currVal
+        };
         ajaxCallPost("/api/bid", params, postBidHandler);
     });
 }
@@ -355,94 +396,117 @@ function postBidHandler(data)
 }
 
 /**
-  * JS for the advanced search page
-  */
+ * JS for the advanced search page
+ */
 if (window.location.href.includes("search"))
 {
     let advSearch = document.querySelector("#advSearch");
-    advSearch.addEventListener('submit', function()
+    advSearch.addEventListener('submit', function(event)
     {
-        this.preventDefault();
+        event.preventDefault();
         let data = $("form").serialize();
+        console.log(data);
         ajaxCallGet("api/search?" + data, advSearchHandler);
     });
 }
 
 function advSearchHandler()
 {
+    let answer = JSON.parse(this.responseText);
+    let sentence = answer.length + " results found:";
+    let header = document.querySelector("#responseSentence");
+    header.innerHTML = sentence;
 
+    htmlAlbum = makeAlbum(answer);
+    let album = document.querySelector("#auctionsAlbum");
+    album.innerHTML = htmlAlbum;
 }
 
 /**
-  * Contact AJAX form validator and sender with notification alert
-  */
+ * Contact AJAX form validator and sender with notification alert
+ */
 if (window.location.pathname === "/contact")
 {
-    $("#contactForm").click(function( event ) {
-    event.preventDefault();
+    $("#contactForm").click(function(event)
+    {
+        event.preventDefault();
     });
 
-    function submitContactMessage(){
-        let openAlertF="<div class='alert alert-danger alert-dismissible mb-4' id='contactAlert'> <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-        let closeAlert="</div>";
+    function submitContactMessage()
+    {
+        let openAlertF = "<div class='alert alert-danger alert-dismissible mb-4' id='contactAlert'> <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+        let closeAlert = "</div>";
 
-        if ( $('#contactForm')[0].checkValidity() ){
+        if ($('#contactForm')[0].checkValidity())
+        {
             let spinningCircle = "<i class='fa fas fa-circle-notch fa-spin' style='font-size:24px'></i>";
-            let defaultText="Send Message";
-            let openAlertS="<div class='alert alert-success alert-dismissible mb-4' id='contactAlert' data-dismiss='alert'> <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+            let defaultText = "Send Message";
+            let openAlertS = "<div class='alert alert-success alert-dismissible mb-4' id='contactAlert' data-dismiss='alert'> <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
 
             $("#contactSubmitButton").html(spinningCircle);
-            $.ajax({
-                   type: "POST",
-                   url: "/contact",
-                   data: $("#contactForm").serialize(),
-                   success: function(data)
-                   {
-                        $("#contactAlert").html(openAlertS+data+closeAlert);
-                        $("#contactSubmitButton").html(defaultText);
-                        $("#contactForm")[0].reset();
-                   },
-                   error: function(data)
-                   {
-                     $("#contactSubmitButton").html(defaultText);
-                     $("#contactAlert").html(openAlertF+"Something unexpected hapened. Please contact directly at: admin@bookhub.com"+closeAlert);
-                   }
+            $.ajax(
+            {
+                type: "POST",
+                url: "/contact",
+                data: $("#contactForm").serialize(),
+                success: function(data)
+                {
+                    $("#contactAlert").html(openAlertS + data + closeAlert);
+                    $("#contactSubmitButton").html(defaultText);
+                    $("#contactForm")[0].reset();
+                },
+                error: function(data)
+                {
+                    $("#contactSubmitButton").html(defaultText);
+                    $("#contactAlert").html(openAlertF + "Something unexpected hapened. Please contact directly at: admin@bookhub.com" + closeAlert);
+                }
             });
-        } else {
-            $("#contactAlert").html(openAlertF+"Please fill all above fields correctly to send message."+closeAlert);
+        }
+        else
+        {
+            $("#contactAlert").html(openAlertF + "Please fill all above fields correctly to send message." + closeAlert);
         }
     }
 }
 
 /**
-  * JS for moderation actions
-  */
-function moderatorAction(modAction,auctionId,auctionModId=-1){
-    $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+ * JS for moderation actions
+ */
+function moderatorAction(modAction, auctionId, auctionModId = -1)
+{
+    $.ajaxSetup(
+    {
+        headers:
+        {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
 
-   $.ajax({
-          url: "/api/moderator",
-          method: 'post',
-          data: {
-             ida: auctionId,
-             idm: auctionModId,
-             action: modAction
-          },
+    $.ajax(
+    {
+        url: "/api/moderator",
+        method: 'post',
+        data:
+        {
+            ida: auctionId,
+            idm: auctionModId,
+            action: modAction
+        },
 
-          success: function(result){
+        success: function(result)
+        {
             // Fade elements on approve/remove
-            if (window.location.pathname === "/moderator"){
-                if (modAction=="approve_creation" || modAction=="remove_creation"){
+            if (window.location.pathname === "/moderator")
+            {
+                if (modAction == "approve_creation" || modAction == "remove_creation")
+                {
                     $(`#cr-${auctionId}`).fadeOut();
                 }
-                else if (modAction=="get_new_description"){
-                    let description=JSON.parse(result);
-                    let action_approve="moderatorAction('approve_modification',"+auctionId+","+auctionModId+")";
-                    let action_remove="moderatorAction('remove_modification',"+auctionId+","+auctionModId+")";
+                else if (modAction == "get_new_description")
+                {
+                    let description = JSON.parse(result);
+                    let action_approve = "moderatorAction('approve_modification'," + auctionId + "," + auctionModId + ")";
+                    let action_remove = "moderatorAction('remove_modification'," + auctionId + "," + auctionModId + ")";
                     //put description text in modal
                     $("#bookTitle").text(description.title);
                     $("#oldDescription").text(description.old);
@@ -452,54 +516,69 @@ function moderatorAction(modAction,auctionId,auctionModId=-1){
                     $("#removeBtn").attr("onclick", action_remove);
 
                 }
-                else {
+                else
+                {
                     $(`#mr-${auctionId}`).fadeOut();
                 }
-            } else{
+            }
+            else
+            {
                 location.reload();
             }
-          },
-          error: function(data){
+        },
+        error: function(data)
+        {
             console.log(data);
             alert("Check the log.")
-          }
+        }
     });
 }
 
 /**
-  * JS for Administrator actions
-  */
-function adminAction(adminAction,id_member=-1,username=""){
-    $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+ * JS for Administrator actions
+ */
+function adminAction(adminAction, id_member = -1, username = "")
+{
+    $.ajaxSetup(
+    {
+        headers:
+        {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
 
-   $.ajax({
-          url: "/api/admin",
-          method: 'post',
-          data: {
-             id_member: id_member,
-             username: username,
-             action: adminAction
-          },
+    $.ajax(
+    {
+        url: "/api/admin",
+        method: 'post',
+        data:
+        {
+            id_member: id_member,
+            username: username,
+            action: adminAction
+        },
 
-          success: function(result){
+        success: function(result)
+        {
             // Fade elements on approve/remove
             console.log(result);
-            if (window.location.pathname === "/admin"){
-                if (adminAction=="remove_profile" || adminAction=="ignore_del_request"){
+            if (window.location.pathname === "/admin")
+            {
+                if (adminAction == "remove_profile" || adminAction == "ignore_del_request")
+                {
                     $(`#dr-${id_member}`).fadeOut();
                 }
-            } else{
+            }
+            else
+            {
                 location.reload();
             }
-          },
-          error: function(data){
+        },
+        error: function(data)
+        {
             console.log(data);
             alert("Check the log.")
-          }
+        }
     });
 
 }

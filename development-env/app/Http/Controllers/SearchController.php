@@ -77,6 +77,8 @@ class SearchController extends Controller
                 array_push($responseSentence, 'in any category');
             }
 
+            if (sizeof($ids) == 0)
+                return view('pages.search', ['auctions' => [], 'responseSentence' => "No results were found"]);
             $parameters = implode(",", $ids);
 
             $query = "SELECT auction.id, title, author, duration, dateApproved FROM auction WHERE auction.id IN (" . $parameters . ")";

@@ -17,7 +17,7 @@
             </div>
         </section>
         <!---  Active auctions grid -->
-        <div id="auctionAlbum" class="album py-2">
+        <div id="auctionsAlbum" class="album py-2">
         </div>
 </div>
 @endsection

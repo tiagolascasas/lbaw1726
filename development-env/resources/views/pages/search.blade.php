@@ -11,7 +11,7 @@
     </div>
     <hr id="hr_space" class="mt-2">
     <main>
-        <a class="btn btn-primary col-md-12 mb-4" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <a class="btn btn-primary col-md-12 mb-4" data-toggle="collapse" href="#advSearch" aria-expanded="false" aria-controls="advSearch">
         Advanced search options
         </a>
         <form class="ml-4 mr-4 collapse" id="advSearch">
@@ -107,7 +107,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="search" class="font-weight-bold">Maximum current bid in €</label>
-                    <input type="number" step="0.5" class="form-control" name="maxBid">
+                    <input type="number" min="0" step="0.5" class="form-control" name="maxBid">
                 </div>
             </div>
             <div class="form-row">
@@ -119,7 +119,7 @@
 
         <section class="jumbotron text-center p-1 m-2" style="background-color: lightgrey">
             <div class="container">
-                <h3 class="jumbotron-heading m-4">{{ $responseSentence }}</h3>
+                <h3 id="responseSentence" class="jumbotron-heading m-4">{{ $responseSentence }}</h3>
             </div>
         </section>
 

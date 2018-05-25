@@ -49,7 +49,7 @@ Route::get('faq', 'FaqController@show')->name('faq');
 Route::get('about', 'AboutController@show')->name('about');
 
 //API
-Route::get('api/search', 'API\SearchController@index');
+Route::get('api/search', 'API\SearchController@search');
 Route::get('api/bid', 'API\BidController@getMaxBid');
 Route::post('api/bid', 'API\BidController@bidNewValue');
 Route::get('api/notifications', 'API\NotificationsController@getNotifications');

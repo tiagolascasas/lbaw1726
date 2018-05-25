@@ -19,15 +19,14 @@ class SearchController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function index(Request $request)
+    public function search(Request $request)
     {
         if ( !($request->ajax() || $request->pjax()))
         {
             return response('Forbidden.', 403);
         }
 
-        $parameters = [];
-        $query = "select id, title,  ";
+        $queryResults = [];
 
         if ($request->input('keywords') != null)
         {
@@ -35,63 +34,49 @@ class SearchController extends Controller
         }
         if ($request->input('title') != null)
         {
-            $query .= "and title @@ plainto_tsquery('english',?) ";
-            array_push($parameters, $request->input('title'));
-        }
-        if ($request->input('publisher') != null)
-        {
-
+            $res = DB::select("SELECT id FROM auction WHERE title @@ plainto_tsquery('english',?) limit 30", [$request->input('title')]);
+            array_push($queryResults, $res);
         }
         if ($request->input('author') != null)
         {
-
+            $res = DB::select("SELECT id FROM auction WHERE author = ? limit 30", [$request->input('author')]);
+            array_push($queryResults, $res);
         }
         if ($request->input('isbn') != null)
         {
-
+            $res = DB::select("SELECT id FROM auction WHERE isbn = ? limit 30", [$request->input('isbn')]);
+            array_push($queryResults, $res);
         }
-        if ($request->input('language') != null)
+        if ($request->input('auctionStatus') != null)
         {
-
-        }
-        if ($request->input('category') != null)
-        {
-
-        }
-        if ($request->input('isApproved') != null)
-        {
-
-        }
-        if ($request->input('isEnded') != null)
-        {
-
+            $res = DB::select("SELECT id FROM auction WHERE auction_status = ? limit 30", [$request->input('auctionStatus')]);
+            array_push($queryResults, $res);
         }
         if ($request->input('maxBid') != null)
         {
-
+            $res = DB::select("SELECT DISTINCT auction.id FROM auction, bid WHERE bid.idAuction = auction.id and bidValue < ? limit 30", [$request->input('maxBid')]);
+            array_push($queryResults, $res);
         }
-        if ($request->input('profile_search') != null)
-        {
+        //add the parameters with weird queries
 
-        }
-        if ($request->input('idMember') != null)
+        $counts = [];
+        foreach ($queryResults as $res)
         {
-
-        }/*
-        if ($request->input('notLoad') != null)
-        {
-            for ($id in $request->input('notLoad'))
+            foreach ($res as $id)
             {
-                $query .= "and auction.id != ?";
-                array_push($parameters, $id);
+                if (!array_key_exists($id->id, $counts))
+                    $counts[$id->id] = 1;
+                else
+                    $counts[$id->id]++;
             }
-        }*/
+        }
+        arsort($counts);
+        $counts = array_unique(array_keys($counts));
 
+        $ids = implode(",", array_values($counts));
+        $query = "SELECT auction.id, title, author, duration, dateApproved FROM auction WHERE auction.id IN (" . $ids . ")";
+        $response = DB::select($query, []);
 
-        $query .= "limit 12";
-        //array_push($parameters, $request->input('limit'));
-
-        $response = DB::select($query, $parameters);
         return response()->json($response);
     }
 }
