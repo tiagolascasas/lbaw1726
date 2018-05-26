@@ -29,7 +29,7 @@ class AdminController extends Controller
         $id = $request->input('id_member');
         if ($id !== null) {
             try {
-                DB::update("UPDATE users SET users_status = terminated WHERE id = ?", [$id]);
+                DB::update("UPDATE users SET users_status = ? WHERE id = ?", ['terminated',$id]);
                 DB::delete('DELETE FROM requested_termination WHERE idusers=?', [$id]);
             } catch (QueryException $qe) {
                 return response('NOT FOUND', 404);
@@ -71,7 +71,7 @@ class AdminController extends Controller
         $id = $request->input('id_member');
         if ($id !== null) {
             try {
-                DB::update("UPDATE users SET users_status = suspended WHERE id = ?", [$id]);
+                DB::update("UPDATE users SET users_status = ? WHERE id = ?", ['suspended',$id]);
             } catch (QueryException $qe) {
                 return response('NOT FOUND', 404);
             }
@@ -93,7 +93,7 @@ class AdminController extends Controller
         $id = $request->input('id_member');
         if ($id !== null) {
             try {
-                DB::update("UPDATE users SET users_status = normal WHERE id = ?", [$id]);
+                DB::update("UPDATE users SET users_status = ? WHERE id = ?", ['normal',$id]);
             } catch (QueryException $qe) {
                 return response('NOT FOUND', 404);
             }
@@ -112,7 +112,7 @@ class AdminController extends Controller
         $id = $request->input('id_member');
         if ($id !== null) {
             try {
-                DB::update("UPDATE users SET users_status = banned WHERE id = ?", [$id]);
+                DB::update("UPDATE users SET users_status = ? WHERE id = ?", ['banned',$id]);
             } catch (QueryException $qe) {
                 return response('NOT FOUND', 404);
             }
@@ -133,7 +133,7 @@ class AdminController extends Controller
         $id = $request->input('id_member');
         if ($id !== null) {
             try {
-                DB::update("UPDATE users SET users_status = moderator WHERE id = ?", [$id]);
+                DB::update("UPDATE users SET users_status = ? WHERE id = ?", ['moderator',$id]);
             } catch (QueryException $qe) {
                 return response('NOT FOUND', 404);
             }

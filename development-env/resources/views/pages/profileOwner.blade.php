@@ -85,7 +85,7 @@
                         </button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="{{ route('profile.edit', ['id' => Auth::user()->id]) }}">
+                            <form method="POST" action="{{ route('profile.edit', ['id' => Auth::user()->id]) }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="InputName">Name</label>
@@ -148,19 +148,15 @@
                                     <input class="form-control" id="phone1" name="phone" type="tel" placeholder="123456789" value="{{ old('phone') }}">
                                 </div>
                                 <div class="form-group">
-                                    <div class="form-row">
-                                        <div class="col-md-12">
                                             <label>Your profile picture</label>
-                                            <input id="images" name="images" class="form-control" type="file" accept="image/*">
+                                            <input id="image" name="image" class="form-control" type="file" accept="image/*">
                                             @if ($errors->has('images'))
                                               <span class="error">
                                                 {{ $errors->first('images') }}
                                               </span>
                                             @endif
-                                        </div>
-                                    </div>
                                   </div>
-                                <button  type="submit" class="btn btn-primary btn-block mb-4">Save any new changes</button>
+                                <input  type="submit" class="btn btn-primary btn-block mb-4">Save any new changes</input>
                             </form>
                         </div>
                     </div>

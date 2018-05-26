@@ -107,19 +107,16 @@ if ($image == NULL)
 $image = "default.png";*/
 
         //TODO lol wut check tomorrow
-        if ($request->hasFile('images')) {
-            $file = $request->file('images');
-            $name = time() . $file[0]->getClientOriginalName();
-            $file[0]->move('img', $name);
-
+        $image=$request->file('image');
+        if($image!==null){
+            $input['imagename'] = time() . $image->getClientOriginalName();
+            $image->move('img', $input['imagename']);
             if (sizeof(DB::select('select * FROM image WHERE idusers = ?', [$id])) > 0) {
-                DB::update('update image set source = ? where idusers = ?', [$name, $id]);
+                DB::update('update image set source = ? where idusers = ?', [$input['imagename'], $id]);
             } else {
-                DB::insert('INSERT INTO image (source,idusers) VALUES(?,?)', [$name, $id]);
+                DB::insert('INSERT INTO image (source,idusers) VALUES(?,?)', [$input['imagename'], $id]);
             }
-
         }
-
         return redirect()->route('profile', ['id' => Auth::user()->id]);
     }
 

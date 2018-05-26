@@ -87,10 +87,12 @@ class CreateAuctionController extends Controller
             $input = $request->all();
             $images = array();
             if ($files = $request->file('images')) {
+                $integer=0;
                 foreach ($files as $file) {
-                    $name = $file->getClientOriginalName();
+                    $name = time() . (string) $integer . $file->getClientOriginalName() ;
                     $file->move('img', $name);
                     $images[] = $name;
+                    $integer+=1;
                 }
             }
 
