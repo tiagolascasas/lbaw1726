@@ -95,6 +95,7 @@ function auctionAlbumHandler()
 
 function makeAlbum(auctions)
 {
+    console.log(auctions);
     let htmlAuction = `<div class="row">`;
     let i = 0;
     auctions.forEach(element =>
@@ -114,9 +115,9 @@ function makeAlbum(auctions)
                     <p class="card-text text-center hidden-p-md-down">By ${element.author} </p>
                     <div class="d-flex justify-content-between align-items-center">
                         <i class="fas fa-star btn btn-sm text-primary"></i>
-                        <small class="text-success">€ 0.00 </small>
+                        <small class="text-success">${element.maxBid}€ </small>
                         <small class="text-danger">
-                                &lt; x mins</small>
+                                &lt; ${element.time}</small>
                     </div>
                 </div>
             </div>
@@ -412,13 +413,26 @@ if (window.location.href.includes("search"))
 
 function advSearchHandler()
 {
-    let answer = JSON.parse(this.responseText);
-    let sentence = answer.length + " results found:";
     let header = document.querySelector("#responseSentence");
-    header.innerHTML = sentence;
-
-    htmlAlbum = makeAlbum(answer);
     let album = document.querySelector("#auctionsAlbum");
+
+    let answer = JSON.parse(this.responseText);
+    console.log(answer);
+    if (answer.length == 0)
+    {
+        header.innerHTML = "No results were found";
+        album.innerHTML = "";
+        return;
+    }
+
+    let sentence = "";
+    if (answer.length == 1)
+        sentence ="1 result found:";
+    else
+        sentence = answer.length + " results found";
+
+    header.innerHTML = sentence;
+    htmlAlbum = makeAlbum(answer);
     album.innerHTML = htmlAlbum;
 }
 

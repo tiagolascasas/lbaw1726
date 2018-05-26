@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\API\BidController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,30 +36,54 @@ class SearchController extends Controller
         }
         if ($request->input('title') != null)
         {
-            $res = DB::select("SELECT id FROM auction WHERE title @@ plainto_tsquery('english',?) limit 30", [$request->input('title')]);
+            $res = DB::select("SELECT id FROM auction WHERE title @@ plainto_tsquery('english',?)", [$request->input('title')]);
             array_push($queryResults, $res);
         }
         if ($request->input('author') != null)
         {
-            $res = DB::select("SELECT id FROM auction WHERE author = ? limit 30", [$request->input('author')]);
+            $res = DB::select("SELECT id FROM auction WHERE author = ?", [$request->input('author')]);
             array_push($queryResults, $res);
         }
         if ($request->input('isbn') != null)
         {
-            $res = DB::select("SELECT id FROM auction WHERE isbn = ? limit 30", [$request->input('isbn')]);
+            $res = DB::select("SELECT id FROM auction WHERE isbn = ?", [$request->input('isbn')]);
             array_push($queryResults, $res);
         }
         if ($request->input('auctionStatus') != null)
         {
-            $res = DB::select("SELECT id FROM auction WHERE auction_status = ? limit 30", [$request->input('auctionStatus')]);
+            $res = DB::select("SELECT id FROM auction WHERE auction_status = ?", [$request->input('auctionStatus')]);
             array_push($queryResults, $res);
         }
         if ($request->input('maxBid') != null)
         {
-            $res = DB::select("SELECT DISTINCT auction.id FROM auction, bid WHERE bid.idAuction = auction.id and bidValue < ? limit 30", [$request->input('maxBid')]);
+            $res = DB::select("SELECT DISTINCT auction.id FROM auction, bid WHERE bid.idAuction = auction.id and bidValue < ?", [$request->input('maxBid')]);
             array_push($queryResults, $res);
         }
-        //add the parameters with weird queries
+        if ($request->input('wishlistOfUser') != null)  //gets auctions in wishlist of user (parameter = user id)
+        {
+            $res = DB::select("SELECT DISTINCT auction.id FROM auction, wishlist WHERE wishlist.idAuction = auction.id and wishlist.idBuyer = ?", [$request->input('wishlistOfUser')]);
+            array_push($queryResults, $res);
+        }
+        if ($request->input('auctionsOfUser') != null)  //gets auctions of user (parameter = user id)
+        {
+            $res = DB::select("SELECT DISTINCT auction.id FROM auction WHERE idSeller = ?", [$request->input('auctionsOfUser')]);
+            array_push($queryResults, $res);
+        }
+        if ($request->input('userBidOn') != null)  //gets auctions in which the user bid on (parameter = user id)
+        {
+            $res = DB::select("SELECT DISTINCT auction.id FROM auction, bid WHERE bid.idAuction = auction.id and bid.idBuyer = ?", [$request->input('userBidOn')]);
+            array_push($queryResults, $res);
+        }
+        if ($request->input('language') != null)
+        {
+            $res = DB::select("SELECT DISTINCT auction.id FROM auction, language WHERE auction.idLanguage = language.id and language.languageName = ?", [$request->input('language')]);
+            array_push($queryResults, $res);
+        }
+        if ($request->input('publisher') != null)
+        {
+            $res = DB::select("SELECT DISTINCT auction.id FROM auction, publisher WHERE auction.idPublisher = publisher.id and publisher.publisherName = ?", [$request->input('publisher')]);
+            array_push($queryResults, $res);
+        }
 
         $counts = [];
         foreach ($queryResults as $res)
@@ -74,8 +100,19 @@ class SearchController extends Controller
         $counts = array_unique(array_keys($counts));
 
         $ids = implode(",", array_values($counts));
+        if ($ids === "")
+            $ids = "-1";
         $query = "SELECT auction.id, title, author, duration, dateApproved FROM auction WHERE auction.id IN (" . $ids . ")";
         $response = DB::select($query, []);
+
+        foreach ($response as $auction)
+        {
+            $auction->maxBid = BidController::getMaxBidInternal($auction->id);
+            if (array_key_exists ("dateApproved", $auction))
+                $auction->time = AuctionController::createTimestamp($auction->dateApproved, $auction->duration);
+            else
+                $auction->time = "Not yet started";
+        }
 
         return response()->json($response);
     }

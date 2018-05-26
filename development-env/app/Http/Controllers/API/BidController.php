@@ -35,6 +35,16 @@ class BidController extends Controller
         return response()->json($response[0]);
     }
 
+    public static function getMaxBidInternal($id)
+    {
+        $query = "SELECT max(bidValue) FROM bid WHERE idAuction = ?";
+        $response = DB::select($query, [$id]);
+        if ($response[0]->max == null)
+            $response[0]->max = 0.00;
+
+        return $response[0]->max;
+    }
+
     public function bidNewValue(Request $request)
     {
         if ( !($request->ajax() || $request->pjax() || Auth::check()))
