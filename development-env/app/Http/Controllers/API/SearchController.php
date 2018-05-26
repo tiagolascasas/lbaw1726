@@ -59,19 +59,19 @@ class SearchController extends Controller
             $res = DB::select("SELECT DISTINCT auction.id FROM auction, bid WHERE bid.idAuction = auction.id and bidValue < ?", [$request->input('maxBid')]);
             array_push($queryResults, $res);
         }
-        if ($request->input('wishlistOfUser') != null)  //gets auctions in wishlist of user (parameter = user id)
+        if ($request->input('wishlistOfUser') != null)  //gets auctions in wishlist of user (this is just a flag, doesn't need to have a value)
         {
-            $res = DB::select("SELECT DISTINCT auction.id FROM auction, wishlist WHERE wishlist.idAuction = auction.id and wishlist.idBuyer = ?", [$request->input('wishlistOfUser')]);
+            $res = DB::select("SELECT DISTINCT auction.id FROM auction, wishlist WHERE wishlist.idAuction = auction.id and wishlist.idBuyer = ?", [Auth::user()->id]);
             array_push($queryResults, $res);
         }
-        if ($request->input('auctionsOfUser') != null)  //gets auctions of user (parameter = user id)
+        if ($request->input('auctionsOfUser') != null)  //gets auctions of user (this is just a flag, doesn't need to have a value)
         {
-            $res = DB::select("SELECT DISTINCT auction.id FROM auction WHERE idSeller = ?", [$request->input('auctionsOfUser')]);
+            $res = DB::select("SELECT DISTINCT auction.id FROM auction WHERE idSeller = ?", [$request->input(Auth::user()->id)]);
             array_push($queryResults, $res);
         }
-        if ($request->input('userBidOn') != null)  //gets auctions in which the user bid on (parameter = user id)
+        if ($request->input('userBidOn') != null)  //gets auctions in which the user bid on (this is just a flag, doesn't need to have a value)
         {
-            $res = DB::select("SELECT DISTINCT auction.id FROM auction, bid WHERE bid.idAuction = auction.id and bid.idBuyer = ?", [$request->input('userBidOn')]);
+            $res = DB::select("SELECT DISTINCT auction.id FROM auction, bid WHERE bid.idAuction = auction.id and bid.idBuyer = ?", [$request->input(Auth::user()->id)]);
             array_push($queryResults, $res);
         }
         if ($request->input('language') != null)
@@ -96,6 +96,7 @@ class SearchController extends Controller
                     $counts[$id->id]++;
             }
         }
+
         arsort($counts);
         $counts = array_unique(array_keys($counts));
 

@@ -73,10 +73,11 @@ CREATE TABLE auction (
     auction_status text NOT NULL DEFAULT 'waitingApproval'::text,
     dateApproved TIMESTAMP WITH TIME zone DEFAULT NULL,
     dateRemoved TIMESTAMP WITH TIME zone DEFAULT NULL,
+    dateFinished TIMESTAMP WITH TIME zone DEFAULT NULL,
     idPublisher INTEGER REFERENCES publisher(id),
     idLanguage INTEGER NOT NULL REFERENCES language(id),
     idSeller INTEGER NOT NULL REFERENCES users(id),
-    CONSTRAINT auction_status_ck CHECK ((auction_status = ANY (ARRAY['approved'::text, 'removed'::text, 'waitingApproval'::text]))),
+    CONSTRAINT auction_status_ck CHECK ((auction_status = ANY (ARRAY['approved'::text, 'removed'::text, 'waitingApproval'::text, 'finished'::text]))),
     CONSTRAINT duration_ck CHECK (duration >= 300)
 );
 
