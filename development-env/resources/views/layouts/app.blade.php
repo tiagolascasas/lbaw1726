@@ -36,7 +36,7 @@
                     <a class="nav-link dropdown-toggle hidden-p-md-down" href="#" id="catDropDown" data-toggle="dropdown" aria-expanded="false">
                                 All
                             </a>
-                    <div class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="catDropDown">
+                    <div class="dropdown-menu dropdown-menu-right" role="menu" id="catslist" aria-labelledby="catDropDown">
 
                         <a href="#" class="category-dropdown dropdown-item">
                                     Arts&amp;Music</a>

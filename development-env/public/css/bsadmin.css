@@ -211,3 +211,8 @@ label {
 .footer-offset{
     bottom: -60px;
 }
+
+#catslist {
+    max-height: 500px;
+    overflow-y: scroll;
+}
