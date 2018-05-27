@@ -47,13 +47,7 @@
                 </table>
 
             </div>
-            <!--feedback-->
-            <div class="bg-white mb-0 mt-3 mb-3 panel">
-                <h5><i class="fa fa-comments"></i> Feedback</h5>
-            </div>
-            <div id="myfeedback">
 
-            </div>
 
             <div class="list-group">
                 <div class="container">
@@ -73,6 +67,14 @@
 
                     </div>
                 </div>
+            </div>
+
+            <!--feedback-->
+            <div class="bg-white mb-0 mt-3 mb-3 panel">
+                <h5><i class="fa fa-comments"></i> Feedback</h5>
+            </div>
+            <div id="myfeedback">
+
             </div>
 
             <div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalEditLabel" aria-hidden="true">

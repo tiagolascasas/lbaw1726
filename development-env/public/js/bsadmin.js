@@ -137,7 +137,7 @@ let counter = document.querySelector("#counter");
 function notificationsClick()
 {
     counter.innerHTML = "";
-    ajaxCallGet2('api/notifications', 'notificationsHandler');
+    ajaxCallGet2('api/notifications', notificationsHandler);
 }
 
 
@@ -171,7 +171,7 @@ function notificationsHandler(response)
             let params = {
                 "notification_id": element.id
             };
-            ajaxCallPost('api/notifications/{id}', params, 'sucess');
+            ajaxCallPost('../api/notifications/{id}', params, 'sucess');
         });
     }
     notification_list.innerHTML = html_notification;
@@ -179,20 +179,29 @@ function notificationsHandler(response)
 
 setInterval(function()
 {
-    ajaxCallGet2('api/notifications', 'notificationsHandler');
-    notificationsHandler();
+    ajaxCallGet2('../api/notifications', notificationsHandler);
 }, 5000);
 
 /**
  * JS for the feedback functionalities
  */
 let feedback = document.querySelector("#myfeedback");
-ajaxCallGet2('users/{id}/comments','commentsHandler');
+if(window.location.pathname.substring(1,8) == 'profile'){
+    console.log("On profile.");
+    ajaxCallGet2('/users/{id}/comments',commentsHandler);
+}
+
 
 function commentsHandler(response){
     let comments = JSON.parse(JSON.stringify(response));
     if(comments.length == 0){
-        feedback.innerHTML = `<span> No feedback.</span>`;
+        feedback.innerHTML = `<a href="#" class="list-group-item list-group-item-action text-muted">
+<div class="container">
+                                <span> No feedback.</span>
+                                </div>
+                                <span>
+                                   </span>
+                              </a>`;
     }
     else{
         comments.forEach(function(element){
