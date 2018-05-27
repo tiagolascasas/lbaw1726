@@ -57,7 +57,6 @@ class CommentController extends Controller
         if ($text !== null && $sender !== null && $receiver !== null){
             try{
                 DB::insert("INSERT INTO comment (liked, idreceiver,idsender,comment_text,idparent) VALUES (?,?,?,?,?)",[$like, $receiver,$sender,$text,$id_parent]);
-                $message = "Successfully registered your feedback.";
                 $success = true;
             }catch (QueryException $qe) {
                 return response('NOT FOUND', 404);

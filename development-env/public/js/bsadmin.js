@@ -24,7 +24,6 @@ $(document).ready(function()
     }
 });
 
-
 /**
  * Error handling
  */
@@ -179,8 +178,7 @@ function notificationsHandler(response)
     notification_list.innerHTML = html_notification;
 }
 
-setInterval(function()
-{
+setInterval(function() {
     let params = {};
     ajaxCallGet2('../api/notifications', params, notificationsHandler);
 }, 5000);
@@ -188,10 +186,11 @@ setInterval(function()
 /**
  * JS for the feedback functionalities
  */
+
 let feedback = document.querySelector("#myfeedback");
+let like;
 if(window.location.href.includes('profile')){
     let profile_id = getProfileID();
-    console.log(profile_id);
     let params = {"user": profile_id};
     console.log("On profile.");
     ajaxCallGet2('/users/{id}/comments',params,commentsHandler);
@@ -208,26 +207,26 @@ function commentsHandler(response){
                               </a>`;
     }
     else{
-        let comments_html = "";
+        let comments_html;
         comments.forEach(function(element){
-            console.log(element);
-            comments_html = "";
-            let date_sent = element.dateposted.substring(0, 11);
-            comments_html += `<a class="list-group-item list-group-item-action text-muted">
+            if(element.idparent == null) {
+                comments_html = "";
+                let date_sent = element.dateposted.substring(0, 11);
+                comments_html += `<a class="list-group-item list-group-item-action text-muted">
                                 <div class="row">
                                     <div class="col-lg-2">
                                             <span onclick="changeurl('/profile/${element.idsender}')" class="btn btn-outline-secondary">${element.username}</span>
                                     </div>`;
-            if(element.liked){
-                comments_html += `<div class="col-lg-1  text-left text-dark lead">
+                if (element.liked) {
+                    comments_html += `<div class="col-lg-1  text-left text-dark lead">
                                             <i class="fa fa-thumbs-up btn btn-success"></i>
                                         </div>`;
-            }else{
-                comments_html += `<div class="col-lg-1  text-left text-dark lead">
+                } else {
+                    comments_html += `<div class="col-lg-1  text-left text-dark lead">
                                             <i class="fa fa-thumbs-down btn btn-danger"></i>
                                         </div>`;
-            }
-            comments_html += `<div class="col-lg-5  text-left text-dark lead">
+                }
+                comments_html += `<div class="col-lg-5  text-left text-dark lead">
                                     <p>${element.comment_text}</p>
                               </div>
                               <div class="col-lg-2  text-left text-dark lead">
@@ -250,8 +249,9 @@ function commentsHandler(response){
                                 </div>
                              </div>   
                         </a>`;
-            feedback.innerHTML += comments_html;
-            if(element.idparent !== null){
+                feedback.innerHTML += comments_html;
+            }
+            else{
                 let idx1 = "#r"+element.idparent;
                 let idx2 = "#rb"+element.idparent;
                 console.log(idx1);
@@ -273,12 +273,11 @@ function commentsHandler(response){
                 rpbtn.style.display = "none";
             }
         });
-        //feedback.innerHTML = comments_html;
 
 
     }
 }
-let like;
+
 function setLike(){
     like = true;
     console.log(like);
@@ -381,8 +380,7 @@ for (let i = 0; i < cats.length; i++)
 /**
  * JS for bidding-related stuff and APIs
  */
-if (window.location.href.includes("auction/"))
-{
+if (window.location.href.includes("auction/")) {
     //decrease time left every second
     let timeLeft = document.querySelector("#timeLeft").innerHTML;
     if (timeLeft !== "Auction hasn't been approved yet" && timeLeft !== "Auction has ended!")
@@ -419,8 +417,7 @@ if (window.location.href.includes("auction/"))
         }
 
         let timer = new Timer();
-        timer.start(
-        {
+        timer.start({
             countdown: true,
             startValues:
             {
