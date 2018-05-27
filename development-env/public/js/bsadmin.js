@@ -46,12 +46,13 @@ function ajaxCallGet(url, handler)
     xmlhttp.send();
 }
 
-function ajaxCallGet2(url, handler)
+function ajaxCallGet2(url,params, handler)
 {
     $.ajax(
     {
         url: url,
         type: 'GET',
+        data: params,
         success: handler
     });
 }
@@ -136,8 +137,9 @@ let counter = document.querySelector("#counter");
 
 function notificationsClick()
 {
+    let params = {};
     counter.innerHTML = "";
-    ajaxCallGet2('api/notifications', notificationsHandler);
+    ajaxCallGet2('api/notifications', params,notificationsHandler);
 }
 
 
@@ -179,7 +181,8 @@ function notificationsHandler(response)
 
 setInterval(function()
 {
-    ajaxCallGet2('../api/notifications', notificationsHandler);
+    let params = {};
+    ajaxCallGet2('../api/notifications', params, notificationsHandler);
 }, 5000);
 
 /**
@@ -187,57 +190,64 @@ setInterval(function()
  */
 let feedback = document.querySelector("#myfeedback");
 if(window.location.pathname.substring(1,8) == 'profile'){
+    let profile_id = window.location.pathname.substring(9,window.location.pathname.length);
+    console.log(profile_id);
+    let params = {"user": profile_id};
     console.log("On profile.");
-    ajaxCallGet2('/users/{id}/comments',commentsHandler);
+    ajaxCallGet2('/users/{id}/comments',params,commentsHandler);
 }
 
 
 function commentsHandler(response){
     let comments = JSON.parse(JSON.stringify(response));
     if(comments.length == 0){
-        feedback.innerHTML = `<a href="#" class="list-group-item list-group-item-action text-muted">
-<div class="container">
-                                <span> No feedback.</span>
+        feedback.innerHTML = `<a class="list-group-item list-group-item-action text-muted">
+                                <div class="container">
+                                    <span> No feedback.</span>
                                 </div>
-                                <span>
-                                   </span>
                               </a>`;
     }
     else{
+        let comments_html = "";
         comments.forEach(function(element){
-            feedback.innerHTML += `<a href="#" class="list-group-item list-group-item-action text-muted">
-                                       <div class="container">
-                                           <div class="row">
-                                            <div class="col-lg-2">
-                                             <span class="btn btn-outline-secondary">$(element.idReceiver)</span>
-                                            </div>`;
+            let date_sent = element.dateposted.substring(0, 11);
+            comments_html += `<a class="list-group-item list-group-item-action text-muted">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                            <span onclick="changeurl('/profile/${element.idsender}')" class="btn btn-outline-secondary">${element.username}</span>
+                                    </div>`;
             if(element.liked == "true"){
-                feedback.innerHTML += `<div class="col-lg-1  text-left text-dark lead">
+                comments_html += `<div class="col-lg-1  text-left text-dark lead">
                                             <i class="fa fa-thumbs-up btn btn-success"></i>
                                         </div>`;
             }else{
-                feedback.innerHTML += `<div class="col-lg-1  text-left text-dark lead">
-                                            <i class="fa fa-thumbs-up btn btn-danger"></i>
+                comments_html += `<div class="col-lg-1  text-left text-dark lead">
+                                            <i class="fa fa-thumbs-down btn btn-danger"></i>
                                         </div>`;
             }
-            feedback.innerHTML += ` <div class="col-lg-5  text-left text-dark lead">
-                                        <p>$(element.text)</p>
+            comments_html += ` <div class="col-lg-5  text-left text-dark lead">
+                                        <p>${element.comment_text}</p>
                                     </div>
                                     <div class="col-lg-2  text-left text-dark lead">
-                                        <p>$(element.datePosted)</p>
+                                        <p>${date_sent}</p>
                                     </div>
                                     <div class="col-lg-2  text-left text-dark lead">
                                         <span class="btn btn-secondary">Reply</span>
                                     </div>
                                 </div>
-                            </div>
-                           </a>`;
+                            
+                        </a>`;
         });
-
+        feedback.innerHTML = comments_html;
 
 
     }
 }
+
+function changeurl(newUrl){
+    window.location = newUrl;
+}
+
 
 /*if (feedback !== null)
     feedback.innerHTML = `<form id="feedbackform">

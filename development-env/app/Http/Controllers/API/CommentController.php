@@ -25,10 +25,20 @@ class CommentController extends Controller
         if (!($request->ajax() || $request->pjax()) || !Auth::check()) {
             return response('Forbidden.', 403);
         }
+        $id = $request->input('user');
+        if($id !== null){
+            try{
+                $response = DB::select('SELECT comment.id, comment.datePosted,comment.liked,comment.idsender,comment.comment_text,users.username
+                                FROM comment,users
+                                WHERE comment.idreceiver=?
+                                AND users.id = comment.idSender', [$id]);
+            }catch (QueryException $qe) {
+                return response('NOT FOUND', 404);
+            }
+        }else {
+            return response('Incorrect Request', 400);
+        }
 
-        $response = DB::select('SELECT comment.id, comment.datePosted,comment.liked,comment.idsender,comment.comment_text
-                                FROM comment, users
-                                WHERE comment.idreceiver=?', [Auth::user()->id]);
 
         return response()->json($response);
     }
