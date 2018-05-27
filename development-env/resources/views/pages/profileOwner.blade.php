@@ -76,6 +76,26 @@
                 <div class="bg-white mb-0 mt-3 mb-3 panel">
                     <h5><i class="fa fa-comments"></i> Feedback</h5>
                 </div>
+                @if(Auth::User()->id !== $user->id)
+                    <form id="feedbackform">
+                        <div class="btn-group mb-3" role="group" aria-label="Basic example">
+                            <button type="button" onclick="setLike()" class="btn btn-success">
+                                <i class="fa fa-thumbs-up btn btn-success"></i>
+                            </button>
+                            <button type="button" onclick="setUnlike()" class="btn btn-danger">
+                                <i class="fa fa-thumbs-down btn btn-danger"></i>
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="3" cols="30" class="form-control" id = "left-feedback" placeholder="Your feedback"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <span onclick="postFeedback({{Auth::user()->id}})" class="btn btn-primary col-md-12">Post your feedback</span>
+                            </div>
+                        </div>
+                    </form>
+                @endif
                 <div class = "list-group panel" id="myfeedback">
 
                 </div>

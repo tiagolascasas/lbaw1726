@@ -152,8 +152,8 @@ function notificationsHandler(response)
     if (notifications.length == 0)
     {
         html_notification += `<a class="dropdown-item">
-                            <div class="dropdown-message"><span class="text-left small">No new notifications.</span></div>
-</a>`;
+                                <div class="dropdown-message"><span class="text-left small">No new notifications.</span></div>
+                              </a>`;
     }
     else
     {
@@ -189,8 +189,8 @@ setInterval(function()
  * JS for the feedback functionalities
  */
 let feedback = document.querySelector("#myfeedback");
-if(window.location.pathname.substring(1,8) == 'profile'){
-    let profile_id = window.location.pathname.substring(9,window.location.pathname.length);
+if(window.location.href.includes('profile')){
+    let profile_id = getProfileID();
     console.log(profile_id);
     let params = {"user": profile_id};
     console.log("On profile.");
@@ -216,7 +216,7 @@ function commentsHandler(response){
                                     <div class="col-lg-2">
                                             <span onclick="changeurl('/profile/${element.idsender}')" class="btn btn-outline-secondary">${element.username}</span>
                                     </div>`;
-            if(element.liked == "true"){
+            if(element.liked){
                 comments_html += `<div class="col-lg-1  text-left text-dark lead">
                                             <i class="fa fa-thumbs-up btn btn-success"></i>
                                         </div>`;
@@ -243,33 +243,44 @@ function commentsHandler(response){
 
     }
 }
+let like;
+function setLike(){
+    like = true;
+    console.log(like);
+}
+function setUnlike(){
+    like = false;
+    console.log(like);
+}
 
+function postFeedback(senderID){
+    let feedback = document.querySelector('#left-feedback').value;
+    console.log(feedback);
+    if(feedback !== null){
+       let params = {
+            "id_sender": senderID,
+            "text": feedback,
+            "id_receiver": getProfileID(),
+            "liked": like
+        };
+        ajaxCallPost('/users/{id}',params,null);
+        window.location.reload();
+
+
+    }
+}
+
+function showAlert(response) {
+    let message = JSON.parse(JSON.stringify(response));
+    alert(message.message);
+}
+
+function getProfileID(){
+    return window.location.pathname.substring(9,window.location.pathname.length);
+}
 function changeurl(newUrl){
     window.location = newUrl;
 }
-
-
-/*if (feedback !== null)
-    feedback.innerHTML = `<form id="feedbackform">
-                <div class="btn-group mb-3" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success">
-                        <i class="fa fa-thumbs-up btn btn-success"></i>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <i class="fa fa-thumbs-down btn btn-danger"></i>
-                    </button>
-                </div>
-                <div class="form-group">
-                    <textarea rows="3" cols="30" class="form-control" placeholder="Your feedback"></textarea>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-primary col-md-12">Post your feedback</button>
-                    </div>
-                </div>
-
-            </form>`;*/
-
 
 
 /**

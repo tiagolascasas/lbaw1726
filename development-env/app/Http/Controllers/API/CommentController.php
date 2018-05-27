@@ -42,5 +42,28 @@ class CommentController extends Controller
 
         return response()->json($response);
     }
+
+    public function postComment(Request $request){
+        if (!($request->ajax() || $request->pjax()) || !Auth::check()) {
+            return response('Forbidden.', 403);
+        }
+        $text = $request->input('text');
+        $sender = $request->input('id_sender');
+        $receiver = $request->input('id_receiver');
+        $like = $request->input('liked');
+
+
+        if ($text !== null && $sender !== null && $receiver !== null && $like !== null){
+            try{
+                DB::insert("INSERT INTO comment (liked, idreceiver,idsender,comment_text) VALUES (?,?,?,?)",[$like, $receiver,$sender,$text]);
+                $message = "Successfully registered your feedback.";
+            }catch (QueryException $qe) {
+                return response('NOT FOUND', 404);
+            }
+        } else {
+            return response('Incorrect Request', 400);
+        }
+        return response('OK',200);
+    }
 }
 

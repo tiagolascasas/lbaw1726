@@ -38,6 +38,7 @@ Route::post('profile/{id}/edit', 'ProfileController@editUser')->name('profile.ed
 Route::post('/users/{id}/paypal', 'ProfileController@addPaypal')->name('profile.paypal');;
 Route::delete('/users/{id}/paypal', 'ProfileController@removePaypal')->name('profile.paypal.remove');
 Route::get('/users/{id}/comments', 'API\CommentController@getComments');
+Route::post('/users/{id}', 'API\CommentController@postComment');
 
 //Contact
 Route::get('contact', 'ContactController@show')->name('contact');
