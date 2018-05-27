@@ -210,6 +210,8 @@ function commentsHandler(response){
     else{
         let comments_html = "";
         comments.forEach(function(element){
+            console.log(element);
+            comments_html = "";
             let date_sent = element.dateposted.substring(0, 11);
             comments_html += `<a class="list-group-item list-group-item-action text-muted">
                                 <div class="row">
@@ -225,20 +227,53 @@ function commentsHandler(response){
                                             <i class="fa fa-thumbs-down btn btn-danger"></i>
                                         </div>`;
             }
-            comments_html += ` <div class="col-lg-5  text-left text-dark lead">
-                                        <p>${element.comment_text}</p>
-                                    </div>
-                                    <div class="col-lg-2  text-left text-dark lead">
-                                        <p>${date_sent}</p>
-                                    </div>
-                                    <div class="col-lg-2  text-left text-dark lead">
-                                        <span class="btn btn-secondary">Reply</span>
+            comments_html += `<div class="col-lg-5  text-left text-dark lead">
+                                    <p>${element.comment_text}</p>
+                              </div>
+                              <div class="col-lg-2  text-left text-dark lead">
+                                    <p>${date_sent}</p>
+                              </div>
+                              <div class="col-lg-2  text-left text-dark lead">
+                                    <span id="rb${element.id}" onclick = "showTextArea(${element.id})" class="btn btn-secondary">Reply</span>
+                              </div>
+                              <div class="container"  id = "r${element.id}" style = "display:none">
+                                    <div class="row">
+                                        <div class="col-sm-1 col-md-10">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body"> 
+                                                        <textarea class="form-control col-md-auto" id = "textArea${element.id}" name="message" placeholder="Type in your reply" rows="3" style="margin-bottom:10px;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-secondary col-sm-auto col-lg-auto" onclick="sendReply(${element.id},${element.idreceiver})" id="sendreply${element.id}" type="button">Reply</button>
                                     </div>
                                 </div>
-                            
+                             </div>   
                         </a>`;
+            feedback.innerHTML += comments_html;
+            if(element.idparent !== null){
+                let idx1 = "#r"+element.idparent;
+                let idx2 = "#rb"+element.idparent;
+                console.log(idx1);
+                let commentid = document.querySelector(idx1);
+                let rpbtn = document.querySelector(idx2);
+                commentid.innerHTML = `<div class="col-lg-5  text-left text-dark lead">
+                                            <div class="row">
+                                                <div class="col-sm-1 col-md-10">
+                                                     <div class="panel panel-default border-success">
+                                                          <div class="panel-body" style="font-size: 0.8em"> 
+                                                            <span>${element.username} replied:</span>
+                                                            <span class = "container">${element.comment_text}</span>
+                                                           </div>
+                                                     </div>
+                                                </div>
+                                            </div>                   
+                                       </div>`;
+                commentid.style.display = "inline-block";
+                rpbtn.style.display = "none";
+            }
         });
-        feedback.innerHTML = comments_html;
+        //feedback.innerHTML = comments_html;
 
 
     }
@@ -261,27 +296,56 @@ function postFeedback(senderID){
             "id_sender": senderID,
             "text": feedback,
             "id_receiver": getProfileID(),
-            "liked": like
+            "liked": like,
+            "id_parent": null
         };
         ajaxCallPost('/users/{id}',params,null);
         window.location.reload();
-
-
     }
-}
-
-function showAlert(response) {
-    let message = JSON.parse(JSON.stringify(response));
-    alert(message.message);
 }
 
 function getProfileID(){
     return window.location.pathname.substring(9,window.location.pathname.length);
 }
+
 function changeurl(newUrl){
     window.location = newUrl;
 }
 
+function showTextArea(id){
+    let idx1 = "#r"+id.toString();
+    let idx2 = "#rb"+id.toString();
+    console.log(idx2);
+    let textarea = document.querySelector(idx1);
+    let replybtn = document.querySelector(idx2);
+    textarea.style.display = "inline-block";
+    replybtn.style.display = "none";
+}
+
+let id_reply = "";
+
+function sendReply(feedback_id,receiver_id){
+    let taidx = "#textArea"+feedback_id;
+    let text = document.querySelector(taidx).value;
+    console.log(text);
+    console.log(feedback_id);
+    console.log(receiver_id);
+    if(text !== null){
+        let params = {
+            "id_parent": feedback_id,
+            "id_sender": receiver_id,
+            "id_receiver": receiver_id,
+            "text": text,
+            "liked":null
+        };
+        setID("#r"+feedback_id);
+        ajaxCallPost('/users/{id}',params,null);
+        window.location.reload();
+    }
+}
+function setID(id){
+    id_reply = id;
+}
 
 /**
  *JS for search-related stuff and APIs

@@ -5,7 +5,7 @@
                 <h5><i class="fa fa-user-circle"></i> {{$user->username}}&rsquo;s profile</h5>
             </div>
             <hr id="hr_space" class="mt-2">
-            <div class="row" style = "margin-left: 70px;">
+            <div class="row"">
                 <div class="col-lg-2 col-sm-6 text-center mb-5">
                     <img class="img-thumbnail d-block mx-auto" src="{{asset('img/'.$image)}}" alt="{{$user->name}} photo">
                 </div>
@@ -97,7 +97,7 @@
                         </div>
                     </form>
                 @endif
-                <div class = "list-group panel" id="myfeedback">
+                <div class = "list-group panel" id="myfeedback"  style = "margin-bottom: 20px;">
 
                 </div>
 
