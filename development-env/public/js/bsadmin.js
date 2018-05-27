@@ -52,7 +52,7 @@ function ajaxCallGet2(url, handler)
     {
         url: url,
         type: 'GET',
-        success: notificationsHandler
+        success: handler
     });
 }
 
@@ -187,8 +187,50 @@ setInterval(function()
  * JS for the feedback functionalities
  */
 let feedback = document.querySelector("#myfeedback");
+ajaxCallGet2('users/{id}/comments','commentsHandler');
 
-if (feedback !== null)
+function commentsHandler(response){
+    let comments = JSON.parse(JSON.stringify(response));
+    if(comments.length == 0){
+        feedback.innerHTML = `<span> No feedback.</span>`;
+    }
+    else{
+        comments.forEach(function(element){
+            feedback.innerHTML += `<a href="#" class="list-group-item list-group-item-action text-muted">
+                                       <div class="container">
+                                           <div class="row">
+                                            <div class="col-lg-2">
+                                             <span class="btn btn-outline-secondary">$(element.idReceiver)</span>
+                                            </div>`;
+            if(element.liked == "true"){
+                feedback.innerHTML += `<div class="col-lg-1  text-left text-dark lead">
+                                            <i class="fa fa-thumbs-up btn btn-success"></i>
+                                        </div>`;
+            }else{
+                feedback.innerHTML += `<div class="col-lg-1  text-left text-dark lead">
+                                            <i class="fa fa-thumbs-up btn btn-danger"></i>
+                                        </div>`;
+            }
+            feedback.innerHTML += ` <div class="col-lg-5  text-left text-dark lead">
+                                        <p>$(element.text)</p>
+                                    </div>
+                                    <div class="col-lg-2  text-left text-dark lead">
+                                        <p>$(element.datePosted)</p>
+                                    </div>
+                                    <div class="col-lg-2  text-left text-dark lead">
+                                        <span class="btn btn-secondary">Reply</span>
+                                    </div>
+                                </div>
+                            </div>
+                           </a>`;
+        });
+
+
+
+    }
+}
+
+/*if (feedback !== null)
     feedback.innerHTML = `<form id="feedbackform">
                 <div class="btn-group mb-3" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-success">
@@ -207,7 +249,9 @@ if (feedback !== null)
                     </div>
                 </div>
 
-            </form>`;
+            </form>`;*/
+
+
 
 /**
  *JS for search-related stuff and APIs

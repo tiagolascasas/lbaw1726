@@ -51,6 +51,25 @@
             <div class="bg-white mb-0 mt-3 mb-3 panel">
                 <h5><i class="fa fa-comments"></i> Feedback</h5>
             </div>
+            <form id="feedbackform">
+                <div class="btn-group mb-3" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success">
+                        <i class="fa fa-thumbs-up btn btn-success"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        <i class="fa fa-thumbs-down btn btn-danger"></i>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <textarea rows="3" cols="30" class="form-control" placeholder="Your feedback"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-primary col-md-12">Post your feedback</button>
+                    </div>
+                </div>
+
+            </form>
             <div id="myfeedback">
 
             </div>
