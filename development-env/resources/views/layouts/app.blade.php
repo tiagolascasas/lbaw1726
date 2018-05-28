@@ -17,6 +17,9 @@
 
     <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bsadmin.css') }}" rel="stylesheet">
+    @if (Auth::check())
+    <script> let user_id = "{{ Auth::user()->id }}";</script>
+    @endif
 
 </head>
 
@@ -159,6 +162,8 @@
             <div class="dropdown-menu dropdown-menu-right notifications" id = "not_itens" aria-labelledby="alertsDropdown">
             </div>
         </li>
+
+
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle  hidden-p-md-down" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown">
                 <i class="fa fa-user"></i> {{Auth::user()->username}}

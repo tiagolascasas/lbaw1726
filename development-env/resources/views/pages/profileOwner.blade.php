@@ -25,7 +25,7 @@
     <main  data-id="{{$user}}">
         <div class="container-fluid bg-white">
             <div class="bg-white mb-0 mt-4 panel">
-                <h5><i class="fa fa-user-circle"></i> {{$user->username}}&rsquo;s profile</h5>
+                    <h5><i class=" co-lg-6 fa fa-user-circle"></i> {{$user->username}}&rsquo;s profile </h5>
             </div>
             <hr id="hr_space" class="mt-2">
             <div class="row"">
@@ -48,6 +48,13 @@
                             </td>
                             <td>
                                 {{$user->email}}
+                                @if (Auth::user()->id != $user->id)
+                                <div class="col-md-3" style = "display: inline-block;">
+                                    <a class="btn " data-toggle="modal" data-target="#myModalMail">
+                                        <i class="fa fa-envelope"></i>
+                                    </a>
+                                </div>
+                                @endif
                             </td>
                         </tr>
                         <tr>
@@ -93,8 +100,6 @@
             </div>
             @endif
 
-
-
             <!--feedback-->
             <div class = "container-fluid bg-white">
                 <div class="bg-white mb-0 mt-3 mb-3 panel">
@@ -111,7 +116,7 @@
                             </button>
                         </div>
                         <div class="form-group">
-                            <textarea rows="3" cols="30" class="form-control" id = "left-feedback" placeholder="Your feedback"></textarea>
+                            <textarea rows="3" cols="30" class="form-control" id = "left-feedback" placeholder="Your feedback" required></textarea>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12">
@@ -123,7 +128,6 @@
                 <div class = "list-group panel" id="myfeedback"  style = "margin-bottom: 20px;">
 
                 </div>
-
             </div>
 
             <div class="modal fade" id="myModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalEditLabel" aria-hidden="true">
@@ -162,36 +166,36 @@
                                 <div class="form-group">
                                         <label for="Inputidcountry">Country</label>
                                         <select class="form-control" id="Inputidcountry" name="idcountry">
-                                          <option selected value> -- select an option -- </option>
-                                          <option value="1" {{ old('idcountry') == 1 ? 'selected' : '' }}>Austria</option>
-                                          <option value="2" {{ old('idcountry') == 2 ? 'selected' : '' }}>Italy</option>
-                                          <option value="3" {{ old('idcountry') == 3 ? 'selected' : '' }}>Belgium</option>
-                                <option value="4" {{ old('idcountry') == 4 ? 'selected' : '' }}>Latvia</option>
-                                <option value="5" {{ old('idcountry') == 5 ? 'selected' : '' }}>Bulgaria</option>
-                                <option value="6" {{ old('idcountry') == 6 ? 'selected' : '' }}>Lithuania</option>
-                                <option value="7" {{ old('idcountry') == 7 ? 'selected' : '' }}>Croatia</option>
-                                <option value="8" {{ old('idcountry') == 8 ? 'selected' : '' }}>Luxembourg</option>
-                                <option value="9" {{ old('idcountry') == 9 ? 'selected' : '' }}>Cyprus</option>
-                                <option value="10" {{ old('idcountry') == 10 ? 'selected' : '' }}>Malta</option>
-                                <option value="11" {{ old('idcountry') == 11 ? 'selected' : '' }}>Czech Republic</option>
-                                <option value="12" {{ old('idcountry') == 12 ? 'selected' : '' }}>Netherlands</option>
-                                <option value="13" {{ old('idcountry') == 13 ? 'selected' : '' }}>Denmark</option>
-                                <option value="14" {{ old('idcountry') == 14 ? 'selected' : '' }}>Indonesia</option>
-                                <option value="15" {{ old('idcountry') == 15 ? 'selected' : '' }}>Poland</option>
-                                <option value="16" {{ old('idcountry') == 16 ? 'selected' : '' }}>Estonia</option>
-                                <option value="17" {{ old('idcountry') == 17 ? 'selected' : '' }}>Portugal</option>
-                                <option value="18" {{ old('idcountry') == 18 ? 'selected' : '' }}>Finland</option>
-                                <option value="19" {{ old('idcountry') == 19 ? 'selected' : '' }}>Romania</option>
-                                <option value="20" {{ old('idcountry') == 20 ? 'selected' : '' }}>France</option>
-                                <option value="21" {{ old('idcountry') == 21 ? 'selected' : '' }}>Slovakia</option>
-                                <option value="22" {{ old('idcountry') == 22 ? 'selected' : '' }}>Germany</option>
-                                <option value="23" {{ old('idcountry') == 23 ? 'selected' : '' }}>Slovenia</option>
-                                <option value="24" {{ old('idcountry') == 24 ? 'selected' : '' }}>Greece</option>
-                                <option value="25" {{ old('idcountry') == 25 ? 'selected' : '' }}>Spain</option>
-                                <option value="26" {{ old('idcountry') == 26 ? 'selected' : '' }}>Hungary</option>
-                                <option value="27" {{ old('idcountry') == 27 ? 'selected' : '' }}>Sweden</option>
-                                <option value="28" {{ old('idcountry') == 28 ? 'selected' : '' }}>Ireland</option>
-                                <option value="29" {{ old('idcountry') == 29 ? 'selected' : '' }}>United Kingdom</option>
+                                            <option selected value> -- select an option -- </option>
+                                            <option value="1" {{ old('idcountry') == 1 ? 'selected' : '' }}>Austria</option>
+                                            <option value="2" {{ old('idcountry') == 2 ? 'selected' : '' }}>Italy</option>
+                                            <option value="3" {{ old('idcountry') == 3 ? 'selected' : '' }}>Belgium</option>
+                                            <option value="4" {{ old('idcountry') == 4 ? 'selected' : '' }}>Latvia</option>
+                                            <option value="5" {{ old('idcountry') == 5 ? 'selected' : '' }}>Bulgaria</option>
+                                            <option value="6" {{ old('idcountry') == 6 ? 'selected' : '' }}>Lithuania</option>
+                                            <option value="7" {{ old('idcountry') == 7 ? 'selected' : '' }}>Croatia</option>
+                                            <option value="8" {{ old('idcountry') == 8 ? 'selected' : '' }}>Luxembourg</option>
+                                            <option value="9" {{ old('idcountry') == 9 ? 'selected' : '' }}>Cyprus</option>
+                                            <option value="10" {{ old('idcountry') == 10 ? 'selected' : '' }}>Malta</option>
+                                            <option value="11" {{ old('idcountry') == 11 ? 'selected' : '' }}>Czech Republic</option>
+                                            <option value="12" {{ old('idcountry') == 12 ? 'selected' : '' }}>Netherlands</option>
+                                            <option value="13" {{ old('idcountry') == 13 ? 'selected' : '' }}>Denmark</option>
+                                            <option value="14" {{ old('idcountry') == 14 ? 'selected' : '' }}>Indonesia</option>
+                                            <option value="15" {{ old('idcountry') == 15 ? 'selected' : '' }}>Poland</option>
+                                            <option value="16" {{ old('idcountry') == 16 ? 'selected' : '' }}>Estonia</option>
+                                            <option value="17" {{ old('idcountry') == 17 ? 'selected' : '' }}>Portugal</option>
+                                            <option value="18" {{ old('idcountry') == 18 ? 'selected' : '' }}>Finland</option>
+                                            <option value="19" {{ old('idcountry') == 19 ? 'selected' : '' }}>Romania</option>
+                                            <option value="20" {{ old('idcountry') == 20 ? 'selected' : '' }}>France</option>
+                                            <option value="21" {{ old('idcountry') == 21 ? 'selected' : '' }}>Slovakia</option>
+                                            <option value="22" {{ old('idcountry') == 22 ? 'selected' : '' }}>Germany</option>
+                                            <option value="23" {{ old('idcountry') == 23 ? 'selected' : '' }}>Slovenia</option>
+                                            <option value="24" {{ old('idcountry') == 24 ? 'selected' : '' }}>Greece</option>
+                                            <option value="25" {{ old('idcountry') == 25 ? 'selected' : '' }}>Spain</option>
+                                            <option value="26" {{ old('idcountry') == 26 ? 'selected' : '' }}>Hungary</option>
+                                            <option value="27" {{ old('idcountry') == 27 ? 'selected' : '' }}>Sweden</option>
+                                            <option value="28" {{ old('idcountry') == 28 ? 'selected' : '' }}>Ireland</option>
+                                            <option value="29" {{ old('idcountry') == 29 ? 'selected' : '' }}>United Kingdom</option>
                               </select>
                                 </div>
                                 <div class="form-group">
@@ -239,6 +243,64 @@
                                 </div>
                                 <button class="btn btn-primary btn-block mb-4">Change Password</button>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="myModalMail" tabindex="-1" role="dialog" aria-labelledby="myModalMailLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalMailLabel">Contact {{$user->name}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-15">
+                                    <form id="contactForm" class="ml-5 mr-4" method="POST" action="{{ route('contact') }}" enctype="multipart/form-data">
+                                        {{ csrf_field() }}
+                                        <div class="messages"></div>
+                                        <div class="controls">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="name">Name</label>
+                                                        <input id="name" type="text" name="name" class="form-control" placeholder="Enter your name" required="required" data-error="Userame is required.">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="email">E-mail</label>
+                                                        <input id="email" type="email" name="email" class="form-control" placeholder="Enter your e-mail" required="required" data-error="Valid e-mail is required.">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="message">Message</label>
+                                                        <textarea id="message" name="message" class="form-control" placeholder="Enter your message" rows="4" required="required" data-error="Please, enter the message."></textarea>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <button onclick="submitContactMessage()" id="contactSubmitButton" class="btn btn-send text-white border border-success bg-success"> Send Message</button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                         </div>
                     </div>
                 </div>
