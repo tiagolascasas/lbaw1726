@@ -154,8 +154,10 @@
                                         @else
                                         <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal" class="btn btn-success"><i class="fas fa-undo"></i></button>
                                         @endif
-                                    @elif ($auction->sellerID == Auth::user()->id)
-                                    <button id="bid-box" type="submit" disabled class="btn btn-outline-secondary col-md-8">You cannot bid on your own auction</button>
+                                    @elseif ($auction->idseller == Auth::user()->id)
+                                    <button id="edit-auction" type="submit" class="btn btn-primary col-md-6">Edit the auction</button>
+                                    @elseif ($auction->auction_status != "approved")
+                                    <button id="unbiddable" type="submit" disabled class="btn btn-outline-secondary col-md-8">Auction is unbiddable right now</button>
                                     @else
                                     <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
                                     @endif

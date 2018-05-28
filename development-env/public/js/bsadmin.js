@@ -239,7 +239,7 @@ function commentsHandler(response){
                                     <div class="row">
                                         <div class="col-sm-1 col-md-10">
                                             <div class="panel panel-default">
-                                                <div class="panel-body"> 
+                                                <div class="panel-body">
                                                         <textarea class="form-control col-md-auto" id = "textArea${element.id}" name="message" placeholder="Type in your reply" rows="3" style="margin-bottom:10px;"></textarea>
                                                 </div>
                                             </div>
@@ -247,7 +247,7 @@ function commentsHandler(response){
                                         <button class="btn btn-secondary col-sm-auto col-lg-auto" onclick="sendReply(${element.id},${element.idreceiver})" id="sendreply${element.id}" type="button">Reply</button>
                                     </div>
                                 </div>
-                             </div>   
+                             </div>
                         </a>`;
                 feedback.innerHTML += comments_html;
             }
@@ -261,13 +261,13 @@ function commentsHandler(response){
                                             <div class="row">
                                                 <div class="col-sm-1 col-md-10">
                                                      <div class="panel panel-default border-success">
-                                                          <div class="panel-body" style="font-size: 0.8em"> 
+                                                          <div class="panel-body" style="font-size: 0.8em">
                                                             <span>${element.username} replied:</span>
                                                             <span class = "container">${element.comment_text}</span>
                                                            </div>
                                                      </div>
                                                 </div>
-                                            </div>                   
+                                            </div>
                                        </div>`;
                 commentid.style.display = "inline-block";
                 rpbtn.style.display = "none";
@@ -380,7 +380,18 @@ for (let i = 0; i < cats.length; i++)
 /**
  * JS for bidding-related stuff and APIs
  */
-if (window.location.href.includes("auction/")) {
+if (window.location.href.includes("auction/"))
+{
+    //edit auction button {{ route('auction/id/edit') }}
+    let editButton = document.querySelector("#edit-auction");
+    if (editButton != null)
+    {
+        editButton.addEventListener("click", function()
+        {
+            window.location.href = window.location.href + "/edit";
+        });
+    }
+
     //decrease time left every second
     let timeLeft = document.querySelector("#timeLeft").innerHTML;
     if (timeLeft !== "Auction hasn't been approved yet" && timeLeft !== "Auction has ended!")
@@ -455,43 +466,46 @@ if (window.location.href.includes("auction/")) {
 
     //post new bid value
     let bidBox = document.querySelector("#bid-box");
-    bidBox.addEventListener("click", function()
+    if (bidBox != null)
     {
-        let currVal = document.querySelector("#currentBid").value;
-        if (currVal == "")
+        bidBox.addEventListener("click", function()
         {
-            let header = document.querySelector("#bidResultHeader");
-            let body = document.querySelector("#bidResultBody");
-            header.innerHTML = "Bidding value not set";
-            body.innerHTML = "You must choose a value to bid";
-            body.className = "alert alert-danger";
-            $("#bidResult").modal();
-            return;
-        }
-        currVal = parseFloat(currVal);
+            let currVal = document.querySelector("#currentBid").value;
+            if (currVal == "")
+            {
+                let header = document.querySelector("#bidResultHeader");
+                let body = document.querySelector("#bidResultBody");
+                header.innerHTML = "Bidding value not set";
+                body.innerHTML = "You must choose a value to bid";
+                body.className = "alert alert-danger";
+                $("#bidResult").modal();
+                return;
+            }
+            currVal = parseFloat(currVal);
 
-        let maxVal = document.querySelector("#currentMaxBid").innerHTML;
-        maxVal = parseFloat(maxVal);
+            let maxVal = document.querySelector("#currentMaxBid").innerHTML;
+            maxVal = parseFloat(maxVal);
 
-        if (currVal <= maxVal)
-        {
-            let header = document.querySelector("#bidResultHeader");
-            let body = document.querySelector("#bidResultBody");
-            header.innerHTML = "Insufficient bidding value";
-            body.innerHTML = "Your bid cannot be lower or equal to the current bid.";
-            body.className = "alert alert-danger";
-            $("#bidResult").modal();
-            return;
-        }
+            if (currVal <= maxVal)
+            {
+                let header = document.querySelector("#bidResultHeader");
+                let body = document.querySelector("#bidResultBody");
+                header.innerHTML = "Insufficient bidding value";
+                body.innerHTML = "Your bid cannot be lower or equal to the current bid.";
+                body.className = "alert alert-danger";
+                $("#bidResult").modal();
+                return;
+            }
 
-        let auctionID = getAuctionID();
+            let auctionID = getAuctionID();
 
-        let params = {
-            "auctionID": auctionID,
-            "value": currVal
-        };
-        ajaxCallPost("/api/bid", params, postBidHandler);
-    });
+            let params = {
+                "auctionID": auctionID,
+                "value": currVal
+            };
+            ajaxCallPost("/api/bid", params, postBidHandler);
+        });
+    }
 }
 
 function getAuctionID()

@@ -7,6 +7,7 @@ use App\Category;
 use App\CategoryAuction;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AuctionController extends Controller
 {
@@ -70,6 +71,24 @@ class AuctionController extends Controller
             'images' => $images,
             'maxBid' => $maxBid[0]->max,
             'timestamp' => $timestamp]);
+    }
+
+    public function edit($id)
+    {
+        $auction = Auction::find($id);
+
+        if ($auction->idseller != Auth::user()->id)
+        {
+            return redirect('/auction/' . $id);
+        }
+
+        return view('pages.auctionEdit', ['desc' => $auction->description, 'id' => $id]);
+    }
+
+    public function submitEdit(Request $request, $id)
+    {
+
+        return show($id);
     }
 
     public static function createTimestamp($dateApproved, $duration)

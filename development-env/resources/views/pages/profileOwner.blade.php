@@ -267,10 +267,10 @@
             @if(Auth::User()->id == $user->id)
 
             <div class="container-fluid bg-white">
-                <div class="bg-white mb-0 mt-4 mb-4 panel">
-                    <h6><i class="fa fa-th-large"></i> Payments and transfers</h6>
+                <div class="bg-white mb-0 mt-3 mb-3 panel">
+                    <h5><i class="fab fa-paypal"></i> Payments and Transfers</h5>
                 </div>
-                <p>BookHub requires the use of PayPal in order to bid and/or create auctions. Be mindful of these three points:</p>
+                <p>BookHub requires the use of <a href="https://www.paypal.com">PayPal</a> in order to bid and/or create auctions. Be mindful of these three points:</p>
                 <ul>
                     <li>All transactions related to an auction are performed automatically once that auction is over and cannot be reverted;</li>
                     <li>You can neither create nor bid on auctions until you associate a valid PayPal account to your BookHub account;</li>
@@ -284,13 +284,13 @@
 
                             <div class="col-lg-6">
                                 <a class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#paypalUpdateModal">
-                                    <i class="fa fa-link"></i> Associate a Paypal account
+                                    <i class="fa fa-link"></i> Associate a PayPal account
                                 </a>
                             </div>
 
                             <div class="col-lg-6">
                                 <a class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#paypalRemoveModal">
-                                    <i class="fa fa-unlink"></i> Unlink your Paypal account
+                                    <i class="fa fa-unlink"></i> Unlink your PayPal account
                                 </a>
                             </div>
 
