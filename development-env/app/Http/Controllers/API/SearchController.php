@@ -105,11 +105,11 @@ class SearchController extends Controller
         foreach ($response as $auction)
         {
             $auction->maxBid = BidController::getMaxBidInternal($auction->id);
-            /*
-            if (array_key_exists ("dateApproved", $auction))
-                $auction->time = AuctionController::createTimestamp($auction->dateApproved, $auction->duration);
+            if ($auction->maxBid == 0)
+                $auction->bidMsg = "No bids yet";
             else
-                $auction->time = "Not yet started";*/
+                $auction->bidMsg = $auction->maxBid . "€";
+
             if ($auction->auction_status == "waitingApproval")
                 $auction->time = "Not yet started";
             else if ($auction->auction_status == "approved")

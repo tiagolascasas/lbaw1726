@@ -130,7 +130,7 @@ function makeAlbum(auctions)
                     <p class="card-text text-center hidden-p-md-down">By ${element.author} </p>
                     <div class="d-flex justify-content-between align-items-center">
                         <i class="fas fa-star btn btn-sm text-primary"></i>
-                        <small class="text-success">${element.maxBid}€ </small>
+                        <small class="text-success">${element.bidMsg} </small>
                         <small class="text-danger">
                                 ${element.time}</small>
                     </div>
