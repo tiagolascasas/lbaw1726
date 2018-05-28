@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Auction;
 use App\Category;
 use App\CategoryAuction;
+use App\Image;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -87,8 +89,33 @@ class AuctionController extends Controller
 
     public function submitEdit(Request $request, $id)
     {
+        if ($id != Auth::user()->id)
+        {
+            return redirect('/auction/' . $id);
+        }
 
-        return show($id);
+        $modID = DB::table('auction_modification')->insertGetId(['newDescription' => $request->input('description')]);
+
+        /*Get images and store them*/
+        $input = $request->all();
+        $images = array();
+        if ($files = $request->file('images')) {
+            $integer=0;
+            foreach ($files as $file) {
+                $name = time() . (string) $integer . $file->getClientOriginalName() ;
+                $file->move('img', $name);
+                $images[] = $name;
+                $integer+=1;
+            }
+        }
+
+        /*Store image sources in database*/
+        foreach ($images as $image) {
+            $saveImage = new Image;
+            $saveImage->source = $image;
+            $saveImage->idauctionmodification =$modID;
+            $saveImage->save();
+        }
     }
 
     public static function updateAuctions()
