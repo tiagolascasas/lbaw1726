@@ -56,6 +56,8 @@ Route::get('api/bid', 'API\BidController@getMaxBid');
 Route::post('api/bid', 'API\BidController@bidNewValue');
 Route::get('api/notifications', 'API\NotificationsController@getNotifications');
 Route::post('api/notifications/{id}','API\NotificationsController@markAsSeen');
+Route::post('api/admin','API\AdminController@action')->name('admin');
+Route::post('api/moderator','API\ModeratorController@action')->name('moderator');
 
 //Search Page
 Route::get('search', 'SearchController@show')->name('search');
@@ -69,8 +71,6 @@ Route::get('wishlist','ListController@wishlist')->name('wishlist');
 
 //Moderator
 Route::get('moderator','ModeratorController@show')->name('moderator');
-Route::post('api/moderator','API\ModeratorController@action')->name('moderator');
 
 //Administrator
 Route::get('admin','AdministratorController@show')->name('admin');
-Route::post('api/admin','API\AdminController@action')->name('admin');

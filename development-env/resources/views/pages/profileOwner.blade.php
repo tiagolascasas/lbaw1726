@@ -234,7 +234,8 @@
                             <form method="POST" action="{{ route('profile.paypal',$user->id) }}">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Your new PayPal email</label>
-                                    <input class="form-control" name="paypalEmail" type="email" placeholder="example@example.com">
+                                    <input class="form-control" name="paypalEmail" type="email" placeholder="example@example.com" value = "{{$user->paypalEmail}}" required>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </div>
                                 <button class="btn btn-primary btn-block mb-4">Link your PayPal account</button>
                             </form>
@@ -254,6 +255,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="DELETE" action="{{ route('profile.paypal.remove',$user->id) }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <p>Are you sure you wish to unlink your PayPal account? You won't be able to buy or sell without it.</p>
                                 <button class="btn btn-primary btn-block mb-4">Unlink your PayPal account</button>
                             </form>

@@ -42,7 +42,7 @@ class ProfileController extends Controller
         }
 
         $paypalMsg = "";
-        if ($user->paypalEmail != NULL)
+        if ($user->paypalemail != NULL)
             $paypalMsg = "You are linked to PayPal";
         else
             $paypalMsg = "You are unlinked to PayPal";
@@ -141,7 +141,7 @@ $image = "default.png";*/
         $input = $request->all();
         $email = $input['paypalEmail'];
 
-        DB::update('UPDATE user SET paypalEmail = ? WHERE id = ?', [$paypalEmail, $id]);
+        DB::update('UPDATE users SET paypalEmail = ? WHERE id = ?', [$email, Auth::user()->id]);
 
         return redirect()->route('profile', ['id' => $id]);
     }
