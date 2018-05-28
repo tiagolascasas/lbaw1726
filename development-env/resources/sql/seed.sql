@@ -582,18 +582,18 @@ INSERT INTO "auction" (author, description, duration, ISBN, title, auction_statu
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Aleksandr Solzhenitsyn', 'Slightly wrinkled', '10000', '878551550-7', 'One Day in the Life of Ivan Denisovich (Paperback)', 'approved', 7, 1, 5, now());
 
 --Real data to match the first auctions
-INSERT INTO "image" (source, idAuction) VALUES ('img/years.jpg',1);
-INSERT INTO "image" (source, idAuction) VALUES ('img/the-stranger.jpg',2);
-INSERT INTO "image" (source, idAuction) VALUES ('img/old-man.jpg',3);
-INSERT INTO "image" (source, idAuction) VALUES ('img/flies.jpg',4);
-INSERT INTO "image" (source, idAuction) VALUES ('img/disgrace.jpg',5);
-INSERT INTO "image" (source, idAuction) VALUES ('img/mice.jpg',6);
-INSERT INTO "image" (source, idAuction) VALUES ('img/sid.jpg',7);
-INSERT INTO "image" (source, idAuction) VALUES ('img/beloved.jpg',8);
-INSERT INTO "image" (source, idAuction) VALUES ('img/red.jpg',9);
-INSERT INTO "image" (source, idAuction) VALUES ('img/grapes.jpg',10);
-INSERT INTO "image" (source, idAuction) VALUES ('img/snow.jpg',11);
-INSERT INTO "image" (source, idAuction) VALUES ('img/one-daw.jpg',12);
+INSERT INTO "image" (source, idAuction) VALUES ('years.jpg',1);
+INSERT INTO "image" (source, idAuction) VALUES ('the-stranger.jpg',2);
+INSERT INTO "image" (source, idAuction) VALUES ('old-man.jpg',3);
+INSERT INTO "image" (source, idAuction) VALUES ('flies.jpg',4);
+INSERT INTO "image" (source, idAuction) VALUES ('disgrace.jpg',5);
+INSERT INTO "image" (source, idAuction) VALUES ('mice.jpg',6);
+INSERT INTO "image" (source, idAuction) VALUES ('sid.jpg',7);
+INSERT INTO "image" (source, idAuction) VALUES ('beloved.jpg',8);
+INSERT INTO "image" (source, idAuction) VALUES ('red.jpg',9);
+INSERT INTO "image" (source, idAuction) VALUES ('grapes.jpg',10);
+INSERT INTO "image" (source, idAuction) VALUES ('snow.jpg',11);
+INSERT INTO "image" (source, idAuction) VALUES ('one-day.jpg',12);
 
 
 --approved auctions, time of approval = insert time
@@ -734,11 +734,7 @@ INSERT INTO "notification_auction" (idAuction, idNotification) VALUES (14, 5);
 INSERT INTO "notification_auction" (idAuction, idNotification) VALUES (19, 8);
 
 --15
-
-INSERT INTO "image" (source, idAuction) VALUES ('img/levithanwakes.jpg',16);
-INSERT INTO "image" (source, idAuction) VALUES ('img/bornacrime.jpg',17);
-INSERT INTO "image" (source, idAuction) VALUES ('img/theorphanstale.jpg',18);
-INSERT INTO "image" (source, idAuction) VALUES ('img/thehusbandssecret.jpg',19);
+--images
 
 --16
 INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi', 11, 8);
