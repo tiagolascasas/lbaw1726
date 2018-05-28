@@ -16,21 +16,9 @@
         </a>
         <form class="ml-4 mr-4 collapse" id="advSearch">
             <div class="form-row">
-                <div class="form-group col-md-6 ">
-                    <label class="font-weight-bold">Search keyword(s)</label>
-                    <input type="text" name="keywords" class="form-control">
-                </div>
-            </div>
-            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">Title</label>
                     <input type="text" name="title" class="form-control">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label class="font-weight-bold">Publisher</label>
-                    <input type="text" name="publisher" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">ISBN</label>
@@ -39,9 +27,15 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
+                    <label class="font-weight-bold">Publisher</label>
+                    <input type="text" name="publisher" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
                     <label for="search" class="font-weight-bold">Author</label>
                     <input type="text" name="author" class="form-control">
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">Category</label>
                     <select class="form-control" name="category">
@@ -73,8 +67,6 @@
                         <option>Other </option>
                     </select>
                 </div>
-            </div>
-            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label class="font-weight-bold">Language</label>
                     <select class="form-control" name="language">

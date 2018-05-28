@@ -132,7 +132,7 @@ function makeAlbum(auctions)
                         <i class="fas fa-star btn btn-sm text-primary"></i>
                         <small class="text-success">${element.maxBid}€ </small>
                         <small class="text-danger">
-                                &lt; ${element.time}</small>
+                                ${element.time}</small>
                     </div>
                 </div>
             </div>
@@ -468,6 +468,13 @@ if (window.location.href.includes("auction/"))
                 newTime = "Auction has ended!";
 
             document.querySelector("#timeLeft").innerHTML = newTime;
+
+            let bidBox = document.querySelector("#bid-box");
+            if (newTime === "Auction has ended!")
+            {
+                bidBox.disabled = true;
+                bidBox.innerHTML = "Auction is unbiddable right now";
+            }
         });
     }
 

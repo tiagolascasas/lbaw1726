@@ -30,10 +30,6 @@ class SearchController extends Controller
 
         $queryResults = [];
 
-        if ($request->input('keywords') != null)
-        {
-
-        }
         if ($request->input('title') != null)
         {
             $res = DB::select("SELECT id FROM auction WHERE title @@ plainto_tsquery('english',?)", [$request->input('title')]);
@@ -103,16 +99,23 @@ class SearchController extends Controller
         $ids = implode(",", array_values($counts));
         if ($ids === "")
             $ids = "-1";
-        $query = "SELECT auction.id, title, author, duration, dateApproved FROM auction WHERE auction.id IN (" . $ids . ")";
+        $query = "SELECT auction.id, title, author, duration, dateApproved, auction_status FROM auction WHERE auction.id IN (" . $ids . ")";
         $response = DB::select($query, []);
 
         foreach ($response as $auction)
         {
             $auction->maxBid = BidController::getMaxBidInternal($auction->id);
+            /*
             if (array_key_exists ("dateApproved", $auction))
                 $auction->time = AuctionController::createTimestamp($auction->dateApproved, $auction->duration);
             else
+                $auction->time = "Not yet started";*/
+            if ($auction->auction_status == "waitingApproval")
                 $auction->time = "Not yet started";
+            else if ($auction->auction_status == "approved")
+                $auction->time = AuctionController::createTimestamp($auction->dateapproved, $auction->duration);
+            else if ($auction->auction_status == "finished")
+                $auction->time = "Finished";
 
             $image = DB::select("SELECT source FROM image WHERE idauction = ? limit 1", [$auction->id]);
             if (isset($image[0]->source))
