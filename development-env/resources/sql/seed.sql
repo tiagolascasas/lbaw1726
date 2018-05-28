@@ -254,26 +254,26 @@ CREATE TRIGGER tr_change_auction_status
         FOR EACH ROW
 		      EXECUTE PROCEDURE change_auction_status();
 
-CREATE FUNCTION check_buyer() RETURNS TRIGGER AS
-$BODY$
-BEGIN
-  IF EXISTS (SELECT * FROM auction WHERE NEW.idAuction = auction.id AND NEW.idBuyer = auction.idSeller) THEN
-    RAISE EXCEPTION 'A User cant interact with is own auctions.';
-  END IF;
-  RETURN NEW;
-END
-$BODY$
-LANGUAGE plpgsql;
+--CREATE FUNCTION check_buyer() RETURNS TRIGGER AS
+--$BODY$
+--BEGIN
+--  IF EXISTS (SELECT * FROM auction WHERE NEW.idAuction = auction.id AND NEW.idBuyer = auction.idSeller) THEN
+--    RAISE EXCEPTION 'A User cant interact with is own auctions.';
+--  END IF;
+--  RETURN NEW;
+--END
+--$BODY$
+--LANGUAGE plpgsql;
 
-CREATE TRIGGER tr_whishlist_check_buyer
-  BEFORE INSERT OR UPDATE ON whishlist
-  FOR EACH ROW
-    EXECUTE PROCEDURE check_buyer();
+--CREATE TRIGGER tr_whishlist_check_buyer
+--  BEFORE INSERT OR UPDATE ON whishlist
+--  FOR EACH ROW
+--    EXECUTE PROCEDURE check_buyer();
 
-CREATE TRIGGER tr_bid_check_buyer
-  BEFORE INSERT OR UPDATE ON bid
-  FOR EACH ROW
-    EXECUTE PROCEDURE check_buyer();
+--CREATE TRIGGER tr_bid_check_buyer
+--  BEFORE INSERT OR UPDATE ON bid
+--  FOR EACH ROW
+--    EXECUTE PROCEDURE check_buyer();
 
 
 CREATE FUNCTION check_approved_auction() RETURNS TRIGGER AS
@@ -567,6 +567,35 @@ INSERT INTO "requested_termination"  (idusers) VALUES (3);
 INSERT INTO "requested_termination"  (idusers) VALUES (13);
 
 --5
+--Real data, approved
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Gabriel Garcia Marquez', 'Very good condition', '3000', '878551550-7', 'One Hundred Years of Solitude', 'approved', 7, 1, 1, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Albert Camus', 'Very good condition', '300', '878551550-7', 'The Stranger (Paperback)', 'approved', 7, 1, 1, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Ernest Hemingway', 'Slightly wrinkled', '300', '878551550-7', 'The Old Man and the Sea (Hardcover)', 'approved', 7, 1, 1, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('William Golding', 'Very good condition', '600', '878551550-7', 'Lord of the Flies (Paperback)', 'approved', 7, 1, 1, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('J. M. Coetzee', 'Very good condition', '600', '878551550-7', 'Disgrace (Paperback)', 'approved', 7, 1, 1, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('John Steinbeck', 'Slightly wrinkled', '1000', '878551550-7', 'Of Mice and Men (Paperback)', 'approved', 7, 1, 1, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Hermann Hesse', 'Very good condition', '1000', '878551550-7', 'Siddhartha (Mass Market Paperback)', 'approved', 7, 1, 2, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Toni Morrison', 'Slightly wrinkled', '3000', '878551550-7', 'Beloved (Paperback)', 'approved', 7, 1, 2, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Orhan Pamuk', 'Slightly wrinkled', '3000', '878551550-7', 'My Name is Red (Paperback)', 'approved', 7, 1, 3, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('John Steinbeck', 'Very good condition', '6000', '878551550-7', 'The Grapes of Wrath (Hardcover)', 'approved', 7, 1, 3, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Orhan Pamuk', 'Slightly wrinkled', '6000', '878551550-7', 'Snow (Paperback)', 'approved', 7, 1, 4, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Aleksandr Solzhenitsyn', 'Slightly wrinkled', '10000', '878551550-7', 'One Day in the Life of Ivan Denisovich (Paperback)', 'approved', 7, 1, 5, now());
+
+--Real data to match the first auctions
+INSERT INTO "image" (source, idAuction) VALUES ('img/years.jpg',1);
+INSERT INTO "image" (source, idAuction) VALUES ('img/the-stranger.jpg',2);
+INSERT INTO "image" (source, idAuction) VALUES ('img/old-man.jpg',3);
+INSERT INTO "image" (source, idAuction) VALUES ('img/flies.jpg',4);
+INSERT INTO "image" (source, idAuction) VALUES ('img/disgrace.jpg',5);
+INSERT INTO "image" (source, idAuction) VALUES ('img/mice.jpg',6);
+INSERT INTO "image" (source, idAuction) VALUES ('img/sid.jpg',7);
+INSERT INTO "image" (source, idAuction) VALUES ('img/beloved.jpg',8);
+INSERT INTO "image" (source, idAuction) VALUES ('img/red.jpg',9);
+INSERT INTO "image" (source, idAuction) VALUES ('img/grapes.jpg',10);
+INSERT INTO "image" (source, idAuction) VALUES ('img/snow.jpg',11);
+INSERT INTO "image" (source, idAuction) VALUES ('img/one-daw.jpg',12);
+
+
 --approved auctions, time of approval = insert time
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Rachelle Wadge', 'rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed', '3000', '878551550-7', 'ligula in lacus curabitur at', 'approved', 7, 93, 12, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved) VALUES ('Elfie Videan', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', '3000', '406669717-8', 'donec posuere', 'approved', 6, 118, 12, now());
@@ -705,10 +734,11 @@ INSERT INTO "notification_auction" (idAuction, idNotification) VALUES (14, 5);
 INSERT INTO "notification_auction" (idAuction, idNotification) VALUES (19, 8);
 
 --15
-INSERT INTO "image" (source, idAuction) VALUES ('img/levithanwakes.jpg',10);
-INSERT INTO "image" (source, idAuction) VALUES ('img/bornacrime.jpg',3);
-INSERT INTO "image" (source, idAuction) VALUES ('img/theorphanstale.jpg',7);
-INSERT INTO "image" (source, idAuction) VALUES ('img/thehusbandssecret.jpg',13);
+
+INSERT INTO "image" (source, idAuction) VALUES ('img/levithanwakes.jpg',16);
+INSERT INTO "image" (source, idAuction) VALUES ('img/bornacrime.jpg',17);
+INSERT INTO "image" (source, idAuction) VALUES ('img/theorphanstale.jpg',18);
+INSERT INTO "image" (source, idAuction) VALUES ('img/thehusbandssecret.jpg',19);
 
 --16
 INSERT INTO "message" (message_text, idSender , idReceiver) VALUES ('cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi', 11, 8);
