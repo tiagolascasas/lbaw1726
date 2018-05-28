@@ -1,4 +1,3 @@
-
 <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
   {{ csrf_field() }}
   <div class="modal-body">
