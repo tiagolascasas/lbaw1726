@@ -204,7 +204,7 @@
                     <a class="nav-link hidden-p-md-up" data-toggle="modal" href="#" data-target="#myModalRegister">
                         <i class="fa fa-user-plus"></i>
                     </a>
-                </li>
+                </li>        
                 @endif
             </ul>
         </div>
@@ -237,6 +237,21 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="myModalForgotPassword" tabindex="-1" role="dialog" aria-labelledby="myModalForgotPasswordLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalForgotPasswordLabel">Retrieve Your Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+               @include('auth.forgot_password')
+            </div>
+        </div>
+    </div>
+
 
 
     <div class="d-flex">

@@ -25,6 +25,20 @@ $(document).ready(function()
 });
 
 /**
+ * Focus username input after opening login modal
+ */
+$('#myModalLogin').on('shown.bs.modal', function () {
+    $('#username').focus();
+})
+
+/**
+ * Focus name input after opening register modal
+ */
+$('#myModalRegister').on('shown.bs.modal', function () {
+    $('#name').focus();
+})
+
+/**
  * Error handling
  */
 $(window).on("load", function()
@@ -108,7 +122,8 @@ function makeAlbum(auctions)
         <a href="auction/${element.id}" class="list-group-item-action">
             <div class="card mb-4 box-shadow">
                 <div class="col-md-6 img-fluid media-object align-self-center ">
-                    <img class="width100" src="../img/book.png" alt="the orphan stale">
+                    <!--<img class="width100" src="../img/book.png" alt="the orphan stale">-->
+                    <img class="width100" src="../img/${element.image}" alt="book image">
                 </div>
                 <div class="card-body">
                     <p class="card-text text-center hidden-p-md-down font-weight-bold" style="font-size: larger"> ${element.title} </p>

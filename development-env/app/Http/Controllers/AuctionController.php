@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Auction;
 use App\Category;
 use App\CategoryAuction;
+use App\Image;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -87,8 +89,83 @@ class AuctionController extends Controller
 
     public function submitEdit(Request $request, $id)
     {
+        if ($id != Auth::user()->id)
+        {
+            return redirect('/auction/' . $id);
+        }
 
-        return show($id);
+        $modID = DB::table('auction_modification')->insertGetId(['newDescription' => $request->input('description')]);
+
+        /*Get images and store them*/
+        $input = $request->all();
+        $images = array();
+        if ($files = $request->file('images')) {
+            $integer=0;
+            foreach ($files as $file) {
+                $name = time() . (string) $integer . $file->getClientOriginalName() ;
+                $file->move('img', $name);
+                $images[] = $name;
+                $integer+=1;
+            }
+        }
+
+        /*Store image sources in database*/
+        foreach ($images as $image) {
+            $saveImage = new Image;
+            $saveImage->source = $image;
+            $saveImage->idauctionmodification =$modID;
+            $saveImage->save();
+        }
+    }
+
+    public static function updateAuctions()
+    {
+        //get all approved auctions
+        $auctions = DB::select("SELECT id, duration, dateApproved, idSeller FROM auction WHERE auction_status = ?",["approved"]);
+        $over = [];
+
+        foreach ($auctions as $auction)
+        {   //for each auction, if it is finished, add its id to the list
+            $timestamp = AuctionController::createTimestamp($auction->dateapproved, $auction->duration);
+            if ($timestamp === "Auction has ended!")
+            {
+                array_push($over, $auction->id);
+            }
+        }
+        //update all auctions in the list of ids with info saying it is over
+        if (sizeof($over) == 0)
+            return;
+
+        $parameters = implode(',', $over);
+        $query = "UPDATE auction SET auction_status = ?, dateFinished = ? WHERE id IN (" . $parameters . ")";
+        DB::update($query, ["finished", "now()"]);
+
+        //$id = auction id
+        foreach($over as $id)
+        {
+            //notifyOwner($id);
+            //notifyWinnerAndPurchase($id);
+            //notifyBidders($id);
+        }
+    }
+
+    public static function notifyOwner($id)
+    {
+        $res = DB::select("SELECT id, idseller, title FROM auction WHERE id = ?", [$id]);
+        $text = "Your auction of " . $res[0]->title . " has finished!";
+        $notifID = DB::table('notification')->insertGetId(['information' => $text, 'idusers' => $res[0]->idseller]);
+        DB::insert("INSERT INTO notification_auction (idAuction, idNotification) VALUES (?, ?)", [$res[0]->id, $notifID]);
+    }
+
+    public static function notifyWinnerAndPurchase($id)
+    {
+        //notify
+        //process payment
+    }
+
+    public static function notifyBidders($id)
+    {
+
     }
 
     public static function createTimestamp($dateApproved, $duration)

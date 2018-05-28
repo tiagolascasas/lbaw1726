@@ -19,7 +19,7 @@
         <div class="form-row">
             <div class="form-group col-md-12">
                 <label>Edit your auction's description here. Be mindful that removing information rather than adding may lead to a rejected edition request, and on the worst case scenario to your auction's cancellation.</label>
-                <textarea id="description" name="description" rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important" value="{{ $desc }}" required></textarea>
+                <textarea id="description" name="description" rows="3" cols="30" class="form-control"required>{{ $desc }}</textarea>
                 @if ($errors->has('description'))
                   <span class="error">
                     {{ $errors->first('description') }}

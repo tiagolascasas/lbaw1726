@@ -16,7 +16,7 @@
                 <li class="list-group-item"><b>Date banned:</b> {{$user->datebanned}}</li>
                 <li class="list-group-item bg-secondary text-white"><b>Date terminated:</b> {{$user->dateterminated}}</li>
             </ul>
-        </div>  
+        </div>
     </div>
     @endif
 @endif
@@ -367,17 +367,17 @@
                     <div class="container">
                         <div class="row">
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <a class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#paypalUpdateModal">
                                     <i class="fa fa-link"></i> Associate a PayPal account
                                 </a>
                             </div>
-
+<!--
                             <div class="col-lg-6">
                                 <a class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#paypalRemoveModal">
                                     <i class="fa fa-unlink"></i> Unlink your PayPal account
                                 </a>
-                            </div>
+                            </div>-->
 
                         </div>
                     </div>

@@ -113,6 +113,12 @@ class SearchController extends Controller
                 $auction->time = AuctionController::createTimestamp($auction->dateApproved, $auction->duration);
             else
                 $auction->time = "Not yet started";
+
+            $image = DB::select("SELECT source FROM image WHERE idauction = ? limit 1", [$auction->id]);
+            if (isset($image[0]->source))
+                $auction->image = $image[0]->source;
+            else
+                $auction->image = "book.png";
         }
 
         return response()->json($response);

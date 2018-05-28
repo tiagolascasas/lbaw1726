@@ -56,6 +56,12 @@ class BidController extends Controller
         $userID = Auth::user()->id;
         $bidValue = $request->input('value');
 
+        $auction = DB::select("SELECT auction_status FROM auction WHERE id = ?", [$auctionID]);
+        if ($auction[0]->auction_status != "approved")
+        {
+            return response()->json(['success' => false, 'message' => "You cannot bid on an auction that isn't going on."]);
+        }
+
         $message = "";
         $success = true;
         $info = "Your bid has been beaten.";
@@ -74,8 +80,6 @@ class BidController extends Controller
             $message = "Successfully registered your bid. You are now leading the auction!";
             DB::insert("INSERT INTO notification (information, idusers) VALUES (?,?)",[$info,$lastbidder]);
         }
-
-
 
         return response()->json(['success' => $success, 'message' => $message]);
     }
