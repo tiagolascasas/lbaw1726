@@ -204,13 +204,14 @@ setInterval(function() {
 
 let feedback = document.querySelector("#myfeedback");
 let like;
+let profile_id;
+
+
 if(window.location.href.includes('profile')){
-    let profile_id = getProfileID();
+    profile_id = getProfileID();
     let params = {"user": profile_id};
-    console.log("On profile.");
     ajaxCallGet2('/users/{id}/comments',params,commentsHandler);
 }
-
 
 function commentsHandler(response){
     let comments = JSON.parse(JSON.stringify(response));
@@ -246,11 +247,13 @@ function commentsHandler(response){
                               </div>
                               <div class="col-lg-2  text-left text-dark lead">
                                     <p>${date_sent}</p>
-                              </div>
-                              <div class="col-lg-2  text-left text-dark lead">
-                                    <span id="rb${element.id}" onclick = "showTextArea(${element.id})" class="btn btn-secondary">Reply</span>
-                              </div>
-                              <div class="container"  id = "r${element.id}" style = "display:none">
+                              </div>`;
+
+                if (user_id == profile_id){
+                    comments_html += `<div class="col-lg-2  text-left text-dark lead">
+                                        <span id="rb${element.id}" onclick = "showTextArea(${element.id})" class="btn btn-secondary">Reply</span>
+                                    </div>
+                                    <div class="container"  id = "r${element.id}" style = "display:none">
                                     <div class="row">
                                         <div class="col-sm-1 col-md-10">
                                             <div class="panel panel-default">
@@ -264,6 +267,8 @@ function commentsHandler(response){
                                 </div>
                              </div>
                         </a>`;
+                }
+
                 feedback.innerHTML += comments_html;
             }
             else{
@@ -341,9 +346,6 @@ let id_reply = "";
 function sendReply(feedback_id,receiver_id){
     let taidx = "#textArea"+feedback_id;
     let text = document.querySelector(taidx).value;
-    console.log(text);
-    console.log(feedback_id);
-    console.log(receiver_id);
     if(text !== null){
         let params = {
             "id_parent": feedback_id,
