@@ -147,8 +147,6 @@ class AdminController extends Controller
     public function action(Request $request)
     {
 
-
-
         //get id from username if it's not defined
         if ($request->id_member==-1){
             $user=User::where('username',$request->username)->limit(1)->get()->first();

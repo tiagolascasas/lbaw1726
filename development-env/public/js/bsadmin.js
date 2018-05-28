@@ -25,6 +25,20 @@ $(document).ready(function()
 });
 
 /**
+ * Focus username input after opening login modal
+ */
+$('#myModalLogin').on('shown.bs.modal', function () {
+    $('#username').focus();
+})  
+
+/**
+ * Focus name input after opening register modal
+ */
+$('#myModalRegister').on('shown.bs.modal', function () {
+    $('#name').focus();
+})  
+
+/**
  * Error handling
  */
 $(window).on("load", function()

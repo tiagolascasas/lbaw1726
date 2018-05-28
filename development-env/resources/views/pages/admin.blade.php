@@ -24,7 +24,7 @@
                 <div class="collapse" id="collapseExample">
                     <span  class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('suspend',-1,document.getElementById('usernameInput').value)">Suspend user indefinitely</span>
                     <span class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('normal',-1,document.getElementById('usernameInput').value)">Reactivate suspended user</span>
-                    <span  class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('ban',-1,document.getElementById('username').value)">Ban user permanently</span>
+                    <span  class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('ban',-1,document.getElementById('usernameInput').value)">Ban user permanently</span>
                     <span class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('promote',-1,document.getElementById('usernameInput').value)">Promote user to moderator</span>
                     <span class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('normal',-1,document.getElementById('usernameInput').value)">Revoke moderator privileges</span>
                 </div>
