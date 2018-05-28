@@ -229,17 +229,22 @@ function commentsHandler(response){
                 comments_html = "";
                 let date_sent = element.dateposted.substring(0, 11);
                 comments_html += `<a class="list-group-item list-group-item-action text-muted">
-                                <div class="row">
-                                    <div class="col-lg-2">
+                                    <div class="row">
+                                        <div class="col-lg-2">
                                             <span onclick="changeurl('/profile/${element.idsender}')" class="btn btn-outline-secondary">${element.username}</span>
-                                    </div>`;
+                                         </div>`;
                 if (element.liked) {
                     comments_html += `<div class="col-lg-1  text-left text-dark lead">
                                             <i class="fa fa-thumbs-up btn btn-success"></i>
                                         </div>`;
-                } else {
+                } else if (element.liked == false) {
                     comments_html += `<div class="col-lg-1  text-left text-dark lead">
                                             <i class="fa fa-thumbs-down btn btn-danger"></i>
+                                        </div>`;
+                }
+                else{
+                    comments_html += `<div class="col-lg-1  text-left text-dark lead">
+                                            <i class="fa fa-thumbs-o-upbtn btn-info"></i>
                                         </div>`;
                 }
                 comments_html += `<div class="col-lg-5  text-left text-dark lead">
