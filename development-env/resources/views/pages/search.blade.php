@@ -97,12 +97,6 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="search" class="font-weight-bold">Maximum current bid in €</label>
-                    <input type="number" min="0" step="0.5" class="form-control" name="maxBid">
-                </div>
-            </div>
-            <div class="form-row">
                 <div class="form-group col-md-12">
                     <button type="submit" id="advSearchSubmit" class="btn btn-primary col-md-12">Search</button>
                 </div>

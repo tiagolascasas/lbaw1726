@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuctionController extends Controller
 {
+    static private $lastUpdate = 0;
 
     /**
      * Create a new controller instance.

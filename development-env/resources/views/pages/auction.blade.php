@@ -136,7 +136,11 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             @if (Auth::check())
-                                            <input id="currentBid" type="number" min="0.00" placeholder="0.00" step="0.01" class="form-control">
+                                                @if($auction->auction_status == "approved")
+                                                <input id="currentBid" type="number" min="0.00" placeholder="0.00" step="0.01" class="form-control">
+                                                @else
+                                                <input id="currentBid" type="number" min="0.00" placeholder="0.00" disabled step="0.01" class="form-control">
+                                                @endif
                                             @else
                                             <input id="currentBid" disabled type="number" min="0.00" placeholder="0.00" step="0.01" class="form-control">
                                             @endif

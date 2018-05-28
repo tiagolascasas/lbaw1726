@@ -50,11 +50,6 @@ class SearchController extends Controller
             $res = DB::select("SELECT id FROM auction WHERE auction_status = ?", [$request->input('auctionStatus')]);
             array_push($queryResults, $res);
         }
-        if ($request->input('maxBid') != null)
-        {
-            $res = DB::select("SELECT DISTINCT auction.id FROM auction, bid WHERE bid.idAuction = auction.id and bidValue < ?", [$request->input('maxBid')]);
-            array_push($queryResults, $res);
-        }
         if ($request->input('wishlistOfUser') != null)  //gets auctions in wishlist of user (this is just a flag, doesn't need to have a value)
         {
             $res = DB::select("SELECT DISTINCT auction.id FROM auction, wishlist WHERE wishlist.idAuction = auction.id and wishlist.idBuyer = ?", [Auth::user()->id]);
