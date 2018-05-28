@@ -91,6 +91,52 @@ class AuctionController extends Controller
         return show($id);
     }
 
+    public static function updateAuctions()
+    {
+        //get all approved auctions
+        $auctions = DB::select("SELECT id, duration, dateApproved, idSeller FROM auction WHERE auction_status = approved");
+        $over = [];
+
+        foreach ($auctions as $auction)
+        {   //for each auction, if it is finished, add its id to the list
+            $timestamp = createTimestamp($auction->dateapproved, $auction->duration);
+            if ($timestamp === "Auction has ended!")
+            {
+                array_push($over, $auction->id);
+            }
+        }
+        //update all auctions in the list of ids with info saying it is over
+        $parameters = implode(',', $over);
+        $query = "UPDATE auction SET auction_status = ? and dateFinished = ? WHERE id IN (" . $parameters . ")";
+        DB::update($query, ["finished", "now()"]);
+
+        //$id = auction id
+        foreach($over as $id)
+        {
+            notifyOwner($id);
+            notifyWinnerAndPurchase($id);
+            notifyBidders($id);
+        }
+    }
+
+    public static function notifyOwner($id)
+    {
+        $res = DB::select("SELECT id, idseller, title FROM auction WHERE id = ?", [$id]);
+        $text = "Your auction of " . $res[0]->title . " has finished!";
+        $notifID = DB::table('notification')->insertGetId(['information' => $text, 'idusers' => $res[0]->idseller]);
+        DB::insert("INSERT INTO notification_auction (idAuction, idNotification) VALUES (?, ?)", [$res[0]->id, $notifID]);
+    }
+
+    public static function notifyWinnerAndPurchase($id)
+    {
+
+    }
+
+    public static function notifyBidders($id)
+    {
+
+    }
+
     public static function createTimestamp($dateApproved, $duration)
     {
         $start = strtotime($dateApproved);
