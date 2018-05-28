@@ -1,3 +1,26 @@
+<!-- Admin Info -->
+@if (Auth::check())
+    @if (Auth::user()->users_status=="admin" )
+    <!-- Moderator additional info alert box -->
+    <div class="container p-5">
+        <div class="alert alert-secondary" role="alert">
+            <h5>
+                <i class="fas fa-info"></i>
+                Administrator additional info:
+            </h5>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item bg-secondary text-white"><b>Status:</b> {{$user->users_status}}</li>
+                <li class="list-group-item"><b>Date created:</b> {{$user->datecreated}}</li>
+                <li class="list-group-item bg-secondary text-white"><b>Date suspended:</b> {{$user->datesuspended}}</li>
+                <li class="list-group-item"><b>Date banned:</b> {{$user->datebanned}}</li>
+                <li class="list-group-item bg-secondary text-white"><b>Date terminated:</b> {{$user->dateterminated}}</li>
+            </ul>
+        </div>  
+    </div>
+    @endif
+@endif
+
     <!-- Profile Content -->
     <main  data-id="{{$user}}">
         <div class="container-fluid bg-white">

@@ -8,7 +8,7 @@
             <main  data-id="{{$auction, $categoryName}}">
               <div class="container p-5">
                 @if (Auth::check())
-                @if (Auth::user()->users_status=="moderator")
+                @if (Auth::user()->users_status=="moderator" ||Auth::user()->users_status=="admin"  )
                 <!-- Moderator additional info alert box -->
                 <div class="alert alert-secondary" role="alert">
                     <h5>
