@@ -11,7 +11,7 @@
                 @if (Auth::check())
                 <span id="buttonsWelcome">
                     <a href="{{ url('myauctions/')}}" class="btn btn-primary btn-lg my-2 mx-3 jumbotron-buttons">My Auctions</a>
-                    <a href="{{ url('auctionsim_in/')}}" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>
+                    <a href="{{ url('auctions_im_in/')}}" class="btn btn-secondary btn-lg my-2 mx-3 jumbotron-buttons">Auctions I'm in</a>
                 </span>
                  @endif
             </div>

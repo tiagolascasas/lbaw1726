@@ -184,7 +184,7 @@
                                               </span>
                                             @endif
                                   </div>
-                                <input  type="submit" class="btn btn-primary btn-block mb-4">Save any new changes</input>
+                                <input type="submit" class="btn btn-primary btn-block mb-4">Save any new changes</input>
                             </form>
                         </div>
                     </div>
