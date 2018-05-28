@@ -86,10 +86,13 @@ class SearchController extends Controller
 
             $this->buildTimestamps($auctions);
             $this->getMaxBids($auctions);
+            $this->getImage($auctions);
 
             $responseSentence = implode(' and ', $responseSentence);
             $responseSentence = 'Your search results for auctions ' . $responseSentence . ':';
-        } catch (QueryException $qe) {
+        }
+        catch (QueryException $qe)
+        {
             $errors = new MessageBag();
 
             $errors->add('An error ocurred', "There was a problem searching for auctions. Try Again!");
@@ -115,7 +118,22 @@ class SearchController extends Controller
     {
         foreach ($auctions as $auction) {
             $res = DB::select("SELECT max(bidValue) FROM bid WHERE idAuction = ?", [$auction->id]);
-            $auction->bidValue = $res[0]->max;
+            if ($res[0]->max == null)
+                $auction->bidValue = "No bids yet";
+            else
+                $auction->bidValue = $res[0]->max . "€";
+        }
+    }
+
+    private function getImage($auctions)
+    {
+        foreach ($auctions as $auction)
+        {
+            $image = DB::select("SELECT source FROM image WHERE idauction = ? limit 1", [$auction->id]);
+            if (isset($image[0]->source))
+                $auction->image = $image[0]->source;
+            else
+                $auction->image = "book.png";
         }
     }
 }
