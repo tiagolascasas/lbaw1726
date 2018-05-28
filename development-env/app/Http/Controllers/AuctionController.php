@@ -121,28 +121,31 @@ class AuctionController extends Controller
     public static function updateAuctions()
     {
         //get all approved auctions
-        $auctions = DB::select("SELECT id, duration, dateApproved, idSeller FROM auction WHERE auction_status = approved");
+        $auctions = DB::select("SELECT id, duration, dateApproved, idSeller FROM auction WHERE auction_status = ?",["approved"]);
         $over = [];
 
         foreach ($auctions as $auction)
         {   //for each auction, if it is finished, add its id to the list
-            $timestamp = createTimestamp($auction->dateapproved, $auction->duration);
+            $timestamp = AuctionController::createTimestamp($auction->dateapproved, $auction->duration);
             if ($timestamp === "Auction has ended!")
             {
                 array_push($over, $auction->id);
             }
         }
         //update all auctions in the list of ids with info saying it is over
+        if (sizeof($over) == 0)
+            return;
+
         $parameters = implode(',', $over);
-        $query = "UPDATE auction SET auction_status = ? and dateFinished = ? WHERE id IN (" . $parameters . ")";
+        $query = "UPDATE auction SET auction_status = ?, dateFinished = ? WHERE id IN (" . $parameters . ")";
         DB::update($query, ["finished", "now()"]);
 
         //$id = auction id
         foreach($over as $id)
         {
-            notifyOwner($id);
-            notifyWinnerAndPurchase($id);
-            notifyBidders($id);
+            //notifyOwner($id);
+            //notifyWinnerAndPurchase($id);
+            //notifyBidders($id);
         }
     }
 
@@ -156,7 +159,8 @@ class AuctionController extends Controller
 
     public static function notifyWinnerAndPurchase($id)
     {
-
+        //notify
+        //process payment
     }
 
     public static function notifyBidders($id)

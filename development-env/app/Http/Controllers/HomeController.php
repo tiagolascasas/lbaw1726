@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Auction;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\AuctionController;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,8 @@ class HomeController extends Controller
     public function show()
     {
         $auctions = Auction::all();
-
+AuctionController::updateAuctions();
         return view('pages.home', ['auctions' => $auctions]);
+
     }
 }
