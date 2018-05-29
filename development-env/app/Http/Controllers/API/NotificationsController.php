@@ -35,6 +35,7 @@ class NotificationsController extends Controller
                                 AND notification_auction.idNotification=notification.id
                                 AND notification_auction.idAuction=auction.id', [Auth::user()->id]);
         } catch (Exception $e) {
+            $this->error($e);
             return response('Internal Error', 500);
         }
         return response()->json($response);
@@ -52,12 +53,14 @@ class NotificationsController extends Controller
                 try {
                     DB::update("UPDATE notification SET is_seen = TRUE WHERE idusers = ? AND id=?", [Auth::user()->id, $id]);
                 } catch (QueryException $qe) {
+                    $this->warn($qe);
                     return response('NOT FOUND', 404);
                 }
             } else {
                 return response('Incorrect Request', 400);
             }
         } catch (Exception $e) {
+            $this->error($e);
             return response('Internal Error', 500);
         }
 

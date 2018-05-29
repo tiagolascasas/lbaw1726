@@ -179,6 +179,7 @@ class ModeratorController extends Controller
                 return $this->get_new_description($request);
             }
         } catch (Exception $e) {
+            $this->error($e);
             return response('Internal Error', 500);
         }
 
