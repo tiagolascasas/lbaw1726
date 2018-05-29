@@ -168,6 +168,13 @@ CREATE TABLE comment (
     CONSTRAINT check_comment_parent CHECK (id != idParent)
 );
 
+CREATE TABLE password_resets (
+    id SERIAL PRIMARY KEY,
+    email text NOT NULL,
+    token text NOT NULL,
+    datePosted TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+);
+
 -----------------------------------------------------
  --INDEXES
 ----------------------------------------------------
@@ -595,31 +602,32 @@ INSERT INTO "requested_termination"  (idusers) VALUES (12);
 INSERT INTO "requested_termination"  (idusers) VALUES (13);
 
 --5
+--auction data from https://www.goodreads.com/shelf/show/nobel-prize
 --Real data, approved
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
 VALUES ('Gabriel Garcia Marquez', 'Very good condition', '600000', '878551550-7', 'One Hundred Years of Solitude', 'approved', 7, 1, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Albert Camus', 'Very good condition', '500000', '878551550-7', 'The Stranger (Paperback)', 'approved', 7, 1, 2, now());
+VALUES ('Albert Camus', 'Very good condition', '500000', '878551550-7', 'The Stranger', 'approved', 7, 1, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Ernest Hemingway', 'Slightly wrinkled', '450000', '878551550-7', 'The Old Man and the Sea (Hardcover)', 'approved', 7, 1, 2, now());
+VALUES ('Ernest Hemingway', 'Slightly wrinkled', '450000', '878551550-7', 'The Old Man and the Sea', 'approved', 7, 1, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('William Golding', 'Very good condition', '600000', '878551550-7', 'Lord of the Flies (Paperback)', 'approved', 7, 1, 2, now());
+VALUES ('William Golding', 'Very good condition', '600000', '878551550-7', 'Lord of the Flies', 'approved', 7, 1, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('J. M. Coetzee', 'Very good condition', '500000', '878551550-7', 'Disgrace (Paperback)', 'approved', 7, 1, 2, now());
+VALUES ('J. M. Coetzee', 'Very good condition', '500000', '878551550-7', 'Disgrace', 'approved', 7, 1, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('John Steinbeck', 'Slightly wrinkled', '5500000', '878551550-7', 'Of Mice and Men (Paperback)', 'approved', 7, 1, 3, now());
+VALUES ('John Steinbeck', 'Slightly wrinkled', '5500000', '878551550-7', 'Of Mice and Men', 'approved', 7, 1, 3, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
 VALUES ('Hermann Hesse', 'Very good condition', '600000', '878551550-7', 'Siddhartha (Mass Market Paperback)', 'approved', 7, 1, 3, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Toni Morrison', 'Slightly wrinkled', '500000', '878551550-7', 'Beloved (Paperback)', 'approved', 7, 1, 3, now());
+VALUES ('Toni Morrison', 'Slightly wrinkled', '500000', '878551550-7', 'Beloved', 'approved', 7, 1, 3, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Orhan Pamuk', 'Slightly wrinkled', '500000', '878551550-7', 'My Name is Red (Paperback)', 'approved', 7, 1, 3, now());
+VALUES ('Orhan Pamuk', 'Slightly wrinkled', '500000', '878551550-7', 'My Name is Red', 'approved', 7, 1, 3, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('John Steinbeck', 'Very good condition', '600000', '878551550-7', 'The Grapes of Wrath (Hardcover)', 'approved', 7, 1, 4, now());
+VALUES ('John Steinbeck', 'Very good condition', '600000', '878551550-7', 'The Grapes of Wrath', 'approved', 7, 1, 4, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Orhan Pamuk', 'Slightly wrinkled', '600000', '878551550-7', 'Snow (Paperback)', 'approved', 7, 1, 4, now());
+VALUES ('Orhan Pamuk', 'Slightly wrinkled', '600000', '878551550-7', 'Snow', 'approved', 7, 1, 4, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Aleksandr Solzhenitsyn', 'Slightly wrinkled', '600000', '878551550-7', 'One Day in the Life of Ivan Denisovich (Paperback)', 'approved', 7, 1, 5, now());
+VALUES ('Aleksandr Solzhenitsyn', 'Slightly wrinkled', '600000', '878551550-7', 'One Day in the Life of Ivan Denisovich', 'approved', 7, 1, 5, now());
 
 --Real data to match the first auctions
 INSERT INTO "image" (source, idAuction) VALUES ('years.jpg',1);
@@ -636,25 +644,25 @@ INSERT INTO "image" (source, idAuction) VALUES ('grapes.jpg',10);
 INSERT INTO "image" (source, idAuction) VALUES ('snow.jpg',11);
 INSERT INTO "image" (source, idAuction) VALUES ('one-day.jpg',12);
 
---finished auctions
+--unapproved auctions
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Doris Lessing', 'Very good condition', '600000', '878551550-7', 'The Golden Notebook (Paperback)', 'waitingApproval', 5, 1, 2, now());
+VALUES ('Doris Lessing', 'Very good condition', '600000', '878551550-7', 'The Golden Notebook', 'waitingApproval', 5, 1, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Albert Camus', 'Very good condition', '600000', '878551550-7', 'The Plague (Paperback)', 'waitingApproval', 4, 1, 2, now());
+VALUES ('Albert Camus', 'Very good condition', '600000', '878551550-7', 'The Plague', 'waitingApproval', 4, 1, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
 VALUES ('Pearl S. Buck', 'Very good condition', '600000', '878551550-7', 'The Good Earth (House of Earth, #1)', 'waitingApproval', 7, 1, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('William Faulkner', 'Very good condition', '600000', '878551550-7', 'The Sound and the Fury (Paperback)', 'waitingApproval', 7, 1, 3, now());
+VALUES ('William Faulkner', 'Very good condition', '600000', '878551550-7', 'The Sound and the Fury', 'waitingApproval', 7, 1, 3, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Ernest Hemingway', 'Very good condition', '600000', '878551550-7', 'A Farewell to Arms (Paperback)', 'waitingApproval', 7, 1, 3, now());
+VALUES ('Ernest Hemingway', 'Very good condition', '600000', '878551550-7', 'A Farewell to Arms', 'waitingApproval', 7, 1, 3, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Gabriel Garcia Marquez', 'Very good condition', '600000', '878551550-7', 'Chronicle of a Death Foretold (Paperback)', 'waitingApproval', 7, 1, 2, now());
+VALUES ('Gabriel Garcia Marquez', 'Very good condition', '600000', '878551550-7', 'Chronicle of a Death Foretold', 'waitingApproval', 7, 1, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Elfriede Jelinek', 'Very good condition', '600000', '878551550-7', 'The Piano Teacher (Hardcover)', 'waitingApproval', 7, 1, 2, now());
+VALUES ('Elfriede Jelinek', 'Very good condition', '600000', '878551550-7', 'The Piano Teacher', 'waitingApproval', 7, 1, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Alice Munro', 'Very good condition', '600000', '878551550-7', 'Dear Life (Hardcover)', 'waitingApproval', 7, 1, 3, now());
+VALUES ('Alice Munro', 'Very good condition', '600000', '878551550-7', 'Dear Life', 'waitingApproval', 7, 1, 3, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('Boris Pasternak', 'Very good condition', '600000', '878551550-7', 'Doctor Zhivago (Paperback)', 'waitingApproval', 7, 1, 3, now());
+VALUES ('Boris Pasternak', 'Very good condition', '600000', '878551550-7', 'Doctor Zhivago', 'waitingApproval', 7, 1, 3, now());
 
 INSERT INTO "image" (source, idAuction) VALUES ('golden.jpg',13);
 INSERT INTO "image" (source, idAuction) VALUES ('plague.jpg',14);
@@ -667,8 +675,35 @@ INSERT INTO "image" (source, idAuction) VALUES ('dear.jpg',20);
 INSERT INTO "image" (source, idAuction) VALUES ('doctor.jpg',21);
 
 
---unapproved auctions
-INSERT INTO "auction" (author, description, duration, ISBN, title, idPublisher, idLanguage, idSeller) VALUES ('Harcourt Hibbart', 'et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a', '360050', '663418251-5', 'cursus urna ut tellus nulla ut', 4, 109, 14);
+--finished auctions
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved, dateFinished)
+VALUES ('Günter Grass', 'Very good condition', '600000', '878551550-7', 'The Tin Drum', 'finished', 7, 1, 3, now(), now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved, dateFinished)
+VALUES ('Hermann Hesse', 'Very good condition', '600000', '878551550-7', 'Steppenwolf', 'finished', 7, 1, 3, now(), now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved, dateFinished)
+VALUES ('Thomas Mann', 'Very good condition', '600000', '878551550-7', 'The Magic Mountain', 'finished', 7, 1, 2, now(), now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved, dateFinished)
+VALUES ('Knut Hamsun', 'Very good condition', '600000', '878551550-7', 'Hunger', 'finished', 7, 1, 2, now(), now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved, dateFinished)
+VALUES ('Svetlana Alexeivich', 'Very good condition', '600000', '878551550-7', 'Voices from Chernobyl: The Oral History of a Nuclear Disaster', 'finished', 7, 1, 3, now(), now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved, dateFinished)
+VALUES ('John Steinbeck', 'Very good condition', '600000', '878551550-7', 'East of Eden', 'finished', 7, 1, 2, now(), now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved, dateFinished)
+VALUES ('Ernest Hemingway', 'Very good condition', '600000', '878551550-7', 'The Sun Also Rises', 'finished', 7, 1, 3, now(), now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved, dateFinished)
+VALUES ('Samuel Beckett', 'Very good condition', '600000', '878551550-7', 'Waiting for Godot', 'finished', 7, 1, 2, now(), now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved, dateFinished)
+VALUES ('William Faulkner', 'Very good condition', '600000', '878551550-7', 'As I Lay Dying', 'finished', 7, 1, 5, now(), now());
+
+INSERT INTO "image" (source, idAuction) VALUES ('drum.jpg',22);
+INSERT INTO "image" (source, idAuction) VALUES ('steppen.jpg',23);
+INSERT INTO "image" (source, idAuction) VALUES ('magic.jpg',24);
+INSERT INTO "image" (source, idAuction) VALUES ('hunger.jpg',25);
+INSERT INTO "image" (source, idAuction) VALUES ('voices.jpg',26);
+INSERT INTO "image" (source, idAuction) VALUES ('eden.jpg',27);
+INSERT INTO "image" (source, idAuction) VALUES ('sun.jpg',28);
+INSERT INTO "image" (source, idAuction) VALUES ('godot.jpg',29);
+INSERT INTO "image" (source, idAuction) VALUES ('dying.jpg',30);
 
 --9
 INSERT INTO "category_auction" (idCategory,idAuction) VALUES(1,1);
@@ -821,7 +856,6 @@ INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idR
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'Very poor quality', false, null, 3, 4);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'Does not ship soon enough', false, null, 8, 4);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'Auction times are always too long', false, null, 16, 4);
-INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'You are an idiot', true, null, 19, 5);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'Give me my money back you thief', true, null, 15, 12);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'Please do not buy from this person, buy from me instead!', true, null, 3, 6);
 INSERT INTO "comment" (liked, comment_text, is_removed, idParent, idSender , idReceiver) VALUES (false, 'asdgdsfghdfhfghdfghdfgh', true, null, 6, 11);
