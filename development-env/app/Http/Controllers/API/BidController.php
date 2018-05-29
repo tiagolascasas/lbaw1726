@@ -72,20 +72,25 @@ class BidController extends Controller
                 return response()->json(['success' => false, 'message' => "You cannot bid on an auction that isn't going on."]);
             }
 
-            $message = "";
             $success = true;
             $info = "Your bid has been beaten.";
 
             $exists = DB::select("SELECT * FROM bid WHERE idBuyer = ? and idAuction = ?", [$userID, $auctionID]);
             if (sizeof($exists) > 0) {
+                $lastbidder = DB::select('SELECT bid.idBuyer FROM bid WHERE idAuction = ? ORDER BY bidValue DESC', [$auctionID]);
+
                 DB::update("UPDATE bid SET bidValue = ?, bidDate = now() WHERE idBuyer = ? AND idAuction = ?", [$bidValue, $userID, $auctionID]);
-                $message = "Successfully updated your previous bid. You are now leading the auction!";
+                $message = "Successfully updated your bid. You are now leading the auction!";
+
+                $notifID = DB::table('notification')->insertGetId(['information' => $info, 'idusers' => $lastbidder[0]->idbuyer]);
+                DB::insert("INSERT INTO notification_auction (idAuction, idNotification) VALUES (?, ?)", [$auctionID, $notifID]);
+
             } else {
-                $lastbidder = DB::select('SELECT bid.idBuyer FROM bid WHERE idAuction = ?', [$auctionID]);
+                $lastbidder = DB::select('SELECT bid.idBuyer FROM bid WHERE idAuction = ? ORDER BY bidValue DESC', [$auctionID]);
 
                 DB::insert("INSERT INTO bid (idBuyer, idAuction, bidValue) VALUES (?, ?, ?)", [$userID, $auctionID, $bidValue]);
                 $message = "Successfully registered your bid. You are now leading the auction!";
-                DB::insert("INSERT INTO notification (information, idusers) VALUES (?,?)", [$info, $lastbidder]);
+                DB::insert("INSERT INTO notification (information, idusers) VALUES (?,?)", [$info, $lastbidder[0]->idbuyer]);
             }
         } catch (Exception $e) {
             $this->error($e);
