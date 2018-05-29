@@ -26,9 +26,9 @@
         </div>
         <hr id="hr_space" class="mt-2">
         @if($action!="WISHLIST")
-        <div class="album p-2">
+        <div id="auctionsAlbum" class="album p-2">
         @else
-        <div class="list-group panel">
+        <div id="auctionsAlbum" class="list-group panel">
         @endif
           
 
