@@ -91,14 +91,31 @@ function encodeForAjax(data)
     }).join('&');
 }
 
+let album = document.querySelector('#auctionsAlbum');
+let showmorebutton = document.querySelector('#showmorebutton');
+let i=0;
+let auctions=[];
+showmorebutton.addEventListener('click',function(event){
+    switch(window.location.pathname){
+        case "/myauctions":
+        album.innerHTML +=myauctionsAlbum();
+            break;
+        case "/history":
+        album.innerHTML +=historyAlbum();
+            break;
+        default:
+        album.innerHTML +=makeAlbum();    
+    }
+    console.log("what");
+    event.preventDefault();
+});
 /**
- * JS for the home page
+ * JS for the lists
  */
 if (window.location.pathname === "/home")
 {
     ajaxCallGet("api/search?auctionStatus=approved", auctionAlbumHandler);
 }
-
 
 if (window.location.pathname === "/myauctions")
 {
@@ -122,19 +139,19 @@ if (window.location.pathname === "/history")
 
 function historyAlbumHandler()
 {
-    console.log(this.responseText);
     auctions = JSON.parse(this.responseText);
-    let album = document.querySelector('#auctionsAlbum');
-    album.innerHTML = historyAlbum(auctions);
+    album.innerHTML = historyAlbum();
 }
 
-function historyAlbum(auctions)
+function historyAlbum()
 {
-    console.log(auctions);
+    
     let htmlAuction = `<div class="row">`;
-    let i = 0;
-    auctions.forEach(element =>
+    let max=i+12;
+
+    for(i; i<max&&i<auctions.length;i++)
     {
+        let element=auctions[i];
         if (i % 4 === 0 && i !== 0)
         {
             htmlAuction += `</div><div class="row">`;
@@ -156,8 +173,10 @@ function historyAlbum(auctions)
             </div>
         </a>
     </div>`;
-        i++;
-    });
+    };
+
+        if(i==auctions.length)
+            showmorebutton.parentNode.removeChild(showmorebutton);
     htmlAuction += `</div>`;
     return htmlAuction;
 }
@@ -166,18 +185,19 @@ function myauctionsAlbumHandler()
 {
     console.log(this.responseText);
     auctions = JSON.parse(this.responseText);
-    let album = document.querySelector('#auctionsAlbum');
-    album.innerHTML = myauctionsAlbum(auctions);
+    album.innerHTML = myauctionsAlbum();
 }
 
 
-function myauctionsAlbum(auctions)
+function myauctionsAlbum()
 {
     console.log(auctions);
     let htmlAuction = `<div class="row">`;
-    let i = 0;
-    auctions.forEach(element =>
+    let max=i+12;
+
+    for(i; i<max&&i<auctions.length;i++)
     {
+        let element=auctions[i];
         if (i % 4 === 0 && i !== 0)
         {
             htmlAuction += `</div><div class="row">`;
@@ -201,9 +221,10 @@ function myauctionsAlbum(auctions)
             </div>
         </a>
     </div>`;
-        i++;
-    });
+    };
     htmlAuction += `</div>`;
+    if(i==auctions.length)
+    showmorebutton.parentNode.removeChild(showmorebutton);
     return htmlAuction;
 }
 
@@ -211,17 +232,18 @@ function auctionAlbumHandler()
 {
     console.log(this.responseText);
     auctions = JSON.parse(this.responseText);
-    let album = document.querySelector('#auctionsAlbum');
-    album.innerHTML = makeAlbum(auctions);
+    album.innerHTML = makeAlbum();
 }
 
-function makeAlbum(auctions)
+function makeAlbum()
 {
     console.log(auctions);
     let htmlAuction = `<div class="row">`;
-    let i = 0;
-    auctions.forEach(element =>
+    let max=i+12;
+
+    for(i; i<max&&i<auctions.length;i++)
     {
+        let element=auctions[i];
         if (i % 4 === 0 && i !== 0)
         {
             htmlAuction += `</div><div class="row">`;
@@ -246,9 +268,10 @@ function makeAlbum(auctions)
             </div>
         </a>
     </div>`;
-        i++;
-    });
+    };
     htmlAuction += `</div>`;
+    if(i==auctions.length)
+        showmorebutton.parentNode.removeChild(showmorebutton);
     return htmlAuction;
 }
 
