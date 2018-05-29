@@ -361,7 +361,6 @@ INSERT INTO "country" (countryName) VALUES ('Sweden');
 INSERT INTO "country" (countryName) VALUES ('Ireland');
 INSERT INTO "country" (countryName) VALUES ('United Kingdom');
 
-INSERT INTO "users" (address, age, email, name, password, phone, postalCode, username, users_status, idCountry) VALUES ('admin', 21, 'admin@fe.up.pt', 'admin', '$2y$10$c1H9bNvOoNdOtoDAJDfrNOooEt7UPWTW6eeD9XTnfOL7BUGzjSpW6', '111111111', '1111-111', 'admin', 'admin', 17);
 --8
 INSERT INTO "language" (languageName) VALUES('English');
 INSERT INTO "language" (languageName) VALUES('Afar');
@@ -535,10 +534,13 @@ INSERT INTO "publisher" (publisherName) VALUES ('Vintage Books');
 
 
 --3
-INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('Rua 1', 20, 'up201503616@fe.up.pt', 'Tiago Lascasas', '$2y$10$SoTxF0cqJ1La2BLl8otde.Ff97YYJfuFC3ouNBY8JGUnQf4vqacjq', 'up201503616@fe.up.pt', '351961843043', '4510 260', 'tiagolascasas', 'normal', 17);
-INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('Rua 2', 20, 'up201405612@fe.up.pt', 'Rúben Torres', '$2y$10$SoTxF0cqJ1La2BLl8otde.Ff97YYJfuFC3ouNBY8JGUnQf4vqacjq', 'up201405612@fe.up.pt', '351961843043', '1234 123', 'rubentorres', 'normal', 17);
-INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('Rua 3', 20, 'up201000307@fe.up.pt', 'Daniel Azevedo', '$2y$10$SoTxF0cqJ1La2BLl8otde.Ff97YYJfuFC3ouNBY8JGUnQf4vqacjq', 'up201000307@fe.up.pt', '351961843043', '5453 643', 'danielazevedo', 'moderator', 17);
-INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('Rua 4', 20, 'up201403128@fe.up.pt', 'Nelson Costa', '$2y$10$SoTxF0cqJ1La2BLl8otde.Ff97YYJfuFC3ouNBY8JGUnQf4vqacjq', 'up201403128@fe.up.pt', '351961843043', '8678 126', 'nelsoncosta', 'moderator', 17);
+--admin
+INSERT INTO "users" (address, age, email, name, password, phone, postalCode, username, users_status, idCountry) VALUES ('admin', 21, 'admin@fe.up.pt', 'admin', '$2y$10$c1H9bNvOoNdOtoDAJDfrNOooEt7UPWTW6eeD9XTnfOL7BUGzjSpW6', '111111111', '1111-111', 'admin', 'admin', 17);
+--others
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('Rua 1', 20, 'up201503616@fe.up.pt', 'Tiago Lascasas', '$2y$10$SoTxF0cqJ1La2BLl8otde.Ff97YYJfuFC3ouNBY8JGUnQf4vqacjq', 'daniel.azevedo@fe.up.pt', '351961843043', '4510 260', 'tiagolascasas', 'normal', 17);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('Rua 2', 20, 'up201405612@fe.up.pt', 'Rúben Torres', '$2y$10$SoTxF0cqJ1La2BLl8otde.Ff97YYJfuFC3ouNBY8JGUnQf4vqacjq', 'daniel.azevedo@fe.up.pt', '351961843043', '1234 123', 'rubentorres', 'normal', 17);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('Rua 3', 20, 'daniel.azevedo@fe.up.pt', 'Daniel Azevedo', '$2y$10$SoTxF0cqJ1La2BLl8otde.Ff97YYJfuFC3ouNBY8JGUnQf4vqacjq', 'daniel.azevedo@fe.up.pt', '351961843043', '5453 643', 'danielazevedo', 'moderator', 17);
+INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('Rua 4', 20, 'up201403128@fe.up.pt', 'Nelson Costa', '$2y$10$SoTxF0cqJ1La2BLl8otde.Ff97YYJfuFC3ouNBY8JGUnQf4vqacjq', 'daniel.azevedo@fe.up.pt', '351961843043', '8678 126', 'nelsoncosta', 'moderator', 17);
 INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('2066 Straubel Court', 28, 'eluty0@bizjournals.com', 'Eustacia Luty', 'oRE56BNQ', 'eluty0@theguardian.com', '+46 904 159 9108', '692 24', 'eluty0', 'normal', 22);
 INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('7361 Mallard Road', 19, 'ehould1@hp.com', 'Edmund Hould', 'pEU60gGA', 'ehould1@opensource.org', '+998 945 505 7553', '692 24', 'ehould1', 'normal', 3);
 INSERT INTO "users" (address, age, email, name, password, paypalEmail, phone, postalCode, username, users_status, idCountry) VALUES ('5 John Wall Drive', 21, 'clittrell2@imgur.com', 'Clemmy Littrell', 'Uh4dAtIR', 'clittrell2@wunderground.com', '+63 781 701 0990', '8301', 'clittrell2', 'normal', 1);
@@ -635,6 +637,34 @@ INSERT INTO "image" (source, idAuction) VALUES ('snow.jpg',11);
 INSERT INTO "image" (source, idAuction) VALUES ('one-day.jpg',12);
 
 --finished auctions
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
+VALUES ('Doris Lessing', 'Very good condition', '600000', '878551550-7', 'The Golden Notebook (Paperback)', 'waitingApproval', 5, 1, 2, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
+VALUES ('Albert Camus', 'Very good condition', '600000', '878551550-7', 'The Plague (Paperback)', 'waitingApproval', 4, 1, 2, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
+VALUES ('Pearl S. Buck', 'Very good condition', '600000', '878551550-7', 'The Good Earth (House of Earth, #1)', 'waitingApproval', 7, 1, 2, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
+VALUES ('William Faulkner', 'Very good condition', '600000', '878551550-7', 'The Sound and the Fury (Paperback)', 'waitingApproval', 7, 1, 3, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
+VALUES ('Ernest Hemingway', 'Very good condition', '600000', '878551550-7', 'A Farewell to Arms (Paperback)', 'waitingApproval', 7, 1, 3, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
+VALUES ('Gabriel Garcia Marquez', 'Very good condition', '600000', '878551550-7', 'Chronicle of a Death Foretold (Paperback)', 'waitingApproval', 7, 1, 2, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
+VALUES ('Elfriede Jelinek', 'Very good condition', '600000', '878551550-7', 'The Piano Teacher (Hardcover)', 'waitingApproval', 7, 1, 2, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
+VALUES ('Alice Munro', 'Very good condition', '600000', '878551550-7', 'Dear Life (Hardcover)', 'waitingApproval', 7, 1, 3, now());
+INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
+VALUES ('Boris Pasternak', 'Very good condition', '600000', '878551550-7', 'Doctor Zhivago (Paperback)', 'waitingApproval', 7, 1, 3, now());
+
+INSERT INTO "image" (source, idAuction) VALUES ('golden.jpg',13);
+INSERT INTO "image" (source, idAuction) VALUES ('plague.jpg',14);
+INSERT INTO "image" (source, idAuction) VALUES ('earth.jpg',15);
+INSERT INTO "image" (source, idAuction) VALUES ('sound.jpg',16);
+INSERT INTO "image" (source, idAuction) VALUES ('arms.jpg',17);
+INSERT INTO "image" (source, idAuction) VALUES ('death.jpg',18);
+INSERT INTO "image" (source, idAuction) VALUES ('piano.jpg',19);
+INSERT INTO "image" (source, idAuction) VALUES ('dear.jpg',20);
+INSERT INTO "image" (source, idAuction) VALUES ('doctor.jpg',21);
 
 
 --unapproved auctions
