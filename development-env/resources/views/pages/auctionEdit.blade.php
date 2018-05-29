@@ -18,7 +18,7 @@
         </h5>
         <div class="form-row">
             <div class="form-group col-md-12">
-                <label>Edit your auction's description here. Be mindful that removing information rather than adding may lead to a rejected edition request, and on the worst case scenario to your auction's cancellation.</label>
+                <label for="description">Edit your auction's description here. Be mindful that removing information rather than adding may lead to a rejected edition request, and on the worst case scenario to your auction's cancellation.</label>
                 <textarea id="description" name="description" rows="3" cols="30" class="form-control"required>{{ $desc }}</textarea>
                 @if ($errors->has('description'))
                   <span class="error">
@@ -30,7 +30,7 @@
 
         <div class="form-row">
             <div class="form-group col-md-12">
-                <label>Add more images of the book. You cannot remove the old images.</label>
+                <label for="images[]">Add more images of the book. You cannot remove the old images.</label>
                 <input id="images" name="images[]" class="form-control" type="file" accept="image/*" multiple>
                 @if ($errors->has('images'))
                   <span class="error">

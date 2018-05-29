@@ -14,7 +14,7 @@
             <form class="ml-4 mr-4">
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label>Select an user</label>
+                        <label for="username">Select an user</label>
                         <input id="usernameInput" name="username" class="form-control" type="text" placeholder="username">
                     </div>
                 </div>

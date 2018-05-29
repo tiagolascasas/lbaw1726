@@ -31,7 +31,7 @@ class CommentController extends Controller
                 $response = DB::select('SELECT comment.id, comment.datePosted,comment.liked,comment.idsender,comment.comment_text,comment.idreceiver,comment.idparent,users.username
                                 FROM comment,users
                                 WHERE comment.idreceiver=?
-                                AND users.id = comment.idSender', [$id]);
+                                AND users.id = comment.idSender AND is_removed = ?' , [$id, false]);
             } catch (QueryException $qe) {
                 return response('NOT FOUND', 404);
             }

@@ -52,7 +52,7 @@
                      @if (Auth::user()->id != $user->id)
                      <div class="col-md-3" style = "display: inline-block;">
                         <a class="btn " data-toggle="modal" data-target="#myModalMail">
-                        <i class="fa fa-envelope"></i>
+                        <i class="fa fa-envelope"></i> Contact
                         </a>
                      </div>
                      @endif
@@ -344,24 +344,5 @@
            </div>
         </div>
      </div>
-     <div class="modal fade" id="paypalRemoveModal" tabindex="-1" role="dialog" aria-labelledby="myModalPasswordLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-           <div class="modal-content">
-              <div class="modal-header">
-                 <h5 class="modal-title" id="myModalPasswordLabel">Unlink your PayPal account</h5>
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-                 </button>
-              </div>
-              <div class="modal-body">
-                 <form method="DELETE" action="{{ route('profile.paypal.remove',$user->id) }}">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <p>Are you sure you wish to unlink your PayPal account? You won't be able to buy or sell without it.</p>
-                    <button class="btn btn-primary btn-block mb-4">Unlink your PayPal account</button>
-                 </form>
-              </div>
-           </div>
-        </div>
-    </div>
    </div>
 </main>

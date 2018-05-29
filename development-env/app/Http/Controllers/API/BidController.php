@@ -56,6 +56,10 @@ class BidController extends Controller
         $userID = Auth::user()->id;
         $bidValue = $request->input('value');
 
+        $hasPayment = DB::select("SELECT paypalemail FROM users WHERE id = ?", [$userID]);
+        if ($hasPayment[0]->paypalemail == null)
+            return response()->json(['success' => false, 'message' => "You cannot bid without having a payment method attached to your account"]);
+
         $auction = DB::select("SELECT auction_status FROM auction WHERE id = ?", [$auctionID]);
         if ($auction[0]->auction_status != "approved") {
             return response()->json(['success' => false, 'message' => "You cannot bid on an auction that isn't going on."]);

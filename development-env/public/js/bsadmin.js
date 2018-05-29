@@ -728,7 +728,7 @@ if (window.location.href.includes("auction/"))
                 let header = document.querySelector("#bidResultHeader");
                 let body = document.querySelector("#bidResultBody");
                 header.innerHTML = "Insufficient bidding value";
-                body.innerHTML = "Your bid cannot be lower or equal to the current bid.";
+                body.innerHTML = '<i class="fa fa-times"></i>  Your bid cannot be lower or equal to the current bid.';
                 body.className = "alert alert-danger";
                 $("#bidResult").modal();
                 return;
@@ -788,14 +788,15 @@ function postBidHandler(data)
     let message = data['message'];
     if (success)
     {
+
         header.innerHTML = "Successful bid";
-        body.innerHTML = message;
+        body.innerHTML = '<i class="fa fa-check" aria-hidden="true"></i>  ' + message;
         body.className = "alert alert-success";
     }
     else
     {
         header.innerHTML = "Unsuccessful bid";
-        body.innerHTML = message;
+        body.innerHTML = '<i class="fa fa-times"></i>  ' + message;
         body.className = "alert alert-danger";
     }
     $("#bidResult").modal();

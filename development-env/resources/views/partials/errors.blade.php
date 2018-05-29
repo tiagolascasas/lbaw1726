@@ -6,7 +6,8 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title align-self-center">Errors</h4>
+        <i class="fa fa-times"></i>
+        <h4 class="modal-title align-self-center">  Errors</h4>
       </div>
       <div class="modal-body">
             @foreach ($errors->all() as $error)

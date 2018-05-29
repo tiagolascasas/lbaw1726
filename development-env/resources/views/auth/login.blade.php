@@ -12,8 +12,8 @@
         </div>
         <div class="form-group">
             <div class="form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                <label class="form-check-label" for="remember">
+                    <input id="remember" class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
             </label>
             </div>
         </div>

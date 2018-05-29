@@ -15,7 +15,7 @@
             {{ csrf_field() }}
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label>Book title</label>
+                    <label for="title">Book title</label>
                     <input id="title" name="title" type="text" class="form-control" value="{{ old('title') }}" required>
                     @if ($errors->has('title'))
                       <span class="error">
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label>Author</label>
+                    <label for="author">Author</label>
                     <input id="author" name="author" type="text" class="form-control" value="{{ old('author') }}" required>
                     @if ($errors->has('author'))
                       <span class="error">
@@ -37,7 +37,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label>ISBN</label>
+                    <label for="isbn">ISBN</label>
                     <input id="isbn" name="isbn" type="text" class="form-control" value="{{ old('isbn') }}" required>
                     @if ($errors->has('isbn'))
                       <span class="error">
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label>Publisher</label>
+                    <label for="publisher">Publisher</label>
                     <input id="publisher" name="publisher" type="text" value="{{ old('publisher') }}" class="form-control" required>
                     @if ($errors->has('publisher'))
                       <span class="error">
@@ -59,7 +59,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label>Language</label>
+                    <label for="language">Language</label>
                     <select id="language" name="language" class="form-control" value="{{ old('language') }}" required>
                         <option value="">&nbsp;</option>
                         <option>English</option>
@@ -200,7 +200,7 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <label>Category</label>
+                    <label for="category">Category</label>
                     <select id="category" name="category"  class="form-control" required>
                         <option selected>Arts&amp;Music</option>
                         <option>Biographies</option>
@@ -238,7 +238,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <label>Description</label>
+                    <label for="description">Description</label>
                     <textarea id="description" name="description" rows="3" cols="30" class="form-control" placeholder="Describe the book, its condition, or any other things you may consider important" value="{{ old('description') }}" required></textarea>
                     @if ($errors->has('description'))
                       <span class="error">
@@ -252,7 +252,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
-                    <label>Image(s) of the book</label>
+                    <label for="images[]">Image(s) of the book</label>
                     <input id="images" name="images[]" class="form-control" type="file" accept="image/*" multiple>
                     @if ($errors->has('images'))
                       <span class="error">
@@ -265,7 +265,7 @@
             <label><i class="fa fa-clock"></i> Duration</label>
             <div class="form-row">
                 <div class="form-group col-md-1.5">
-                    <label>Days</label>
+                    <label for="days">Days</label>
                     <select id="days" name="days" class="form-control" required>
                         <option value="">&nbsp;</option>
                         <option>0</option>
@@ -283,7 +283,7 @@
                     @endif
                 </div>
                 <div class="form-group col-md-1.5">
-                    <label>Hours</label>
+                    <label for="hours">Hours</label>
                     <select id="hours" name="hours" class="form-control" required>
                         <option value="">&nbsp;</option>
                         <option>0</option>
@@ -319,7 +319,7 @@
                     @endif
                 </div>
                 <div class="form-group col-md-1">
-                    <label>Minutes</label>
+                    <label for="minutes">Minutes</label>
                     <input id="minutes" class="form-control" type="number" name="minutes" min="0" max="59" required value="0">
                     @if ($errors->has('minutes'))
                       <span class="error">
@@ -370,7 +370,7 @@
 
             <div class="form-row">
                 <div class="checkbox col-md-12">
-                    <label>
+                    <label for="agree">
                       <input id="agree" name="agree" type="checkbox" value="{{ old('agree') }}" required>
                       @if ($errors->has('isbn'))
                         <span class="error">
