@@ -2,6 +2,8 @@
 
 namespace App;
 
+use GuzzleHttp\Client;
+use Mailgun\Mailgun;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -35,9 +37,8 @@ class User extends Authenticatable
      * This user's country
      *
      */
-    public function country()
-    {
-        return $this->hasOne('App\Country', 'id', 'idcountry');
+    public function country(){
+        return $this->hasOne('App\Country','id','idcountry');
     }
 
     /**
@@ -45,9 +46,8 @@ class User extends Authenticatable
      * This user's auctions
      *
      */
-    public function auctions()
-    {
-        return $this->hasMany('App\Auction', 'id', 'idseller');
+    public function auctions(){
+       return $this->hasMany('App\Auction','id','idseller');
     }
 
 
@@ -56,9 +56,8 @@ class User extends Authenticatable
      * This user's bids
      *
      */
-    public function bids()
-    {
-        return $this->hasMany('App\Bid', 'id', 'idbuyer');
+    public function bids(){
+       return $this->hasMany('App\Bid','id','idbuyer');
     }
 
     /**
@@ -66,33 +65,57 @@ class User extends Authenticatable
      * This user's gets for the account status
      *
      */
-    public function isBanned()
-    {
+    public function isBanned(){
         return $this->users_status=='banned';
     }
 
-    public function isSuspended()
-    {
+    public function isSuspended(){
         return $this->users_status=='suspended';
     }
 
-    public function isNormal()
-    {
+    public function isNormal(){
         return $this->users_status=='normal';
     }
 
-    public function isTerminated()
-    {
+    public function isTerminated(){
         return $this->users_status=='terminated';
-    }
+    }    
 
-    public function isAdmin()
-    {
+    public function isAdmin(){
         return $this->users_status=='admin';
-    }
+    }    
 
-    public function isModerator()
-    {
+    public function isModerator(){
         return $this->users_status=='moderator';
-    }
+    } 
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+
+        //mailgun init
+        $client = new Client([
+            'base_uri' => 'https://api.mailgun.net/v3',
+            'verify' => false,
+        ]);
+        $adapter = new \Http\Adapter\Guzzle6\Client($client);
+        $domain = "sandboxeb3d0437da8c4b4f8d5a428ed93f64cc.mailgun.org";
+        $mailgun = new \Mailgun\Mailgun('key-44a6c35045fe3c3add9fcf0a018e654e', $adapter);
+
+        # Send the email
+        $result = $mailgun->sendMessage("$domain",
+            array('from' => 'Home remote Sandbox <postmaster@sandboxeb3d0437da8c4b4f8d5a428ed93f64cc.mailgun.org>',
+                'to' => $this->name.' <'.$this->email.'>',
+                'subject' => 'Contact message',
+                'text' => 'Someone asked for password reset a contact message using the contact page. the token is: '.$token.'
+                To reset your password please visit http://lbaw1726.lbaw-prod.fe.up.pt/password/reset/'.$token,
+                'require_tls' => 'false',
+                'skip_verification' => 'true',
+            ));
+    }          
 }

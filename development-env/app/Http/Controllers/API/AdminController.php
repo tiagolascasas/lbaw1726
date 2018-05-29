@@ -31,9 +31,13 @@ class AdminController extends Controller
         $id = $request->input('id_member');
         if ($id !== null) {
             try {
+                DB::beginTransaction();
                 DB::update("UPDATE users SET users_status = ? WHERE id = ?", ['terminated', $id]);
                 DB::delete('DELETE FROM requested_termination WHERE idusers=?', [$id]);
+                DB::commit();
             } catch (QueryException $qe) {
+                DB::rollBack();
+                $this->warn($qe);
                 return response('NOT FOUND', 404);
             }
         } else {
@@ -54,6 +58,7 @@ class AdminController extends Controller
             try {
                 DB::delete('DELETE FROM requested_termination WHERE idusers=?', [$id]);
             } catch (QueryException $qe) {
+                $this->warn($qe);
                 return response('NOT FOUND', 404);
             }
         } else {
@@ -74,6 +79,7 @@ class AdminController extends Controller
             try {
                 DB::update("UPDATE users SET users_status = ? WHERE id = ?", ['suspended', $id]);
             } catch (QueryException $qe) {
+                $this->warn($qe);
                 return response('NOT FOUND', 404);
             }
         } else {
@@ -94,6 +100,7 @@ class AdminController extends Controller
             try {
                 DB::update("UPDATE users SET users_status = ? WHERE id = ?", ['normal', $id]);
             } catch (QueryException $qe) {
+                $this->warn($qe);
                 return response('NOT FOUND', 404);
             }
         } else {
@@ -113,6 +120,7 @@ class AdminController extends Controller
             try {
                 DB::update("UPDATE users SET users_status = ? WHERE id = ?", ['banned', $id]);
             } catch (QueryException $qe) {
+                $this->warn($qe);
                 return response('NOT FOUND', 404);
             }
         } else {
@@ -133,6 +141,7 @@ class AdminController extends Controller
             try {
                 DB::update("UPDATE users SET users_status = ? WHERE id = ?", ['moderator', $id]);
             } catch (QueryException $qe) {
+                $this->warn($qe);
                 return response('NOT FOUND', 404);
             }
         } else {
@@ -180,6 +189,7 @@ class AdminController extends Controller
                 return $this->promote_moderator($request);
             }
         } catch (Exception $e) {
+            $this->error($e);
             return response('Internal Error', 500);
         }
 

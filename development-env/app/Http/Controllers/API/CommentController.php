@@ -35,12 +35,14 @@ class CommentController extends Controller
                                 AND users.id = comment.idSender
                                 ORDER BY comment.id ASC', [$id]);
                 } catch (QueryException $qe) {
+                    $this->warn($qe);
                     return response('NOT FOUND', 404);
                 }
             } else {
                 return response('Incorrect Request', 400);
             }
         } catch (Exception $e) {
+            $this->error($e);
             return response('Internal Error', 500);
         }
 
@@ -64,12 +66,14 @@ class CommentController extends Controller
                     DB::insert("INSERT INTO comment (liked, idreceiver,idsender,comment_text,idparent) VALUES (?,?,?,?,?)", [$like, $receiver, $sender, $text, $id_parent]);
                     $success = true;
                 } catch (QueryException $qe) {
+                    $this->warn($qe);
                     return response('NOT FOUND', 404);
                 }
             } else {
                 return response('Incorrect Request', 400);
             }
         } catch (Exception $e) {
+            $this->error($e);
             return response('Internal Error', 500);
         }
         return response()->json(['success' => $success, 'message' => $text]);

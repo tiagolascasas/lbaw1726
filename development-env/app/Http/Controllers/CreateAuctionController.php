@@ -125,7 +125,7 @@ class CreateAuctionController extends Controller
             $errors = new MessageBag();
 
             $errors->add('An error ocurred', "There was a problem creating the auction. Try Again!");
-
+            $this->warn($qe);
             return redirect()
                 ->route('create')
                 ->withErrors($errors);

@@ -95,7 +95,7 @@ class SearchController extends Controller
             $errors = new MessageBag();
 
             $errors->add('An error ocurred', "There was a problem searching for auctions. Try Again!");
-
+            $this->warn($qe);
             return redirect()
                 ->route('search')
                 ->withErrors($errors);
