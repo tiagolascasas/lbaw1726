@@ -45,22 +45,23 @@ class SearchController extends Controller
             $res = DB::select("SELECT id FROM auction WHERE auction_status = ?", [$request->input('auctionStatus')]);
             array_push($queryResults, $res);
         }
-        if ($request->input('wishlistOfUser') !== null &&Auth::check()) {  //gets auctions in wishlist of user (this is just a flag, doesn't need to have a value)
-            $res = DB::select("SELECT DISTINCT auction.id FROM auction, wishlist WHERE wishlist.idAuction = auction.id and wishlist.idBuyer = ? AND auction_status=?", [Auth::user()->id,'approved']);
+        if ($request->input('wishlistOfUser') !== null &&Auth::check())
+        {
+            $res = DB::select("SELECT DISTINCT auction.id FROM auction, whishlist WHERE whishlist.idAuction = auction.id and whishlist.idBuyer = ? AND auction_status=?", [Auth::user()->id,'approved']);
             array_push($queryResults, $res);
         }
 
-        if ($request->input('history') !== null&&Auth::check()) {  //gets auctions in wishlist of user (this is just a flag, doesn't need to have a value)
+        if ($request->input('history') !== null&&Auth::check()) {
             $res = DB::select("SELECT DISTINCT auction.id FROM auction, bid WHERE bid.idAuction = auction.id and bid.idBuyer = ? AND auction_status = ?", [Auth::user()->id,'finished']);
             $res1 = DB::select("SELECT DISTINCT auction.id FROM auction WHERE idSeller = ? AND auction_status = ?", [Auth::user()->id,'finished']);
             array_push($queryResults, $res);
             array_push($queryResults, $res1);
         }
-        if ($request->input('auctionsOfUser') !== null&&Auth::check()) {  //gets auctions of user (this is just a flag, doesn't need to have a value)
+        if ($request->input('auctionsOfUser') !== null&&Auth::check()) {
             $res = DB::select("SELECT DISTINCT auction.id FROM auction WHERE idSeller = ? AND (auction_status = ? OR auction_status=?)", [Auth::user()->id,'approved','waitingApproval']);
             array_push($queryResults, $res);
         }
-        if ($request->input('userBidOn') !== null&& Auth::check()) {  //gets auctions in which the user bid on (this is just a flag, doesn't need to have a value)
+        if ($request->input('userBidOn') !== null&& Auth::check()) {
             $res = DB::select("SELECT DISTINCT auction.id FROM auction, bid WHERE bid.idAuction = auction.id and bid.idBuyer = ? and auction.auction_status = ? ", [Auth::user()->id,'approved']);
             array_push($queryResults, $res);
         }
