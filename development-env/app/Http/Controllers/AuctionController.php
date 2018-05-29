@@ -7,6 +7,7 @@ use App\Category;
 use App\CategoryAuction;
 use App\Http\Controllers\Controller;
 use App\Image;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -163,24 +164,37 @@ class AuctionController extends Controller
         DB::update($query, ["finished", "now()"]);
 
         foreach ($over as $id) {
-            return $this->notifyOwner($id);
+            $this->notifyOwner($id);
         }
     }
 
     public function notifyOwner($id)
     {
-        $res = DB::select("SELECT id, idseller, title FROM auction WHERE id = ?", [$id]);
-        $text = "Your auction of " . $res[0]->title . " has finished!";
-        $notifID = DB::table('notification')->insertGetId(['information' => $text, 'idusers' => $res[0]->idseller]);
-        DB::insert("INSERT INTO notification_auction (idAuction, idNotification) VALUES (?, ?)", [$res[0]->id, $notifID]);
+        try {
+            $res = DB::select("SELECT id, idseller, title FROM auction WHERE id = ?", [$id]);
+            $text = "Your auction of " . $res[0]->title . " has finished!";
+            $notifID = DB::table('notification')->insertGetId(['information' => $text, 'idusers' => $res[0]->idseller]);
+            DB::insert("INSERT INTO notification_auction (idAuction, idNotification) VALUES (?, ?)", [$res[0]->id, $notifID]);
+        } catch (QueryException $qe) {
+            return response('NOT FOUND', 404);
+        }
+
     }
 
     public static function notifyWinnerAndPurchase($id)
     {
+        /*try{
+            $res = DB::select("SELECT bid.idbuyer, max(bid.bidValue)
+                               FROM bid
+                               WHERE bid.idauction  = ?",[$id]);
+        }catch(QueryException $qe){
+            return response('NOT FOUND', 404);
+        }*/
     }
 
     public static function notifyBidders($id)
     {
+
     }
 
     public static function createTimestamp($dateApproved, $duration)

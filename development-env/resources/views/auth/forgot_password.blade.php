@@ -1,5 +1,5 @@
 
-<form method="POST" action="{{ route('login') }}">
+<form method="POST" action="{{ route('password.email') }}">
     {{ csrf_field() }}
     <div class="modal-body">
         <div class="form-group">

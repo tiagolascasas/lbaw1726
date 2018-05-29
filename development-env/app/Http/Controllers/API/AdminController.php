@@ -31,9 +31,12 @@ class AdminController extends Controller
         $id = $request->input('id_member');
         if ($id !== null) {
             try {
+                DB::beginTransaction();
                 DB::update("UPDATE users SET users_status = ? WHERE id = ?", ['terminated', $id]);
                 DB::delete('DELETE FROM requested_termination WHERE idusers=?', [$id]);
+                DB::commit();
             } catch (QueryException $qe) {
+                DB::rollBack();
                 $this->warn($qe);
                 return response('NOT FOUND', 404);
             }
