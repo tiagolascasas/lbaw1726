@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler
         $errors->add('An unexpected error ocurred', "An unexpected error ocurred");
 
         //render for dev env
-        //if($exception instanceof \Illuminate\Validation\ValidationException)
+        if($exception instanceof \Illuminate\Validation\ValidationException)
             return parent::render($request, $exception);
 
         $logMessage = "\nID: " . Auth::user()->id . "\n" . $exception->getMessage() . "\n" . $exception->getTraceAsString() . "\n\n";
