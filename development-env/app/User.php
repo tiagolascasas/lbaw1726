@@ -57,4 +57,33 @@ class User extends Authenticatable
     public function bids(){
        return $this->hasMany('App\Bid','id','idbuyer');
     }
+
+    /**
+     *
+     * This user's gets for the account status
+     *
+     */
+    public function isBanned(){
+        return $this->users_status=='banned';
+    }
+
+    public function isSuspended(){
+        return $this->users_status=='suspended';
+    }
+
+    public function isNormal(){
+        return $this->users_status=='normal';
+    }
+
+    public function isTerminated(){
+        return $this->users_status=='terminated';
+    }    
+
+    public function isAdmin(){
+        return $this->users_status=='admin';
+    }    
+
+    public function isModerator(){
+        return $this->users_status=='moderator';
+    }            
 }

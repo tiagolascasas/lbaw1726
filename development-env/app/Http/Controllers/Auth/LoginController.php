@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
+use Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -40,5 +43,29 @@ class LoginController extends Controller
     public function username()
     {
         return 'username';
+    }
+
+
+
+    protected function authenticated(Request $request, User $user){
+        //put your thing in here
+        if ($user->isNormal()){
+            return redirect()->route('home');    
+        }
+        else if ($user->isModerator() || $user->isAdmin()){
+            return redirect()->route('home');
+        }
+        else if ($user->isSuspended()){
+            Auth::logout();
+            return redirect()->route('contact')->withErrors("Your account has been suspended. Contact the admin through the contact page for details."); 
+        } 
+        else if ($user->isBanned()){
+            Auth::logout();
+            return redirect()->route('contact')->withErrors("You are permanently banned. Contact the admin through contact page for details."); 
+        }
+        else if ($user->isTerminated()){
+            Auth::logout();
+            return redirect()->route('contact')->withErrors("Your account has been terminated. Contact the admin through contact page for details."); 
+        }
     }
 }

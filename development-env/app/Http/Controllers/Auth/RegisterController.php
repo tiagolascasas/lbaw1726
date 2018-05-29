@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class RegisterController extends Controller
 {
@@ -26,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = 'home';
 
     /**
      * Create a new controller instance.
@@ -88,4 +92,21 @@ class RegisterController extends Controller
 
         return $saveUser;
     }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        //login after register
+        $credentials = $request->only('email', 'password');
+        Auth::attempt($credentials);
+
+        return $this->registered($request, $user)
+                        ?: redirect('home');
+    }
+
+
+
 }
