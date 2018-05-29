@@ -182,13 +182,14 @@
                             <td></td>
                             <td></td>
                             <td>
-                                @if (Auth::check())
+                                
+                                @if (Auth::check()&&$auction->idseller != Auth::user()->id)
                                     @if ($auction->wishlisted == true)
                                     <button id="wish-box" type="submit" class="btn btn-primary col-md-6">Remove from wishlist</button>
                                     @else
                                     <button id="wish-box" type="submit" class="btn btn-primary col-md-6">Add to wishlist</button>
                                     @endif
-                                @else
+                                @elseif (!Auth::check())
                                 <button type="submit" class="btn btn-outline-secondary col-md-4" disabled>Login to wishlist</button>
                                 @endif
                             </td>

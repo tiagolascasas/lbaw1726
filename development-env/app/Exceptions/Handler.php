@@ -7,6 +7,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\MessageBag;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
 {
@@ -60,7 +61,7 @@ class Handler extends ExceptionHandler
         if($exception instanceof \Illuminate\Validation\ValidationException)
             return parent::render($request, $exception);
 
-        $logMessage = "\nID: " . Auth::user()->id . "\n" . $qe->getMessage() . "\n" . $qe->getTraceAsString() . "\n\n";
+        $logMessage = "\nID: " . Auth::user()->id . "\n" . $exception->getMessage() . "\n" . $exception->getTraceAsString() . "\n\n";
         Log::error($logMessage);    
 
         return redirect()

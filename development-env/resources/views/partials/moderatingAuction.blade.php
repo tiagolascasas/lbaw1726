@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-auto img-fluid media-object align-self-center ">
-                <a href="{{ url('auction/')}}/{{$auction->id}}"><img class="width100" src="{{ asset('img/book.png') }}" alt="the husbands secret"></a>
+                <a href="{{ url('auction/')}}/{{$auction->id}}"><img class="width100" src="{{'img/book.png'}}" alt="book cover"></a>
             </div>
             <a href="{{ url('auction/') }}/{{$auction->id}}" class="col-lg-6 align-self-center text-left p-2 text-dark lead">
                {{ $auction->title }}
@@ -14,4 +14,3 @@
         </div>
     </div>
 </div>
-

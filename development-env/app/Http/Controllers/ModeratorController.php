@@ -34,10 +34,10 @@ class ModeratorController extends Controller
             return redirect('home')->withErrors($erorIsnotAModerator);
         }
 
-        $auctions = Auction::where('auction_status', "waitingApproval")->get(); //new auctions
-        $auction_modifications = AuctionModification::where('dateapproved', null)->get(); //auctions waiting mod
+        $auctions = Auction::where('auction_status', "waitingApproval")->get();
+        $auction_modifications = AuctionModification::where('dateapproved', null)->get();
         $auction_modifications_ids = AuctionModification::where('dateapproved', null)->get()->pluck('idapprovedauction');
-        $auctions_to_mod = Auction::whereIn('id', $auction_modifications_ids)->get(); //the auction's data of all the auctions requests for modification
+        $auctions_to_mod = Auction::whereIn('id', $auction_modifications_ids)->get();
 
         return view('pages.moderator', ['auctions' => $auctions, 'auction_modifications' => $auction_modifications, 'auctions_to_mod' => $auctions_to_mod]);
     }
