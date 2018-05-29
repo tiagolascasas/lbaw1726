@@ -69,6 +69,17 @@ class AuctionController extends Controller
             $maxBid[0]->max = 0.00;
         }
 
+        if (Auth::check())
+        {
+            $wish = DB::select("SELECT * FROM whishlist WHERE idbuyer = ? and idauction = ?",[Auth::user()->id, $auction->id]);
+            if (sizeof($wish) > 0)
+                $auction->wishlisted = true;
+            else
+                $auction->wishlisted = false;
+        }
+        else
+            $auction->wishlisted = false;
+
         return view('pages.auction', ['auction' => $auction,
             'categoryName' => $categoryName,
             'images' => $images,

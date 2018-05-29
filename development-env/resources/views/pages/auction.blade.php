@@ -73,7 +73,7 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td rowspan="7" colspan="2" style="width: 26.33%">
+                            <td rowspan="8" colspan="2" style="width: 26.33%">
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         @foreach($images as $key => $image)
@@ -126,6 +126,10 @@
                             <td>{{$auction->description}}</td>
                         </tr>
                         <tr>
+                            <td><strong>Seller</strong></td>
+                            <td><a class="button btn btn-sm btn-outline-secondary p-2 " type="button" href="{{ url("profile/{$auction->user->id}") }}"><b>{{$auction->user->name}}</b></a></td>
+                        </tr>
+                        <tr>
                             <td><strong>Time left: </strong>
                                 <p id="timeLeft" class="text-danger">{{$timestamp}}</p>
                             </td>
@@ -164,16 +168,29 @@
                                     @elseif ($auction->idseller == Auth::user()->id)
                                     <button id="edit-auction" type="submit" class="btn btn-primary col-md-6">Edit the auction</button>
                                     @elseif ($auction->auction_status != "approved")
-                                    <button id="unbiddable" type="submit" disabled class="btn btn-outline-secondary col-md-8">Auction is unbiddable right now</button>
+                                    <button id="unbiddable" type="submit" disabled class="btn btn-outline-secondary col-md-6">Unable to bid</button>
                                     @else
                                     <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
                                     @endif
                                 @else
-                                <button id="bid-box" type="submit" disabled class="btn btn-outline-secondary col-md-8">You must be logged in to bid</button>
+                                <button id="bid-box" type="submit" disabled class="btn btn-outline-secondary col-md-10">Login to bid</button>
                                 @endif
                             </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td>
-                                <a class="button btn btn-sm btn-outline-secondary p-2 " type="button" href="{{ url("profile/{$auction->user->id}") }}"><b>{{$auction->user->name}}</b></a>
+                                @if (Auth::check())
+                                    @if ($auction->wishlisted == true)
+                                    <button id="wish-box" type="submit" class="btn btn-primary col-md-6">Remove from wishlist</button>
+                                    @else
+                                    <button id="wish-box" type="submit" class="btn btn-primary col-md-6">Add to wishlist</button>
+                                    @endif
+                                @else
+                                <button type="submit" class="btn btn-outline-secondary col-md-4" disabled>Login to wishlist</button>
+                                @endif
                             </td>
                         </tr>
                     </tbody>

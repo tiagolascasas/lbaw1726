@@ -62,7 +62,6 @@ Route::post('/notifications/{id}','API\NotificationsController@markAsSeen');
 Route::post('api/admin','API\AdminController@action')->name('admin');
 Route::post('api/moderator','API\ModeratorController@action')->name('moderator');
 Route::post('api/wishlist','API\WishlistController@wish')->name('wish');
-Route::delete('api/wishlist','API\WishlistController@unwish')->name('unwish');
 
 //Search Page
 Route::get('search', 'SearchController@show')->name('search');

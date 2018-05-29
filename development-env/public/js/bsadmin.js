@@ -95,20 +95,22 @@ let album = document.querySelector('#auctionsAlbum');
 let showmorebutton = document.querySelector('#showmorebutton');
 let i=0;
 let auctions=[];
-showmorebutton.addEventListener('click',function(event){
-    switch(window.location.pathname){
-        case "/myauctions":
-        album.innerHTML +=myauctionsAlbum();
-            break;
-        case "/history":
-        album.innerHTML +=historyAlbum();
-            break;
-        default:
-        album.innerHTML +=makeAlbum();    
-    }
-    console.log("what");
-    event.preventDefault();
-});
+if (showmorebutton != null) {
+    showmorebutton.addEventListener('click',function(event){
+        switch(window.location.pathname){
+            case "/myauctions":
+            album.innerHTML +=myauctionsAlbum();
+                break;
+            case "/history":
+            album.innerHTML +=historyAlbum();
+                break;
+            default:
+            album.innerHTML +=makeAlbum();
+        }
+        console.log("what");
+        event.preventDefault();
+    });
+}
 /**
  * JS for the lists
  */
@@ -120,22 +122,22 @@ if (window.location.pathname === "/home")
 if (window.location.pathname === "/myauctions")
 {
     ajaxCallGet("api/search?auctionsOfUser=true", myauctionsAlbumHandler);
-} 
+}
 
 if (window.location.pathname === "/auctions_im_in")
 {
     ajaxCallGet("api/search?userBidOn=true", auctionAlbumHandler);
-} 
+}
 
 if (window.location.pathname === "/wishlist")
 {
     ajaxCallGet("api/search?wishlistOfUser=true", auctionAlbumHandler);
-} 
+}
 
 if (window.location.pathname === "/history")
 {
     ajaxCallGet("api/search?history=true", historyAlbumHandler);
-} 
+}
 
 function historyAlbumHandler()
 {
@@ -145,7 +147,7 @@ function historyAlbumHandler()
 
 function historyAlbum()
 {
-    
+
     let htmlAuction = `<div class="row">`;
     let max=i+12;
 
@@ -249,12 +251,11 @@ function makeAlbum()
             htmlAuction += `</div><div class="row">`;
         }
         htmlAuction += `<div class="col-md-3 auctionItem"  data-id="${element.id}">
-
+        <a href="auction/${element.id}" class="list-group-item-action">
             <div class="card mb-4 box-shadow">
                 <div class="col-md-6 img-fluid media-object align-self-center ">
-                <a href="auction/${element.id}" class="list-group-item-action">
+
                     <img class="width100" src="../img/${element.image}" alt="book image">
-                </a>
                 </div>
                 <div class="card-body">
                     <p class="card-text text-center hidden-p-md-down font-weight-bold" style="font-size: larger"> ${element.title} </p>
@@ -266,8 +267,9 @@ function makeAlbum()
                                 ${element.time}</small>
                     </div>
                 </div>
-            </div>
 
+            </div>
+            </a>
     </div>`;
     };
     htmlAuction += `</div>`;
@@ -674,6 +676,24 @@ if (window.location.href.includes("auction/"))
                 "value": currVal
             };
             ajaxCallPost("/api/bid", params, postBidHandler);
+        });
+    }
+
+    let wishlistButton = document.querySelector("#wish-box");
+    if (wishlistButton != null)
+    {
+        let id = getAuctionID();
+        wishlistButton.addEventListener("click", function()
+        {
+            //wishlistButton.disabled = true;
+            ajaxCallPost("/api/wishlist", {"id": id}, function(data)
+            {
+                //wishlistButton.disabled = false;
+                if (data.wishlisted)
+                    wishlistButton.innerHTML = "Remove from wishlist";
+                else
+                    wishlistButton.innerHTML = "Add to wishlist";
+            });
         });
     }
 }

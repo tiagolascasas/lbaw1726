@@ -27,17 +27,23 @@ class WishlistController extends Controller
         {
             return response('Forbidden.', 403);
         }
-
         $id = $request->input('id');
 
-        DB::insert("INSERT INTO wishlist (idbuyer, idauction) VALUES (?, ?)", [Auth::user()->id, $id]);
+        $wish = DB::select("SELECT * FROM whishlist WHERE idbuyer = ? and idauction = ?",[Auth::user()->id, $id]);
+        $response = "";
 
-        $response = ['wishlisted' => true ];
+        if (sizeof($wish) > 0)
+        {
+            error_log("del");
+            DB::delete("DELETE FROM whishlist WHERE idbuyer = ? and idauction = ?", [Auth::user()->id, $id]);
+            $response = ['wishlisted' => false ];
+        }
+        else
+        {
+            DB::insert("INSERT INTO whishlist (idbuyer, idauction) VALUES (?, ?)", [Auth::user()->id, $id]);
+            error_log("ok");
+            $response = ['wishlisted' => true ];
+        }
         return response()->json($response);
-    }
-
-    public function unwish(Request $request)
-    {
-
     }
 }
