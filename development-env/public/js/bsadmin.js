@@ -276,10 +276,49 @@ function makeAlbum()
     };
     htmlAuction += `</div>`;
     if (i == auctions.length)
-        showmorebutton.parentNode.removeChild(showmorebutton);
+    {
+        if (showmorebutton != null)
+            showmorebutton.parentNode.removeChild(showmorebutton);
+    }
     return htmlAuction;
 }
 
+function makeSearchAlbum(auctions)
+{
+    console.log(auctions);
+    let htmlAuction = `<div class="row">`;
+    let i = 0;
+    auctions.forEach(element =>
+    {
+        if (i % 4 === 0 && i !== 0)
+        {
+            htmlAuction += `</div><div class="row">`;
+        }
+        htmlAuction += `<div class="col-md-3 auctionItem"  data-id="${element.id}">
+        <a href="auction/${element.id}" class="list-group-item-action">
+            <div class="card mb-4 box-shadow">
+                <div class="col-md-6 img-fluid media-object align-self-center ">
+                    <!--<img class="width100" src="../img/book.png" alt="the orphan stale">-->
+                    <img class="width100" src="../img/${element.image}" alt="book image">
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-center hidden-p-md-down font-weight-bold" style="font-size: larger"> ${element.title} </p>
+                    <p class="card-text text-center hidden-p-md-down">By ${element.author} </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <i class="fas fa-star btn btn-sm text-primary"></i>
+                        <small class="text-success">${element.maxBid}€ </small>
+                        <small class="text-danger">
+                                &lt; ${element.time}</small>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>`;
+        i++;
+    });
+    htmlAuction += `</div>`;
+    return htmlAuction;
+}
 
 /**
  * JS for the notifications
@@ -389,13 +428,13 @@ function commentsHandler(response)
                 if (element.liked)
                 {
                     comments_html += `<div class="col-lg-1  text-left text-dark lead">
-                                            <i class="fa fa-thumbs-up btn btn-success"></i>
+                                            <i class="fa fa-thumbs-up btn btn-success" alt="good feedback"></i>
                                         </div>`;
                 }
                 else if (element.liked == false)
                 {
                     comments_html += `<div class="col-lg-1  text-left text-dark lead">
-                                            <i class="fa fa-thumbs-down btn btn-danger"></i>
+                                            <i class="fa fa-thumbs-down btn btn-danger" alt="bad feedback"></i>
                                         </div>`;
                 }
                 else
@@ -798,7 +837,7 @@ function advSearchHandler()
         sentence = answer.length + " results found";
 
     header.innerHTML = sentence;
-    htmlAlbum = makeAlbum(answer);
+    htmlAlbum = makeSearchAlbum(answer);
     album.innerHTML = htmlAlbum;
 }
 

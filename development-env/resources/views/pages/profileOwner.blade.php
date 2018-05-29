@@ -295,73 +295,7 @@
                </div>
             </div>
          </div>
-     </div><!--
-      @if(Auth::User()->id == $user->id)
-      <div class="container-fluid bg-white">
-         <div class="bg-white mb-0 mt-3 mb-3 panel">
-            <h5><i class="fab fa-paypal"></i> Payments and Transfers</h5>
-         </div>
-         <p>BookHub requires the use of <a href="https://www.paypal.com">PayPal</a> in order to bid and/or create auctions. Be mindful of these three points:</p>
-         <ul>
-            <li>All transactions related to an auction are performed automatically once that auction is over and cannot be reverted;</li>
-            <li>You can neither create nor bid on auctions until you associate a valid PayPal account to your BookHub account;</li>
-            <li>You cannot unlink your PayPal account if you have bid on an ongoing auction or if you have any auction of your own still active.</li>
-         </ul>
-         <p><strong>{{$paypalMsg}}</strong></p>
-         <div class="list-group" style = "margin-bottom: 30px;">
-            <div class="container">
-               <div class="row">
-                  <div class="col-lg-12">
-                     <a class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#paypalUpdateModal">
-                     <i class="fa fa-link"></i> Associate a PayPal account
-                     </a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      @endif
-      <div class="modal fade" id="paypalUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalPasswordLabel" aria-hidden="true">
-         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="myModalPasswordLabel">Link a PayPal account</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
-               </div>
-               <div class="modal-body">
-                  <form method="POST" action="{{ route('profile.paypal',$user->id) }}">
-                     <div class="form-group">
-                        <label for="exampleInputPassword1">Your new PayPal email</label>
-                        <input class="form-control" name="paypalEmail" type="email" placeholder="example@example.com" value = "{{$user->paypalEmail}}" required>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                     </div>
-                     <button class="btn btn-primary btn-block mb-4">Link your PayPal account</button>
-                  </form>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="modal fade" id="paypalRemoveModal" tabindex="-1" role="dialog" aria-labelledby="myModalPasswordLabel" aria-hidden="true">
-         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="myModalPasswordLabel">Unlink your PayPal account</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                  </button>
-               </div>
-               <div class="modal-body">
-                  <form method="DELETE" action="{{ route('profile.paypal.remove',$user->id) }}">
-                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                     <p>Are you sure you wish to unlink your PayPal account? You won't be able to buy or sell without it.</p>
-                     <button class="btn btn-primary btn-block mb-4">Unlink your PayPal account</button>
-                  </form>
-               </div>
-            </div>
-         </div>
-     </div>-->
+     </div>
      @if(Auth::User()->id == $user->id)
      <div class="container-fluid bg-white">
         <div class="bg-white mb-0 mt-3 mb-3 panel">

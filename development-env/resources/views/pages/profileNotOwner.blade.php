@@ -57,10 +57,10 @@
                 <form id="feedbackform">
                     <div class="btn-group mb-3" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-success">
-                            <i class="fa fa-thumbs-up btn btn-success"></i>
+                            <i class="fa fa-thumbs-up btn btn-success" alt="good feedback"></i>
                         </button>
                         <button type="button" class="btn btn-danger">
-                            <i class="fa fa-thumbs-down btn btn-danger"></i>
+                            <i class="fa fa-thumbs-down btn btn-danger" alt="bad feedback"></i>
                         </button>
                     </div>
                     <div class="form-group">
@@ -78,8 +78,5 @@
                 </div>
 
             </div>
-
-
-
       </div>
   	</main>

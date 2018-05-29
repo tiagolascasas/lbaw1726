@@ -58,7 +58,7 @@
                     <!-- Modal content-->
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h4 id="bidResultHeader" class="modal-title align-self-center"></h4>
+                        <h4 id="bidResultHeader" class="modal-title align-self-center">.</h4>
                       </div>
                       <div class="modal-body">
                             <p id="bidResultBody" class="alert alert-danger"></p>
@@ -127,7 +127,7 @@
                         </tr>
                         <tr>
                             <td><strong>Seller</strong></td>
-                            <td><a class="button btn btn-sm btn-outline-secondary p-2 " type="button" href="{{ url("profile/{$auction->user->id}") }}"><b>{{$auction->user->name}}</b></a></td>
+                            <td><a class="button btn btn-sm btn-outline-secondary p-2 " href="{{ url("profile/{$auction->user->id}") }}"><b>{{$auction->user->name}}</b></a></td>
                         </tr>
                         <tr>
                             <td><strong>Time left: </strong>
