@@ -117,6 +117,18 @@ class SearchController extends Controller
                 $auction->image = $image[0]->source;
             else
                 $auction->image = "book.png";
+
+            if (Auth::check())
+            {
+                //<i class="fas fa-star wishlist btn btn-sm text-primary"></i>
+                $wish = DB::select("SELECT * FROM whishlist WHERE idbuyer = ? and idauction = ?",[Auth::user()->id, $auction->id]);
+                if (sizeof($wish) > 0)
+                    $auction->wishlisted = '<i class="fas fa-star wishlist btn btn-sm text-primary"></i>';
+                else
+                    $auction->wishlisted = '<i class="far fa-star wishlist btn btn-sm text-primary"></i>';
+            }
+            else
+                $auction->wishlisted = '<i class="far fa-star wishlist btn btn-sm text-primary"></i>';
         }
 
         return response()->json($response);
