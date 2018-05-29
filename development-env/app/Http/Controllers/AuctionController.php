@@ -99,6 +99,7 @@ class AuctionController extends Controller
             return redirect('/auction/' . $id);
         }
 
+        DB::beginTransaction();
         $modID = DB::table('auction_modification')->insertGetId(['newDescription' => $request->input('description')]);
 
         $input = $request->all();
@@ -119,6 +120,7 @@ class AuctionController extends Controller
             $saveImage->idauctionmodification = $modID;
             $saveImage->save();
         }
+        DB::commit();
     }
 
     public function updateAuctions()
