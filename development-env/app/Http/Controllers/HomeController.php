@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Auction;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\AuctionController;
 
 class HomeController extends Controller
 {
