@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\MessageBag;
 
 class ProfileController extends Controller
 {
@@ -74,43 +76,53 @@ class ProfileController extends Controller
 
         $input = $request->all();
 
-        if ($input['name'] !== null) {
-            DB::update('update users set name = ? where id = ?', [$input['name'], $id]);
-        }
-
-        if ($input['age'] !== null) {
-            DB::update('update users set age = ? where id = ?', [$input['age'], $id]);
-        }
-
-        if ($input['email'] !== null) {
-            DB::update('update users set email = ? where id = ?', [$input['email'], $id]);
-        }
-
-        if ($input['address'] !== null) {
-            DB::update('update users set address = ? where id = ?', [$input['address'], $id]);
-        }
-
-        if ($input['postalcode'] !== null) {
-            DB::update('update users set postalCode = ? where id = ?', [$input['postalcode'], $id]);
-        }
-
-        if ($input['idcountry'] !== null) {
-            DB::update('update users set idCountry = ? where id = ?', [$input['idcountry'], $id]);
-        }
-
-        if ($input['phone'] !== null) {
-            DB::update('update users set phone = ? where id = ?', [$input['phone'], $id]);
-        }
-
-        $image=$request->file('image');
-        if ($image!==null) {
-            $input['imagename'] = time() . $image->getClientOriginalName();
-            $image->move('img', $input['imagename']);
-            if (sizeof(DB::select('select * FROM image WHERE idusers = ?', [$id])) > 0) {
-                DB::update('update image set source = ? where idusers = ?', [$input['imagename'], $id]);
-            } else {
-                DB::insert('INSERT INTO image (source,idusers) VALUES(?,?)', [$input['imagename'], $id]);
+        try {
+            if ($input['name'] !== null) {
+                DB::update('update users set name = ? where id = ?', [$input['name'], $id]);
             }
+
+            if ($input['age'] !== null) {
+                DB::update('update users set age = ? where id = ?', [$input['age'], $id]);
+            }
+
+            if ($input['email'] !== null) {
+                DB::update('update users set email = ? where id = ?', [$input['email'], $id]);
+            }
+
+            if ($input['address'] !== null) {
+                DB::update('update users set address = ? where id = ?', [$input['address'], $id]);
+            }
+
+            if ($input['postalcode'] !== null) {
+                DB::update('update users set postalCode = ? where id = ?', [$input['postalcode'], $id]);
+            }
+
+            if ($input['idcountry'] !== null) {
+                DB::update('update users set idCountry = ? where id = ?', [$input['idcountry'], $id]);
+            }
+
+            if ($input['phone'] !== null) {
+                DB::update('update users set phone = ? where id = ?', [$input['phone'], $id]);
+            }
+
+            $image = $request->file('image');
+            if ($image !== null) {
+                $input['imagename'] = time() . $image->getClientOriginalName();
+                $image->move('img', $input['imagename']);
+                if (sizeof(DB::select('select * FROM image WHERE idusers = ?', [$id])) > 0) {
+                    DB::update('update image set source = ? where idusers = ?', [$input['imagename'], $id]);
+                } else {
+                    DB::insert('INSERT INTO image (source,idusers) VALUES(?,?)', [$input['imagename'], $id]);
+                }
+            }
+        } catch (QueryException $qe) {
+            $errors = new MessageBag();
+
+            $errors->add('An error ocurred', "There was a problem editing your information. Try Again!");
+
+            return redirect()
+                ->route('profile', ['id' => Auth::user()->id])
+                ->withErrors($errors);
         }
         return redirect()->route('profile', ['id' => Auth::user()->id]);
     }
@@ -122,7 +134,7 @@ class ProfileController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'paypalEmail' => 'nullable|string|email'
+            'paypalEmail' => 'nullable|string|email',
         ]);
 
         if ($validator->fails()) {
@@ -132,11 +144,20 @@ class ProfileController extends Controller
                 ->withInput();
         }
 
-        $input = $request->all();
-        $email = $input['paypalEmail'];
+        try {
+            $input = $request->all();
+            $email = $input['paypalEmail'];
 
-        DB::update('UPDATE users SET paypalEmail = ? WHERE id = ?', [$email, Auth::user()->id]);
+            DB::update('UPDATE users SET paypalEmail = ? WHERE id = ?', [$email, Auth::user()->id]);
+        } catch (QueryException $qe) {
+            $errors = new MessageBag();
 
+            $errors->add('An error ocurred', "There was a problem adding your paypal. Try Again!");
+
+            return redirect()
+                ->route('profile', ['id' => Auth::user()->id])
+                ->withErrors($errors);
+        }
         return redirect()->route('profile', ['id' => $id]);
     }
 
@@ -145,11 +166,19 @@ class ProfileController extends Controller
         if (Auth::user()->id != $id) {
             return redirect('/home');
         }
+        try {
+            $paypalEmail = "NULL";
 
-        $paypalEmail = "NULL";
+            DB::update('UPDATE user SET paypalEmail = ? WHERE id = ?', [$paypalEmail, $id]);
+        } catch (QueryException $qe) {
+            $errors = new MessageBag();
 
-        DB::update('UPDATE user SET paypalEmail = ? WHERE id = ?', [$paypalEmail, $id]);
+            $errors->add('An error ocurred', "There was a problem removing your paypal information. Try Again!");
 
+            return redirect()
+                ->route('profile', ['id' => Auth::user()->id])
+                ->withErrors($errors);
+        }
         return redirect()->route('profile', ['id' => $id]);
     }
 }
