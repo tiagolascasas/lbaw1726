@@ -101,6 +101,7 @@ class AuctionController extends Controller
             return redirect('/auction/' . $id);
         }
         try {
+            DB::beginTransaction();
             if (sizeof(DB::select('select * FROM auction_modification WHERE auction_modification.idapprovedauction = ? AND auction_modification.is_approved is NULL', [$id])) == "0") {
                 $modID = DB::table('auction_modification')->insertGetId(['newdescription' => $request->input('description'), 'idapprovedauction' => $id]);
 
@@ -122,8 +123,10 @@ class AuctionController extends Controller
                     $saveImage->idauctionmodification = $modID;
                     $saveImage->save();
                 }
+                DB::commit();
             }
             else{
+                DB::rollback();
                 $errors = new MessageBag();
 
                 $errors->add('An error ocurred', "There is already a request to edit this auction's information");
@@ -131,6 +134,7 @@ class AuctionController extends Controller
                     ->withErrors($errors);
             }
         } catch (QueryException $qe) {
+            DB::rollback();
             $errors = new MessageBag();
 
             $errors->add('An error ocurred', "There was a problem editing auction information. Try Again!");
