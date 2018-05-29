@@ -95,30 +95,51 @@ class AuctionController extends Controller
 
     public function submitEdit(Request $request, $id)
     {
-        if ($id != Auth::user()->id) {
+        $auction = Auction::find($id);
+        if ($auction->idseller != Auth::user()->id) {
             return redirect('/auction/' . $id);
         }
+        try {
+            if (sizeof(DB::select('select * FROM auction_modification WHERE auction_modification.idapprovedauction = ? AND auction_modification.is_approved is NULL', [$id])) == "0") {
+                $modID = DB::table('auction_modification')->insertGetId(['newdescription' => $request->input('description'), 'idapprovedauction' => $id]);
 
-        $modID = DB::table('auction_modification')->insertGetId(['newDescription' => $request->input('description')]);
+                $input = $request->all();
+                $images = array();
+                if ($files = $request->file('images')) {
+                    $integer = 0;
+                    foreach ($files as $file) {
+                        $name = time() . (string) $integer . $file->getClientOriginalName();
+                        $file->move('img', $name);
+                        $images[] = $name;
+                        $integer += 1;
+                    }
+                }
 
-        $input = $request->all();
-        $images = array();
-        if ($files = $request->file('images')) {
-            $integer = 0;
-            foreach ($files as $file) {
-                $name = time() . (string) $integer . $file->getClientOriginalName();
-                $file->move('img', $name);
-                $images[] = $name;
-                $integer += 1;
+                foreach ($images as $image) {
+                    $saveImage = new Image;
+                    $saveImage->source = $image;
+                    $saveImage->idauctionmodification = $modID;
+                    $saveImage->save();
+                }
             }
+            else{
+                $errors = new MessageBag();
+
+                $errors->add('An error ocurred', "There is already a request to edit this auction's information");
+                return redirect('/auction/' . $id)
+                    ->withErrors($errors);
+            }
+        } catch (QueryException $qe) {
+            $errors = new MessageBag();
+
+            $errors->add('An error ocurred', "There was a problem editing auction information. Try Again!");
+
+            $this->warn($qe);
+            return redirect('/auction/' . $id)
+                ->withErrors($errors);
         }
 
-        foreach ($images as $image) {
-            $saveImage = new Image;
-            $saveImage->source = $image;
-            $saveImage->idauctionmodification = $modID;
-            $saveImage->save();
-        }
+        return redirect('/auction/' . $id);
     }
 
     public function updateAuctions()
