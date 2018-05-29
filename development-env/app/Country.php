@@ -20,5 +20,4 @@ class Country extends Model
      * @var string
      */
     protected $table = 'country';
-
 }

@@ -43,11 +43,9 @@ class ContactController extends Controller
         $errorMsg = "Something unexpected hapened. Please contact the admin directly through: admin@bookhub.com";
         $successMessage = "Your message was sent. Within 48h, you should receive a reply in your e-mail: " . $request->input('email');
 
-        //ip and user agent information
         $ip = $request->ip();
         $ua = $request->header('User-Agent');
 
-        //mailgun init
         $client = new Client([
             'base_uri' => 'https://api.mailgun.net/v3',
             'verify' => false,
@@ -56,8 +54,8 @@ class ContactController extends Controller
         $domain = "sandboxeb3d0437da8c4b4f8d5a428ed93f64cc.mailgun.org";
         $mailgun = new \Mailgun\Mailgun('key-44a6c35045fe3c3add9fcf0a018e654e', $adapter);
 
-        # Send the email
-        $result = $mailgun->sendMessage("$domain",
+        $result = $mailgun->sendMessage(
+            "$domain",
             array('from' => 'Home remote Sandbox <postmaster@sandboxeb3d0437da8c4b4f8d5a428ed93f64cc.mailgun.org>',
                 'to' => 'Bookhub admin <daniel.azevedo@fe.up.pt>',
                 'subject' => 'Contact message',
@@ -69,12 +67,12 @@ class ContactController extends Controller
                         Message: ' . $request->input('message'),
                 'require_tls' => 'false',
                 'skip_verification' => 'true',
-            ));
+            )
+        );
         if ($result) {
             return $successMessage;
         } else {
             return $failMessage;
         }
     }
-
 }

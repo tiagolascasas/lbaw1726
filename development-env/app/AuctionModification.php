@@ -12,17 +12,17 @@ class AuctionModification extends Model
    *
    * @var bool
    */
-  public $timestamps = false;
+    public $timestamps = false;
 
-  /**
-   * The table associated with the model.
-   *
-   * @var string
-   */
-  protected $table = 'auction_modification';
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'auction_modification';
 
-  public function auction(){
-  	return $this->belongsTo('App\Auction','idapprovedauction','id');
-  }
-
+    public function auction()
+    {
+        return $this->belongsTo('App\Auction', 'idapprovedauction', 'id');
+    }
 }

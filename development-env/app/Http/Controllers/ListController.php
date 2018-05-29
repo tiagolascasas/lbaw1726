@@ -26,7 +26,7 @@ class ListController extends Controller
         }
 
         $action="MY_AUCTIONS";
-        
+
 
         return view('pages.list', ['action' => $action]);
     }
@@ -37,7 +37,7 @@ class ListController extends Controller
             return redirect('/home');
         }
         $action="AUCTIONS_IN";
-        
+
 
         return view('pages.list', ['action' => $action]);
     }
@@ -48,7 +48,7 @@ class ListController extends Controller
             return redirect('/home');
         }
         $action="HISTORY";
-        
+
 
         return view('pages.list', ['action' => $action]);
     }
@@ -59,10 +59,8 @@ class ListController extends Controller
             return redirect('/home');
         }
         $action="WISHLIST";
-        
+
 
         return view('pages.list', ['action' => $action]);
     }
-
-    
 }

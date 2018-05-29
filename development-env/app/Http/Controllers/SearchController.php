@@ -50,9 +50,7 @@ class SearchController extends Controller
         $ids = [];
         $auctions = [];
 
-        try
-        {
-            //get ids of auctions with
+        try {
             if ($searchTerm != null) {
                 $res = DB::select("SELECT auction.id FROM auction WHERE title @@ plainto_tsquery('english',?) and auction_status = ?", [$searchTerm, $approved]);
                 foreach ($res as $entry) {
@@ -77,8 +75,9 @@ class SearchController extends Controller
                 array_push($responseSentence, 'in any category');
             }
 
-            if (sizeof($ids) == 0)
+            if (sizeof($ids) == 0) {
                 return view('pages.search', ['auctions' => [], 'responseSentence' => "No results were found"]);
+            }
             $parameters = implode(",", $ids);
 
             $query = "SELECT auction.id, title, author, duration, dateApproved FROM auction WHERE auction.id IN (" . $parameters . ")";
@@ -90,9 +89,7 @@ class SearchController extends Controller
 
             $responseSentence = implode(' and ', $responseSentence);
             $responseSentence = 'Your search results for auctions ' . $responseSentence . ':';
-        }
-        catch (QueryException $qe)
-        {
+        } catch (QueryException $qe) {
             $errors = new MessageBag();
 
             $errors->add('An error ocurred', "There was a problem searching for auctions. Try Again!");
@@ -107,7 +104,6 @@ class SearchController extends Controller
 
     private function buildTimestamps($auctions)
     {
-
         foreach ($auctions as $auction) {
             $ts = AuctionController::createTimestamp($auction->dateapproved, $auction->duration);
             $auction->timestamp = $ts;
@@ -118,22 +114,23 @@ class SearchController extends Controller
     {
         foreach ($auctions as $auction) {
             $res = DB::select("SELECT max(bidValue) FROM bid WHERE idAuction = ?", [$auction->id]);
-            if ($res[0]->max == null)
+            if ($res[0]->max == null) {
                 $auction->bidValue = "No bids yet";
-            else
+            } else {
                 $auction->bidValue = $res[0]->max . "€";
+            }
         }
     }
 
     private function getImage($auctions)
     {
-        foreach ($auctions as $auction)
-        {
+        foreach ($auctions as $auction) {
             $image = DB::select("SELECT source FROM image WHERE idauction = ? limit 1", [$auction->id]);
-            if (isset($image[0]->source))
+            if (isset($image[0]->source)) {
                 $auction->image = $image[0]->source;
-            else
+            } else {
                 $auction->image = "book.png";
+            }
         }
     }
 }

@@ -69,9 +69,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // $file = $data['images'][0];
-        // $file->move('avatars', $file->getClientOriginalName());
-
         $saveUser = new User;
         $saveUser->create([
             'address' => $data['address'],
@@ -85,11 +82,6 @@ class RegisterController extends Controller
             'idcountry' => $data['idcountry'],
         ]);
 
-        //$saveImage = new Image;
-        //$saveImage->source = $file->getClientOriginalName();
-        //$saveImage->idusers = $saveUser->id;
-        //$saveImage->save();
-
         return $saveUser;
     }
 
@@ -99,14 +91,10 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        //login after register
         $credentials = $request->only('email', 'password');
         Auth::attempt($credentials);
 
         return $this->registered($request, $user)
                         ?: redirect('home');
     }
-
-
-
 }

@@ -35,8 +35,9 @@ class User extends Authenticatable
      * This user's country
      *
      */
-    public function country(){
-        return $this->hasOne('App\Country','id','idcountry');
+    public function country()
+    {
+        return $this->hasOne('App\Country', 'id', 'idcountry');
     }
 
     /**
@@ -44,8 +45,9 @@ class User extends Authenticatable
      * This user's auctions
      *
      */
-    public function auctions(){
-       return $this->hasMany('App\Auction','id','idseller');
+    public function auctions()
+    {
+        return $this->hasMany('App\Auction', 'id', 'idseller');
     }
 
 
@@ -54,8 +56,9 @@ class User extends Authenticatable
      * This user's bids
      *
      */
-    public function bids(){
-       return $this->hasMany('App\Bid','id','idbuyer');
+    public function bids()
+    {
+        return $this->hasMany('App\Bid', 'id', 'idbuyer');
     }
 
     /**
@@ -63,27 +66,33 @@ class User extends Authenticatable
      * This user's gets for the account status
      *
      */
-    public function isBanned(){
+    public function isBanned()
+    {
         return $this->users_status=='banned';
     }
 
-    public function isSuspended(){
+    public function isSuspended()
+    {
         return $this->users_status=='suspended';
     }
 
-    public function isNormal(){
+    public function isNormal()
+    {
         return $this->users_status=='normal';
     }
 
-    public function isTerminated(){
+    public function isTerminated()
+    {
         return $this->users_status=='terminated';
-    }    
+    }
 
-    public function isAdmin(){
+    public function isAdmin()
+    {
         return $this->users_status=='admin';
-    }    
+    }
 
-    public function isModerator(){
+    public function isModerator()
+    {
         return $this->users_status=='moderator';
-    }            
+    }
 }

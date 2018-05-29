@@ -59,7 +59,6 @@ class AdminController extends Controller
         }
 
         return response('OK', 200);
-
     }
 
     public function suspend(Request $request)
@@ -80,10 +79,8 @@ class AdminController extends Controller
         }
 
         return response('OK', 200);
-
     }
 
-    //tmb é chamada para revoker moderator
     public function reactivate_or_revokeModerator(Request $request)
     {
         if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
@@ -121,7 +118,6 @@ class AdminController extends Controller
         }
 
         return response('OK', 200);
-
     }
 
     public function promote_moderator(Request $request)
@@ -146,14 +142,13 @@ class AdminController extends Controller
 
     public function action(Request $request)
     {
-
-        //get id from username if it's not defined
-        if ($request->id_member==-1){
-            $user=User::where('username',$request->username)->limit(1)->get()->first();
-            if (isset($user->id))
+        if ($request->id_member==-1) {
+            $user=User::where('username', $request->username)->limit(1)->get()->first();
+            if (isset($user->id)) {
                 $request->merge(['id_member' => $user->id]);
-            else
-                return "Error: Username doesn't exist";   //if can't find username or it's null in the requested action
+            } else {
+                return "Error: Username doesn't exist";
+            }
         }
 
         $action = $request->action;
@@ -182,7 +177,6 @@ class AdminController extends Controller
             return $this->promote_moderator($request);
         }
 
-        //Unkown action error
         return $this->unkown_action($request);
     }
 }

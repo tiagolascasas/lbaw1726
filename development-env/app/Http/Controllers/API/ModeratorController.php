@@ -16,60 +16,8 @@ class ModeratorController extends Controller
      *
      * @return void
      */
-
-    /*
-    public function __construct()
+    private function isNotModerator()
     {
-        $this->middleware('guest')->except('logout');
-    }
-
-    public function approve_auction(Request $request)
-    {
-        if (!($request->ajax() || $request->pjax() || Auth::Check() || Auth::user()->users_status != "moderator")) {
-            return response('Forbidden.', 403);
-        }
-
-        $id = $request->input('idAuction');
-        if ($id !== null) {
-            try {
-                DB::update("UPDATE auction SET auction_status = approved WHERE id = ?", [$id]);
-            } catch (QueryException $qe) {
-                return response('NOT FOUND', 404);
-            }
-        } else {
-            return response('Incorrect Request', 400);
-        }
-
-        return response('OK', 200);
-    }
-
-    public function remove_auction(Request $request)
-    {
-        if (!($request->ajax() || $request->pjax()) {
-            return response('Forbidden.', 403);
-        }
-
-        $id = $request->input('idAuction');
-        if ($id !== null) {
-            try {
-                DB::update("UPDATE auction SET auction_status = removed WHERE id = ?", [$id]);
-            } catch (QueryException $qe) {
-                return response('NOT FOUND', 404);
-            }
-        } else {
-            return response('Incorrect Request', 400);
-        }
-
-        return response('OK', 200);
-
-    }
-
-
-    */
-
-    //TODO try & catch for queries
-
-    private function isNotModerator(){
         if (Auth::user()==null || Auth::user()->users_status != "moderator") {
             return true;
         }
@@ -229,8 +177,6 @@ class ModeratorController extends Controller
             return $this->get_new_description($request);
         }
 
-        //Unkown action error
         return $this->unkown_action($request);
     }
-
 }

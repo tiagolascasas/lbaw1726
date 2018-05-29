@@ -20,5 +20,4 @@ class Notification extends Model
      * @var string
      */
     protected $table = 'notification';
-
 }

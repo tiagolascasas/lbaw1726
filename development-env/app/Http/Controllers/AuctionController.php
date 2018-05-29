@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuctionController extends Controller
 {
-    static private $lastUpdate = 0;
+    private static $lastUpdate = 0;
 
     /**
      * Create a new controller instance.
@@ -33,10 +33,8 @@ class AuctionController extends Controller
      */
     public function show($id)
     {
-        //get the full auction information
         $auction = Auction::find($id);
 
-        //get the category number and the category name
         $categoryNumber = CategoryAuction::where('idauction', $auction->id)->get()->first();
         if ($categoryNumber != null) {
             $categoryName = Category::where('id', $categoryNumber->idcategory)->get()->first();
@@ -49,36 +47,33 @@ class AuctionController extends Controller
             $categoryName = "No category";
         }
 
-        //calculate the remaining time
         if ($auction->dateapproved != null) {
             $timestamp = $this->createTimestamp($auction->dateapproved, $auction->duration);
         } else {
             $timestamp = "Auction hasn't been approved yet";
         }
 
-        //get the images, or the default image if there are no images
         $images = DB::table('image')->where('idauction', $id)->pluck('source');
         if (sizeof($images) == 0) {
             $images = ["default_no_img.png"];
         }
 
-        //get the current max bid
         $query = "SELECT max(bidValue) FROM bid WHERE idAuction = ?";
         $maxBid = DB::select($query, [$id]);
         if ($maxBid[0]->max == null) {
             $maxBid[0]->max = 0.00;
         }
 
-        if (Auth::check())
-        {
-            $wish = DB::select("SELECT * FROM whishlist WHERE idbuyer = ? and idauction = ?",[Auth::user()->id, $auction->id]);
-            if (sizeof($wish) > 0)
+        if (Auth::check()) {
+            $wish = DB::select("SELECT * FROM whishlist WHERE idbuyer = ? and idauction = ?", [Auth::user()->id, $auction->id]);
+            if (sizeof($wish) > 0) {
                 $auction->wishlisted = true;
-            else
+            } else {
                 $auction->wishlisted = false;
-        }
-        else
+            }
+        } else {
             $auction->wishlisted = false;
+        }
 
         return view('pages.auction', ['auction' => $auction,
             'categoryName' => $categoryName,
@@ -91,8 +86,7 @@ class AuctionController extends Controller
     {
         $auction = Auction::find($id);
 
-        if ($auction->idseller != Auth::user()->id)
-        {
+        if ($auction->idseller != Auth::user()->id) {
             return redirect('/auction/' . $id);
         }
 
@@ -101,14 +95,12 @@ class AuctionController extends Controller
 
     public function submitEdit(Request $request, $id)
     {
-        if ($id != Auth::user()->id)
-        {
+        if ($id != Auth::user()->id) {
             return redirect('/auction/' . $id);
         }
 
         $modID = DB::table('auction_modification')->insertGetId(['newDescription' => $request->input('description')]);
 
-        /*Get images and store them*/
         $input = $request->all();
         $images = array();
         if ($files = $request->file('images')) {
@@ -121,7 +113,6 @@ class AuctionController extends Controller
             }
         }
 
-        /*Store image sources in database*/
         foreach ($images as $image) {
             $saveImage = new Image;
             $saveImage->source = $image;
@@ -132,34 +123,26 @@ class AuctionController extends Controller
 
     public function updateAuctions()
     {
-        //get all approved auctions
-        $auctions = DB::select("SELECT id, duration, dateApproved, idSeller FROM auction WHERE auction_status = ?",["approved"]);
+        $auctions = DB::select("SELECT id, duration, dateApproved, idSeller FROM auction WHERE auction_status = ?", ["approved"]);
         $over = [];
 
-        foreach ($auctions as $auction)
-        {   //for each auction, if it is finished, add its id to the list
+        foreach ($auctions as $auction) {   //for each auction, if it is finished, add its id to the list
             $timestamp = AuctionController::createTimestamp($auction->dateapproved, $auction->duration);
-            if ($timestamp === "Auction has ended!")
-            {
+            if ($timestamp === "Auction has ended!") {
                 array_push($over, $auction->id);
             }
         }
-        //update all auctions in the list of ids with info saying it is over
-        if (sizeof($over) == 0)
+
+        if (sizeof($over) == 0) {
             return;
+        }
 
         $parameters = implode(',', $over);
         $query = "UPDATE auction SET auction_status = ?, dateFinished = ? WHERE id IN (" . $parameters . ")";
         DB::update($query, ["finished", "now()"]);
 
-        //$id = auction id
-        foreach($over as $id)
-        {
+        foreach ($over as $id) {
             return $this->notifyOwner($id);
-            //notifyWinnerAndPurchase($id);
-            //notifyBidders($id);
-
-
         }
     }
 
@@ -173,14 +156,10 @@ class AuctionController extends Controller
 
     public static function notifyWinnerAndPurchase($id)
     {
-        //notify
-        //process payment
-
     }
 
     public static function notifyBidders($id)
     {
-
     }
 
     public static function createTimestamp($dateApproved, $duration)
@@ -212,7 +191,6 @@ class AuctionController extends Controller
                     if (strpos($ts, "0s") !== false) {
                         $ts = "Auction has ended!";
                     }
-
                 }
             }
         }

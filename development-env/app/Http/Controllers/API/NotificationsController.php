@@ -56,6 +56,5 @@ class NotificationsController extends Controller
         }
 
         return response('OK', 200);
-
     }
 }

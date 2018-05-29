@@ -26,16 +26,16 @@ class CommentController extends Controller
             return response('Forbidden.', 403);
         }
         $id = $request->input('user');
-        if($id !== null){
-            try{
+        if ($id !== null) {
+            try {
                 $response = DB::select('SELECT comment.id, comment.datePosted,comment.liked,comment.idsender,comment.comment_text,comment.idreceiver,comment.idparent,users.username
                                 FROM comment,users
                                 WHERE comment.idreceiver=?
                                 AND users.id = comment.idSender', [$id]);
-            }catch (QueryException $qe) {
+            } catch (QueryException $qe) {
                 return response('NOT FOUND', 404);
             }
-        }else {
+        } else {
             return response('Incorrect Request', 400);
         }
 
@@ -43,7 +43,8 @@ class CommentController extends Controller
         return response()->json($response);
     }
 
-    public function postComment(Request $request){
+    public function postComment(Request $request)
+    {
         if (!($request->ajax() || $request->pjax()) || !Auth::check()) {
             return response('Forbidden.', 403);
         }
@@ -54,11 +55,11 @@ class CommentController extends Controller
         $id_parent = $request->input('id_parent');
 
 
-        if ($text !== null && $sender !== null && $receiver !== null){
-            try{
-                DB::insert("INSERT INTO comment (liked, idreceiver,idsender,comment_text,idparent) VALUES (?,?,?,?,?)",[$like, $receiver,$sender,$text,$id_parent]);
+        if ($text !== null && $sender !== null && $receiver !== null) {
+            try {
+                DB::insert("INSERT INTO comment (liked, idreceiver,idsender,comment_text,idparent) VALUES (?,?,?,?,?)", [$like, $receiver,$sender,$text,$id_parent]);
                 $success = true;
-            }catch (QueryException $qe) {
+            } catch (QueryException $qe) {
                 return response('NOT FOUND', 404);
             }
         } else {
@@ -67,4 +68,3 @@ class CommentController extends Controller
         return response()->json(['success' => $success, 'message' => $text]);
     }
 }
-

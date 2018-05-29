@@ -23,23 +23,19 @@ class WishlistController extends Controller
 
     public function wish(Request $request)
     {
-        if ( !($request->ajax() || $request->pjax() || Auth::check()))
-        {
+        if (!($request->ajax() || $request->pjax() || Auth::check())) {
             return response('Forbidden.', 403);
         }
         $id = $request->input('id');
 
-        $wish = DB::select("SELECT * FROM whishlist WHERE idbuyer = ? and idauction = ?",[Auth::user()->id, $id]);
+        $wish = DB::select("SELECT * FROM whishlist WHERE idbuyer = ? and idauction = ?", [Auth::user()->id, $id]);
         $response = "";
 
-        if (sizeof($wish) > 0)
-        {
+        if (sizeof($wish) > 0) {
             error_log("del");
             DB::delete("DELETE FROM whishlist WHERE idbuyer = ? and idauction = ?", [Auth::user()->id, $id]);
             $response = ['wishlisted' => false ];
-        }
-        else
-        {
+        } else {
             DB::insert("INSERT INTO whishlist (idbuyer, idauction) VALUES (?, ?)", [Auth::user()->id, $id]);
             error_log("ok");
             $response = ['wishlisted' => true ];

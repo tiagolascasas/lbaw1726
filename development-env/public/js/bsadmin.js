@@ -3,7 +3,6 @@
  */
 $(document).ready(function()
 {
-    // toggle sidebar when button clicked
     $(".sidebar-toggle").on("click", function()
     {
         $(".sidebar").toggleClass("toggled");
@@ -12,7 +11,6 @@ $(document).ready(function()
             .addClass("footer");
     });
 
-    // auto-expand submenu if an item is active
     var active = $(".sidebar .active");
 
     if (active.length && active.parent(".collapse").length)
@@ -27,14 +25,16 @@ $(document).ready(function()
 /**
  * Focus username input after opening login modal
  */
-$('#myModalLogin').on('shown.bs.modal', function () {
+$('#myModalLogin').on('shown.bs.modal', function()
+{
     $('#username').focus();
 })
 
 /**
  * Focus name input after opening register modal
  */
-$('#myModalRegister').on('shown.bs.modal', function () {
+$('#myModalRegister').on('shown.bs.modal', function()
+{
     $('#name').focus();
 })
 
@@ -59,7 +59,7 @@ function ajaxCallGet(url, handler)
     xmlhttp.send();
 }
 
-function ajaxCallGet2(url,params, handler)
+function ajaxCallGet2(url, params, handler)
 {
     $.ajax(
     {
@@ -93,24 +93,28 @@ function encodeForAjax(data)
 
 let album = document.querySelector('#auctionsAlbum');
 let showmorebutton = document.querySelector('#showmorebutton');
-let i=0;
-let auctions=[];
-if (showmorebutton != null) {
-    showmorebutton.addEventListener('click',function(event){
-        switch(window.location.pathname){
+let i = 0;
+let auctions = [];
+if (showmorebutton != null)
+{
+    showmorebutton.addEventListener('click', function(event)
+    {
+        switch (window.location.pathname)
+        {
             case "/myauctions":
-            album.innerHTML +=myauctionsAlbum();
+                album.innerHTML += myauctionsAlbum();
                 break;
             case "/history":
-            album.innerHTML +=historyAlbum();
+                album.innerHTML += historyAlbum();
                 break;
             default:
-            album.innerHTML +=makeAlbum();
+                album.innerHTML += makeAlbum();
         }
         console.log("what");
         event.preventDefault();
     });
 }
+
 /**
  * JS for the lists
  */
@@ -147,13 +151,12 @@ function historyAlbumHandler()
 
 function historyAlbum()
 {
-
     let htmlAuction = `<div class="row">`;
-    let max=i+12;
+    let max = i + 12;
 
-    for(i; i<max&&i<auctions.length;i++)
+    for (i; i < max && i < auctions.length; i++)
     {
-        let element=auctions[i];
+        let element = auctions[i];
         if (i % 4 === 0 && i !== 0)
         {
             htmlAuction += `</div><div class="row">`;
@@ -162,7 +165,7 @@ function historyAlbum()
         <a href="auction/${element.id}" class="list-group-item-action">
             <div class="card mb-4 box-shadow">
                 <div class="col-md-6 img-fluid media-object align-self-center ">
-                    <!--<img class="width100" src="../img/book.png" alt="the orphan stale">-->
+                    <!--<img class="width100" src="../img/book.png" alt="cover image">-->
                     <img class="width100" src="../img/${element.image}" alt="book image">
                 </div>
                 <div class="card-body">
@@ -177,8 +180,8 @@ function historyAlbum()
     </div>`;
     };
 
-        if(i==auctions.length)
-            showmorebutton.parentNode.removeChild(showmorebutton);
+    if (i == auctions.length)
+        showmorebutton.parentNode.removeChild(showmorebutton);
     htmlAuction += `</div>`;
     return htmlAuction;
 }
@@ -190,16 +193,15 @@ function myauctionsAlbumHandler()
     album.innerHTML = myauctionsAlbum();
 }
 
-
 function myauctionsAlbum()
 {
     console.log(auctions);
     let htmlAuction = `<div class="row">`;
-    let max=i+12;
+    let max = i + 12;
 
-    for(i; i<max&&i<auctions.length;i++)
+    for (i; i < max && i < auctions.length; i++)
     {
-        let element=auctions[i];
+        let element = auctions[i];
         if (i % 4 === 0 && i !== 0)
         {
             htmlAuction += `</div><div class="row">`;
@@ -208,7 +210,7 @@ function myauctionsAlbum()
         <a href="auction/${element.id}" class="list-group-item-action">
             <div class="card mb-4 box-shadow">
                 <div class="col-md-6 img-fluid media-object align-self-center ">
-                    <!--<img class="width100" src="../img/book.png" alt="the orphan stale">-->
+                    <!--<img class="width100" src="../img/book.png" alt="book cover">-->
                     <img class="width100" src="../img/${element.image}" alt="book image">
                 </div>
                 <div class="card-body">
@@ -225,8 +227,8 @@ function myauctionsAlbum()
     </div>`;
     };
     htmlAuction += `</div>`;
-    if(i==auctions.length)
-    showmorebutton.parentNode.removeChild(showmorebutton);
+    if (i == auctions.length)
+        showmorebutton.parentNode.removeChild(showmorebutton);
     return htmlAuction;
 }
 
@@ -241,11 +243,11 @@ function makeAlbum()
 {
     console.log(auctions);
     let htmlAuction = `<div class="row">`;
-    let max=i+12;
+    let max = i + 12;
 
-    for(i; i<max&&i<auctions.length;i++)
+    for (i; i < max && i < auctions.length; i++)
     {
-        let element=auctions[i];
+        let element = auctions[i];
         if (i % 4 === 0 && i !== 0)
         {
             htmlAuction += `</div><div class="row">`;
@@ -273,7 +275,7 @@ function makeAlbum()
     </div>`;
     };
     htmlAuction += `</div>`;
-    if(i==auctions.length)
+    if (i == auctions.length)
         showmorebutton.parentNode.removeChild(showmorebutton);
     return htmlAuction;
 }
@@ -288,7 +290,7 @@ function notificationsClick()
 {
     let params = {};
     counter.innerHTML = "";
-    ajaxCallGet2('../api/notifications', params,notificationsHandler);
+    ajaxCallGet2('../api/notifications', params, notificationsHandler);
 }
 
 
@@ -321,21 +323,23 @@ function notificationsHandler(response)
             let params = {
                 "notification_id": element.id
             };
-           ajaxCallPost('/notifications/{id}', params, 'success');
+            ajaxCallPost('/notifications/{id}', params, 'success');
         });
     }
     notification_list.innerHTML = html_notification;
 }
 
-function getNotCounter(response){
+function getNotCounter(response)
+{
     let notifications = JSON.parse(JSON.stringify(response));
     if (notifications.length != 0)
     {
-    counter.innerHTML = notifications.length;
+        counter.innerHTML = notifications.length;
     }
 }
 
-setInterval(function() {
+setInterval(function()
+{
     let params = {};
     ajaxCallGet2('../api/notifications', params, getNotCounter);
 }, 1000);
@@ -343,31 +347,38 @@ setInterval(function() {
 /**
  * JS for the feedback functionalities
  */
-
 let feedback = document.querySelector("#myfeedback");
 let like;
 let profile_id;
 
 
-if(window.location.href.includes('profile')){
+if (window.location.href.includes('profile'))
+{
     profile_id = getProfileID();
-    let params = {"user": profile_id};
-    ajaxCallGet2('/users/{id}/comments',params,commentsHandler);
+    let params = {
+        "user": profile_id
+    };
+    ajaxCallGet2('/users/{id}/comments', params, commentsHandler);
 }
 
-function commentsHandler(response){
+function commentsHandler(response)
+{
     let comments = JSON.parse(JSON.stringify(response));
-    if(comments.length == 0){
+    if (comments.length == 0)
+    {
         feedback.innerHTML = `<a class="list-group-item list-group-item-action text-muted">
                                 <div class="container">
                                     <span> No feedback.</span>
                                 </div>
                               </a>`;
     }
-    else{
+    else
+    {
         let comments_html;
-        comments.forEach(function(element){
-            if(element.idparent == null) {
+        comments.forEach(function(element)
+        {
+            if (element.idparent == null)
+            {
                 comments_html = "";
                 let date_sent = element.dateposted.substring(0, 11);
                 comments_html += `<a class="list-group-item list-group-item-action text-muted">
@@ -375,16 +386,20 @@ function commentsHandler(response){
                                         <div class="col-lg-2">
                                             <span onclick="changeurl('/profile/${element.idsender}')" class="btn btn-outline-secondary">${element.username}</span>
                                          </div>`;
-                if (element.liked) {
+                if (element.liked)
+                {
                     comments_html += `<div class="col-lg-1  text-left text-dark lead">
                                             <i class="fa fa-thumbs-up btn btn-success"></i>
                                         </div>`;
-                } else if (element.liked == false) {
+                }
+                else if (element.liked == false)
+                {
                     comments_html += `<div class="col-lg-1  text-left text-dark lead">
                                             <i class="fa fa-thumbs-down btn btn-danger"></i>
                                         </div>`;
                 }
-                else{
+                else
+                {
                     comments_html += `<div class="col-lg-1  text-left text-dark lead">
                                             <i class="fa fa-thumbs-o-upbtn btn-info"></i>
                                         </div>`;
@@ -396,7 +411,8 @@ function commentsHandler(response){
                                     <p>${date_sent}</p>
                               </div>`;
 
-                if (user_id == profile_id){
+                if (user_id == profile_id)
+                {
                     comments_html += `<div class="col-lg-2  text-left text-dark lead">
                                         <span id="rb${element.id}" onclick = "showTextArea(${element.id})" class="btn btn-secondary">Reply</span>
                                     </div>
@@ -418,9 +434,10 @@ function commentsHandler(response){
 
                 feedback.innerHTML += comments_html;
             }
-            else{
-                let idx1 = "#r"+element.idparent;
-                let idx2 = "#rb"+element.idparent;
+            else
+            {
+                let idx1 = "#r" + element.idparent;
+                let idx2 = "#rb" + element.idparent;
                 console.log(idx1);
                 let commentid = document.querySelector(idx1);
                 let rpbtn = document.querySelector(idx2);
@@ -445,42 +462,50 @@ function commentsHandler(response){
     }
 }
 
-function setLike(){
+function setLike()
+{
     like = true;
     console.log(like);
 }
-function setUnlike(){
+
+function setUnlike()
+{
     like = false;
     console.log(like);
 }
 
-function postFeedback(senderID){
+function postFeedback(senderID)
+{
     let feedback = document.querySelector('#left-feedback').value;
     console.log(feedback);
-    if(feedback !== null){
-       let params = {
+    if (feedback !== null)
+    {
+        let params = {
             "id_sender": senderID,
             "text": feedback,
             "id_receiver": getProfileID(),
             "liked": like,
             "id_parent": null
         };
-        ajaxCallPost('/users/{id}',params,null);
+        ajaxCallPost('/users/{id}', params, null);
         window.location.reload();
     }
 }
 
-function getProfileID(){
-    return window.location.pathname.substring(9,window.location.pathname.length);
+function getProfileID()
+{
+    return window.location.pathname.substring(9, window.location.pathname.length);
 }
 
-function changeurl(newUrl){
+function changeurl(newUrl)
+{
     window.location = newUrl;
 }
 
-function showTextArea(id){
-    let idx1 = "#r"+id.toString();
-    let idx2 = "#rb"+id.toString();
+function showTextArea(id)
+{
+    let idx1 = "#r" + id.toString();
+    let idx2 = "#rb" + id.toString();
     console.log(idx2);
     let textarea = document.querySelector(idx1);
     let replybtn = document.querySelector(idx2);
@@ -490,23 +515,27 @@ function showTextArea(id){
 
 let id_reply = "";
 
-function sendReply(feedback_id,receiver_id){
-    let taidx = "#textArea"+feedback_id;
+function sendReply(feedback_id, receiver_id)
+{
+    let taidx = "#textArea" + feedback_id;
     let text = document.querySelector(taidx).value;
-    if(text !== null){
+    if (text !== null)
+    {
         let params = {
             "id_parent": feedback_id,
             "id_sender": receiver_id,
             "id_receiver": receiver_id,
             "text": text,
-            "liked":null
+            "liked": null
         };
-        setID("#r"+feedback_id);
-        ajaxCallPost('/users/{id}',params,null);
+        setID("#r" + feedback_id);
+        ajaxCallPost('/users/{id}', params, null);
         window.location.reload();
     }
 }
-function setID(id){
+
+function setID(id)
+{
     id_reply = id;
 }
 
@@ -525,7 +554,6 @@ if (window.location.pathname === "/search") //use ajax on advanced search form
     }
 }
 
-//set the category for the navbar search box
 let cats = document.querySelectorAll(".category-dropdown");
 let navbarSearches = document.querySelectorAll("input[name='category']");
 let selectedCat = document.querySelector("#catDropDown");
@@ -546,7 +574,6 @@ for (let i = 0; i < cats.length; i++)
  */
 if (window.location.href.includes("auction/"))
 {
-    //edit auction button {{ route('auction/id/edit') }}
     let editButton = document.querySelector("#edit-auction");
     if (editButton != null)
     {
@@ -556,7 +583,6 @@ if (window.location.href.includes("auction/"))
         });
     }
 
-    //decrease time left every second
     let timeLeft = document.querySelector("#timeLeft").innerHTML;
     if (timeLeft !== "Auction hasn't been approved yet" && timeLeft !== "Auction has ended!")
     {
@@ -592,7 +618,8 @@ if (window.location.href.includes("auction/"))
         }
 
         let timer = new Timer();
-        timer.start({
+        timer.start(
+        {
             countdown: true,
             startValues:
             {
@@ -627,16 +654,15 @@ if (window.location.href.includes("auction/"))
         });
     }
 
-    //get the current highest bid value periodically
     window.setInterval(function()
     {
         let auctionID = getAuctionID();
         let requestURL = "/api/bid/?auctionID=" + auctionID;
         ajaxCallGet(requestURL, getBidHandler);
-        ajaxCallGet2('/auction',{},null);
+        ajaxCallGet2('/auction',
+        {}, null);
     }, 2000);
 
-    //post new bid value
     let bidBox = document.querySelector("#bid-box");
     if (bidBox != null)
     {
@@ -685,10 +711,11 @@ if (window.location.href.includes("auction/"))
         let id = getAuctionID();
         wishlistButton.addEventListener("click", function()
         {
-            //wishlistButton.disabled = true;
-            ajaxCallPost("/api/wishlist", {"id": id}, function(data)
+            ajaxCallPost("/api/wishlist",
             {
-                //wishlistButton.disabled = false;
+                "id": id
+            }, function(data)
+            {
                 if (data.wishlisted)
                     wishlistButton.innerHTML = "Remove from wishlist";
                 else
@@ -766,7 +793,7 @@ function advSearchHandler()
 
     let sentence = "";
     if (answer.length == 1)
-        sentence ="1 result found:";
+        sentence = "1 result found:";
     else
         sentence = answer.length + " results found";
 
@@ -933,5 +960,4 @@ function adminAction(adminAction, id_member = -1, username = "")
             alert("Check the log.")
         }
     });
-
 }

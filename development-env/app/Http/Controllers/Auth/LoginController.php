@@ -47,25 +47,25 @@ class LoginController extends Controller
 
 
 
-    protected function authenticated(Request $request, User $user){
-        //put your thing in here
+    protected function authenticated(Request $request, User $user)
+    {
         if ($user->isNormal()){
-            return redirect()->route('home');    
+            return redirect()->route('home');
         }
         else if ($user->isModerator() || $user->isAdmin()){
             return redirect()->route('home');
         }
         else if ($user->isSuspended()){
             Auth::logout();
-            return redirect()->route('contact')->withErrors("Your account has been suspended. Contact the admin through the contact page for details."); 
-        } 
+            return redirect()->route('contact')->withErrors("Your account has been suspended. Contact the admin through the contact page for details.");
+        }
         else if ($user->isBanned()){
             Auth::logout();
-            return redirect()->route('contact')->withErrors("You are permanently banned. Contact the admin through contact page for details."); 
+            return redirect()->route('contact')->withErrors("You are permanently banned. Contact the admin through contact page for details.");
         }
         else if ($user->isTerminated()){
             Auth::logout();
-            return redirect()->route('contact')->withErrors("Your account has been terminated. Contact the admin through contact page for details."); 
+            return redirect()->route('contact')->withErrors("Your account has been terminated. Contact the admin through contact page for details.");
         }
     }
 }

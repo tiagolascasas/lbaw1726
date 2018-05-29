@@ -83,7 +83,7 @@
                                     <div class="carousel-inner">
                                         @foreach($images as $key => $image)
                                         <div class=@if ($key === 0) "carousel-item active" @else "carousel-item" @endif >
-                                            <img class="d-block w-100" src="{{asset('../img/'.$image)}}" alt="{{$image}}" >
+                                            <img class="d-block w-100" src="{{asset('../img/'.$image)}}" height="350" width="200" alt="{{$image}}" >
                                         </div>
                                         @endforeach
                                     </div>

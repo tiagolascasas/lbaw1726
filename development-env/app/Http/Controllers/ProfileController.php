@@ -42,10 +42,11 @@ class ProfileController extends Controller
         }
 
         $paypalMsg = "";
-        if ($user->paypalemail != NULL)
+        if ($user->paypalemail != null) {
             $paypalMsg = "You are linked to PayPal";
-        else
+        } else {
             $paypalMsg = "You are unlinked to PayPal";
+        }
 
         return view('pages.profile', ['user' => $user, 'image' => $images[0], 'paypalMsg' => $paypalMsg]);
     }
@@ -101,14 +102,8 @@ class ProfileController extends Controller
             DB::update('update users set phone = ? where id = ?', [$input['phone'], $id]);
         }
 
-/*
-$image = DB::table('image')->where('iduser', $id)->pluck('source')[0];
-if ($image == NULL)
-$image = "default.png";*/
-
-        //TODO lol wut check tomorrow
         $image=$request->file('image');
-        if($image!==null){
+        if ($image!==null) {
             $input['imagename'] = time() . $image->getClientOriginalName();
             $image->move('img', $input['imagename']);
             if (sizeof(DB::select('select * FROM image WHERE idusers = ?', [$id])) > 0) {
@@ -122,8 +117,7 @@ $image = "default.png";*/
 
     public function addPaypal(Request $request, $id)
     {
-        if (Auth::user()->id != $id)
-        {
+        if (Auth::user()->id != $id) {
             return redirect('/home');
         }
 
@@ -148,8 +142,7 @@ $image = "default.png";*/
 
     public function removePaypal(Request $request, $id)
     {
-        if (Auth::user()->id != $id)
-        {
+        if (Auth::user()->id != $id) {
             return redirect('/home');
         }
 

@@ -20,5 +20,4 @@ class NotificationAuction extends Model
      * @var string
      */
     protected $table = 'notification_auction';
-
 }

@@ -20,5 +20,4 @@ class Language extends Model
      * @var string
      */
     protected $table = 'language';
-
 }

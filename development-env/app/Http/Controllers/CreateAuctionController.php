@@ -47,7 +47,6 @@ class CreateAuctionController extends Controller
 
     private function db_create(Request $request)
     {
-        // create auction transaction
         $createdAuction = DB::transaction(function () use ($request) {
             $saveAuction = new Auction;
             $saveCategoryAuction = new CategoryAuction;
@@ -83,7 +82,6 @@ class CreateAuctionController extends Controller
                 $saveCategoryAuction->save();
             }
 
-            /*Get images and store them*/
             $input = $request->all();
             $images = array();
             if ($files = $request->file('images')) {
@@ -96,7 +94,6 @@ class CreateAuctionController extends Controller
                 }
             }
 
-            /*Store image sources in database*/
             foreach ($images as $image) {
                 $saveImage = new Image;
                 $saveImage->source = $image;
@@ -104,10 +101,6 @@ class CreateAuctionController extends Controller
                 $saveImage->save();
             }
 
-            //$saveImage->source = $request->input('filename');
-            //$saveImage->idusers = $saveAuction->id;
-
-            /*Return the saved auction*/
             return $saveAuction;
         });
 
@@ -136,7 +129,6 @@ class CreateAuctionController extends Controller
                 ->withErrors($errors);
         }
         return redirect()->route('auction', ['id' => $createdAuction->id]);
-
     }
 
     private function buildDuration(Request $request)

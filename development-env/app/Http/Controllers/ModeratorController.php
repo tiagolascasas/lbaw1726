@@ -27,7 +27,6 @@ class ModeratorController extends Controller
         if (Auth::user()==null || Auth::user()->users_status != "moderator") {
             return true;
         }
-
     }
 
     public function show()
@@ -44,5 +43,4 @@ class ModeratorController extends Controller
 
         return view('pages.moderator', ['auctions' => $auctions, 'auction_modifications' => $auction_modifications, 'auctions_to_mod' => $auctions_to_mod]);
     }
-
 }

@@ -12,23 +12,22 @@ class RequestedTermination extends Model
    *
    * @var bool
    */
-  public $timestamps = false;
+    public $timestamps = false;
 
-  /**
-   * The table associated with the model.
-   *
-   * @var string
-   */
-  protected $table = 'requested_termination';
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'requested_termination';
 
-  /**
-   *
-   * The user that created this auction
-   *
-   */
-  public function user(){
-    return $this->belongsTo('App\User','idusers','id');
-  }
-
+    /**
+     *
+     * The user that created this auction
+     *
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'idusers', 'id');
+    }
 }
-

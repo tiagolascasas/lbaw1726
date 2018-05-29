@@ -25,8 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function()
-        {
+        $schedule->call(function () {
             (new AuctionController)->updateAuctions();
             echo "Updated auctions";
         })->everyMinute()->appendOutputTo("/tmp/laravel.log");
