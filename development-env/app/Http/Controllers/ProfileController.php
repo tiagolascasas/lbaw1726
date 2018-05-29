@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
+use Exception;
 
 class ProfileController extends Controller
 {
@@ -120,6 +121,7 @@ class ProfileController extends Controller
 
             $errors->add('An error ocurred', "There was a problem editing your information. Try Again!");
 
+            $this->warn($qe);
             return redirect()
                 ->route('profile', ['id' => Auth::user()->id])
                 ->withErrors($errors);
@@ -153,7 +155,7 @@ class ProfileController extends Controller
             $errors = new MessageBag();
 
             $errors->add('An error ocurred', "There was a problem adding your paypal. Try Again!");
-
+            $this->warn($qe);
             return redirect()
                 ->route('profile', ['id' => Auth::user()->id])
                 ->withErrors($errors);
@@ -174,7 +176,7 @@ class ProfileController extends Controller
             $errors = new MessageBag();
 
             $errors->add('An error ocurred', "There was a problem removing your paypal information. Try Again!");
-
+            $this->warn($qe);
             return redirect()
                 ->route('profile', ['id' => Auth::user()->id])
                 ->withErrors($errors);
