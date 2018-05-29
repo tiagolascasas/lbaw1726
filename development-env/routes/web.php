@@ -31,6 +31,7 @@ Route::post('create', 'CreateAuctionController@create');
 
 // Auction Item Page
 Route::get('auction/{id}', 'AuctionController@show')->name('auction');
+Route::get('/auction', 'AuctionController@updateAuctions');
 Route::get('auction/{id}/edit', 'AuctionController@edit')->name('auction.edit');
 Route::post('auction/{id}/edit', 'AuctionController@submitEdit')->name('auction.edit');
 
@@ -57,7 +58,7 @@ Route::get('api/search', 'API\SearchController@search');
 Route::get('api/bid', 'API\BidController@getMaxBid');
 Route::post('api/bid', 'API\BidController@bidNewValue');
 Route::get('api/notifications', 'API\NotificationsController@getNotifications');
-Route::post('api/notifications/{id}','API\NotificationsController@markAsSeen');
+Route::post('/notifications/{id}','API\NotificationsController@markAsSeen');
 Route::post('api/admin','API\AdminController@action')->name('admin');
 Route::post('api/moderator','API\ModeratorController@action')->name('moderator');
 Route::post('api/wishlist','API\WishlistController@wish')->name('wish');

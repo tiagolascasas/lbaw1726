@@ -91,29 +91,159 @@ function encodeForAjax(data)
     }).join('&');
 }
 
+let album = document.querySelector('#auctionsAlbum');
+let showmorebutton = document.querySelector('#showmorebutton');
+let i=0;
+let auctions=[];
+showmorebutton.addEventListener('click',function(event){
+    switch(window.location.pathname){
+        case "/myauctions":
+        album.innerHTML +=myauctionsAlbum();
+            break;
+        case "/history":
+        album.innerHTML +=historyAlbum();
+            break;
+        default:
+        album.innerHTML +=makeAlbum();    
+    }
+    console.log("what");
+    event.preventDefault();
+});
 /**
- * JS for the home page
+ * JS for the lists
  */
 if (window.location.pathname === "/home")
 {
     ajaxCallGet("api/search?auctionStatus=approved", auctionAlbumHandler);
 }
 
+if (window.location.pathname === "/myauctions")
+{
+    ajaxCallGet("api/search?auctionsOfUser=true", myauctionsAlbumHandler);
+} 
+
+if (window.location.pathname === "/auctions_im_in")
+{
+    ajaxCallGet("api/search?userBidOn=true", auctionAlbumHandler);
+} 
+
+if (window.location.pathname === "/wishlist")
+{
+    ajaxCallGet("api/search?wishlistOfUser=true", auctionAlbumHandler);
+} 
+
+if (window.location.pathname === "/history")
+{
+    ajaxCallGet("api/search?history=true", historyAlbumHandler);
+} 
+
+function historyAlbumHandler()
+{
+    auctions = JSON.parse(this.responseText);
+    album.innerHTML = historyAlbum();
+}
+
+function historyAlbum()
+{
+    
+    let htmlAuction = `<div class="row">`;
+    let max=i+12;
+
+    for(i; i<max&&i<auctions.length;i++)
+    {
+        let element=auctions[i];
+        if (i % 4 === 0 && i !== 0)
+        {
+            htmlAuction += `</div><div class="row">`;
+        }
+        htmlAuction += `<div class="col-md-3 auctionItem"  data-id="${element.id}">
+        <a href="auction/${element.id}" class="list-group-item-action">
+            <div class="card mb-4 box-shadow">
+                <div class="col-md-6 img-fluid media-object align-self-center ">
+                    <!--<img class="width100" src="../img/book.png" alt="the orphan stale">-->
+                    <img class="width100" src="../img/${element.image}" alt="book image">
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-center hidden-p-md-down font-weight-bold" style="font-size: larger"> ${element.title} </p>
+                    <p class="card-text text-center hidden-p-md-down">By ${element.author} </p>
+                    <div class="text-center align-items-center">
+                        <small class="text-success">Sold for ${element.bidMsg} </small>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>`;
+    };
+
+        if(i==auctions.length)
+            showmorebutton.parentNode.removeChild(showmorebutton);
+    htmlAuction += `</div>`;
+    return htmlAuction;
+}
+
+function myauctionsAlbumHandler()
+{
+    console.log(this.responseText);
+    auctions = JSON.parse(this.responseText);
+    album.innerHTML = myauctionsAlbum();
+}
+
+
+function myauctionsAlbum()
+{
+    console.log(auctions);
+    let htmlAuction = `<div class="row">`;
+    let max=i+12;
+
+    for(i; i<max&&i<auctions.length;i++)
+    {
+        let element=auctions[i];
+        if (i % 4 === 0 && i !== 0)
+        {
+            htmlAuction += `</div><div class="row">`;
+        }
+        htmlAuction += `<div class="col-md-3 auctionItem"  data-id="${element.id}">
+        <a href="auction/${element.id}" class="list-group-item-action">
+            <div class="card mb-4 box-shadow">
+                <div class="col-md-6 img-fluid media-object align-self-center ">
+                    <!--<img class="width100" src="../img/book.png" alt="the orphan stale">-->
+                    <img class="width100" src="../img/${element.image}" alt="book image">
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-center hidden-p-md-down font-weight-bold" style="font-size: larger"> ${element.title} </p>
+                    <p class="card-text text-center hidden-p-md-down">By ${element.author} </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-success">${element.bidMsg} </small>
+                        <small class="text-danger">
+                                ${element.time}</small>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>`;
+    };
+    htmlAuction += `</div>`;
+    if(i==auctions.length)
+    showmorebutton.parentNode.removeChild(showmorebutton);
+    return htmlAuction;
+}
+
 function auctionAlbumHandler()
 {
     console.log(this.responseText);
     auctions = JSON.parse(this.responseText);
-    let album = document.querySelector('#auctionsAlbum');
-    album.innerHTML = makeAlbum(auctions);
+    album.innerHTML = makeAlbum();
 }
 
-function makeAlbum(auctions)
+function makeAlbum()
 {
     console.log(auctions);
     let htmlAuction = `<div class="row">`;
-    let i = 0;
-    auctions.forEach(element =>
+    let max=i+12;
+
+    for(i; i<max&&i<auctions.length;i++)
     {
+        let element=auctions[i];
         if (i % 4 === 0 && i !== 0)
         {
             htmlAuction += `</div><div class="row">`;
@@ -139,9 +269,10 @@ function makeAlbum(auctions)
             </div>
 
     </div>`;
-        i++;
-    });
+    };
     htmlAuction += `</div>`;
+    if(i==auctions.length)
+        showmorebutton.parentNode.removeChild(showmorebutton);
     return htmlAuction;
 }
 
@@ -155,7 +286,7 @@ function notificationsClick()
 {
     let params = {};
     counter.innerHTML = "";
-    ajaxCallGet2('api/notifications', params,notificationsHandler);
+    ajaxCallGet2('../api/notifications', params,notificationsHandler);
 }
 
 
@@ -173,11 +304,10 @@ function notificationsHandler(response)
     }
     else
     {
-        counter.innerHTML = notifications.length;
         notifications.forEach(function(element)
         {
             let time_sent = element.datesent.substring(10, 16);
-            html_notification += `<a class="dropdown-item" data-id="${element.id}" method = "GET" href="{{route(auction/${element.idAuction})}}">
+            html_notification += `<a class="dropdown-item" data-id="${element.id}" method = "GET" href="/auction/${element.idAuction}">
                               <span class="text text-left">
                                 <strong>${element.title}</strong>
                               </span>
@@ -189,16 +319,24 @@ function notificationsHandler(response)
             let params = {
                 "notification_id": element.id
             };
-            ajaxCallPost('../api/notifications/{id}', params, 'sucess');
+           ajaxCallPost('/notifications/{id}', params, 'success');
         });
     }
     notification_list.innerHTML = html_notification;
 }
 
+function getNotCounter(response){
+    let notifications = JSON.parse(JSON.stringify(response));
+    if (notifications.length != 0)
+    {
+    counter.innerHTML = notifications.length;
+    }
+}
+
 setInterval(function() {
     let params = {};
-    ajaxCallGet2('../api/notifications', params, notificationsHandler);
-}, 5000);
+    ajaxCallGet2('../api/notifications', params, getNotCounter);
+}, 1000);
 
 /**
  * JS for the feedback functionalities
@@ -284,10 +422,10 @@ function commentsHandler(response){
                 console.log(idx1);
                 let commentid = document.querySelector(idx1);
                 let rpbtn = document.querySelector(idx2);
-                commentid.innerHTML = `<div class="col-lg-5  text-left text-dark lead">
+                commentid.innerHTML = `<div class="col-lg-4  text-left text-dark border-success lead">
                                             <div class="row">
-                                                <div class="col-sm-1 col-md-10">
-                                                     <div class="panel panel-default border-success">
+                                                <div class="col-sm-5 col-md-10">
+                                                     <div>
                                                           <div class="panel-body" style="font-size: 0.8em">
                                                             <span>${element.username} replied:</span>
                                                             <span class = "container">${element.comment_text}</span>
@@ -493,6 +631,7 @@ if (window.location.href.includes("auction/"))
         let auctionID = getAuctionID();
         let requestURL = "/api/bid/?auctionID=" + auctionID;
         ajaxCallGet(requestURL, getBidHandler);
+        ajaxCallGet2('/auction',{},null);
     }, 2000);
 
     //post new bid value

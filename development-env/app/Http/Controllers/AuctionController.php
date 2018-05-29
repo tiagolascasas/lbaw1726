@@ -119,7 +119,7 @@ class AuctionController extends Controller
         }
     }
 
-    public static function updateAuctions()
+    public function updateAuctions()
     {
         //get all approved auctions
         $auctions = DB::select("SELECT id, duration, dateApproved, idSeller FROM auction WHERE auction_status = ?",["approved"]);
@@ -144,13 +144,15 @@ class AuctionController extends Controller
         //$id = auction id
         foreach($over as $id)
         {
-            //notifyOwner($id);
+            return $this->notifyOwner($id);
             //notifyWinnerAndPurchase($id);
             //notifyBidders($id);
+
+
         }
     }
 
-    public static function notifyOwner($id)
+    public function notifyOwner($id)
     {
         $res = DB::select("SELECT id, idseller, title FROM auction WHERE id = ?", [$id]);
         $text = "Your auction of " . $res[0]->title . " has finished!";
@@ -162,6 +164,7 @@ class AuctionController extends Controller
     {
         //notify
         //process payment
+
     }
 
     public static function notifyBidders($id)
