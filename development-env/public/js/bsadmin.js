@@ -350,7 +350,7 @@ function notificationsHandler(response)
         notifications.forEach(function(element)
         {
             let time_sent = element.datesent.substring(10, 16);
-            html_notification += `<a class="dropdown-item" data-id="${element.id}" method = "GET" href="/auction/${element.idAuction}">
+            html_notification += `<a class="dropdown-item" data-id="${element.id}" href="${element.idauction}">
                               <span class="text text-left">
                                 <strong>${element.title}</strong>
                               </span>

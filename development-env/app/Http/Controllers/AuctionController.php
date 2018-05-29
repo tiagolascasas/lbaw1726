@@ -7,6 +7,7 @@ use App\Category;
 use App\CategoryAuction;
 use App\Http\Controllers\Controller;
 use App\Image;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -95,32 +96,51 @@ class AuctionController extends Controller
 
     public function submitEdit(Request $request, $id)
     {
-        if ($id != Auth::user()->id) {
+        $auction = Auction::find($id);
+        if ($auction->idseller != Auth::user()->id) {
             return redirect('/auction/' . $id);
         }
+        try {
+            if (sizeof(DB::select('select * FROM auction_modification WHERE auction_modification.idapprovedauction = ? AND auction_modification.is_approved is NULL', [$id])) == "0") {
+                $modID = DB::table('auction_modification')->insertGetId(['newdescription' => $request->input('description'), 'idapprovedauction' => $id]);
 
-        DB::beginTransaction();
-        $modID = DB::table('auction_modification')->insertGetId(['newDescription' => $request->input('description')]);
+                $input = $request->all();
+                $images = array();
+                if ($files = $request->file('images')) {
+                    $integer = 0;
+                    foreach ($files as $file) {
+                        $name = time() . (string) $integer . $file->getClientOriginalName();
+                        $file->move('img', $name);
+                        $images[] = $name;
+                        $integer += 1;
+                    }
+                }
 
-        $input = $request->all();
-        $images = array();
-        if ($files = $request->file('images')) {
-            $integer = 0;
-            foreach ($files as $file) {
-                $name = time() . (string) $integer . $file->getClientOriginalName();
-                $file->move('img', $name);
-                $images[] = $name;
-                $integer += 1;
+                foreach ($images as $image) {
+                    $saveImage = new Image;
+                    $saveImage->source = $image;
+                    $saveImage->idauctionmodification = $modID;
+                    $saveImage->save();
+                }
             }
+            else{
+                $errors = new MessageBag();
+
+                $errors->add('An error ocurred', "There is already a request to edit this auction's information");
+                return redirect('/auction/' . $id)
+                    ->withErrors($errors);
+            }
+        } catch (QueryException $qe) {
+            $errors = new MessageBag();
+
+            $errors->add('An error ocurred', "There was a problem editing auction information. Try Again!");
+
+            $this->warn($qe);
+            return redirect('/auction/' . $id)
+                ->withErrors($errors);
         }
 
-        foreach ($images as $image) {
-            $saveImage = new Image;
-            $saveImage->source = $image;
-            $saveImage->idauctionmodification = $modID;
-            $saveImage->save();
-        }
-        DB::commit();
+        return redirect('/auction/' . $id);
     }
 
     public function updateAuctions()
@@ -144,24 +164,37 @@ class AuctionController extends Controller
         DB::update($query, ["finished", "now()"]);
 
         foreach ($over as $id) {
-            return $this->notifyOwner($id);
+            $this->notifyOwner($id);
         }
     }
 
     public function notifyOwner($id)
     {
-        $res = DB::select("SELECT id, idseller, title FROM auction WHERE id = ?", [$id]);
-        $text = "Your auction of " . $res[0]->title . " has finished!";
-        $notifID = DB::table('notification')->insertGetId(['information' => $text, 'idusers' => $res[0]->idseller]);
-        DB::insert("INSERT INTO notification_auction (idAuction, idNotification) VALUES (?, ?)", [$res[0]->id, $notifID]);
+        try {
+            $res = DB::select("SELECT id, idseller, title FROM auction WHERE id = ?", [$id]);
+            $text = "Your auction of " . $res[0]->title . " has finished!";
+            $notifID = DB::table('notification')->insertGetId(['information' => $text, 'idusers' => $res[0]->idseller]);
+            DB::insert("INSERT INTO notification_auction (idAuction, idNotification) VALUES (?, ?)", [$res[0]->id, $notifID]);
+        } catch (QueryException $qe) {
+            return response('NOT FOUND', 404);
+        }
+
     }
 
     public static function notifyWinnerAndPurchase($id)
     {
+        /*try{
+            $res = DB::select("SELECT bid.idbuyer, max(bid.bidValue)
+                               FROM bid
+                               WHERE bid.idauction  = ?",[$id]);
+        }catch(QueryException $qe){
+            return response('NOT FOUND', 404);
+        }*/
     }
 
     public static function notifyBidders($id)
     {
+
     }
 
     public static function createTimestamp($dateApproved, $duration)
