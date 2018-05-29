@@ -81,6 +81,6 @@
     </div>
     </div>
   <div class="modal-footer">
-    <button class="btn btn-primary btn-block" type"submit">REGISTER</button>
+    <button class="btn btn-primary btn-block" type="submit">REGISTER</button>
   </div>
 </form>
