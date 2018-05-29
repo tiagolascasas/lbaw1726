@@ -90,7 +90,9 @@ class BidController extends Controller
 
                 DB::insert("INSERT INTO bid (idBuyer, idAuction, bidValue) VALUES (?, ?, ?)", [$userID, $auctionID, $bidValue]);
                 $message = "Successfully registered your bid. You are now leading the auction!";
-                DB::insert("INSERT INTO notification (information, idusers) VALUES (?,?)", [$info, $lastbidder[0]->idbuyer]);
+
+                $notifID = DB::table('notification')->insertGetId(['information' => $info, 'idusers' => $lastbidder[0]->idbuyer]);
+                DB::insert("INSERT INTO notification_auction (idAuction, idNotification) VALUES (?, ?)", [$auctionID, $notifID]);
             }
         } catch (Exception $e) {
             $this->error($e);
