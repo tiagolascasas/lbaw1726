@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ListController extends Controller
@@ -25,8 +23,7 @@ class ListController extends Controller
             return redirect('/home');
         }
 
-        $action="MY_AUCTIONS";
-
+        $action = "MY_AUCTIONS";
 
         return view('pages.list', ['action' => $action]);
     }
@@ -36,8 +33,7 @@ class ListController extends Controller
         if (!Auth::check()) {
             return redirect('/home');
         }
-        $action="AUCTIONS_IN";
-
+        $action = "AUCTIONS_IN";
 
         return view('pages.list', ['action' => $action]);
     }
@@ -47,8 +43,7 @@ class ListController extends Controller
         if (!Auth::check()) {
             return redirect('/home');
         }
-        $action="HISTORY";
-
+        $action = "HISTORY";
 
         return view('pages.list', ['action' => $action]);
     }
@@ -58,8 +53,7 @@ class ListController extends Controller
         if (!Auth::check()) {
             return redirect('/home');
         }
-        $action="WISHLIST";
-
+        $action = "WISHLIST";
 
         return view('pages.list', ['action' => $action]);
     }

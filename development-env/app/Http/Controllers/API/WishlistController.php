@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\AuctionController;
-use App\Http\Controllers\API\BidController;
-use Illuminate\Support\Facades\DB;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class WishlistController extends Controller
 {
@@ -23,22 +22,26 @@ class WishlistController extends Controller
 
     public function wish(Request $request)
     {
-        if (!($request->ajax() || $request->pjax() || Auth::check())) {
-            return response('Forbidden.', 403);
-        }
-        $id = $request->input('id');
+        try {
+            if (!($request->ajax() || $request->pjax() || Auth::check())) {
+                return response('Forbidden.', 403);
+            }
+            $id = $request->input('id');
 
-        $wish = DB::select("SELECT * FROM whishlist WHERE idbuyer = ? and idauction = ?", [Auth::user()->id, $id]);
-        $response = "";
+            $wish = DB::select("SELECT * FROM whishlist WHERE idbuyer = ? and idauction = ?", [Auth::user()->id, $id]);
+            $response = "";
 
-        if (sizeof($wish) > 0) {
-            error_log("del");
-            DB::delete("DELETE FROM whishlist WHERE idbuyer = ? and idauction = ?", [Auth::user()->id, $id]);
-            $response = ['wishlisted' => false ];
-        } else {
-            DB::insert("INSERT INTO whishlist (idbuyer, idauction) VALUES (?, ?)", [Auth::user()->id, $id]);
-            error_log("ok");
-            $response = ['wishlisted' => true ];
+            if (sizeof($wish) > 0) {
+                error_log("del");
+                DB::delete("DELETE FROM whishlist WHERE idbuyer = ? and idauction = ?", [Auth::user()->id, $id]);
+                $response = ['wishlisted' => false];
+            } else {
+                DB::insert("INSERT INTO whishlist (idbuyer, idauction) VALUES (?, ?)", [Auth::user()->id, $id]);
+                error_log("ok");
+                $response = ['wishlisted' => true];
+            }
+        } catch (Exception $e) {
+            return response('Internal Error', 500);
         }
         return response()->json($response);
     }

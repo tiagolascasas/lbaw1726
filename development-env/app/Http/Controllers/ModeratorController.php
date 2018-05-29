@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Auction;
 use App\AuctionModification;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class ModeratorController extends Controller
 {
@@ -24,7 +22,7 @@ class ModeratorController extends Controller
 
     private function isNotModerator()
     {
-        if (Auth::user()==null || Auth::user()->users_status != "moderator") {
+        if (Auth::user() == null || Auth::user()->users_status != "moderator") {
             return true;
         }
     }
@@ -32,7 +30,7 @@ class ModeratorController extends Controller
     public function show()
     {
         if ($this->isNotModerator()) {
-            $erorIsnotAModerator="You need to be a moderator to acess this page";
+            $erorIsnotAModerator = "You need to be a moderator to acess this page";
             return redirect('home')->withErrors($erorIsnotAModerator);
         }
 

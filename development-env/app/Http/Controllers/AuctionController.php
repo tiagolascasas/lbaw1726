@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Auction;
 use App\Category;
 use App\CategoryAuction;
+use App\Http\Controllers\Controller;
 use App\Image;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuctionController extends Controller
 {
@@ -104,19 +104,19 @@ class AuctionController extends Controller
         $input = $request->all();
         $images = array();
         if ($files = $request->file('images')) {
-            $integer=0;
+            $integer = 0;
             foreach ($files as $file) {
-                $name = time() . (string) $integer . $file->getClientOriginalName() ;
+                $name = time() . (string) $integer . $file->getClientOriginalName();
                 $file->move('img', $name);
                 $images[] = $name;
-                $integer+=1;
+                $integer += 1;
             }
         }
 
         foreach ($images as $image) {
             $saveImage = new Image;
             $saveImage->source = $image;
-            $saveImage->idauctionmodification =$modID;
+            $saveImage->idauctionmodification = $modID;
             $saveImage->save();
         }
     }
@@ -126,7 +126,7 @@ class AuctionController extends Controller
         $auctions = DB::select("SELECT id, duration, dateApproved, idSeller FROM auction WHERE auction_status = ?", ["approved"]);
         $over = [];
 
-        foreach ($auctions as $auction) {   //for each auction, if it is finished, add its id to the list
+        foreach ($auctions as $auction) { //for each auction, if it is finished, add its id to the list
             $timestamp = AuctionController::createTimestamp($auction->dateapproved, $auction->duration);
             if ($timestamp === "Auction has ended!") {
                 array_push($over, $auction->id);

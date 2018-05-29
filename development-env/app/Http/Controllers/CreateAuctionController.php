@@ -9,9 +9,11 @@ use App\Http\Controllers\Controller;
 use App\Image;
 use App\Language;
 use App\Publisher;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\MessageBag;
 
 class CreateAuctionController extends Controller
 {
@@ -85,12 +87,12 @@ class CreateAuctionController extends Controller
             $input = $request->all();
             $images = array();
             if ($files = $request->file('images')) {
-                $integer=0;
+                $integer = 0;
                 foreach ($files as $file) {
-                    $name = time() . (string) $integer . $file->getClientOriginalName() ;
+                    $name = time() . (string) $integer . $file->getClientOriginalName();
                     $file->move('img', $name);
                     $images[] = $name;
-                    $integer+=1;
+                    $integer += 1;
                 }
             }
 
