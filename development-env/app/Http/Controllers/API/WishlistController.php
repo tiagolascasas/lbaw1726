@@ -32,15 +32,14 @@ class WishlistController extends Controller
             $response = "";
 
             if (sizeof($wish) > 0) {
-                error_log("del");
                 DB::delete("DELETE FROM whishlist WHERE idbuyer = ? and idauction = ?", [Auth::user()->id, $id]);
                 $response = ['wishlisted' => false];
             } else {
                 DB::insert("INSERT INTO whishlist (idbuyer, idauction) VALUES (?, ?)", [Auth::user()->id, $id]);
-                error_log("ok");
                 $response = ['wishlisted' => true];
             }
         } catch (Exception $e) {
+            $this->error($e);
             return response('Internal Error', 500);
         }
         return response()->json($response);

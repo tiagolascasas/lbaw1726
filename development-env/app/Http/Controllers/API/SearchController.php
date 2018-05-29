@@ -131,6 +131,7 @@ class SearchController extends Controller
                 }
             }
         } catch (Exception $e) {
+            $this->error($e);
             return response('Internal Error', 500);
         }
 

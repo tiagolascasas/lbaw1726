@@ -34,6 +34,7 @@ class BidController extends Controller
                 $response[0]->max = 0.00;
             }
         } catch (Exception $e) {
+            $this->error($e);
             return response('Internal Error', 500);
         }
 
@@ -87,6 +88,7 @@ class BidController extends Controller
                 DB::insert("INSERT INTO notification (information, idusers) VALUES (?,?)", [$info, $lastbidder]);
             }
         } catch (Exception $e) {
+            $this->error($e);
             return response('Internal Error', 500);
         }
 
