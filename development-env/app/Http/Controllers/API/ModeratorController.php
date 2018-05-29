@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Auction;
+use App\AuctionModification;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Auction;
-use App\AuctionModification;
 
 class ModeratorController extends Controller
 {
@@ -18,7 +19,7 @@ class ModeratorController extends Controller
      */
     private function isNotModerator()
     {
-        if (Auth::user()==null || Auth::user()->users_status != "moderator") {
+        if (Auth::user() == null || Auth::user()->users_status != "moderator") {
             return true;
         }
     }
@@ -143,38 +144,42 @@ class ModeratorController extends Controller
 
     public function action(Request $request)
     {
-        if ($this->isNotModerator()) {
-            return redirect('home');
-        }
+        try {
+            if ($this->isNotModerator()) {
+                return redirect('home');
+            }
 
-        $action = $request->action;
+            $action = $request->action;
 
-        if ($action === "approve_creation") {
-            return $this->approve_creation($request);
-        }
+            if ($action === "approve_creation") {
+                return $this->approve_creation($request);
+            }
 
-        if ($action === "remove_creation") {
-            return $this->remove_creation($request);
-        }
+            if ($action === "remove_creation") {
+                return $this->remove_creation($request);
+            }
 
-        if ($action === "approve_modification") {
-            return $this->approve_modification($request);
-        }
+            if ($action === "approve_modification") {
+                return $this->approve_modification($request);
+            }
 
-        if ($action === "remove_modification") {
-            return $this->remove_modification($request);
-        }
+            if ($action === "remove_modification") {
+                return $this->remove_modification($request);
+            }
 
-        if ($action === "restore_auction") {
-            return $this->restore_auction($request);
-        }
+            if ($action === "restore_auction") {
+                return $this->restore_auction($request);
+            }
 
-        if ($action === "remove_auction") {
-            return $this->remove_auction($request);
-        }
+            if ($action === "remove_auction") {
+                return $this->remove_auction($request);
+            }
 
-        if ($action === "get_new_description") {
-            return $this->get_new_description($request);
+            if ($action === "get_new_description") {
+                return $this->get_new_description($request);
+            }
+        } catch (Exception $e) {
+            return response('Internal Error', 500);
         }
 
         return $this->unkown_action($request);
