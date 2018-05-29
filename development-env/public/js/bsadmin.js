@@ -153,7 +153,7 @@ function notificationsClick()
 {
     let params = {};
     counter.innerHTML = "";
-    ajaxCallGet2('api/notifications', params,notificationsHandler);
+    ajaxCallGet2('../api/notifications', params,notificationsHandler);
 }
 
 
@@ -171,11 +171,10 @@ function notificationsHandler(response)
     }
     else
     {
-        counter.innerHTML = notifications.length;
         notifications.forEach(function(element)
         {
             let time_sent = element.datesent.substring(10, 16);
-            html_notification += `<a class="dropdown-item" data-id="${element.id}" method = "GET" href="{{route(auction/${element.idAuction})}}">
+            html_notification += `<a class="dropdown-item" data-id="${element.id}" method = "GET" href="/auction/${element.idAuction}">
                               <span class="text text-left">
                                 <strong>${element.title}</strong>
                               </span>
@@ -187,16 +186,24 @@ function notificationsHandler(response)
             let params = {
                 "notification_id": element.id
             };
-            ajaxCallPost('../api/notifications/{id}', params, 'sucess');
+           ajaxCallPost('/notifications/{id}', params, 'success');
         });
     }
     notification_list.innerHTML = html_notification;
 }
 
+function getNotCounter(response){
+    let notifications = JSON.parse(JSON.stringify(response));
+    if (notifications.length != 0)
+    {
+    counter.innerHTML = notifications.length;
+    }
+}
+
 setInterval(function() {
     let params = {};
-    ajaxCallGet2('../api/notifications', params, notificationsHandler);
-}, 5000);
+    ajaxCallGet2('../api/notifications', params, getNotCounter);
+}, 1000);
 
 /**
  * JS for the feedback functionalities
@@ -282,10 +289,10 @@ function commentsHandler(response){
                 console.log(idx1);
                 let commentid = document.querySelector(idx1);
                 let rpbtn = document.querySelector(idx2);
-                commentid.innerHTML = `<div class="col-lg-5  text-left text-dark lead">
+                commentid.innerHTML = `<div class="col-lg-4  text-left text-dark border-success lead">
                                             <div class="row">
-                                                <div class="col-sm-1 col-md-10">
-                                                     <div class="panel panel-default border-success">
+                                                <div class="col-sm-5 col-md-10">
+                                                     <div>
                                                           <div class="panel-body" style="font-size: 0.8em">
                                                             <span>${element.username} replied:</span>
                                                             <span class = "container">${element.comment_text}</span>
@@ -491,6 +498,7 @@ if (window.location.href.includes("auction/"))
         let auctionID = getAuctionID();
         let requestURL = "/api/bid/?auctionID=" + auctionID;
         ajaxCallGet(requestURL, getBidHandler);
+        ajaxCallGet2('/auction',{},null);
     }, 2000);
 
     //post new bid value
