@@ -184,7 +184,7 @@
                         <a class="dropdown-item" href="{{ url("auctions_im_in") }}">Auctions I'm in</a>
                         <a class="dropdown-item" href="{{ url("history") }}">History</a>
                         <a class="dropdown-item" href="{{ url("wishlist") }}">WishList</a>
-                        <a class="dropdown-item" href="messages.html">Messages</a>
+                        <!--<a class="dropdown-item" href="messages.html">Messages</a>-->
                         <a class="dropdown-item" href="{{ url("logout") }}">Logout</a>
                     </div>
                 </li>
@@ -204,7 +204,7 @@
                     <a class="nav-link hidden-p-md-up" data-toggle="modal" href="#" data-target="#myModalRegister">
                         <i class="fa fa-user-plus"></i>
                     </a>
-                </li>        
+                </li>
                 @endif
             </ul>
         </div>

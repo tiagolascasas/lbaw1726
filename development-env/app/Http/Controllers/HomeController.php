@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function show()
     {
         $auctions = Auction::all();
-        (new AuctionController)->updateAuctions();
+        //(new AuctionController)->updateAuctions();
         return view('pages.home', ['auctions' => $auctions]);
 
     }

@@ -16,17 +16,11 @@ COPY docker_run.sh /docker_run.sh
 RUN mkdir /var/run/php
 
 #------------------------------------------
-# Add crontab file in the cron directory
-ADD crontab /etc/cron.d/hello-cron
-
-# Give execution rights on the cron job
-RUN chmod 0644 /etc/cron.d/hello-cron
-
-# Create the log file to be able to run tail
-RUN touch /var/log/cron.log
-
-# Run the command on container startup
-CMD cron && tail -f /var/log/cron.log
+# Install crontab and cron job
+RUN apt-get install -y --no-install-recommends cron
+RUN touch /var/log/laravel-cron.log
+RUN echo "* * * * * /usr/bin/php /var/www/artisan schedule:run >> /var/log/laravel-cron.log 2>&1" >> mycron
+RUN crontab mycron
 #-------------------------------------------
 
 # Start command
