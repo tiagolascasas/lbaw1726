@@ -46,9 +46,9 @@ class ProfileController extends Controller
 
         $paypalMsg = "";
         if ($user->paypalemail != null) {
-            $paypalMsg = "You are linked to PayPal";
+            $paypalMsg = "You already linked your IBAN";
         } else {
-            $paypalMsg = "You are unlinked to PayPal";
+            $paypalMsg = "You aren't linked to your IBAN";
         }
 
         return view('pages.profile', ['user' => $user, 'image' => $images[0], 'paypalMsg' => $paypalMsg]);
