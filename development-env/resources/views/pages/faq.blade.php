@@ -172,6 +172,23 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Question 10 -->
+                        <div class="panel panel-default py-2">
+                                <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question10">
+                                    <h4 class="panel-title">
+                                        <a href="#question10" class="ing">Where can i see the auctions i'm related to?</a>
+                                    </h4>
+                                </div>
+    
+                                <div id="question10" class="panel-collapse collapse" style="height: 0px;">
+                                    <div class="panel-body">
+                                        
+                                        <p>If you're logged in, in the upper right corner there's your username. Click there and choose beetween all the options we have at your disposal.  
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <!-- FAQ block end -->

@@ -94,6 +94,6 @@ class RegisterController extends Controller
         Auth::attempt($credentials);
 
         return $this->registered($request, $user)
-        ?: redirect('home');
+        ?: redirect('faq');
     }
 }
