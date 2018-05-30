@@ -18,6 +18,10 @@ class HomeController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+      * Gets the home page
+      * @return page
+      */
     public function show()
     {
         $auctions = Auction::all();

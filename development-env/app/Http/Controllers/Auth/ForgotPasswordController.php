@@ -33,28 +33,32 @@ class ForgotPasswordController extends Controller
         $this->middleware('guest');
     }
 
+    /**
+      * sends an email to reset the password
+      * @param Request $request
+      * @return redirect to home
+      */
     public function sendResetLinkEmail(Request $request)
     {
         $this->validate($request, ['email' => 'required|email']);
 
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
         $response = $this->broker()->sendResetLink(
-            $request->only('email'), $this->resetNotifier() 
+            $request->only('email'), $this->resetNotifier()
         );
 
         switch ($response) {
             case Password::RESET_LINK_SENT:
-                return "A password reset link was sent to your e-mail. Don't forget to check the spam folder."; 
+                return "A password reset link was sent to your e-mail. Don't forget to check the spam folder.";
 
             case Password::INVALID_USER:
             default:
-                return redirect()->route('home')->withErrors("That user e-mail was not found."); 
+                return redirect()->route('home')->withErrors("That user e-mail was not found.");
         }
     }
 
-    // overwritte function resetNotifier() on trait SendsPasswordResetEmails
+    /**
+      * Resets the notifier
+      */
     protected function resetNotifier()
     {
         return function($token)

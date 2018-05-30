@@ -20,6 +20,11 @@ class CommentController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+      * Gets all comments of a profile
+      * @param Request $request
+      * @return JSON if success, 403 or 500 if errors
+      */
     public function getComments(Request $request)
     {
         try {
@@ -50,6 +55,11 @@ class CommentController extends Controller
         return response()->json($response);
     }
 
+    /**
+      * Posts a comment
+      * @param Request $request
+      * @return JSON if success, 403 or 500 if errors
+      */
     public function postComment(Request $request)
     {
         try {

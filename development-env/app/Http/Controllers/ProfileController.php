@@ -54,6 +54,12 @@ class ProfileController extends Controller
         return view('pages.profile', ['user' => $user, 'image' => $images[0], 'paypalMsg' => $paypalMsg]);
     }
 
+    /**
+      * Edits an user profile
+      * @param Request $request
+      * @param int $id
+      * @return redirect to profile
+      */
     public function editUser(Request $request, $id)
     {
         if (Auth::user()->id != $id) {
@@ -129,6 +135,12 @@ class ProfileController extends Controller
         return redirect()->route('profile', ['id' => Auth::user()->id]);
     }
 
+    /**
+      * adds a paypal email to the user
+      * @param Request $request
+      * @param int $id
+      * @return redirect to page
+      */
     public function addPaypal(Request $request, $id)
     {
         if (Auth::user()->id != $id) {
@@ -163,6 +175,12 @@ class ProfileController extends Controller
         return redirect()->route('profile', ['id' => $id]);
     }
 
+    /**
+      * removes a paypal email of the user
+      * @param Request $request
+      * @param int $id
+      * @return redirect to page
+      */
     public function removePaypal(Request $request, $id)
     {
         if (Auth::user()->id != $id) {

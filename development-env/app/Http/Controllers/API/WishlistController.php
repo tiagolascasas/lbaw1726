@@ -20,6 +20,11 @@ class WishlistController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+      * Wishlistes an item
+      * @param Request $request
+      * @return JSON if success, 403 or 500 if errors
+      */
     public function wish(Request $request)
     {
         try {

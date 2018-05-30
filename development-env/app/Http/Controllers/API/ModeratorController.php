@@ -24,6 +24,10 @@ class ModeratorController extends Controller
         }
     }
 
+    /**
+      * Removes an auction
+      * @param int $id
+      */
     private function db_remove_auction($id)
     {
         DB::table('auction')
@@ -31,6 +35,10 @@ class ModeratorController extends Controller
             ->update(['auction_status' => 'removed', 'dateremoved' => 'now()']);
     }
 
+    /**
+      * Approves an auction
+      * @param int $id
+      */
     private function db_restore_auction($id)
     {
         DB::table('auction')
@@ -39,10 +47,9 @@ class ModeratorController extends Controller
     }
 
     /**
-     *
-     * Aprove a new auction
-     *
-     */
+      * Approves an auction
+      * @param int $id
+      */
     private function db_approve_creation($id)
     {
         DB::table('auction')
@@ -50,6 +57,10 @@ class ModeratorController extends Controller
             ->update(['auction_status' => 'approved', 'dateapproved' => 'now()']);
     }
 
+    /**
+      * Reproves an auction
+      * @param int $id
+      */
     private function db_remove_creation($id)
     {
         DB::table('auction')
@@ -57,6 +68,11 @@ class ModeratorController extends Controller
             ->update(['auction_status' => 'removed', 'dateapproved' => 'now()']);
     }
 
+    /**
+      * Approves a modification
+      * @param int $ida
+      * @param int $idm
+      */
     private function db_approve_modification($ida, $idm)
     {
         DB::transaction(function () use ($ida, $idm) {
@@ -72,6 +88,10 @@ class ModeratorController extends Controller
         });
     }
 
+    /**
+      * Promotes someone to a moderator
+      * @param Request $request
+      */
     private function db_remove_modification($idm)
     {
         $auction_modified = AuctionModification::find($idm);
@@ -81,6 +101,12 @@ class ModeratorController extends Controller
         $auction_modified->save();
     }
 
+    /**
+      * Gets the new description of an auction
+      * @param int $ida
+      * @param int $idm
+      * @return JSON
+      */
     private function db_get_new_description($ida, $idm)
     {
         $auction = Auction::find($ida);
@@ -96,52 +122,97 @@ class ModeratorController extends Controller
         return json_encode($description);
     }
 
+    /**
+      * Approves the creation of an auction
+      * @param Request request
+      * @return JSON
+      */
     private function approve_creation($request)
     {
         $this->db_approve_creation($request->ida);
         return response()->json(['success' => 'Auction creation was successfully approved.', 'action' => $request->action, 'requestId' => $request->ida, 'did' => '1']);
     }
 
+    /**
+      * Approves the removal of an auction
+      * @param Request request
+      * @return JSON
+      */
     private function remove_creation($request)
     {
         $this->db_remove_creation($request->ida);
         return response()->json(['success' => 'Auction creation was successfully removed.', 'action' => $request->action, 'requestId' => $request->ida, 'did' => '2']);
     }
 
+    /**
+      * Approves themodification of an auction
+      * @param Request request
+      * @return JSON
+      */
     private function approve_modification($request)
     {
         $this->db_approve_modification($request->ida, $request->idm);
         return response()->json(['success' => 'Auction modification was successfully approved.', 'action' => $request->action, 'requestIdModification' => $request->idm, 'did' => '3']);
     }
 
+    /**
+      * Denies the modification of an auction
+      * @param Request request
+      * @return JSON
+      */
     private function remove_modification($request)
     {
         $this->db_remove_modification($request->idm);
         return response()->json(['success' => 'Auction modification was successfully removed.', 'action' => $request->action, 'requestIdModification' => $request->idm, 'did' => '4']);
     }
 
+    /**
+      * Approves an auction
+      * @param Request request
+      * @return JSON
+      */
     private function restore_auction($request)
     {
         $this->db_restore_auction($request->ida);
         return response()->json(['success' => 'Auction was successfully restored.', 'action' => $request->action, 'requestIdModification' => $request->idm, 'did' => '6']);
     }
 
+    /**
+      * Removes an auction
+      * @param Request request
+      * @return JSON
+      */
     private function remove_auction($request)
     {
         $this->db_remove_auction($request->ida);
         return response()->json(['success' => 'Auction was successfully removed.', 'action' => $request->action, 'requestIdModification' => $request->idm, 'did' => '5']);
     }
 
+    /**
+      * Gets the new description of an auction
+      * @param Request request
+      * @return JSON
+      */
     private function get_new_description($request)
     {
         return $this->db_get_new_description($request->ida, $request->idm);
     }
 
+    /**
+      * Handles an unknown request
+      * @param Request request
+      * @return JSON
+      */
     private function unkown_action($request)
     {
         return response()->json(['unexpected' => 'Error: unknown action stated in request.', 'action' => $request->action]);
     }
 
+    /**
+      * Does a mod action based on input
+      * @param Request request
+      * @return JSON
+      */
     public function action(Request $request)
     {
         try {

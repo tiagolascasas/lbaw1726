@@ -20,6 +20,10 @@ class ModeratorController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+      * Checks if the current user is not a moderator
+      * @return true if it isn't
+      */
     private function isNotModerator()
     {
         if (Auth::user() == null || Auth::user()->users_status != "moderator") {
@@ -27,6 +31,10 @@ class ModeratorController extends Controller
         }
     }
 
+    /**
+      * Gets the moderation page
+      * @return page
+      */
     public function show()
     {
         if ($this->isNotModerator()) {

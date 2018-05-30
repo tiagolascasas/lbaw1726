@@ -22,6 +22,11 @@ class AdminController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+      * Approves a termination request
+      * @param Request $request
+      * @return 200 if success, 403 or 500 if errors
+      */
     public function terminate(Request $request)
     {
         if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
@@ -47,6 +52,11 @@ class AdminController extends Controller
         return response('OK', 200);
     }
 
+    /**
+      * Ignores a termination request
+      * @param Request $request
+      * @return 200 if success, 403 or 500 if errors
+      */
     public function ignore(Request $request)
     {
         if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
@@ -68,6 +78,11 @@ class AdminController extends Controller
         return response('OK', 200);
     }
 
+    /**
+      * Suspends an user
+      * @param Request $request
+      * @return 200 if success, 403 or 500 if errors
+      */
     public function suspend(Request $request)
     {
         if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
@@ -89,6 +104,11 @@ class AdminController extends Controller
         return response('OK', 200);
     }
 
+    /**
+      * Promote/Revoke a user to a moderator
+      * @param Request $request
+      * @return 200 if success, 403 or 500 if errors
+      */
     public function reactivate_or_revokeModerator(Request $request)
     {
         if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
@@ -109,6 +129,11 @@ class AdminController extends Controller
         return response('OK', 200);
     }
 
+    /**
+      * Bans someone
+      * @param Request $request
+      * @return 200 if success, 403 or 500 if errors
+      */
     public function ban(Request $request)
     {
         if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
@@ -130,6 +155,11 @@ class AdminController extends Controller
         return response('OK', 200);
     }
 
+    /**
+      * Promotes someone to a moderator
+      * @param Request $request
+      * @return 200 if success, 403 or 500 if errors
+      */
     public function promote_moderator(Request $request)
     {
         if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
@@ -151,6 +181,11 @@ class AdminController extends Controller
         return response('OK', 200);
     }
 
+    /**
+      * Does an admin action
+      * @param Request $request
+      * @return JSON if success, 403 or 500 if errors
+      */
     public function action(Request $request)
     {
         try {

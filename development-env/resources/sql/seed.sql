@@ -615,7 +615,7 @@ VALUES ('William Golding', 'Very good condition', '600000', '878551550-7', 'Lord
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
 VALUES ('J. M. Coetzee', 'Very good condition', '500000', '878551550-7', 'Disgrace', 'approved', 7, 1, 2, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
-VALUES ('John Steinbeck', 'Slightly wrinkled', '5500000', '878551550-7', 'Of Mice and Men', 'approved', 7, 1, 3, now());
+VALUES ('John Steinbeck', 'Slightly wrinkled', '550000', '878551550-7', 'Of Mice and Men', 'approved', 7, 1, 3, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
 VALUES ('Hermann Hesse', 'Very good condition', '600000', '878551550-7', 'Siddhartha (Mass Market Paperback)', 'approved', 7, 1, 3, now());
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved)
@@ -673,7 +673,6 @@ INSERT INTO "image" (source, idAuction) VALUES ('death.jpg',18);
 INSERT INTO "image" (source, idAuction) VALUES ('piano.jpg',19);
 INSERT INTO "image" (source, idAuction) VALUES ('dear.jpg',20);
 INSERT INTO "image" (source, idAuction) VALUES ('doctor.jpg',21);
-
 
 --finished auctions
 INSERT INTO "auction" (author, description, duration, ISBN, title, auction_status, idPublisher, idLanguage, idSeller, dateApproved, dateFinished)

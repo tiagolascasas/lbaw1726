@@ -22,6 +22,11 @@ class SearchController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+      * Does an advanced search
+      * @param Request $request
+      * @return JSON if success, 403 or 500 if errors
+      */
     public function search(Request $request)
     {
         try {

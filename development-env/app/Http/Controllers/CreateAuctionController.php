@@ -47,6 +47,11 @@ class CreateAuctionController extends Controller
         return view('pages.create');
     }
 
+    /**
+      * Creates a new auction
+      * @param Request $request
+      * @return created auction
+      */
     private function db_create(Request $request)
     {
         $createdAuction = DB::transaction(function () use ($request) {

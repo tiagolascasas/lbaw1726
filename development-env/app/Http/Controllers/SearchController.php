@@ -22,6 +22,10 @@ class SearchController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+      * gets the advanced search page
+      * @return page
+      */
     public function show()
     {
         $auctions = [];
@@ -30,6 +34,11 @@ class SearchController extends Controller
         return view('pages.search', ['auctions' => $auctions, 'responseSentence' => $responseSentence]);
     }
 
+    /**
+      * does a simpel search request
+      * @param Request $request
+      * @return page with results
+      */
     public function simpleSearch(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -104,6 +113,10 @@ class SearchController extends Controller
         return view('pages.search', ['auctions' => $auctions, 'responseSentence' => $responseSentence]);
     }
 
+    /**
+      * Builds all timestamps for an array of auctions
+      * @param $auctions
+      */
     private function buildTimestamps($auctions)
     {
         foreach ($auctions as $auction) {
@@ -112,6 +125,10 @@ class SearchController extends Controller
         }
     }
 
+    /**
+      * sets the max bid on an array of auctions
+      * @param $auctions
+      */
     private function getMaxBids($auctions)
     {
         foreach ($auctions as $auction) {
@@ -124,6 +141,10 @@ class SearchController extends Controller
         }
     }
 
+    /**
+      * sets the image on an array of auctions
+      * @param $auctions
+      */
     private function getImage($auctions)
     {
         foreach ($auctions as $auction) {

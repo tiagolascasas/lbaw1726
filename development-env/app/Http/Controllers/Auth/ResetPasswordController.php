@@ -41,6 +41,12 @@ class ResetPasswordController extends Controller
         $this->middleware('guest');
     }
 
+    /**
+      * gets a page with a reset password form
+      * @param Request $request
+      * @param String $token
+      * @return redirect to page
+      */
     public function showResetForm(Request $request, $token = null)
     {
         return view('auth.reset_password')->with(
@@ -48,11 +54,16 @@ class ResetPasswordController extends Controller
         );
     }
 
+    /**
+      * gets a page to reset the password
+      * @param String $token
+      * @return page
+      */
     public function getReset($token = null)
     {
         if (is_null($token))
         {
-            throw new NotFoundHttpException;    
+            throw new NotFoundHttpException;
         }
 
         // Change this to whatever you want ;)

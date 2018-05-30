@@ -83,6 +83,11 @@ class AuctionController extends Controller
             'timestamp' => $timestamp]);
     }
 
+    /**
+      * Gets the edit auction page
+      * @param int $id
+      * @return page
+      */
     public function edit($id)
     {
         $auction = Auction::find($id);
@@ -94,6 +99,12 @@ class AuctionController extends Controller
         return view('pages.auctionEdit', ['desc' => $auction->description, 'id' => $id]);
     }
 
+    /**
+      * Submits an auction edit request
+      * @param Request $request
+      * @param int $id
+      * @return redirect
+      */
     public function submitEdit(Request $request, $id)
     {
         $auction = Auction::find($id);
@@ -147,6 +158,9 @@ class AuctionController extends Controller
         return redirect('/auction/' . $id);
     }
 
+    /**
+      * Updates all auctions, setting them to finished if their time is up and sending out notifications
+      */
     public function updateAuctions()
     {
         $auctions = DB::select("SELECT id, duration, dateApproved, idSeller FROM auction WHERE auction_status = ?", ["approved"]);
@@ -174,6 +188,11 @@ class AuctionController extends Controller
         }
     }
 
+    /**
+      * Notifies the owner of an auction if it is finished
+      * @param int $id
+      * @return 404 if error
+      */
     public function notifyOwner($id)
     {
         try {
@@ -187,6 +206,11 @@ class AuctionController extends Controller
 
     }
 
+    /**
+      * Notifies winner and sends an email with purchase info
+      * @param int $id
+      * @return 200 if successful, 404 if not
+      */
     public function notifyWinnerAndPurchase($id)
     {
         try{
@@ -210,10 +234,15 @@ class AuctionController extends Controller
         return response('success', 200);
     }
 
+    /**
+      * Notifies all bidders if auction is finished
+      * @param int $id
+      * @return 200 if ok, 404 if not
+      */
     public function notifyBidders($id)
     {
         try{
-            $res = DB::select("SELECT DISTINCT bid.idBuyer FROM bid 
+            $res = DB::select("SELECT DISTINCT bid.idBuyer FROM bid
                                WHERE bid.idauction = ?",[$id]);
 
             $buyer = DB::select("SELECT bid.idbuyer
@@ -237,6 +266,12 @@ class AuctionController extends Controller
         return response('success', 200);
     }
 
+    /**
+      * Creates a timestamp based on a starting date and a duration
+      * @param String $dateApproved
+      * @param int $duration
+      * @return String timestamp
+      */
     public static function createTimestamp($dateApproved, $duration)
     {
         $start = strtotime($dateApproved);

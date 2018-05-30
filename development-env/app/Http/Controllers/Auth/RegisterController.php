@@ -84,6 +84,11 @@ class RegisterController extends Controller
         return $saveUser;
     }
 
+    /**
+      * Registers an user
+      * @param Request $request
+      * @return redirect to page
+      */
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();

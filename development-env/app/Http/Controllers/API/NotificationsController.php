@@ -21,6 +21,11 @@ class NotificationsController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+      * Gets all notifications of current user
+      * @param Request $request
+      * @return JSON if success, 403 or 500 if errors
+      */
     public function getNotifications(Request $request)
     {
         try {
@@ -41,6 +46,11 @@ class NotificationsController extends Controller
         return response()->json($response);
     }
 
+    /**
+      * Marks a notification as seen
+      * @param Request $request
+      * @return JSON if success, 403 or 500 if errors
+      */
     public function markAsSeen(Request $request)
     {
         try {

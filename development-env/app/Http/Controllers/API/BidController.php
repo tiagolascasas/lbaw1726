@@ -20,6 +20,11 @@ class BidController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+      * Gets the max bid of an auction
+      * @param Request $request
+      * @return JSON if success, 403 or 500 if errors
+      */
     public function getMaxBid(Request $request)
     {
         try {
@@ -41,6 +46,11 @@ class BidController extends Controller
         return response()->json($response[0]);
     }
 
+    /**
+      * Gets the max bid of an auction (for internal use)
+      * @param Request $request
+      * @return JSON if success, 403 or 500 if errors
+      */
     public static function getMaxBidInternal($id)
     {
         $query = "SELECT max(bidValue) FROM bid WHERE idAuction = ?";
@@ -52,6 +62,11 @@ class BidController extends Controller
         return $response[0]->max;
     }
 
+    /**
+      * Bids a new value
+      * @param Request $request
+      * @return JSON if success, 403 or 500 if errors
+      */
     public function bidNewValue(Request $request)
     {
         try {

@@ -45,6 +45,12 @@ class LoginController extends Controller
         return 'username';
     }
 
+    /**
+      * gets the home page based on the kind of user
+      * @param Request $request
+      * @param User $user
+      * @return redirect to page
+      */
     protected function authenticated(Request $request, User $user)
     {
         if ($user->isNormal()) {
