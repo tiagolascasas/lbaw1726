@@ -11,6 +11,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Mailgun\Mailgun;
+use GuzzleHttp\Client;
 
 class AuctionController extends Controller
 {
@@ -200,10 +202,49 @@ class AuctionController extends Controller
             $text = "Your auction of " . $res[0]->title . " has finished!";
             $notifID = DB::table('notification')->insertGetId(['information' => $text, 'idusers' => $res[0]->idseller]);
             DB::insert("INSERT INTO notification_auction (idAuction, idNotification) VALUES (?, ?)", [$res[0]->id, $notifID]);
+
+            $res1 = DB::select("SELECT bid.idbuyer
+                               FROM bid
+                               WHERE bid.idauction  = ?
+                               ORDER BY bid.bidvalue DESC",[$id]);
+
+            $user = DB::select("SELECT * FROM users WHERE id = ?", [$res1[0]->bidbuyer]);
+            $message = "Information of winner:";
+            $message .= "\nName: " . $user[0]->name;
+            $message .= "\nemail: " . $user[0]->email;
+            $message .= "\naddress: " . $user[0]->address;
+            $message .= "\npostal code: " . $user[0]->PostalCode;
+
+            $ownerID = DB::select("SELECT email FROM users WHERE id = ?", [$id]);
+
+            sendMail($message, $ownerID[0]->email);
+
         } catch (QueryException $qe) {
             return response('NOT FOUND', 404);
         }
 
+    }
+
+    public function sendMail($message, $email)
+    {
+        $client = new Client([
+            'base_uri' => 'https://api.mailgun.net/v3',
+            'verify' => false,
+        ]);
+        $adapter = new \Http\Adapter\Guzzle6\Client($client);
+        $domain = "sandboxeb3d0437da8c4b4f8d5a428ed93f64cc.mailgun.org";
+        $mailgun = new \Mailgun\Mailgun('key-44a6c35045fe3c3add9fcf0a018e654e', $adapter);
+
+        $result = $mailgun->sendMessage(
+            "$domain",
+            array('from' => 'Home remote Sandbox <postmaster@sandboxeb3d0437da8c4b4f8d5a428ed93f64cc.mailgun.org>',
+                'to' => 'Bookhub seller <' . $email . '>',
+                'subject' => 'Buyer information',
+                'text' => $message,
+                'require_tls' => 'false',
+                'skip_verification' => 'true',
+            )
+        );
     }
 
     /**
