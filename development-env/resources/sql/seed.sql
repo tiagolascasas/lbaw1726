@@ -168,11 +168,11 @@ CREATE TABLE comment (
     CONSTRAINT check_comment_parent CHECK (id != idParent)
 );
 
-CREATE TABLE password_resets (
-    id SERIAL PRIMARY KEY,
-    email text NOT NULL,
-    token text NOT NULL,
-    datePosted TIMESTAMP WITH TIME zone DEFAULT now() NOT NULL
+CREATE TABLE public.password_resets
+(
+    email character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    token character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL
 );
 
 -----------------------------------------------------
