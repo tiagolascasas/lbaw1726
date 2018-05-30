@@ -213,7 +213,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER tr_check_number_of_row_admin
-  BEFORE INSERT ON users
+  AFTER INSERT ON users
   FOR EACH ROW
     EXECUTE PROCEDURE check_number_of_row_admin();
 
