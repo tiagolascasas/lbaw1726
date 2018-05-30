@@ -82,22 +82,6 @@
                      {{$user->country->countryname}}
                   </td>
                </tr>
-               <tr>
-                  <td>
-                     <strong>Adress</strong>
-                  </td>
-                  <td>
-                     {{$user->address}}
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <strong>Postal Code</strong>
-                  </td>
-                  <td>
-                     {{$user->postalcode}}
-                  </td>
-               </tr>  
             </tbody>
          </table>
       </div>
