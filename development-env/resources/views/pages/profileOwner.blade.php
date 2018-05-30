@@ -60,6 +60,14 @@
                </tr>
                <tr>
                   <td>
+                     <strong>Paypal e-mail</strong>
+                  </td>
+                  <td>
+                     {{$user->paypalemail}}
+                  </td>
+               </tr>               
+               <tr>
+                  <td>
                      <strong>Phone Number</strong>
                   </td>
                   <td>
@@ -74,6 +82,22 @@
                      {{$user->country->countryname}}
                   </td>
                </tr>
+               <tr>
+                  <td>
+                     <strong>Adress</strong>
+                  </td>
+                  <td>
+                     {{$user->address}}
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <strong>Postal Code</strong>
+                  </td>
+                  <td>
+                     {{$user->postalcode}}
+                  </td>
+               </tr>  
             </tbody>
          </table>
       </div>
