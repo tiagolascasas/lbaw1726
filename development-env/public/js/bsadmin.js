@@ -480,9 +480,9 @@ function commentsHandler(response)
                 console.log(idx1);
                 let commentid = document.querySelector(idx1);
                 let rpbtn = document.querySelector(idx2);
-                commentid.innerHTML = `<div class="col-lg-4  text-left text-dark border-success lead">
+                commentid.innerHTML = `<div class="col-lg-10  text-left text-dark border-success lead">
                                             <div class="row">
-                                                <div class="col-sm-5 col-md-10">
+                                                <div class="col-sm-10 col-md-10">
                                                      <div>
                                                           <div class="panel-body" style="font-size: 0.8em">
                                                             <span>${element.username} replied:</span>

@@ -169,6 +169,8 @@ class AuctionController extends Controller
 
         foreach ($over as $id) {
             $this->notifyOwner($id);
+            $this->notifyWinnerAndPurchase($id);
+            $this->notifyBidders($id);
         }
     }
 
@@ -185,20 +187,54 @@ class AuctionController extends Controller
 
     }
 
-    public static function notifyWinnerAndPurchase($id)
+    public function notifyWinnerAndPurchase($id)
     {
-        /*try{
-            $res = DB::select("SELECT bid.idbuyer, max(bid.bidValue)
+        try{
+            $res = DB::select("SELECT bid.idbuyer
                                FROM bid
-                               WHERE bid.idauction  = ?",[$id]);
+                               WHERE bid.idauction  = ?
+                               ORDER BY bid.bidvalue DESC",[$id]);
+
+            $auction = DB::select("SELECT title
+                                    FROM auction
+                                    WHERE id = ?", [$id]);
+            $text = "You won the auction for " . $auction[0]->title . ".";
+
+            $notifID = DB::table('notification')->insertGetId(['information' => $text, 'idusers' => $res[0]->idbuyer]);
+            DB::insert("INSERT INTO notification_auction (idAuction, idNotification) VALUES (?, ?)", [$id, $notifID]);
+
+
         }catch(QueryException $qe){
             return response('NOT FOUND', 404);
-        }*/
+        }
+        return response('success', 200);
     }
 
-    public static function notifyBidders($id)
+    public function notifyBidders($id)
     {
+        try{
+            $res = DB::select("SELECT DISTINCT bid.idBuyer FROM bid 
+                               WHERE bid.idauction = ?",[$id]);
 
+            $buyer = DB::select("SELECT bid.idbuyer
+                               FROM bid
+                               WHERE bid.idauction  = ?
+                               ORDER BY bid.bidvalue DESC",[$id]);
+            foreach ($res as $bidder){
+                if($bidder->idbuyer != $buyer[0]->idbuyer){
+                    $auction = DB::select("SELECT title
+                                    FROM auction
+                                    WHERE id = ?", [$id]);
+                    $text = "You lost the auction for " . $auction[0]->title . ".";
+
+                    $notifID = DB::table('notification')->insertGetId(['information' => $text, 'idusers' => $bidder->idbuyer]);
+                    DB::insert("INSERT INTO notification_auction (idAuction, idNotification) VALUES (?, ?)", [$id, $notifID]);
+                }
+            }
+        }catch(QueryException $qe) {
+            return response('NOT FOUND', 404);
+        }
+        return response('success', 200);
     }
 
     public static function createTimestamp($dateApproved, $duration)

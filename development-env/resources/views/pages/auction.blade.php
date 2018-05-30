@@ -158,7 +158,11 @@
                             <td>
                                 @if (Auth::check())
                                     @if (Auth::user()->users_status=="moderator")
-                                    <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
+                                        @if(Auth::user()->id != $auction->idseller)
+                                             <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
+                                        @else
+                                        <button id="edit-auction" type="submit" class="btn btn-primary col-md-6">Edit the auction</button>
+                                        @endif
                                         <!-- Moderator remove auction button -->
                                         @if($auction->auction_status!="removed")
                                         <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
@@ -166,7 +170,7 @@
                                         <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal" class="btn btn-success"><i class="fas fa-undo"></i></button>
                                         @endif
                                     @elseif ($auction->idseller == Auth::user()->id)
-                                    <button id="edit-auction" type="submit" class="btn btn-primary col-md-6">Edit the auction</button>
+                                    <button id="edit-auction" type="submit" class="btn btn-primary col-md-6" style = "margin-top: 3px;">Edit the auction</button>
                                     @elseif ($auction->auction_status != "approved")
                                     <button id="unbiddable" type="submit" disabled class="btn btn-outline-secondary col-md-6">Unable to bid</button>
                                     @else
@@ -175,6 +179,16 @@
                                 @else
                                 <button id="bid-box" type="submit" disabled class="btn btn-outline-secondary col-md-10">Login to bid</button>
                                 @endif
+
+                                @if (Auth::check()&&$auction->idseller != Auth::user()->id)
+                                @if ($auction->wishlisted == true)
+                                <button id="wish-box" type="submit" class="btn btn-primary col-md-6" style = "margin-top: 3px;">Remove from wishlist</button>
+                                @else
+                                <button id="wish-box" type="submit" class="btn btn-primary col-md-6" style = "margin-top: 3px;">Add to wishlist</button>
+                                @endif
+                                @elseif (!Auth::check())
+                                <button type="submit" class="btn btn-outline-secondary col-md-4" disabled>Login to wishlist</button>
+                                @endif
                             </td>
                         </tr>
                         <tr>
@@ -182,16 +196,8 @@
                             <td></td>
                             <td></td>
                             <td>
-                                
-                                @if (Auth::check()&&$auction->idseller != Auth::user()->id)
-                                    @if ($auction->wishlisted == true)
-                                    <button id="wish-box" type="submit" class="btn btn-primary col-md-6">Remove from wishlist</button>
-                                    @else
-                                    <button id="wish-box" type="submit" class="btn btn-primary col-md-6">Add to wishlist</button>
-                                    @endif
-                                @elseif (!Auth::check())
-                                <button type="submit" class="btn btn-outline-secondary col-md-4" disabled>Login to wishlist</button>
-                                @endif
+
+
                             </td>
                         </tr>
                     </tbody>

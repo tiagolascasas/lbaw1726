@@ -32,6 +32,7 @@ class CommentController extends Controller
                     $response = DB::select('SELECT comment.id, comment.datePosted,comment.liked,comment.idsender,comment.comment_text,comment.idreceiver,comment.idparent,users.username
                                 FROM comment,users
                                 WHERE comment.idreceiver=?
+                                AND is_removed = FALSE
                                 AND users.id = comment.idSender
                                 ORDER BY comment.id ASC', [$id]);
                 } catch (QueryException $qe) {
