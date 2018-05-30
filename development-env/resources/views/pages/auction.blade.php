@@ -160,16 +160,17 @@
                                     @if (Auth::user()->users_status=="moderator")
                                         @if(Auth::user()->id != $auction->idseller)
                                              <button id="bid-box" type="submit" class="btn btn-primary col-md-6">Bid a new price</button>
+                                        @else
+                                        <button id="edit-auction" type="submit" class="btn btn-primary col-md-6">Edit the auction</button>
                                         @endif
                                         <!-- Moderator remove auction button -->
                                         @if($auction->auction_status!="removed")
-                                        <button id="edit-auction" type="submit" class="btn btn-primary col-md-6">Edit the auction</button>
                                         <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                         @else
                                         <button id="mod_remove_auction" data-toggle="modal" data-target="#removeAuctionModal" class="btn btn-success"><i class="fas fa-undo"></i></button>
                                         @endif
                                     @elseif ($auction->idseller == Auth::user()->id)
-                                    <button id="edit-auction" type="submit" class="btn btn-primary col-md-6">Edit the auction</button>
+                                    <button id="edit-auction" type="submit" class="btn btn-primary col-md-6" style = "margin-top: 3px;">Edit the auction</button>
                                     @elseif ($auction->auction_status != "approved")
                                     <button id="unbiddable" type="submit" disabled class="btn btn-outline-secondary col-md-6">Unable to bid</button>
                                     @else
