@@ -16,13 +16,25 @@ class Controller extends BaseController
 
     public function warn(Exception $qe)
     {
-        $logMessage = "\nID: " . Auth::user()->id . "\n" . $qe->getMessage() . "\n" . $qe->getTraceAsString() . "\n\n";
-        Log::warning($logMessage);
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+        } else {
+            $id = "guest";
+        }
+
+        $logMessage = "\nID: " . $id . "\n" . $qe->getMessage() . "\n" . $qe->getTraceAsString() . "\n\n";
+        Log::error($logMessage);
     }
 
     public function error(Exception $qe)
     {
-        $logMessage = "\nID: " . Auth::user()->id . "\n" . $qe->getMessage() . "\n" . $qe->getTraceAsString() . "\n\n";
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+        } else {
+            $id = "guest";
+        }
+
+        $logMessage = "\nID: " . $id . "\n" . $qe->getMessage() . "\n" . $qe->getTraceAsString() . "\n\n";
         Log::error($logMessage);
     }
 }

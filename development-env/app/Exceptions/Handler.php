@@ -4,10 +4,10 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Support\MessageBag;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\MessageBag;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -51,23 +51,29 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
-    {  
+    {
         $errors = new MessageBag();
 
         // add your error messages:
         $errors->add('An unexpected error ocurred', "An unexpected error ocurred");
 
         //render for dev env
-        if($exception instanceof \Illuminate\Validation\ValidationException)
-            return parent::render($request, $exception);
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+        } else {
+            $id = "guest";
+        }
 
-        $logMessage = "\nID: " . Auth::user()->id . "\n" . $exception->getMessage() . "\n" . $exception->getTraceAsString() . "\n\n";
-        Log::error($logMessage);    
+        if ($exception instanceof \Illuminate\Validation\ValidationException) {
+            return parent::render($request, $exception);
+        }
+
+        $logMessage = "\nID: " . $id . "\n" . $exception->getMessage() . "\n" . $exception->getTraceAsString() . "\n\n";
+        Log::error($logMessage);
 
         return redirect()
-        ->route('home')
-        ->withErrors($errors);
-
+            ->route('home')
+            ->withErrors($errors);
 
     }
 }
