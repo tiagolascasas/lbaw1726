@@ -44,7 +44,7 @@ class AdminController extends Controller
             return response('Incorrect Request', 400);
         }
 
-        return response('OK', 200);
+        return response('This user account was terminated. Account id: '.$id, 200);
     }
 
     public function ignore(Request $request)
@@ -86,7 +86,7 @@ class AdminController extends Controller
             return response('Incorrect Request', 400);
         }
 
-        return response('OK', 200);
+        return response('This user account was suspended. Account id is: '.$id, 200);
     }
 
     public function reactivate_or_revokeModerator(Request $request)
@@ -106,7 +106,7 @@ class AdminController extends Controller
         } else {
             return response('Incorrect Request', 400);
         }
-        return response('OK', 200);
+        return response('This user account status was set to normal. Account id is: '.$id, 200);
     }
 
     public function ban(Request $request)
@@ -127,7 +127,7 @@ class AdminController extends Controller
             return response('Incorrect Request', 400);
         }
 
-        return response('OK', 200);
+        return response('This account was banned. Account id is: '.$id, 200);
     }
 
     public function promote_moderator(Request $request)
@@ -148,8 +148,22 @@ class AdminController extends Controller
             return response('Incorrect Request', 400);
         }
 
-        return response('OK', 200);
+        return response('This user account was promoted to moderator. Account id is: '.$id, 200);
     }
+
+    public function visit_profile(Request $request)
+    {
+        if (!($request->ajax() || $request->pjax()) || !Auth::Check() || Auth::user()->users_status != 'admin') {
+            return response('Forbidden.', 403);
+        }
+
+        $id = $request->input('id_member');
+        if ($id !== null) {
+            return response($id, 200);
+        }
+
+        
+    }    
 
     public function action(Request $request)
     {
@@ -168,6 +182,10 @@ class AdminController extends Controller
             if ($action === "remove_profile") {
                 return $this->terminate($request);
             }
+
+            if ($action === "visit_profile") {
+                return $this->visit_profile($request);
+            }            
 
             if ($action === "ignore_del_request") {
                 return $this->ignore($request);

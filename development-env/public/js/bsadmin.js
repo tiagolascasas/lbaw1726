@@ -981,12 +981,18 @@ function adminAction(adminAction, id_member = -1, username = "")
         success: function(result)
         {
             // Fade elements on approve/remove
-            console.log(result);
+            
             if (window.location.pathname === "/admin")
             {
                 if (adminAction == "remove_profile" || adminAction == "ignore_del_request")
                 {
                     $(`#dr-${id_member}`).fadeOut();
+                } else if (adminAction == "visit_profile"){
+                    window.open('/profile/'+result);
+                }
+                else {
+                    window.alert(result);
+                    console.log(result);
                 }
             }
             else
@@ -996,8 +1002,8 @@ function adminAction(adminAction, id_member = -1, username = "")
         },
         error: function(data)
         {
-            console.log(data);
-            alert("Check the log.")
+            window.alert("Check the log for error details.");
+            console.log("data");
         }
     });
 }
