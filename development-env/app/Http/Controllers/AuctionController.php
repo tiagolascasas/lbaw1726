@@ -152,7 +152,7 @@ class AuctionController extends Controller
         $auctions = DB::select("SELECT id, duration, dateApproved, idSeller FROM auction WHERE auction_status = ?", ["approved"]);
         $over = [];
 
-        foreach ($auctions as $auction) { //for each auction, if it is finished, add its id to the list
+        foreach ($auctions as $auction) {
             $timestamp = AuctionController::createTimestamp($auction->dateapproved, $auction->duration);
             if ($timestamp === "Auction has ended!") {
                 array_push($over, $auction->id);
