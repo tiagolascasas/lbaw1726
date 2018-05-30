@@ -111,7 +111,7 @@ class User extends Authenticatable
         $result = $mailgun->sendMessage("$domain",
             array('from' => 'Home remote Sandbox <postmaster@sandboxeb3d0437da8c4b4f8d5a428ed93f64cc.mailgun.org>',
                 'to' => $this->name.' <'.$this->email.'>',
-                'subject' => 'Contact message',
+                'subject' => 'Reset password',
                 'text' => 'Someone asked for password reset a contact message using the contact page. the token is: '.$token.'
                 To reset your password please visit http://lbaw1726.lbaw-prod.fe.up.pt/password/reset/'.$token,
                 'require_tls' => 'false',

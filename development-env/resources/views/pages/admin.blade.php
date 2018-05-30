@@ -22,6 +22,7 @@
                 Take an action
                 </a>
                 <div class="collapse" id="collapseExample">
+                    <span  class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('visit_profile',-1,document.getElementById('usernameInput').value)">Visit user profile</span>
                     <span  class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('suspend',-1,document.getElementById('usernameInput').value)">Suspend user indefinitely</span>
                     <span class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('normal',-1,document.getElementById('usernameInput').value)">Reactivate suspended user</span>
                     <span  class="btn col-md-12 mb-2 btn-outline-secondary adminBtn" onclick="adminAction('ban',-1,document.getElementById('usernameInput').value)">Ban user permanently</span>
